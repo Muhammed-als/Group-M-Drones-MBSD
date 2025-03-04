@@ -1,0 +1,140 @@
+{
+    "M002" : {
+    "type": "Medical Delivery",
+    "start": "Hospital A",
+    "end": "Clinic B",
+    "priority": 2,
+    "EstimatedTimeHours": 1.5,
+ 
+    "Drone": {
+        "Model": "MedFly-X1",
+        "BatteryCapacityPercent": 80,
+        "MaxFlightTimeMinuts": 60,
+        "PayloadCapacityKg": 5,
+        "Role": "Medical Transport",
+        "EnergyModel": {
+            "ConsumptionRatePercent": 5,
+            "BatteryHealthPercent": 90,
+            "RechargeTimeHours": 2
+        }
+    },
+ 
+    "Constraints": {
+        "Safety": {
+            "MinBatteryPercent": 25,
+            "MaxWindSpeedMetersInSecond": 12
+        },
+        "Regulatory": {
+            "FlightPermission": true,
+            "AltitudeLimitMeters": 150
+        }
+    },
+ 
+    "Phases": {
+        "Takeoff": {
+            "Type": "Ascent",
+            "EnergyUsagePercent": 4,
+ 
+            "SubPhases": {
+                "InitialLift": {
+                    "Type": "Vertical Rise",
+                    "DurationMinuts": 20,
+                    "Actions": {
+                        "StartMotors": {
+                            "Type": "Activate",
+                            "InputOutput": "",
+                            "EnergyUsagePercent": 1.5
+                        },
+                        "AdjustMotorSpeed": {
+                            "Type": "Control",
+                            "InputOutput": "Sensor Data",
+                            "EnergyUsagePercent": 1.5
+                        }
+                    }
+                },
+ 
+                "Rise": {
+                    "Type": "Vertical Rise",
+                    "DurationMinuts": 20,
+ 
+                    "Actions": {
+                        "AdjustAltitude": {
+                            "Type": "Control",
+                            "InputOutput": "Sensor Data",
+                            "EnergyUsagePercent": 1
+                        }
+                    }
+                }
+            }
+        },
+ 
+        "Cruise": {
+            "Type": "Forward Flight",
+            "EnergyUsagePercent": 6,
+ 
+            "SubPhases": {
+                "MaintainSpeed": {
+                    "Type": "Constant Velocity",
+                    "DurationMinuts": 60,
+                    "Actions": {
+                        "AdjustAltitude": {
+                            "Type": "Control",
+                            "InputOutput": "Sensor Data",
+                            "EnergyUsagePercent": 2
+                        }
+                    }
+                }
+            }
+        },
+ 
+        "Landing": {
+            "Type": "Descent",
+            "EnergyUsagePercent": 3,
+ 
+            "SubPhases": {
+                "FinalApproach": {
+                    "Type": "Controlled Descent",
+                    "DurationMinuts": 20,
+                    "Actions": {
+                        "DestinationLock": {
+                            "Type": "Control",
+                            "InputOutput": "Sensor Data",
+                            "EnergyUsagePercent": 1
+                        }
+                    }
+                },
+ 
+                "LandingAndShutdown": {
+                    "Type": "Controlled Descent",
+                    "DurationMinuts": 20,
+                    "Actions": {
+                        "AdjustMotorSpeed": {
+                            "Type": "Control",
+                            "InputOutput": "Sensor Data",
+                            "EnergyUsagePercent": 1
+                        },
+                        "DeployLandingGear": {
+                            "Type": "Mechanical",
+                            "InputOutput": "Actuator",
+                            "EnergyUsagePercent": 1
+                        }
+                    }
+                }
+            }
+        }
+    },
+ 
+    "Events": {
+        "BatteryLowAlert": {
+            "Type": "System Warning",
+            "ImpactLevel": 3,
+            "Response": "Return to Base"
+        },
+        "RestrictedAirspaceWarning": {
+            "Type": "Regulatory Notice",
+            "ImpactLevel": 2,
+            "Response": "Adjust Flight Path"
+        }
+    }
+}
+}

@@ -1,0 +1,72 @@
+@startuml
+
+class Mission {
+    + missionID: String
+    + missionType: String
+    + startLocation: String
+    + endLocation: String
+    + priority: Int
+    + estimatedTime: Float
+}
+Mission "1" -- "1..*" Phase : "contains"
+
+class Phase {
+    + phaseType: String
+    + energyUsage: Float
+}
+Phase "1" -- "0..*" SubPhase : "contains"
+
+class SubPhase {
+    + subPhaseType: String
+    + duration: Float
+}
+SubPhase "1" -- "1..*" Action : "performs"
+
+class Action {
+    + actionType: String
+    + inputOutput: String
+    + energyUsage: Float
+}
+
+class Drone {
+    + modelType: String
+    + batteryCapacity: Float
+    + maxFlightTime: Float
+    + payloadCapacity: Float
+    + role: String
+}
+Mission "1" -- "1..*" Drone : "uses"
+
+class Constraint {
+    + constraintType: String
+    + description: String
+}
+Mission "1" -- "1..*" Constraint : "has"
+Constraint <|-- SafetyConstraint : "inherits"
+Constraint <|-- RegulatoryConstraint : "inherits"
+
+class SafetyConstraint {
+    + minBattery: Float
+    + maxWindSpeed: Float
+}
+
+class RegulatoryConstraint {
+    + flightPermission: Boolean
+    + altitudeLimit: Float
+}
+
+class MissionEvent {
+    + eventType: String
+    + impactLevel: Int
+    + responseAction: String
+}
+Mission "1" -- "0..*" MissionEvent : "triggers"
+
+class EnergyModel {
+    + consumptionRate: Float
+    + batteryHealth: Float
+    + rechargeTime: Float
+}
+Drone "1" -- "1" EnergyModel : "has"
+
+@enduml

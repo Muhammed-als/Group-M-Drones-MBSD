@@ -1,0 +1,128 @@
+{
+    "Mission": {
+        "type": "String",
+        "start": "String",
+        "end": "String",
+        "priority": "Integer",
+        "EstimatedTimeHours": "Float",
+        "Drone": {
+            "Model": "String",
+            "BatteryCapacityPercent": "Float",
+            "MaxFlightTimeMinutes": "Integer",
+            "PayloadCapacityKg": "Integer",
+            "Role": "String",
+            "EnergyModel": {
+                "ConsumptionRatePercent": "Float",
+                "BatteryHealthPercent": "Float",
+                "RechargeTimeHours": "Integer"
+            }
+        },
+        "Constraints": {
+            "Safety": {
+                "MinBatteryPercent": "Float",
+                "MaxWindSpeedMetersInSecond": "Integer"
+            },
+            "Regulatory": {
+                "FlightPermission": "Boolean",
+                "AltitudeLimitMeters": "Integer"
+            }
+        },
+        "Phases": {
+            "Takeoff": {
+                "Type": "String",
+                "EnergyUsagePercent": "Integer",
+                "SubPhases": {
+                    "InitialLift": {
+                        "Type": "String",
+                        "DurationMinutes": "Integer",
+                        "Actions": {
+                            "StartMotors": {
+                                "Type": "String",
+                                "InputOutput": "String",
+                                "EnergyUsagePercent": "Float"
+                            },
+                            "AdjustMotorSpeed": {
+                                "Type": "String",
+                                "InputOutput": "String",
+                                "EnergyUsagePercent": "Float"
+                            }
+                        }
+                    },
+                    "Rise": {
+                        "Type": "String",
+                        "DurationMinutes": "Integer",
+                        "Actions": {
+                            "AdjustAltitude": {
+                                "Type": "String",
+                                "InputOutput": "String",
+                                "EnergyUsagePercent": "Float"
+                            }
+                        }
+                    }
+                }
+            },
+            "Cruise": {
+                "Type": "String",
+                "EnergyUsagePercent": "Float",
+                "SubPhases": {
+                    "MaintainSpeed": {
+                        "Type": "String",
+                        "DurationMinutes": "Integer",
+                        "Actions": {
+                            "AdjustAltitude": {
+                                "Type": "String",
+                                "InputOutput": "String",
+                                "EnergyUsagePercent": "Float"
+                            }
+                        }
+                    }
+                }
+            },
+            "Landing": {
+                "Type": "String",
+                "EnergyUsagePercent": "Float",
+                "SubPhases": {
+                    "FinalApproach": {
+                        "Type": "String",
+                        "DurationMinutes": "Integer",
+                        "Actions": {
+                            "DestinationLock": {
+                                "Type": "String",
+                                "InputOutput": "String",
+                                "EnergyUsagePercent": "Float"
+                            }
+                        }
+                    },
+                    "LandingAndShutdown": {
+                        "Type": "String",
+                        "DurationMinutes": "Integer",
+                        "Actions": {
+                            "AdjustMotorSpeed": {
+                                "Type": "String",
+                                "InputOutput": "String",
+                                "EnergyUsagePercent": "Float"
+                            },
+                            "DeployLandingGear": {
+                                "Type": "String",
+                                "InputOutput": "String",
+                                "EnergyUsagePercent": "Float"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Events": {
+            "BatteryLowAlert": {
+                "Type": "String",
+                "ImpactLevel": "Integer",
+                "Response": "String"
+            },
+            "RestrictedAirspaceWarning": {
+                "Type": "String",
+                "ImpactLevel": "Integer",
+                "Response": "String"
+            }
+        }
+    }
+}
