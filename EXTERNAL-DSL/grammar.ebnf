@@ -9,7 +9,7 @@
 
 <Entity> ::= "entity" <EntityName> "{" <EntityAttributes> <EntityBody> "}"
 <EntityName> ::= "Mission" | "Drone" | "EnergyModel" | "Phase" | "SubPhase" | "Action" | "MissionEvent" | "Constraint" | "RegulatoryConstraint" | "SafetyConstraint"
-<EntityAttributes> ::= <MissionAttributes> | <DroneAttributes> | <EnergyModelAttributes> | <PhaseAttributes> | <SubPhaseAttributes> | <ActionAttributes> | <MissionEventAttributes> | <ConstraintAttributes> | <RegulatoryConstraintAttributes> | <SafetyConstraintAttributes>
+<EntityAttributes> ::= <MissionAttributes> | <DroneAttributes> | <EnergyModelAttributes> | <PhaseAttributes> | <SubPhaseAttributes> | <ActionAttributes> | <MissionEventAttributes> | <RegulatoryConstraintAttributes> | <SafetyConstraintAttributes>
 <EntityBody> ::= (<EntityElement>)*
 <EntityElement> ::= <Attribute> | <SubEntity>
 <SubEntity> ::= <Entity>
@@ -34,15 +34,6 @@
 
 (* MissionEvent-specific attributes *)
 <MissionEventAttributes> ::= "eventType" "=" <STRING> "," "impactLevel" "=" <NUMBER> "," "responseAction" "=" <STRING>
-
-(* Constraint-specific attributes *)
-<ConstraintAttributes> ::= <ConstraintType> <ConstraintBody>
-
-<ConstraintType> ::= "SafetyConstraint" | "RegulatoryConstraint"
-
-<ConstraintBody> ::= <SafetyConstraint> | <RegulatoryConstraint>
-
-<ConstraintBody> ::= "(" <NUMBER> "," <NUMBER> ")" | "(" <BOOLEAN> "," <NUMBER> ")"
 
 (* SafetyConstraint-specific attributes *)
 <SafetyConstraintAttributes> ::= "minBattery" "=" <NUMBER> "," "maxWindSpeed" "=" <NUMBER>
