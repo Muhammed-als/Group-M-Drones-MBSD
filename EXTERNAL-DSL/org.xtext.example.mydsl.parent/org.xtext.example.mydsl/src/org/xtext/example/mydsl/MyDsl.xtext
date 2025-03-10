@@ -2,7 +2,7 @@ grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
-// Entry rule allowing multiple entity definitions
+// allowing multiple entity definitions
 Model:
     (missions+=Mission | drones+=Drone | energyModels+=EnergyModel | phases+=Phase | subPhases+=SubPhase | actions+=Action | constraints+=Constraint | missionEVents+=MissionEvent)*;
 
@@ -80,6 +80,7 @@ MissionEvent:
         'responseAction' '=' responseAction=STRING    
     '}';
 
+// Define new types
 terminal FLOAT:
     INT '.' INT;
     
