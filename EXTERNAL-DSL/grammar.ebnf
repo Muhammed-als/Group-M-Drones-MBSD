@@ -1,149 +1,132 @@
 (* Basic definitions *)
 <STRING> ::= <LETTER> (<LETTER> | <DIGIT> | "_")*  
-<NUMBER> ::= <DIGIT>+ ("." <DIGIT>+)?  
+<INT> ::= <DIGIT>+  
+<FLOAT> ::= <DIGIT>+ "." <DIGIT>+  
 <DIGIT> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"  
 <BOOLEAN> ::= "true" | "false"  
 <LETTER> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" 
-           | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z"
+           | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z"  
 
-
+(* Entity definitions *)
 <Entity> ::= "entity" <EntityName> "{" <EntityAttributes> <EntityBody> "}"
 <EntityName> ::= "Mission" | "Drone" | "EnergyModel" | "Phase" | "SubPhase" | "Action" | "MissionEvent" | "Constraint" | "RegulatoryConstraint" | "SafetyConstraint"
 <EntityAttributes> ::= <MissionAttributes> | <DroneAttributes> | <EnergyModelAttributes> | <PhaseAttributes> | <SubPhaseAttributes> | <ActionAttributes> | <MissionEventAttributes> | <RegulatoryConstraintAttributes> | <SafetyConstraintAttributes>
-<EntityBody> ::= (<EntityElement>)*
-<EntityElement> ::= <Attribute> | <SubEntity>
-<SubEntity> ::= <Entity>
+<EntityBody> ::= (<EntityElement>)*  
+<EntityElement> ::= <Attribute> | <SubEntity>  
+<SubEntity> ::= <Entity>  
 
 (* Mission-specific attributes *)
-<MissionAttributes> ::= "missionID" "=" <STRING> "," "missionType" "=" <STRING> "," "startLocation" "=" <STRING> "," "endLocation" "=" <STRING> "," "priority" "=" <NUMBER> "," "estimatedTime" "=" <NUMBER> "," "addDrone" "=" <SubEntity> "," "addPhase" "=" <SubEntity> "," "addConstraint" "=" <SubEntity> "," "addEvent" "=" <SubEntity>
+<MissionAttributes> ::= "missionID" "=" <STRING>,"missionType" "=" <STRING>,"startLocation" "=" <STRING>,"endLocation" "=" <STRING>,"priority" "=" <INT>,"estimatedTime" "=" <FLOAT>,"addDrone" "=" <SubEntity>,"addPhase" "=" <SubEntity>,"addConstraint" "=" <SubEntity>,"addEvent" "=" <SubEntity>  
 
 (* Drone-specific attributes *)
-<DroneAttributes> ::= "modelType" "=" <STRING> "," "role" "=" <STRING> "," "batteryCapacity" "=" <NUMBER> "," "maxFlightTime" "=" <NUMBER> "," "payloadCapacity" "=" <NUMBER> "," "energyModel" "=" <EnergyModel>
+<DroneAttributes> ::= "modelType" "=" <STRING> "," "role" "=" <STRING> "," "batteryCapacity" "=" <FLOAT> "," "maxFlightTime" "=" <FLOAT> "," "payloadCapacity" "=" <FLOAT> "," "addEnergyModel" "=" <SubEntity>  
 
 (* EnergyModel-specific attributes *)
-<EnergyModelAttributes> ::= "consumptionRate" "=" <NUMBER> "," "batteryHealth" "=" <NUMBER> "," "rechargeTime" "=" <NUMBER>
+<EnergyModelAttributes> ::= "consumptionRate" "=" <FLOAT> "," "batteryHealth" "=" <FLOAT> "," "rechargeTime" "=" <FLOAT>  
 
 (* Phase-specific attributes *)
-<PhaseAttributes> ::= "phaseType" "=" <STRING> "," "energyUsage" "=" <NUMBER> "," "addSubPhase" "=" <SubPhase>
+<PhaseAttributes> ::= "phaseType" "=" <STRING> "," "energyUsage" "=" <FLOAT> "," "addSubPhase" "=" <SubEntity>  
 
 (* SubPhase-specific attributes *)
-<SubPhaseAttributes> ::= "subPhaseType" "=" <STRING> "," "duration" "=" <NUMBER> "," "addAction" "=" <Action>
+<SubPhaseAttributes> ::= "subPhaseType" "=" <STRING> "," "duration" "=" <FLOAT> "," "addAction" "=" <SubEntity>  
 
 (* Action-specific attributes *)
-<ActionAttributes> ::= "actionType" "=" <STRING> "," "inputOutput" "=" <STRING> "," "energyUsage" "=" <NUMBER>
+<ActionAttributes> ::= "actionType" "=" <STRING> "," "inputOutput" "=" <STRING> "," "energyUsage" "=" <FLOAT>  
 
 (* MissionEvent-specific attributes *)
-<MissionEventAttributes> ::= "eventType" "=" <STRING> "," "impactLevel" "=" <NUMBER> "," "responseAction" "=" <STRING>
+<MissionEventAttributes> ::= "eventType" "=" <STRING> "," "impactLevel" "=" <INT> "," "responseAction" "=" <STRING>  
 
 (* SafetyConstraint-specific attributes *)
-<SafetyConstraintAttributes> ::= "minBattery" "=" <NUMBER> "," "maxWindSpeed" "=" <NUMBER>
+<SafetyConstraintAttributes> ::= "minBattery" "=" <FLOAT> "," "maxWindSpeed" "=" <FLOAT>  
 
 (* RegulatoryConstraint-specific attributes *)
-<RegulatoryConstraintAttributes> ::= "flightPermission" "=" <BOOLEAN> "," "altitudeLimit" "=" <NUMBER>
+<RegulatoryConstraintAttributes> ::= "flightPermission" "=" <BOOLEAN> "," "altitudeLimit" "=" <INT>  
 
+(* EBNF snytax example *)
+entity Mission "MedicalDelivery" {
+    missionID = "Mission-001",
+    missionType = "Reconnaissance",
+    startLocation = "Hospital A",
+    endLocation = "Clinic B",
+    priority = 1,
+    estimatedTime = 5.5,
+    addDrone = entity Drone "DroneAlpha", entity Drone "DroneBeta",
+    addPhase = entity Phase "Phase001", entity Phase "Phase002",
+    addConstraint = entity RegulatoryConstraint "RegulatoryConstraint001", entity SafetyConstraint "SafetyConstraint001",
+    addEvent = entity MissionEvent "MissionEvent001", entity MissionEvent "MissionEvent002"
+}
 
-(* Example of the DSL *)
-entity Mission {
-    id = "M001",
-    name = "Medical Delivery",
-    setStartLocation = "Hospital A",
-    setEndLocation = "Clinic B",
-    setPriority = 2,
-    setEstimatedTime = 1.5,
+entity Drone "DroneAlpha" {
+    modelType = "Quadcopter",
+    batteryCapacity = 5000.0,
+    maxFlightTime = 30.5,
+    payloadCapacity = 2.5,
+    role = "Surveillance",
+    addEnergyModel = entity EnergyModel "EnergyModelA"
+}
 
-    addDrone = Drone { 
-        name = "MedFly-X1", 
-        weight = 80, 
-        speed = 60, 
-        capacity = 5, 
-        type = "Medical Transport", 
-        energyModel = EnergyModel { 
-            energy = 5, 
-            efficiency = 90, 
-            capacity = 2 
-        } 
-    },
-    addConstraint = SafetyConstraint(25, 12),
-    addConstraint = RegulatoryConstraint(true, 150),
+entity Drone "DroneBeta" {
+    modelType = "FixedWing",
+    batteryCapacity = 7000.0,
+    maxFlightTime = 45.0,
+    payloadCapacity = 5.0,
+    role = "Transport",
+    addEnergyModel = entity EnergyModel "EnergyModelB"
+}
 
-    addPhase = Phase { 
-        name = "Takeoff", 
-        energyUsage = 4, 
-        addSubPhase = SubPhase { 
-            name = "InitialLift", 
-            weight = 20, 
-            addAction = Action { 
-                name = "StartMotors", 
-                data = "", 
-                duration = 1.5 
-            }
-            addAction = Action { 
-                name = "AdjustMotorSpeed", 
-                data = "Sensor Data", 
-                duration = 1.5 
-            }
-        },
-        addSubPhase = SubPhase { 
-            name = "Rise", 
-            weight = 20, 
-            addAction = Action { 
-                name = "AdjustAltitude", 
-                data = "Sensor Data", 
-                duration = 1.0 
-            }
-        }
-    },
+entity EnergyModel "EnergyModelA" {
+    consumptionRate = 0.5,
+    batteryHealth = 95.0,
+    rechargeTime = 2.5
+}
 
-    addPhase = Phase { 
-        name = "Cruise", 
-        energyUsage = 6, 
-        addSubPhase = SubPhase { 
-            name = "MaintainSpeed", 
-            weight = 60, 
-            addAction = Action { 
-                name = "AdjustAltitude", 
-                data = "Sensor Data", 
-                duration = 2.0 
-            }
-        }
-    },
+entity EnergyModel "EnergyModelB" {
+    consumptionRate = 0.7,
+    batteryHealth = 90.0,
+    rechargeTime = 3.0
+}
 
-    addPhase = Phase { 
-        name = "Landing", 
-        energyUsage = 3, 
-        addSubPhase = SubPhase { 
-            name = "FinalApproach", 
-            weight = 20, 
-            addAction = Action { 
-                name = "DestinationLock", 
-                data = "Sensor Data", 
-                duration = 1.0 
-            }
-        },
-        addSubPhase = SubPhase { 
-            name = "LandingAndShutdown", 
-            weight = 20, 
-            addAction = Action { 
-                name = "AdjustMotorSpeed", 
-                data = "Sensor Data", 
-                duration = 1.0 
-            },
-            addAction = Action { 
-                name = "DeployLandingGear", 
-                data = "Actuator", 
-                duration = 1.0 
-            }
-        }
-    },
+entity Phase "Phase001" {
+    phaseType = "Takeoff",
+    energyUsage = 20.5,
+    addSubPhase = entity SubPhase "SubPhaseA"
+}
 
-    addEvent = MissionEvent { 
-        name = "BatteryLowAlert", 
-        level = 3, 
-        action = "Return to Base" 
-    },
-    addEvent = MissionEvent { 
-        name = "RestrictedAirspaceWarning", 
-        level = 2, 
-        action = "Adjust Flight Path" 
-    }
+entity Phase "Phase002" {
+    phaseType = "Landing",
+    energyUsage = 18.0
+}
+
+entity SubPhase "SubPhaseA" {
+    subPhaseType = "Hover",
+    duration = 5.0,
+    addAction = entity Action "Action001"
+}
+
+entity Action "Action001" {
+    actionType = "Scan",
+    inputOutput = "Scan Area",
+    energyUsage = 1.5
+}
+
+entity SafetyConstraint "SafetyConstraint001" {
+    minBattery = 15.0,
+    maxWindSpeed = 12.5
+}
+
+entity RegulatoryConstraint "RegulatoryConstraint001" {
+    flightPermission = true,
+    altitudeLimit = 120
+}
+
+entity MissionEvent "MissionEvent001" {
+    eventType = "BatteryLow",
+    impactLevel = 3,
+    responseAction = "ReturnToBase"
+}
+
+entity MissionEvent "MissionEvent002" {
+    eventType = "ObstacleDetected",
+    impactLevel = 2,
+    responseAction = "AvoidObstacle"
 }
