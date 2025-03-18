@@ -31,8 +31,10 @@ public class MyDslParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MyDslGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getModelAccess().getAlternatives(), "rule__Model__Alternatives");
+			builder.put(grammarAccess.getEntityAccess().getAlternatives(), "rule__Entity__Alternatives");
 			builder.put(grammarAccess.getConstraintAccess().getAlternatives(), "rule__Constraint__Alternatives");
+			builder.put(grammarAccess.getSystemRootAccess().getGroup(), "rule__SystemRoot__Group__0");
+			builder.put(grammarAccess.getRelationAccess().getGroup(), "rule__Relation__Group__0");
 			builder.put(grammarAccess.getMissionAccess().getGroup(), "rule__Mission__Group__0");
 			builder.put(grammarAccess.getMissionAccess().getGroup_24(), "rule__Mission__Group_24__0");
 			builder.put(grammarAccess.getMissionAccess().getGroup_28(), "rule__Mission__Group_28__0");
@@ -49,16 +51,15 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSafetyConstraintAccess().getGroup(), "rule__SafetyConstraint__Group__0");
 			builder.put(grammarAccess.getRegulatoryConstraintAccess().getGroup(), "rule__RegulatoryConstraint__Group__0");
 			builder.put(grammarAccess.getMissionEventAccess().getGroup(), "rule__MissionEvent__Group__0");
-			builder.put(grammarAccess.getModelAccess().getMissionsAssignment_0(), "rule__Model__MissionsAssignment_0");
-			builder.put(grammarAccess.getModelAccess().getDronesAssignment_1(), "rule__Model__DronesAssignment_1");
-			builder.put(grammarAccess.getModelAccess().getEnergyModelsAssignment_2(), "rule__Model__EnergyModelsAssignment_2");
-			builder.put(grammarAccess.getModelAccess().getPhasesAssignment_3(), "rule__Model__PhasesAssignment_3");
-			builder.put(grammarAccess.getModelAccess().getSubPhasesAssignment_4(), "rule__Model__SubPhasesAssignment_4");
-			builder.put(grammarAccess.getModelAccess().getActionsAssignment_5(), "rule__Model__ActionsAssignment_5");
-			builder.put(grammarAccess.getModelAccess().getConstraintsAssignment_6(), "rule__Model__ConstraintsAssignment_6");
-			builder.put(grammarAccess.getModelAccess().getMissionEVentsAssignment_7(), "rule__Model__MissionEVentsAssignment_7");
+			builder.put(grammarAccess.getSystemRootAccess().getNameAssignment_1(), "rule__SystemRoot__NameAssignment_1");
+			builder.put(grammarAccess.getSystemRootAccess().getEntitiesAssignment_3(), "rule__SystemRoot__EntitiesAssignment_3");
+			builder.put(grammarAccess.getSystemRootAccess().getRelationAssignment_4(), "rule__SystemRoot__RelationAssignment_4");
+			builder.put(grammarAccess.getRelationAccess().getNameAssignment_1(), "rule__Relation__NameAssignment_1");
+			builder.put(grammarAccess.getRelationAccess().getFromEntityAssignment_5(), "rule__Relation__FromEntityAssignment_5");
+			builder.put(grammarAccess.getRelationAccess().getToEntityAssignment_8(), "rule__Relation__ToEntityAssignment_8");
+			builder.put(grammarAccess.getRelationAccess().getTypeAssignment_11(), "rule__Relation__TypeAssignment_11");
 			builder.put(grammarAccess.getMissionAccess().getNameAssignment_1(), "rule__Mission__NameAssignment_1");
-			builder.put(grammarAccess.getMissionAccess().getIdAssignment_5(), "rule__Mission__IdAssignment_5");
+			builder.put(grammarAccess.getMissionAccess().getMissionIDAssignment_5(), "rule__Mission__MissionIDAssignment_5");
 			builder.put(grammarAccess.getMissionAccess().getMissionTypeAssignment_8(), "rule__Mission__MissionTypeAssignment_8");
 			builder.put(grammarAccess.getMissionAccess().getStartLocationAssignment_11(), "rule__Mission__StartLocationAssignment_11");
 			builder.put(grammarAccess.getMissionAccess().getEndLocationAssignment_14(), "rule__Mission__EndLocationAssignment_14");
@@ -73,7 +74,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMissionAccess().getAddEventsAssignment_35(), "rule__Mission__AddEventsAssignment_35");
 			builder.put(grammarAccess.getMissionAccess().getAddEventsAssignment_36_1(), "rule__Mission__AddEventsAssignment_36_1");
 			builder.put(grammarAccess.getDroneAccess().getNameAssignment_1(), "rule__Drone__NameAssignment_1");
-			builder.put(grammarAccess.getDroneAccess().getTypeAssignment_5(), "rule__Drone__TypeAssignment_5");
+			builder.put(grammarAccess.getDroneAccess().getModelTypeAssignment_5(), "rule__Drone__ModelTypeAssignment_5");
 			builder.put(grammarAccess.getDroneAccess().getBatterCapacityAssignment_8(), "rule__Drone__BatterCapacityAssignment_8");
 			builder.put(grammarAccess.getDroneAccess().getMaxFlightTimeAssignment_11(), "rule__Drone__MaxFlightTimeAssignment_11");
 			builder.put(grammarAccess.getDroneAccess().getPayloadCapacityAssignment_14(), "rule__Drone__PayloadCapacityAssignment_14");
@@ -83,7 +84,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEnergyModelAccess().getNameAssignment_1(), "rule__EnergyModel__NameAssignment_1");
 			builder.put(grammarAccess.getEnergyModelAccess().getConsumptionRateAssignment_5(), "rule__EnergyModel__ConsumptionRateAssignment_5");
 			builder.put(grammarAccess.getEnergyModelAccess().getBatteryHealthAssignment_8(), "rule__EnergyModel__BatteryHealthAssignment_8");
-			builder.put(grammarAccess.getEnergyModelAccess().getCapacityAssignment_11(), "rule__EnergyModel__CapacityAssignment_11");
+			builder.put(grammarAccess.getEnergyModelAccess().getRechargeTimeAssignment_11(), "rule__EnergyModel__RechargeTimeAssignment_11");
 			builder.put(grammarAccess.getPhaseAccess().getNameAssignment_1(), "rule__Phase__NameAssignment_1");
 			builder.put(grammarAccess.getPhaseAccess().getPhaseTypeAssignment_5(), "rule__Phase__PhaseTypeAssignment_5");
 			builder.put(grammarAccess.getPhaseAccess().getEnergyUsageAssignment_8(), "rule__Phase__EnergyUsageAssignment_8");

@@ -2,13 +2,24 @@ grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
+SystemRoot:
+	'system' name=ID '{'
+		entities+=Entity*
+		relation+=Relation*
+	'}';
+Relation:
+    'Relation' name=ID '{'
+        'from' '=' fromEntity=[Entity]  
+        'to' '=' toEntity=[Entity]    
+        'type' '=' type=STRING  // Type of relation (e.g., "depends on", "uses")
+    '}';
 // allowing multiple entity definitions
-Model:
-    (missions+=Mission | drones+=Drone | energyModels+=EnergyModel | phases+=Phase | subPhases+=SubPhase | actions+=Action | constraints+=Constraint | missionEVents+=MissionEvent)*;
+Entity:
+    Mission | Drone | EnergyModel | Phase | SubPhase | Action | Constraint | MissionEvent;
 
 Mission:
     'Mission' name=ID '{'
-        'missionID' '=' id=STRING
+        'missionID' '=' missionID=STRING
         'missionType' '=' missionType=STRING
         'startLocation' '=' startLocation=STRING
         'endLocation' '=' endLocation=STRING
@@ -22,7 +33,7 @@ Mission:
 
 Drone:
     'Drone' name=ID '{'
-        'modelType' '=' type=STRING
+        'modelType' '=' modelType=STRING
         'batterCapacity' '=' batterCapacity=FLOAT
         'maxFlightTime' '=' maxFlightTime=FLOAT
         'payloadCapacity' '=' payloadCapacity=FLOAT
@@ -34,7 +45,7 @@ EnergyModel:
     'EnergyModel' name=ID '{'
         'consumptionRate' '=' consumptionRate=FLOAT
         'batteryHealth' '=' batteryHealth=FLOAT
-        'rechargeTime' '=' capacity=FLOAT
+        'rechargeTime' '=' rechargeTime=FLOAT
     '}';
 
 Phase:

@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
@@ -31,8 +30,7 @@ import org.xtext.example.mydsl.myDsl.Phase;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MissionImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MissionImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MissionImpl#getMissionID <em>Mission ID</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MissionImpl#getMissionType <em>Mission Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MissionImpl#getStartLocation <em>Start Location</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MissionImpl#getEndLocation <em>End Location</em>}</li>
@@ -46,47 +44,27 @@ import org.xtext.example.mydsl.myDsl.Phase;
  *
  * @generated
  */
-public class MissionImpl extends MinimalEObjectImpl.Container implements Mission
+public class MissionImpl extends EntityImpl implements Mission
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getMissionID() <em>Mission ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getMissionID()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String MISSION_ID_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getMissionID() <em>Mission ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getMissionID()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getId()
-   * @generated
-   * @ordered
-   */
-  protected static final String ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getId()
-   * @generated
-   * @ordered
-   */
-  protected String id = ID_EDEFAULT;
+  protected String missionID = MISSION_ID_EDEFAULT;
 
   /**
    * The default value of the '{@link #getMissionType() <em>Mission Type</em>}' attribute.
@@ -255,9 +233,9 @@ public class MissionImpl extends MinimalEObjectImpl.Container implements Mission
    * @generated
    */
   @Override
-  public String getName()
+  public String getMissionID()
   {
-    return name;
+    return missionID;
   }
 
   /**
@@ -266,37 +244,12 @@ public class MissionImpl extends MinimalEObjectImpl.Container implements Mission
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setMissionID(String newMissionID)
   {
-    String oldName = name;
-    name = newName;
+    String oldMissionID = missionID;
+    missionID = newMissionID;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MISSION__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getId()
-  {
-    return id;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setId(String newId)
-  {
-    String oldId = id;
-    id = newId;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MISSION__ID, oldId, id));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MISSION__MISSION_ID, oldMissionID, missionID));
   }
 
   /**
@@ -494,10 +447,8 @@ public class MissionImpl extends MinimalEObjectImpl.Container implements Mission
   {
     switch (featureID)
     {
-      case MyDslPackage.MISSION__NAME:
-        return getName();
-      case MyDslPackage.MISSION__ID:
-        return getId();
+      case MyDslPackage.MISSION__MISSION_ID:
+        return getMissionID();
       case MyDslPackage.MISSION__MISSION_TYPE:
         return getMissionType();
       case MyDslPackage.MISSION__START_LOCATION:
@@ -531,11 +482,8 @@ public class MissionImpl extends MinimalEObjectImpl.Container implements Mission
   {
     switch (featureID)
     {
-      case MyDslPackage.MISSION__NAME:
-        setName((String)newValue);
-        return;
-      case MyDslPackage.MISSION__ID:
-        setId((String)newValue);
+      case MyDslPackage.MISSION__MISSION_ID:
+        setMissionID((String)newValue);
         return;
       case MyDslPackage.MISSION__MISSION_TYPE:
         setMissionType((String)newValue);
@@ -582,11 +530,8 @@ public class MissionImpl extends MinimalEObjectImpl.Container implements Mission
   {
     switch (featureID)
     {
-      case MyDslPackage.MISSION__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case MyDslPackage.MISSION__ID:
-        setId(ID_EDEFAULT);
+      case MyDslPackage.MISSION__MISSION_ID:
+        setMissionID(MISSION_ID_EDEFAULT);
         return;
       case MyDslPackage.MISSION__MISSION_TYPE:
         setMissionType(MISSION_TYPE_EDEFAULT);
@@ -629,10 +574,8 @@ public class MissionImpl extends MinimalEObjectImpl.Container implements Mission
   {
     switch (featureID)
     {
-      case MyDslPackage.MISSION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case MyDslPackage.MISSION__ID:
-        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+      case MyDslPackage.MISSION__MISSION_ID:
+        return MISSION_ID_EDEFAULT == null ? missionID != null : !MISSION_ID_EDEFAULT.equals(missionID);
       case MyDslPackage.MISSION__MISSION_TYPE:
         return MISSION_TYPE_EDEFAULT == null ? missionType != null : !MISSION_TYPE_EDEFAULT.equals(missionType);
       case MyDslPackage.MISSION__START_LOCATION:
@@ -666,10 +609,8 @@ public class MissionImpl extends MinimalEObjectImpl.Container implements Mission
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(", id: ");
-    result.append(id);
+    result.append(" (missionID: ");
+    result.append(missionID);
     result.append(", missionType: ");
     result.append(missionType);
     result.append(", startLocation: ");

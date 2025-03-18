@@ -5,8 +5,6 @@ package org.xtext.example.mydsl.myDsl;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Mission</b></em>'.
@@ -16,8 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Mission#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Mission#getId <em>Id</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Mission#getMissionID <em>Mission ID</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Mission#getMissionType <em>Mission Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Mission#getStartLocation <em>Start Location</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Mission#getEndLocation <em>End Location</em>}</li>
@@ -33,51 +30,29 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Mission extends EObject
+public interface Mission extends Entity
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Mission ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMission_Name()
+   * @return the value of the '<em>Mission ID</em>' attribute.
+   * @see #setMissionID(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMission_MissionID()
    * @model
    * @generated
    */
-  String getName();
+  String getMissionID();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Mission#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Mission#getMissionID <em>Mission ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Mission ID</em>' attribute.
+   * @see #getMissionID()
    * @generated
    */
-  void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Id</em>' attribute.
-   * @see #setId(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMission_Id()
-   * @model
-   * @generated
-   */
-  String getId();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Mission#getId <em>Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Id</em>' attribute.
-   * @see #getId()
-   * @generated
-   */
-  void setId(String value);
+  void setMissionID(String value);
 
   /**
    * Returns the value of the '<em><b>Mission Type</b></em>' attribute.

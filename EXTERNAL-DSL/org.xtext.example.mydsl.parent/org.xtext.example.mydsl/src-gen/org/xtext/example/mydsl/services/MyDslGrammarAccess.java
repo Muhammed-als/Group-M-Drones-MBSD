@@ -23,81 +23,198 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarElementFinder {
 	
-	public class ModelElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Model");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cMissionsAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cMissionsMissionParserRuleCall_0_0 = (RuleCall)cMissionsAssignment_0.eContents().get(0);
-		private final Assignment cDronesAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cDronesDroneParserRuleCall_1_0 = (RuleCall)cDronesAssignment_1.eContents().get(0);
-		private final Assignment cEnergyModelsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cEnergyModelsEnergyModelParserRuleCall_2_0 = (RuleCall)cEnergyModelsAssignment_2.eContents().get(0);
-		private final Assignment cPhasesAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cPhasesPhaseParserRuleCall_3_0 = (RuleCall)cPhasesAssignment_3.eContents().get(0);
-		private final Assignment cSubPhasesAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
-		private final RuleCall cSubPhasesSubPhaseParserRuleCall_4_0 = (RuleCall)cSubPhasesAssignment_4.eContents().get(0);
-		private final Assignment cActionsAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cActionsActionParserRuleCall_5_0 = (RuleCall)cActionsAssignment_5.eContents().get(0);
-		private final Assignment cConstraintsAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cConstraintsConstraintParserRuleCall_6_0 = (RuleCall)cConstraintsAssignment_6.eContents().get(0);
-		private final Assignment cMissionEVentsAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
-		private final RuleCall cMissionEVentsMissionEventParserRuleCall_7_0 = (RuleCall)cMissionEVentsAssignment_7.eContents().get(0);
+	public class SystemRootElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.SystemRoot");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSystemKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cEntitiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cEntitiesEntityParserRuleCall_3_0 = (RuleCall)cEntitiesAssignment_3.eContents().get(0);
+		private final Assignment cRelationAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cRelationRelationParserRuleCall_4_0 = (RuleCall)cRelationAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//// Entry rule allowing multiple entity definitions
-		//Model:
-		//    (missions+=Mission | drones+=Drone | energyModels+=EnergyModel | phases+=Phase | subPhases+=SubPhase | actions+=Action | constraints+=Constraint | missionEVents+=MissionEvent)*;
+		//SystemRoot:
+		//    'system' name=ID '{'
+		//        entities+=Entity*
+		//        relation+=Relation*
+		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(missions+=Mission | drones+=Drone | energyModels+=EnergyModel | phases+=Phase | subPhases+=SubPhase | actions+=Action | constraints+=Constraint | missionEVents+=MissionEvent)*
+		//'system' name=ID '{'
+		//    entities+=Entity*
+		//    relation+=Relation*
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'system'
+		public Keyword getSystemKeyword_0() { return cSystemKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//entities+=Entity*
+		public Assignment getEntitiesAssignment_3() { return cEntitiesAssignment_3; }
+		
+		//Entity
+		public RuleCall getEntitiesEntityParserRuleCall_3_0() { return cEntitiesEntityParserRuleCall_3_0; }
+		
+		//relation+=Relation*
+		public Assignment getRelationAssignment_4() { return cRelationAssignment_4; }
+		
+		//Relation
+		public RuleCall getRelationRelationParserRuleCall_4_0() { return cRelationRelationParserRuleCall_4_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+	public class RelationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Relation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRelationKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cFromKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cFromEntityAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cFromEntityEntityCrossReference_5_0 = (CrossReference)cFromEntityAssignment_5.eContents().get(0);
+		private final RuleCall cFromEntityEntityIDTerminalRuleCall_5_0_1 = (RuleCall)cFromEntityEntityCrossReference_5_0.eContents().get(1);
+		private final Keyword cToKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cToEntityAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final CrossReference cToEntityEntityCrossReference_8_0 = (CrossReference)cToEntityAssignment_8.eContents().get(0);
+		private final RuleCall cToEntityEntityIDTerminalRuleCall_8_0_1 = (RuleCall)cToEntityEntityCrossReference_8_0.eContents().get(1);
+		private final Keyword cTypeKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Assignment cTypeAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cTypeSTRINGTerminalRuleCall_11_0 = (RuleCall)cTypeAssignment_11.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		
+		//Relation:
+		//    'Relation' name=ID '{'
+		//        'from' '=' fromEntity=[Entity]
+		//        'to' '=' toEntity=[Entity]
+		//        'type' '=' type=STRING  // Type of relation (e.g., "depends on", "uses")
+		//    '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Relation' name=ID '{'
+		//    'from' '=' fromEntity=[Entity]
+		//    'to' '=' toEntity=[Entity]
+		//    'type' '=' type=STRING  // Type of relation (e.g., "depends on", "uses")
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'Relation'
+		public Keyword getRelationKeyword_0() { return cRelationKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//'from'
+		public Keyword getFromKeyword_3() { return cFromKeyword_3; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
+		
+		//fromEntity=[Entity]
+		public Assignment getFromEntityAssignment_5() { return cFromEntityAssignment_5; }
+		
+		//[Entity]
+		public CrossReference getFromEntityEntityCrossReference_5_0() { return cFromEntityEntityCrossReference_5_0; }
+		
+		//ID
+		public RuleCall getFromEntityEntityIDTerminalRuleCall_5_0_1() { return cFromEntityEntityIDTerminalRuleCall_5_0_1; }
+		
+		//'to'
+		public Keyword getToKeyword_6() { return cToKeyword_6; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_7() { return cEqualsSignKeyword_7; }
+		
+		//toEntity=[Entity]
+		public Assignment getToEntityAssignment_8() { return cToEntityAssignment_8; }
+		
+		//[Entity]
+		public CrossReference getToEntityEntityCrossReference_8_0() { return cToEntityEntityCrossReference_8_0; }
+		
+		//ID
+		public RuleCall getToEntityEntityIDTerminalRuleCall_8_0_1() { return cToEntityEntityIDTerminalRuleCall_8_0_1; }
+		
+		//'type'
+		public Keyword getTypeKeyword_9() { return cTypeKeyword_9; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_10() { return cEqualsSignKeyword_10; }
+		
+		//type=STRING
+		public Assignment getTypeAssignment_11() { return cTypeAssignment_11; }
+		
+		//STRING
+		public RuleCall getTypeSTRINGTerminalRuleCall_11_0() { return cTypeSTRINGTerminalRuleCall_11_0; }
+		
+		//// Type of relation (e.g., "depends on", "uses")
+		//  '}'
+		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
+	}
+	public class EntityElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Entity");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cMissionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDroneParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cEnergyModelParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cPhaseParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cSubPhaseParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cActionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cConstraintParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cMissionEventParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		
+		//// allowing multiple entity definitions
+		//Entity:
+		//    Mission | Drone | EnergyModel | Phase | SubPhase | Action | Constraint | MissionEvent;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Mission | Drone | EnergyModel | Phase | SubPhase | Action | Constraint | MissionEvent
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//missions+=Mission
-		public Assignment getMissionsAssignment_0() { return cMissionsAssignment_0; }
-		
 		//Mission
-		public RuleCall getMissionsMissionParserRuleCall_0_0() { return cMissionsMissionParserRuleCall_0_0; }
-		
-		//drones+=Drone
-		public Assignment getDronesAssignment_1() { return cDronesAssignment_1; }
+		public RuleCall getMissionParserRuleCall_0() { return cMissionParserRuleCall_0; }
 		
 		//Drone
-		public RuleCall getDronesDroneParserRuleCall_1_0() { return cDronesDroneParserRuleCall_1_0; }
-		
-		//energyModels+=EnergyModel
-		public Assignment getEnergyModelsAssignment_2() { return cEnergyModelsAssignment_2; }
+		public RuleCall getDroneParserRuleCall_1() { return cDroneParserRuleCall_1; }
 		
 		//EnergyModel
-		public RuleCall getEnergyModelsEnergyModelParserRuleCall_2_0() { return cEnergyModelsEnergyModelParserRuleCall_2_0; }
-		
-		//phases+=Phase
-		public Assignment getPhasesAssignment_3() { return cPhasesAssignment_3; }
+		public RuleCall getEnergyModelParserRuleCall_2() { return cEnergyModelParserRuleCall_2; }
 		
 		//Phase
-		public RuleCall getPhasesPhaseParserRuleCall_3_0() { return cPhasesPhaseParserRuleCall_3_0; }
-		
-		//subPhases+=SubPhase
-		public Assignment getSubPhasesAssignment_4() { return cSubPhasesAssignment_4; }
+		public RuleCall getPhaseParserRuleCall_3() { return cPhaseParserRuleCall_3; }
 		
 		//SubPhase
-		public RuleCall getSubPhasesSubPhaseParserRuleCall_4_0() { return cSubPhasesSubPhaseParserRuleCall_4_0; }
-		
-		//actions+=Action
-		public Assignment getActionsAssignment_5() { return cActionsAssignment_5; }
+		public RuleCall getSubPhaseParserRuleCall_4() { return cSubPhaseParserRuleCall_4; }
 		
 		//Action
-		public RuleCall getActionsActionParserRuleCall_5_0() { return cActionsActionParserRuleCall_5_0; }
-		
-		//constraints+=Constraint
-		public Assignment getConstraintsAssignment_6() { return cConstraintsAssignment_6; }
+		public RuleCall getActionParserRuleCall_5() { return cActionParserRuleCall_5; }
 		
 		//Constraint
-		public RuleCall getConstraintsConstraintParserRuleCall_6_0() { return cConstraintsConstraintParserRuleCall_6_0; }
-		
-		//missionEVents+=MissionEvent
-		public Assignment getMissionEVentsAssignment_7() { return cMissionEVentsAssignment_7; }
+		public RuleCall getConstraintParserRuleCall_6() { return cConstraintParserRuleCall_6; }
 		
 		//MissionEvent
-		public RuleCall getMissionEVentsMissionEventParserRuleCall_7_0() { return cMissionEVentsMissionEventParserRuleCall_7_0; }
+		public RuleCall getMissionEventParserRuleCall_7() { return cMissionEventParserRuleCall_7; }
 	}
 	public class MissionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Mission");
@@ -108,8 +225,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cMissionIDKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cIdAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cIdSTRINGTerminalRuleCall_5_0 = (RuleCall)cIdAssignment_5.eContents().get(0);
+		private final Assignment cMissionIDAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cMissionIDSTRINGTerminalRuleCall_5_0 = (RuleCall)cMissionIDAssignment_5.eContents().get(0);
 		private final Keyword cMissionTypeKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cMissionTypeAssignment_8 = (Assignment)cGroup.eContents().get(8);
@@ -174,7 +291,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Mission:
 		//    'Mission' name=ID '{'
-		//        'missionID' '=' id=STRING
+		//        'missionID' '=' missionID=STRING
 		//        'missionType' '=' missionType=STRING
 		//        'startLocation' '=' startLocation=STRING
 		//        'endLocation' '=' endLocation=STRING
@@ -188,7 +305,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Mission' name=ID '{'
-		//    'missionID' '=' id=STRING
+		//    'missionID' '=' missionID=STRING
 		//    'missionType' '=' missionType=STRING
 		//    'startLocation' '=' startLocation=STRING
 		//    'endLocation' '=' endLocation=STRING
@@ -219,11 +336,11 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'='
 		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
 		
-		//id=STRING
-		public Assignment getIdAssignment_5() { return cIdAssignment_5; }
+		//missionID=STRING
+		public Assignment getMissionIDAssignment_5() { return cMissionIDAssignment_5; }
 		
 		//STRING
-		public RuleCall getIdSTRINGTerminalRuleCall_5_0() { return cIdSTRINGTerminalRuleCall_5_0; }
+		public RuleCall getMissionIDSTRINGTerminalRuleCall_5_0() { return cMissionIDSTRINGTerminalRuleCall_5_0; }
 		
 		//'missionType'
 		public Keyword getMissionTypeKeyword_6() { return cMissionTypeKeyword_6; }
@@ -417,8 +534,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cModelTypeKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cTypeSTRINGTerminalRuleCall_5_0 = (RuleCall)cTypeAssignment_5.eContents().get(0);
+		private final Assignment cModelTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cModelTypeSTRINGTerminalRuleCall_5_0 = (RuleCall)cModelTypeAssignment_5.eContents().get(0);
 		private final Keyword cBatterCapacityKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cBatterCapacityAssignment_8 = (Assignment)cGroup.eContents().get(8);
@@ -449,7 +566,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Drone:
 		//    'Drone' name=ID '{'
-		//        'modelType' '=' type=STRING
+		//        'modelType' '=' modelType=STRING
 		//        'batterCapacity' '=' batterCapacity=FLOAT
 		//        'maxFlightTime' '=' maxFlightTime=FLOAT
 		//        'payloadCapacity' '=' payloadCapacity=FLOAT
@@ -459,7 +576,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Drone' name=ID '{'
-		//    'modelType' '=' type=STRING
+		//    'modelType' '=' modelType=STRING
 		//    'batterCapacity' '=' batterCapacity=FLOAT
 		//    'maxFlightTime' '=' maxFlightTime=FLOAT
 		//    'payloadCapacity' '=' payloadCapacity=FLOAT
@@ -486,11 +603,11 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'='
 		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
 		
-		//type=STRING
-		public Assignment getTypeAssignment_5() { return cTypeAssignment_5; }
+		//modelType=STRING
+		public Assignment getModelTypeAssignment_5() { return cModelTypeAssignment_5; }
 		
 		//STRING
-		public RuleCall getTypeSTRINGTerminalRuleCall_5_0() { return cTypeSTRINGTerminalRuleCall_5_0; }
+		public RuleCall getModelTypeSTRINGTerminalRuleCall_5_0() { return cModelTypeSTRINGTerminalRuleCall_5_0; }
 		
 		//'batterCapacity'
 		public Keyword getBatterCapacityKeyword_6() { return cBatterCapacityKeyword_6; }
@@ -590,22 +707,22 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cBatteryHealthFLOATTerminalRuleCall_8_0 = (RuleCall)cBatteryHealthAssignment_8.eContents().get(0);
 		private final Keyword cRechargeTimeKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Assignment cCapacityAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final RuleCall cCapacityFLOATTerminalRuleCall_11_0 = (RuleCall)cCapacityAssignment_11.eContents().get(0);
+		private final Assignment cRechargeTimeAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cRechargeTimeFLOATTerminalRuleCall_11_0 = (RuleCall)cRechargeTimeAssignment_11.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//EnergyModel:
 		//    'EnergyModel' name=ID '{'
 		//        'consumptionRate' '=' consumptionRate=FLOAT
 		//        'batteryHealth' '=' batteryHealth=FLOAT
-		//        'rechargeTime' '=' capacity=FLOAT
+		//        'rechargeTime' '=' rechargeTime=FLOAT
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'EnergyModel' name=ID '{'
 		//    'consumptionRate' '=' consumptionRate=FLOAT
 		//    'batteryHealth' '=' batteryHealth=FLOAT
-		//    'rechargeTime' '=' capacity=FLOAT
+		//    'rechargeTime' '=' rechargeTime=FLOAT
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -651,11 +768,11 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'='
 		public Keyword getEqualsSignKeyword_10() { return cEqualsSignKeyword_10; }
 		
-		//capacity=FLOAT
-		public Assignment getCapacityAssignment_11() { return cCapacityAssignment_11; }
+		//rechargeTime=FLOAT
+		public Assignment getRechargeTimeAssignment_11() { return cRechargeTimeAssignment_11; }
 		
 		//FLOAT
-		public RuleCall getCapacityFLOATTerminalRuleCall_11_0() { return cCapacityFLOATTerminalRuleCall_11_0; }
+		public RuleCall getRechargeTimeFLOATTerminalRuleCall_11_0() { return cRechargeTimeFLOATTerminalRuleCall_11_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
@@ -1215,7 +1332,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	
-	private final ModelElements pModel;
+	private final SystemRootElements pSystemRoot;
+	private final RelationElements pRelation;
+	private final EntityElements pEntity;
 	private final MissionElements pMission;
 	private final DroneElements pDrone;
 	private final EnergyModelElements pEnergyModel;
@@ -1238,7 +1357,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
-		this.pModel = new ModelElements();
+		this.pSystemRoot = new SystemRootElements();
+		this.pRelation = new RelationElements();
+		this.pEntity = new EntityElements();
 		this.pMission = new MissionElements();
 		this.pDrone = new DroneElements();
 		this.pEnergyModel = new EnergyModelElements();
@@ -1280,20 +1401,47 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 
 	
-	//// Entry rule allowing multiple entity definitions
-	//Model:
-	//    (missions+=Mission | drones+=Drone | energyModels+=EnergyModel | phases+=Phase | subPhases+=SubPhase | actions+=Action | constraints+=Constraint | missionEVents+=MissionEvent)*;
-	public ModelElements getModelAccess() {
-		return pModel;
+	//SystemRoot:
+	//    'system' name=ID '{'
+	//        entities+=Entity*
+	//        relation+=Relation*
+	//    '}';
+	public SystemRootElements getSystemRootAccess() {
+		return pSystemRoot;
 	}
 	
-	public ParserRule getModelRule() {
-		return getModelAccess().getRule();
+	public ParserRule getSystemRootRule() {
+		return getSystemRootAccess().getRule();
+	}
+	
+	//Relation:
+	//    'Relation' name=ID '{'
+	//        'from' '=' fromEntity=[Entity]
+	//        'to' '=' toEntity=[Entity]
+	//        'type' '=' type=STRING  // Type of relation (e.g., "depends on", "uses")
+	//    '}';
+	public RelationElements getRelationAccess() {
+		return pRelation;
+	}
+	
+	public ParserRule getRelationRule() {
+		return getRelationAccess().getRule();
+	}
+	
+	//// allowing multiple entity definitions
+	//Entity:
+	//    Mission | Drone | EnergyModel | Phase | SubPhase | Action | Constraint | MissionEvent;
+	public EntityElements getEntityAccess() {
+		return pEntity;
+	}
+	
+	public ParserRule getEntityRule() {
+		return getEntityAccess().getRule();
 	}
 	
 	//Mission:
 	//    'Mission' name=ID '{'
-	//        'missionID' '=' id=STRING
+	//        'missionID' '=' missionID=STRING
 	//        'missionType' '=' missionType=STRING
 	//        'startLocation' '=' startLocation=STRING
 	//        'endLocation' '=' endLocation=STRING
@@ -1314,7 +1462,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//Drone:
 	//    'Drone' name=ID '{'
-	//        'modelType' '=' type=STRING
+	//        'modelType' '=' modelType=STRING
 	//        'batterCapacity' '=' batterCapacity=FLOAT
 	//        'maxFlightTime' '=' maxFlightTime=FLOAT
 	//        'payloadCapacity' '=' payloadCapacity=FLOAT
@@ -1333,7 +1481,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    'EnergyModel' name=ID '{'
 	//        'consumptionRate' '=' consumptionRate=FLOAT
 	//        'batteryHealth' '=' batteryHealth=FLOAT
-	//        'rechargeTime' '=' capacity=FLOAT
+	//        'rechargeTime' '=' rechargeTime=FLOAT
 	//    '}';
 	public EnergyModelElements getEnergyModelAccess() {
 		return pEnergyModel;
@@ -1435,6 +1583,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getMissionEventAccess().getRule();
 	}
 	
+	//// Define new types
 	//terminal FLOAT:
 	//    INT '.' INT;
 	public TerminalRule getFLOATRule() {

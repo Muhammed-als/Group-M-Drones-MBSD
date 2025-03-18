@@ -43,7 +43,7 @@ import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "Model";
+    	return "SystemRoot";
    	}
 
    	@Override
@@ -60,15 +60,15 @@ import org.xtext.example.mydsl.services.MyDslGrammarAccess;
     }
 }
 
-// Entry rule entryRuleModel
-entryRuleModel returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getModelRule()); }
-	iv_ruleModel=ruleModel
-	{ $current=$iv_ruleModel.current; }
+// Entry rule entryRuleSystemRoot
+entryRuleSystemRoot returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSystemRootRule()); }
+	iv_ruleSystemRoot=ruleSystemRoot
+	{ $current=$iv_ruleSystemRoot.current; }
 	EOF;
 
-// Rule Model
-ruleModel returns [EObject current=null]
+// Rule SystemRoot
+ruleSystemRoot returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -76,166 +76,282 @@ ruleModel returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		otherlv_0='system'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getSystemRootAccess().getSystemKeyword_0());
+		}
 		(
 			(
+				lv_name_1_0=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getModelAccess().getMissionsMissionParserRuleCall_0_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getSystemRootAccess().getNameIDTerminalRuleCall_1_0());
 				}
-				lv_missions_0_0=ruleMission
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
+						$current = createModelElement(grammarAccess.getSystemRootRule());
 					}
-					add(
+					setWithLastConsumed(
 						$current,
-						"missions",
-						lv_missions_0_0,
-						"org.xtext.example.mydsl.MyDsl.Mission");
-					afterParserOrEnumRuleCall();
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
+		otherlv_2='{'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getSystemRootAccess().getLeftCurlyBracketKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSystemRootAccess().getEntitiesEntityParserRuleCall_3_0());
+				}
+				lv_entities_3_0=ruleEntity
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSystemRootRule());
+					}
+					add(
+						$current,
+						"entities",
+						lv_entities_3_0,
+						"org.xtext.example.mydsl.MyDsl.Entity");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSystemRootAccess().getRelationRelationParserRuleCall_4_0());
+				}
+				lv_relation_4_0=ruleRelation
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSystemRootRule());
+					}
+					add(
+						$current,
+						"relation",
+						lv_relation_4_0,
+						"org.xtext.example.mydsl.MyDsl.Relation");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		otherlv_5='}'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getSystemRootAccess().getRightCurlyBracketKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleRelation
+entryRuleRelation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelationRule()); }
+	iv_ruleRelation=ruleRelation
+	{ $current=$iv_ruleRelation.current; }
+	EOF;
+
+// Rule Relation
+ruleRelation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Relation'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRelationAccess().getRelationKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getRelationAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelationRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='{'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRelationAccess().getLeftCurlyBracketKeyword_2());
+		}
+		otherlv_3='from'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getRelationAccess().getFromKeyword_3());
+		}
+		otherlv_4='='
+		{
+			newLeafNode(otherlv_4, grammarAccess.getRelationAccess().getEqualsSignKeyword_4());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelationRule());
+					}
+				}
+				otherlv_5=RULE_ID
+				{
+					newLeafNode(otherlv_5, grammarAccess.getRelationAccess().getFromEntityEntityCrossReference_5_0());
+				}
+			)
+		)
+		otherlv_6='to'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getRelationAccess().getToKeyword_6());
+		}
+		otherlv_7='='
+		{
+			newLeafNode(otherlv_7, grammarAccess.getRelationAccess().getEqualsSignKeyword_7());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelationRule());
+					}
+				}
+				otherlv_8=RULE_ID
+				{
+					newLeafNode(otherlv_8, grammarAccess.getRelationAccess().getToEntityEntityCrossReference_8_0());
+				}
+			)
+		)
+		otherlv_9='type'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getRelationAccess().getTypeKeyword_9());
+		}
+		otherlv_10='='
+		{
+			newLeafNode(otherlv_10, grammarAccess.getRelationAccess().getEqualsSignKeyword_10());
+		}
+		(
+			(
+				lv_type_11_0=RULE_STRING
+				{
+					newLeafNode(lv_type_11_0, grammarAccess.getRelationAccess().getTypeSTRINGTerminalRuleCall_11_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelationRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"type",
+						lv_type_11_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_12='}'
+		{
+			newLeafNode(otherlv_12, grammarAccess.getRelationAccess().getRightCurlyBracketKeyword_12());
+		}
+	)
+;
+
+// Entry rule entryRuleEntity
+entryRuleEntity returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getEntityRule()); }
+	iv_ruleEntity=ruleEntity
+	{ $current=$iv_ruleEntity.current; }
+	EOF;
+
+// Rule Entity
+ruleEntity returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getEntityAccess().getMissionParserRuleCall_0());
+		}
+		this_Mission_0=ruleMission
+		{
+			$current = $this_Mission_0.current;
+			afterParserOrEnumRuleCall();
+		}
 		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getModelAccess().getDronesDroneParserRuleCall_1_0());
-				}
-				lv_drones_1_0=ruleDrone
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"drones",
-						lv_drones_1_0,
-						"org.xtext.example.mydsl.MyDsl.Drone");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			newCompositeNode(grammarAccess.getEntityAccess().getDroneParserRuleCall_1());
+		}
+		this_Drone_1=ruleDrone
+		{
+			$current = $this_Drone_1.current;
+			afterParserOrEnumRuleCall();
+		}
 		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getModelAccess().getEnergyModelsEnergyModelParserRuleCall_2_0());
-				}
-				lv_energyModels_2_0=ruleEnergyModel
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"energyModels",
-						lv_energyModels_2_0,
-						"org.xtext.example.mydsl.MyDsl.EnergyModel");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			newCompositeNode(grammarAccess.getEntityAccess().getEnergyModelParserRuleCall_2());
+		}
+		this_EnergyModel_2=ruleEnergyModel
+		{
+			$current = $this_EnergyModel_2.current;
+			afterParserOrEnumRuleCall();
+		}
 		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getModelAccess().getPhasesPhaseParserRuleCall_3_0());
-				}
-				lv_phases_3_0=rulePhase
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"phases",
-						lv_phases_3_0,
-						"org.xtext.example.mydsl.MyDsl.Phase");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			newCompositeNode(grammarAccess.getEntityAccess().getPhaseParserRuleCall_3());
+		}
+		this_Phase_3=rulePhase
+		{
+			$current = $this_Phase_3.current;
+			afterParserOrEnumRuleCall();
+		}
 		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getModelAccess().getSubPhasesSubPhaseParserRuleCall_4_0());
-				}
-				lv_subPhases_4_0=ruleSubPhase
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"subPhases",
-						lv_subPhases_4_0,
-						"org.xtext.example.mydsl.MyDsl.SubPhase");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			newCompositeNode(grammarAccess.getEntityAccess().getSubPhaseParserRuleCall_4());
+		}
+		this_SubPhase_4=ruleSubPhase
+		{
+			$current = $this_SubPhase_4.current;
+			afterParserOrEnumRuleCall();
+		}
 		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getModelAccess().getActionsActionParserRuleCall_5_0());
-				}
-				lv_actions_5_0=ruleAction
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"actions",
-						lv_actions_5_0,
-						"org.xtext.example.mydsl.MyDsl.Action");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			newCompositeNode(grammarAccess.getEntityAccess().getActionParserRuleCall_5());
+		}
+		this_Action_5=ruleAction
+		{
+			$current = $this_Action_5.current;
+			afterParserOrEnumRuleCall();
+		}
 		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getModelAccess().getConstraintsConstraintParserRuleCall_6_0());
-				}
-				lv_constraints_6_0=ruleConstraint
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"constraints",
-						lv_constraints_6_0,
-						"org.xtext.example.mydsl.MyDsl.Constraint");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			newCompositeNode(grammarAccess.getEntityAccess().getConstraintParserRuleCall_6());
+		}
+		this_Constraint_6=ruleConstraint
+		{
+			$current = $this_Constraint_6.current;
+			afterParserOrEnumRuleCall();
+		}
 		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getModelAccess().getMissionEVentsMissionEventParserRuleCall_7_0());
-				}
-				lv_missionEVents_7_0=ruleMissionEvent
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"missionEVents",
-						lv_missionEVents_7_0,
-						"org.xtext.example.mydsl.MyDsl.MissionEvent");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-	)*
+		{
+			newCompositeNode(grammarAccess.getEntityAccess().getMissionEventParserRuleCall_7());
+		}
+		this_MissionEvent_7=ruleMissionEvent
+		{
+			$current = $this_MissionEvent_7.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
 ;
 
 // Entry rule entryRuleMission
@@ -290,9 +406,9 @@ ruleMission returns [EObject current=null]
 		}
 		(
 			(
-				lv_id_5_0=RULE_STRING
+				lv_missionID_5_0=RULE_STRING
 				{
-					newLeafNode(lv_id_5_0, grammarAccess.getMissionAccess().getIdSTRINGTerminalRuleCall_5_0());
+					newLeafNode(lv_missionID_5_0, grammarAccess.getMissionAccess().getMissionIDSTRINGTerminalRuleCall_5_0());
 				}
 				{
 					if ($current==null) {
@@ -300,8 +416,8 @@ ruleMission returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"id",
-						lv_id_5_0,
+						"missionID",
+						lv_missionID_5_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
@@ -655,9 +771,9 @@ ruleDrone returns [EObject current=null]
 		}
 		(
 			(
-				lv_type_5_0=RULE_STRING
+				lv_modelType_5_0=RULE_STRING
 				{
-					newLeafNode(lv_type_5_0, grammarAccess.getDroneAccess().getTypeSTRINGTerminalRuleCall_5_0());
+					newLeafNode(lv_modelType_5_0, grammarAccess.getDroneAccess().getModelTypeSTRINGTerminalRuleCall_5_0());
 				}
 				{
 					if ($current==null) {
@@ -665,8 +781,8 @@ ruleDrone returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"type",
-						lv_type_5_0,
+						"modelType",
+						lv_modelType_5_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
@@ -926,9 +1042,9 @@ ruleEnergyModel returns [EObject current=null]
 		}
 		(
 			(
-				lv_capacity_11_0=RULE_FLOAT
+				lv_rechargeTime_11_0=RULE_FLOAT
 				{
-					newLeafNode(lv_capacity_11_0, grammarAccess.getEnergyModelAccess().getCapacityFLOATTerminalRuleCall_11_0());
+					newLeafNode(lv_rechargeTime_11_0, grammarAccess.getEnergyModelAccess().getRechargeTimeFLOATTerminalRuleCall_11_0());
 				}
 				{
 					if ($current==null) {
@@ -936,8 +1052,8 @@ ruleEnergyModel returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"capacity",
-						lv_capacity_11_0,
+						"rechargeTime",
+						lv_rechargeTime_11_0,
 						"org.xtext.example.mydsl.MyDsl.FLOAT");
 				}
 			)

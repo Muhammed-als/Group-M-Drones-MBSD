@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
@@ -28,8 +27,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getModelType <em>Model Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getBatterCapacity <em>Batter Capacity</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getMaxFlightTime <em>Max Flight Time</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getPayloadCapacity <em>Payload Capacity</em>}</li>
@@ -39,47 +37,27 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  *
  * @generated
  */
-public class DroneImpl extends MinimalEObjectImpl.Container implements Drone
+public class DroneImpl extends EntityImpl implements Drone
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getModelType() <em>Model Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getModelType()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String MODEL_TYPE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getModelType() <em>Model Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getModelType()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected static final String TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected String type = TYPE_EDEFAULT;
+  protected String modelType = MODEL_TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getBatterCapacity() <em>Batter Capacity</em>}' attribute.
@@ -198,9 +176,9 @@ public class DroneImpl extends MinimalEObjectImpl.Container implements Drone
    * @generated
    */
   @Override
-  public String getName()
+  public String getModelType()
   {
-    return name;
+    return modelType;
   }
 
   /**
@@ -209,37 +187,12 @@ public class DroneImpl extends MinimalEObjectImpl.Container implements Drone
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setModelType(String newModelType)
   {
-    String oldName = name;
-    name = newName;
+    String oldModelType = modelType;
+    modelType = newModelType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setType(String newType)
-  {
-    String oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__MODEL_TYPE, oldModelType, modelType));
   }
 
   /**
@@ -367,10 +320,8 @@ public class DroneImpl extends MinimalEObjectImpl.Container implements Drone
   {
     switch (featureID)
     {
-      case MyDslPackage.DRONE__NAME:
-        return getName();
-      case MyDslPackage.DRONE__TYPE:
-        return getType();
+      case MyDslPackage.DRONE__MODEL_TYPE:
+        return getModelType();
       case MyDslPackage.DRONE__BATTER_CAPACITY:
         return getBatterCapacity();
       case MyDslPackage.DRONE__MAX_FLIGHT_TIME:
@@ -396,11 +347,8 @@ public class DroneImpl extends MinimalEObjectImpl.Container implements Drone
   {
     switch (featureID)
     {
-      case MyDslPackage.DRONE__NAME:
-        setName((String)newValue);
-        return;
-      case MyDslPackage.DRONE__TYPE:
-        setType((String)newValue);
+      case MyDslPackage.DRONE__MODEL_TYPE:
+        setModelType((String)newValue);
         return;
       case MyDslPackage.DRONE__BATTER_CAPACITY:
         setBatterCapacity((String)newValue);
@@ -432,11 +380,8 @@ public class DroneImpl extends MinimalEObjectImpl.Container implements Drone
   {
     switch (featureID)
     {
-      case MyDslPackage.DRONE__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case MyDslPackage.DRONE__TYPE:
-        setType(TYPE_EDEFAULT);
+      case MyDslPackage.DRONE__MODEL_TYPE:
+        setModelType(MODEL_TYPE_EDEFAULT);
         return;
       case MyDslPackage.DRONE__BATTER_CAPACITY:
         setBatterCapacity(BATTER_CAPACITY_EDEFAULT);
@@ -467,10 +412,8 @@ public class DroneImpl extends MinimalEObjectImpl.Container implements Drone
   {
     switch (featureID)
     {
-      case MyDslPackage.DRONE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case MyDslPackage.DRONE__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case MyDslPackage.DRONE__MODEL_TYPE:
+        return MODEL_TYPE_EDEFAULT == null ? modelType != null : !MODEL_TYPE_EDEFAULT.equals(modelType);
       case MyDslPackage.DRONE__BATTER_CAPACITY:
         return BATTER_CAPACITY_EDEFAULT == null ? batterCapacity != null : !BATTER_CAPACITY_EDEFAULT.equals(batterCapacity);
       case MyDslPackage.DRONE__MAX_FLIGHT_TIME:
@@ -496,10 +439,8 @@ public class DroneImpl extends MinimalEObjectImpl.Container implements Drone
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(", type: ");
-    result.append(type);
+    result.append(" (modelType: ");
+    result.append(modelType);
     result.append(", batterCapacity: ");
     result.append(batterCapacity);
     result.append(", maxFlightTime: ");

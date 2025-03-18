@@ -65,7 +65,9 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     switch (eClass.getClassifierID())
     {
-      case MyDslPackage.MODEL: return createModel();
+      case MyDslPackage.SYSTEM_ROOT: return createSystemRoot();
+      case MyDslPackage.RELATION: return createRelation();
+      case MyDslPackage.ENTITY: return createEntity();
       case MyDslPackage.MISSION: return createMission();
       case MyDslPackage.DRONE: return createDrone();
       case MyDslPackage.ENERGY_MODEL: return createEnergyModel();
@@ -87,10 +89,34 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
-  public Model createModel()
+  public SystemRoot createSystemRoot()
   {
-    ModelImpl model = new ModelImpl();
-    return model;
+    SystemRootImpl systemRoot = new SystemRootImpl();
+    return systemRoot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Relation createRelation()
+  {
+    RelationImpl relation = new RelationImpl();
+    return relation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Entity createEntity()
+  {
+    EntityImpl entity = new EntityImpl();
+    return entity;
   }
 
   /**

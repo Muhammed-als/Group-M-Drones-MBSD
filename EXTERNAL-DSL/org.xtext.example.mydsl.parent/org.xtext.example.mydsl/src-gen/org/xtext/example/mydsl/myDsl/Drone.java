@@ -5,8 +5,6 @@ package org.xtext.example.mydsl.myDsl;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Drone</b></em>'.
@@ -16,8 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getModelType <em>Model Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getBatterCapacity <em>Batter Capacity</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getMaxFlightTime <em>Max Flight Time</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getPayloadCapacity <em>Payload Capacity</em>}</li>
@@ -29,51 +26,29 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Drone extends EObject
+public interface Drone extends Entity
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Model Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_Name()
+   * @return the value of the '<em>Model Type</em>' attribute.
+   * @see #setModelType(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_ModelType()
    * @model
    * @generated
    */
-  String getName();
+  String getModelType();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getModelType <em>Model Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Model Type</em>' attribute.
+   * @see #getModelType()
    * @generated
    */
-  void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' attribute.
-   * @see #setType(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_Type()
-   * @model
-   * @generated
-   */
-  String getType();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getType <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' attribute.
-   * @see #getType()
-   * @generated
-   */
-  void setType(String value);
+  void setModelType(String value);
 
   /**
    * Returns the value of the '<em><b>Batter Capacity</b></em>' attribute.

@@ -73,10 +73,24 @@ public class MyDslSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case MyDslPackage.MODEL:
+      case MyDslPackage.SYSTEM_ROOT:
       {
-        Model model = (Model)theEObject;
-        T result = caseModel(model);
+        SystemRoot systemRoot = (SystemRoot)theEObject;
+        T result = caseSystemRoot(systemRoot);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.RELATION:
+      {
+        Relation relation = (Relation)theEObject;
+        T result = caseRelation(relation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.ENTITY:
+      {
+        Entity entity = (Entity)theEObject;
+        T result = caseEntity(entity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -84,6 +98,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Mission mission = (Mission)theEObject;
         T result = caseMission(mission);
+        if (result == null) result = caseEntity(mission);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -91,6 +106,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Drone drone = (Drone)theEObject;
         T result = caseDrone(drone);
+        if (result == null) result = caseEntity(drone);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -98,6 +114,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         EnergyModel energyModel = (EnergyModel)theEObject;
         T result = caseEnergyModel(energyModel);
+        if (result == null) result = caseEntity(energyModel);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -105,6 +122,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Phase phase = (Phase)theEObject;
         T result = casePhase(phase);
+        if (result == null) result = caseEntity(phase);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -112,6 +130,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         SubPhase subPhase = (SubPhase)theEObject;
         T result = caseSubPhase(subPhase);
+        if (result == null) result = caseEntity(subPhase);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -119,6 +138,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Action action = (Action)theEObject;
         T result = caseAction(action);
+        if (result == null) result = caseEntity(action);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -126,6 +146,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Constraint constraint = (Constraint)theEObject;
         T result = caseConstraint(constraint);
+        if (result == null) result = caseEntity(constraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -134,6 +155,7 @@ public class MyDslSwitch<T> extends Switch<T>
         SafetyConstraint safetyConstraint = (SafetyConstraint)theEObject;
         T result = caseSafetyConstraint(safetyConstraint);
         if (result == null) result = caseConstraint(safetyConstraint);
+        if (result == null) result = caseEntity(safetyConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -142,6 +164,7 @@ public class MyDslSwitch<T> extends Switch<T>
         RegulatoryConstraint regulatoryConstraint = (RegulatoryConstraint)theEObject;
         T result = caseRegulatoryConstraint(regulatoryConstraint);
         if (result == null) result = caseConstraint(regulatoryConstraint);
+        if (result == null) result = caseEntity(regulatoryConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -149,6 +172,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         MissionEvent missionEvent = (MissionEvent)theEObject;
         T result = caseMissionEvent(missionEvent);
+        if (result == null) result = caseEntity(missionEvent);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -157,17 +181,49 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>System Root</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+   * @return the result of interpreting the object as an instance of '<em>System Root</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModel(Model object)
+  public T caseSystemRoot(SystemRoot object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Relation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRelation(Relation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Entity</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entity</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntity(Entity object)
   {
     return null;
   }
