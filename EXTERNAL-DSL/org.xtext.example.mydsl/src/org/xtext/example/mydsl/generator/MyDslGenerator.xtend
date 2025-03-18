@@ -48,7 +48,6 @@ class MyDslGenerator extends AbstractGenerator {
                 «ENDFOR»
                 // Constructor with all attributes
                 	// ensures that the parameters are comma-separated
-                	// https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html
                     public «entity.name»(«FOR attr : attributes SEPARATOR ", "»«attr.javaType» «attr.name»«ENDFOR») {
 	                    «FOR attr : attributes»
 	                    	this.«attr.name» = «attr.name»;

@@ -119,9 +119,6 @@ public class MyDslGenerator extends AbstractGenerator {
       _builder.append("                \t");
       _builder.append("// ensures that the parameters are comma-separated");
       _builder.newLine();
-      _builder.append("                \t");
-      _builder.append("// https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html");
-      _builder.newLine();
       _builder.append("                    ");
       _builder.append("public ");
       String _name_2 = entity.getName();
