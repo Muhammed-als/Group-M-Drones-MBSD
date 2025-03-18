@@ -1,9 +1,94 @@
 grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
-
-generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
-
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+ 
+ generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+ 
+ Model:
+     systemRoot=SystemRoot 
+     entities+=Entity*;
+ 
+ SystemRoot:
+     'system' name=ID entities+=Entity*
+ ;
+ Entity:
+     Mission | Drone | EnergyModel | Phase | SubPhase | Action | Constraint | MissionEvent; 
+ 
+ Mission:
+     'Mission' name=ID '{'
+         'missionID' '=' id=STRING
+         'missionType' '=' missionType=STRING
+         'startLocation' '=' startLocation=STRING
+         'endLocation' '=' endLocation=STRING
+         'priority' '=' priority=INT
+         'estimatedTime' '=' estimatedTime=FLOAT
+         'addDrone' '=' addDrones+=[Drone] (',' addDrones+=[Drone])* 
+         'addPhase' '=' addPhases+=[Phase] (',' addPhases+=[Phase])* 
+         'addConstraint' '=' addConstraints+=[Constraint] (',' addConstraints+=[Constraint])* 
+         'addEvent' '=' addEvents+=[MissionEvent] (',' addEvents+=[MissionEvent])* 
+     '}';
+ 
+ Drone:
+     'Drone' name=ID '{'
+         'modelType' '=' type=STRING
+         'batterCapacity' '=' batterCapacity=FLOAT
+         'maxFlightTime' '=' maxFlightTime=FLOAT
+         'payloadCapacity' '=' payloadCapacity=FLOAT
+         'role''=' role=STRING
+         'addEnergyModel' '=' addEnergyModel+=[EnergyModel] (',' addEnergyModel+=[EnergyModel])*
+     '}';
+ 
+ EnergyModel:
+     'EnergyModel' name=ID '{'
+         'consumptionRate' '=' consumptionRate=FLOAT
+         'batteryHealth' '=' batteryHealth=FLOAT
+         'rechargeTime' '=' rechargeTime=FLOAT
+     '}';
+ 
+ Phase:
+     'Phase' name=ID '{'
+     	'phaseType' '=' phaseType=STRING
+         'energyUsage' '=' energyUsage=FLOAT
+         'addSubPhase' '=' addSubPhase+=[SubPhase] (',' addSubPhase+=[SubPhase])*
+     '}';
+ 
+ SubPhase:
+     'SubPhase' name=ID '{'
+     	'subPhaseType' '=' subPhaseType=STRING
+     	'duration' '=' duration=FLOAT
+         'addAction' '=' addAction+=[Action] (',' addAction+=[Action])*
+     '}';
+ 
+ Action:
+     'Action' name=ID '{'
+     	'actionType' '=' actionType=STRING
+         'inputOutput' '=' inputOutput=STRING
+         'energyUsage' '=' energyUsage=FLOAT
+     '}';
+ 
+ Constraint:
+     SafetyConstraint | RegulatoryConstraint;
+ 
+ SafetyConstraint:
+     'SafetyConstraint' name=ID '{'
+         'minBattery' '=' minBattery=FLOAT
+         'maxWindSpeed' '=' maxWindSpeed=FLOAT
+     '}';
+ 
+ RegulatoryConstraint:
+     'RegulatoryConstraint' name=ID '{'
+         'flightPermission' '=' flightPermission=BOOLEAN
+         'altitudeLimit' '=' altitudeLimit=INT
+     '}';
+ 
+ MissionEvent:
+     'MissionEvent' name=ID '{'
+     	'eventType' '=' eventType=STRING
+         'impactLevel' '=' impactLevel=INT
+         'responseAction' '=' responseAction=STRING    
+     '}';
+ 
+ // Define new types
+ terminal FLOAT:
+     INT '.' INT;
+     
+ terminal BOOLEAN:
+     ('true' | 'false');

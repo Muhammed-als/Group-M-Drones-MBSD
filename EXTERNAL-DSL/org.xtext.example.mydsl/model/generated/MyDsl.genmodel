@@ -7,10 +7,69 @@
   <genPackages prefix="MyDsl" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
       fileExtensions="mydsl" ecorePackage="MyDsl.ecore#/">
     <genClasses ecoreClass="MyDsl.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Model/greetings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Model/systemRoot"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Model/entities"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Greeting">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Greeting/name"/>
+    <genClasses ecoreClass="MyDsl.ecore#//SystemRoot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//SystemRoot/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//SystemRoot/entities"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Entity/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Mission">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Mission/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Mission/missionType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Mission/startLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Mission/endLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Mission/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Mission/estimatedTime"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Mission/addDrones"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Mission/addPhases"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Mission/addConstraints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Mission/addEvents"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Drone">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Drone/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Drone/batterCapacity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Drone/maxFlightTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Drone/payloadCapacity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Drone/role"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Drone/addEnergyModel"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//EnergyModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//EnergyModel/consumptionRate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//EnergyModel/batteryHealth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//EnergyModel/rechargeTime"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Phase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Phase/phaseType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Phase/energyUsage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Phase/addSubPhase"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//SubPhase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//SubPhase/subPhaseType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//SubPhase/duration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//SubPhase/addAction"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Action">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Action/actionType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Action/inputOutput"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Action/energyUsage"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Constraint"/>
+    <genClasses ecoreClass="MyDsl.ecore#//SafetyConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//SafetyConstraint/minBattery"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//SafetyConstraint/maxWindSpeed"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//RegulatoryConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//RegulatoryConstraint/flightPermission"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//RegulatoryConstraint/altitudeLimit"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//MissionEvent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//MissionEvent/eventType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//MissionEvent/impactLevel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//MissionEvent/responseAction"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

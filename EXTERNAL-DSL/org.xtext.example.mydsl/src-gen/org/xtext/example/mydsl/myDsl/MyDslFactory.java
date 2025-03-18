@@ -33,13 +33,112 @@ public interface MyDslFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Greeting</em>'.
+   * Returns a new object of class '<em>System Root</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Greeting</em>'.
+   * @return a new object of class '<em>System Root</em>'.
    * @generated
    */
-  Greeting createGreeting();
+  SystemRoot createSystemRoot();
+
+  /**
+   * Returns a new object of class '<em>Entity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entity</em>'.
+   * @generated
+   */
+  Entity createEntity();
+
+  /**
+   * Returns a new object of class '<em>Mission</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mission</em>'.
+   * @generated
+   */
+  Mission createMission();
+
+  /**
+   * Returns a new object of class '<em>Drone</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Drone</em>'.
+   * @generated
+   */
+  Drone createDrone();
+
+  /**
+   * Returns a new object of class '<em>Energy Model</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Energy Model</em>'.
+   * @generated
+   */
+  EnergyModel createEnergyModel();
+
+  /**
+   * Returns a new object of class '<em>Phase</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Phase</em>'.
+   * @generated
+   */
+  Phase createPhase();
+
+  /**
+   * Returns a new object of class '<em>Sub Phase</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sub Phase</em>'.
+   * @generated
+   */
+  SubPhase createSubPhase();
+
+  /**
+   * Returns a new object of class '<em>Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Action</em>'.
+   * @generated
+   */
+  Action createAction();
+
+  /**
+   * Returns a new object of class '<em>Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Constraint</em>'.
+   * @generated
+   */
+  Constraint createConstraint();
+
+  /**
+   * Returns a new object of class '<em>Safety Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Safety Constraint</em>'.
+   * @generated
+   */
+  SafetyConstraint createSafetyConstraint();
+
+  /**
+   * Returns a new object of class '<em>Regulatory Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Regulatory Constraint</em>'.
+   * @generated
+   */
+  RegulatoryConstraint createRegulatoryConstraint();
+
+  /**
+   * Returns a new object of class '<em>Mission Event</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mission Event</em>'.
+   * @generated
+   */
+  MissionEvent createMissionEvent();
 
   /**
    * Returns the package supported by this factory.

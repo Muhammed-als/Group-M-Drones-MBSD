@@ -5,6 +5,7 @@ package org.xtext.example.mydsl.myDsl.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,14 +13,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.example.mydsl.myDsl.Greeting;
+import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.SystemRoot;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +32,8 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getGreetings <em>Greetings</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getSystemRoot <em>System Root</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getEntities <em>Entities</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,14 +41,24 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getGreetings() <em>Greetings</em>}' containment reference list.
+   * The cached value of the '{@link #getSystemRoot() <em>System Root</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGreetings()
+   * @see #getSystemRoot()
    * @generated
    * @ordered
    */
-  protected EList<Greeting> greetings;
+  protected SystemRoot systemRoot;
+
+  /**
+   * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEntities()
+   * @generated
+   * @ordered
+   */
+  protected EList<Entity> entities;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,13 +87,63 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public EList<Greeting> getGreetings()
+  public SystemRoot getSystemRoot()
   {
-    if (greetings == null)
+    return systemRoot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetSystemRoot(SystemRoot newSystemRoot, NotificationChain msgs)
+  {
+    SystemRoot oldSystemRoot = systemRoot;
+    systemRoot = newSystemRoot;
+    if (eNotificationRequired())
     {
-      greetings = new EObjectContainmentEList<Greeting>(Greeting.class, this, MyDslPackage.MODEL__GREETINGS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.MODEL__SYSTEM_ROOT, oldSystemRoot, newSystemRoot);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return greetings;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setSystemRoot(SystemRoot newSystemRoot)
+  {
+    if (newSystemRoot != systemRoot)
+    {
+      NotificationChain msgs = null;
+      if (systemRoot != null)
+        msgs = ((InternalEObject)systemRoot).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MODEL__SYSTEM_ROOT, null, msgs);
+      if (newSystemRoot != null)
+        msgs = ((InternalEObject)newSystemRoot).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MODEL__SYSTEM_ROOT, null, msgs);
+      msgs = basicSetSystemRoot(newSystemRoot, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MODEL__SYSTEM_ROOT, newSystemRoot, newSystemRoot));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Entity> getEntities()
+  {
+    if (entities == null)
+    {
+      entities = new EObjectContainmentEList<Entity>(Entity.class, this, MyDslPackage.MODEL__ENTITIES);
+    }
+    return entities;
   }
 
   /**
@@ -92,8 +156,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__GREETINGS:
-        return ((InternalEList<?>)getGreetings()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.MODEL__SYSTEM_ROOT:
+        return basicSetSystemRoot(null, msgs);
+      case MyDslPackage.MODEL__ENTITIES:
+        return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -108,8 +174,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__GREETINGS:
-        return getGreetings();
+      case MyDslPackage.MODEL__SYSTEM_ROOT:
+        return getSystemRoot();
+      case MyDslPackage.MODEL__ENTITIES:
+        return getEntities();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,9 +193,12 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__GREETINGS:
-        getGreetings().clear();
-        getGreetings().addAll((Collection<? extends Greeting>)newValue);
+      case MyDslPackage.MODEL__SYSTEM_ROOT:
+        setSystemRoot((SystemRoot)newValue);
+        return;
+      case MyDslPackage.MODEL__ENTITIES:
+        getEntities().clear();
+        getEntities().addAll((Collection<? extends Entity>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -143,8 +214,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__GREETINGS:
-        getGreetings().clear();
+      case MyDslPackage.MODEL__SYSTEM_ROOT:
+        setSystemRoot((SystemRoot)null);
+        return;
+      case MyDslPackage.MODEL__ENTITIES:
+        getEntities().clear();
         return;
     }
     super.eUnset(featureID);
@@ -160,8 +234,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__GREETINGS:
-        return greetings != null && !greetings.isEmpty();
+      case MyDslPackage.MODEL__SYSTEM_ROOT:
+        return systemRoot != null;
+      case MyDslPackage.MODEL__ENTITIES:
+        return entities != null && !entities.isEmpty();
     }
     return super.eIsSet(featureID);
   }
