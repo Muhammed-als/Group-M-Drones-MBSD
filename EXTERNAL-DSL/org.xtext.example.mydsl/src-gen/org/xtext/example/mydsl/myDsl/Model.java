@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Model#getSystemRoot <em>System Root</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Model#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Model#getGreetings <em>Greetings</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getModel()
@@ -27,37 +26,15 @@ import org.eclipse.emf.ecore.EObject;
 public interface Model extends EObject
 {
   /**
-   * Returns the value of the '<em><b>System Root</b></em>' containment reference.
+   * Returns the value of the '<em><b>Greetings</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Greeting}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>System Root</em>' containment reference.
-   * @see #setSystemRoot(SystemRoot)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getModel_SystemRoot()
+   * @return the value of the '<em>Greetings</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getModel_Greetings()
    * @model containment="true"
    * @generated
    */
-  SystemRoot getSystemRoot();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Model#getSystemRoot <em>System Root</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>System Root</em>' containment reference.
-   * @see #getSystemRoot()
-   * @generated
-   */
-  void setSystemRoot(SystemRoot value);
-
-  /**
-   * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Entity}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Entities</em>' containment reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getModel_Entities()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Entity> getEntities();
+  EList<Greeting> getGreetings();
 
 } // Model
