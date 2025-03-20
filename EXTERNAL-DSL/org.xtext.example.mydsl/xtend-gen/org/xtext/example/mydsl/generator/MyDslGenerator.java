@@ -15,7 +15,6 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -104,13 +103,6 @@ public class MyDslGenerator extends AbstractGenerator {
     CharSequence _xblockexpression = null;
     {
       final List<MyDslGenerator.AttributeInfo> attributes = this.getEntityAttributes(entity);
-      List<MyDslGenerator.AttributeInfo> _xifexpression = null;
-      if ((parentClass != null)) {
-        _xifexpression = this.getEntityAttributes(parentClass);
-      } else {
-        _xifexpression = CollectionLiterals.<MyDslGenerator.AttributeInfo>emptyList();
-      }
-      final List<MyDslGenerator.AttributeInfo> parentAttributes = _xifexpression;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("    ");
       _builder.append("package ");
@@ -119,10 +111,7 @@ public class MyDslGenerator extends AbstractGenerator {
       _builder.append(";");
       _builder.newLineIfNotEmpty();
       _builder.append("    ");
-      _builder.append("import java.util.List;");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("import java.util.ArrayList;");
+      _builder.append("import java.util.*;");
       _builder.newLine();
       _builder.append("    ");
       _builder.newLine();

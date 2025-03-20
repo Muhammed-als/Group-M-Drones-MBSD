@@ -49,13 +49,10 @@
 	    return null
 	}
 	def compile(Entity entity, SystemRoot root, Entity parentClass) {
-	    val attributes = getEntityAttributes(entity)
-        val parentAttributes = if (parentClass !== null) getEntityAttributes(parentClass) else emptyList
-		
+	    val attributes = getEntityAttributes(entity)		
 	    '''
 	    package «root.name»;
-	    import java.util.List;
-	    import java.util.ArrayList;
+	    import java.util.*;
 	    
 	    public class «entity.name» «IF parentClass !== null»extends «parentClass.name»«ENDIF» {
 	        «FOR attr : attributes»
