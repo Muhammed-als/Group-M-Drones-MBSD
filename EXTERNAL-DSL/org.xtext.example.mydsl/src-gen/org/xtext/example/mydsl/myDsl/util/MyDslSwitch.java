@@ -142,10 +142,19 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.CONSTRAINT_CLASSES:
+      {
+        ConstraintClasses constraintClasses = (ConstraintClasses)theEObject;
+        T result = caseConstraintClasses(constraintClasses);
+        if (result == null) result = caseEntity(constraintClasses);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.CONSTRAINT:
       {
         Constraint constraint = (Constraint)theEObject;
         T result = caseConstraint(constraint);
+        if (result == null) result = caseConstraintClasses(constraint);
         if (result == null) result = caseEntity(constraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -154,7 +163,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         SafetyConstraint safetyConstraint = (SafetyConstraint)theEObject;
         T result = caseSafetyConstraint(safetyConstraint);
-        if (result == null) result = caseConstraint(safetyConstraint);
+        if (result == null) result = caseConstraintClasses(safetyConstraint);
         if (result == null) result = caseEntity(safetyConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -163,7 +172,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         RegulatoryConstraint regulatoryConstraint = (RegulatoryConstraint)theEObject;
         T result = caseRegulatoryConstraint(regulatoryConstraint);
-        if (result == null) result = caseConstraint(regulatoryConstraint);
+        if (result == null) result = caseConstraintClasses(regulatoryConstraint);
         if (result == null) result = caseEntity(regulatoryConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -173,6 +182,13 @@ public class MyDslSwitch<T> extends Switch<T>
         MissionEvent missionEvent = (MissionEvent)theEObject;
         T result = caseMissionEvent(missionEvent);
         if (result == null) result = caseEntity(missionEvent);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.RELATION:
+      {
+        Relation relation = (Relation)theEObject;
+        T result = caseRelation(relation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -325,6 +341,22 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Constraint Classes</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Constraint Classes</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConstraintClasses(ConstraintClasses object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -384,6 +416,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseMissionEvent(MissionEvent object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Relation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRelation(Relation object)
   {
     return null;
   }

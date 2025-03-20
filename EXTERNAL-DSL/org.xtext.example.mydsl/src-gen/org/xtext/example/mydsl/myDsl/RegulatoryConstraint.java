@@ -21,7 +21,7 @@ package org.xtext.example.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface RegulatoryConstraint extends Constraint
+public interface RegulatoryConstraint extends ConstraintClasses
 {
   /**
    * Returns the value of the '<em><b>Flight Permission</b></em>' attribute.

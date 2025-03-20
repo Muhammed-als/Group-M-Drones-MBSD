@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.xtext.example.mydsl.myDsl.Constraint;
+import org.xtext.example.mydsl.myDsl.ConstraintClasses;
 import org.xtext.example.mydsl.myDsl.Drone;
 import org.xtext.example.mydsl.myDsl.Mission;
 import org.xtext.example.mydsl.myDsl.MissionEvent;
@@ -154,7 +154,7 @@ public class MissionImpl extends EntityImpl implements Mission
    * @generated
    * @ordered
    */
-  protected static final String ESTIMATED_TIME_EDEFAULT = null;
+  protected static final float ESTIMATED_TIME_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getEstimatedTime() <em>Estimated Time</em>}' attribute.
@@ -164,7 +164,7 @@ public class MissionImpl extends EntityImpl implements Mission
    * @generated
    * @ordered
    */
-  protected String estimatedTime = ESTIMATED_TIME_EDEFAULT;
+  protected float estimatedTime = ESTIMATED_TIME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAddDrones() <em>Add Drones</em>}' reference list.
@@ -194,7 +194,7 @@ public class MissionImpl extends EntityImpl implements Mission
    * @generated
    * @ordered
    */
-  protected EList<Constraint> addConstraints;
+  protected EList<ConstraintClasses> addConstraints;
 
   /**
    * The cached value of the '{@link #getAddEvents() <em>Add Events</em>}' reference list.
@@ -358,7 +358,7 @@ public class MissionImpl extends EntityImpl implements Mission
    * @generated
    */
   @Override
-  public String getEstimatedTime()
+  public float getEstimatedTime()
   {
     return estimatedTime;
   }
@@ -369,9 +369,9 @@ public class MissionImpl extends EntityImpl implements Mission
    * @generated
    */
   @Override
-  public void setEstimatedTime(String newEstimatedTime)
+  public void setEstimatedTime(float newEstimatedTime)
   {
-    String oldEstimatedTime = estimatedTime;
+    float oldEstimatedTime = estimatedTime;
     estimatedTime = newEstimatedTime;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MISSION__ESTIMATED_TIME, oldEstimatedTime, estimatedTime));
@@ -413,11 +413,11 @@ public class MissionImpl extends EntityImpl implements Mission
    * @generated
    */
   @Override
-  public EList<Constraint> getAddConstraints()
+  public EList<ConstraintClasses> getAddConstraints()
   {
     if (addConstraints == null)
     {
-      addConstraints = new EObjectResolvingEList<Constraint>(Constraint.class, this, MyDslPackage.MISSION__ADD_CONSTRAINTS);
+      addConstraints = new EObjectResolvingEList<ConstraintClasses>(ConstraintClasses.class, this, MyDslPackage.MISSION__ADD_CONSTRAINTS);
     }
     return addConstraints;
   }
@@ -498,7 +498,7 @@ public class MissionImpl extends EntityImpl implements Mission
         setPriority((Integer)newValue);
         return;
       case MyDslPackage.MISSION__ESTIMATED_TIME:
-        setEstimatedTime((String)newValue);
+        setEstimatedTime((Float)newValue);
         return;
       case MyDslPackage.MISSION__ADD_DRONES:
         getAddDrones().clear();
@@ -510,7 +510,7 @@ public class MissionImpl extends EntityImpl implements Mission
         return;
       case MyDslPackage.MISSION__ADD_CONSTRAINTS:
         getAddConstraints().clear();
-        getAddConstraints().addAll((Collection<? extends Constraint>)newValue);
+        getAddConstraints().addAll((Collection<? extends ConstraintClasses>)newValue);
         return;
       case MyDslPackage.MISSION__ADD_EVENTS:
         getAddEvents().clear();
@@ -585,7 +585,7 @@ public class MissionImpl extends EntityImpl implements Mission
       case MyDslPackage.MISSION__PRIORITY:
         return priority != PRIORITY_EDEFAULT;
       case MyDslPackage.MISSION__ESTIMATED_TIME:
-        return ESTIMATED_TIME_EDEFAULT == null ? estimatedTime != null : !ESTIMATED_TIME_EDEFAULT.equals(estimatedTime);
+        return estimatedTime != ESTIMATED_TIME_EDEFAULT;
       case MyDslPackage.MISSION__ADD_DRONES:
         return addDrones != null && !addDrones.isEmpty();
       case MyDslPackage.MISSION__ADD_PHASES:

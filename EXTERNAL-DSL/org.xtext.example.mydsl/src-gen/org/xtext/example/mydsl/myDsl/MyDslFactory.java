@@ -105,6 +105,15 @@ public interface MyDslFactory extends EFactory
   Action createAction();
 
   /**
+   * Returns a new object of class '<em>Constraint Classes</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Constraint Classes</em>'.
+   * @generated
+   */
+  ConstraintClasses createConstraintClasses();
+
+  /**
    * Returns a new object of class '<em>Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -139,6 +148,15 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   MissionEvent createMissionEvent();
+
+  /**
+   * Returns a new object of class '<em>Relation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relation</em>'.
+   * @generated
+   */
+  Relation createRelation();
 
   /**
    * Returns the package supported by this factory.

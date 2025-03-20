@@ -121,6 +121,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createActionAdapter();
       }
       @Override
+      public Adapter caseConstraintClasses(ConstraintClasses object)
+      {
+        return createConstraintClassesAdapter();
+      }
+      @Override
       public Adapter caseConstraint(Constraint object)
       {
         return createConstraintAdapter();
@@ -139,6 +144,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseMissionEvent(MissionEvent object)
       {
         return createMissionEventAdapter();
+      }
+      @Override
+      public Adapter caseRelation(Relation object)
+      {
+        return createRelationAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -298,6 +308,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ConstraintClasses <em>Constraint Classes</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ConstraintClasses
+   * @generated
+   */
+  public Adapter createConstraintClassesAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Constraint <em>Constraint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -353,6 +378,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMissionEventAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Relation <em>Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.Relation
+   * @generated
+   */
+  public Adapter createRelationAdapter()
   {
     return null;
   }

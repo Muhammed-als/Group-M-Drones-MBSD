@@ -37,7 +37,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    * @ordered
    */
-  protected static final String CONSUMPTION_RATE_EDEFAULT = null;
+  protected static final float CONSUMPTION_RATE_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getConsumptionRate() <em>Consumption Rate</em>}' attribute.
@@ -47,7 +47,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    * @ordered
    */
-  protected String consumptionRate = CONSUMPTION_RATE_EDEFAULT;
+  protected float consumptionRate = CONSUMPTION_RATE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getBatteryHealth() <em>Battery Health</em>}' attribute.
@@ -57,7 +57,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    * @ordered
    */
-  protected static final String BATTERY_HEALTH_EDEFAULT = null;
+  protected static final float BATTERY_HEALTH_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getBatteryHealth() <em>Battery Health</em>}' attribute.
@@ -67,7 +67,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    * @ordered
    */
-  protected String batteryHealth = BATTERY_HEALTH_EDEFAULT;
+  protected float batteryHealth = BATTERY_HEALTH_EDEFAULT;
 
   /**
    * The default value of the '{@link #getRechargeTime() <em>Recharge Time</em>}' attribute.
@@ -77,7 +77,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    * @ordered
    */
-  protected static final String RECHARGE_TIME_EDEFAULT = null;
+  protected static final float RECHARGE_TIME_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getRechargeTime() <em>Recharge Time</em>}' attribute.
@@ -87,7 +87,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    * @ordered
    */
-  protected String rechargeTime = RECHARGE_TIME_EDEFAULT;
+  protected float rechargeTime = RECHARGE_TIME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,7 +116,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    */
   @Override
-  public String getConsumptionRate()
+  public float getConsumptionRate()
   {
     return consumptionRate;
   }
@@ -127,9 +127,9 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    */
   @Override
-  public void setConsumptionRate(String newConsumptionRate)
+  public void setConsumptionRate(float newConsumptionRate)
   {
-    String oldConsumptionRate = consumptionRate;
+    float oldConsumptionRate = consumptionRate;
     consumptionRate = newConsumptionRate;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ENERGY_MODEL__CONSUMPTION_RATE, oldConsumptionRate, consumptionRate));
@@ -141,7 +141,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    */
   @Override
-  public String getBatteryHealth()
+  public float getBatteryHealth()
   {
     return batteryHealth;
   }
@@ -152,9 +152,9 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    */
   @Override
-  public void setBatteryHealth(String newBatteryHealth)
+  public void setBatteryHealth(float newBatteryHealth)
   {
-    String oldBatteryHealth = batteryHealth;
+    float oldBatteryHealth = batteryHealth;
     batteryHealth = newBatteryHealth;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ENERGY_MODEL__BATTERY_HEALTH, oldBatteryHealth, batteryHealth));
@@ -166,7 +166,7 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    */
   @Override
-  public String getRechargeTime()
+  public float getRechargeTime()
   {
     return rechargeTime;
   }
@@ -177,9 +177,9 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
    * @generated
    */
   @Override
-  public void setRechargeTime(String newRechargeTime)
+  public void setRechargeTime(float newRechargeTime)
   {
-    String oldRechargeTime = rechargeTime;
+    float oldRechargeTime = rechargeTime;
     rechargeTime = newRechargeTime;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ENERGY_MODEL__RECHARGE_TIME, oldRechargeTime, rechargeTime));
@@ -216,13 +216,13 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
     switch (featureID)
     {
       case MyDslPackage.ENERGY_MODEL__CONSUMPTION_RATE:
-        setConsumptionRate((String)newValue);
+        setConsumptionRate((Float)newValue);
         return;
       case MyDslPackage.ENERGY_MODEL__BATTERY_HEALTH:
-        setBatteryHealth((String)newValue);
+        setBatteryHealth((Float)newValue);
         return;
       case MyDslPackage.ENERGY_MODEL__RECHARGE_TIME:
-        setRechargeTime((String)newValue);
+        setRechargeTime((Float)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -262,11 +262,11 @@ public class EnergyModelImpl extends EntityImpl implements EnergyModel
     switch (featureID)
     {
       case MyDslPackage.ENERGY_MODEL__CONSUMPTION_RATE:
-        return CONSUMPTION_RATE_EDEFAULT == null ? consumptionRate != null : !CONSUMPTION_RATE_EDEFAULT.equals(consumptionRate);
+        return consumptionRate != CONSUMPTION_RATE_EDEFAULT;
       case MyDslPackage.ENERGY_MODEL__BATTERY_HEALTH:
-        return BATTERY_HEALTH_EDEFAULT == null ? batteryHealth != null : !BATTERY_HEALTH_EDEFAULT.equals(batteryHealth);
+        return batteryHealth != BATTERY_HEALTH_EDEFAULT;
       case MyDslPackage.ENERGY_MODEL__RECHARGE_TIME:
-        return RECHARGE_TIME_EDEFAULT == null ? rechargeTime != null : !RECHARGE_TIME_EDEFAULT.equals(rechargeTime);
+        return rechargeTime != RECHARGE_TIME_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

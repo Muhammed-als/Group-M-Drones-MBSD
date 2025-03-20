@@ -52,12 +52,12 @@ public interface SubPhase extends Entity
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Duration</em>' attribute.
-   * @see #setDuration(String)
+   * @see #setDuration(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getSubPhase_Duration()
    * @model
    * @generated
    */
-  String getDuration();
+  float getDuration();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.SubPhase#getDuration <em>Duration</em>}' attribute.
@@ -67,7 +67,7 @@ public interface SubPhase extends Entity
    * @see #getDuration()
    * @generated
    */
-  void setDuration(String value);
+  void setDuration(float value);
 
   /**
    * Returns the value of the '<em><b>Add Action</b></em>' reference list.

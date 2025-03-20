@@ -26,7 +26,7 @@ import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
  *
  * @generated
  */
-public class RegulatoryConstraintImpl extends ConstraintImpl implements RegulatoryConstraint
+public class RegulatoryConstraintImpl extends ConstraintClassesImpl implements RegulatoryConstraint
 {
   /**
    * The default value of the '{@link #getFlightPermission() <em>Flight Permission</em>}' attribute.

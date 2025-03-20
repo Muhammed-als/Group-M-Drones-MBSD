@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.SystemRoot;
 
 /**
@@ -34,6 +35,7 @@ import org.xtext.example.mydsl.myDsl.SystemRoot;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getSystemRoot <em>System Root</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +61,16 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @ordered
    */
   protected EList<Entity> entities;
+
+  /**
+   * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRelations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Relation> relations;
 
   /**
    * <!-- begin-user-doc -->
@@ -152,6 +164,21 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
+  public EList<Relation> getRelations()
+  {
+    if (relations == null)
+    {
+      relations = new EObjectContainmentEList<Relation>(Relation.class, this, MyDslPackage.MODEL__RELATIONS);
+    }
+    return relations;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -160,6 +187,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return basicSetSystemRoot(null, msgs);
       case MyDslPackage.MODEL__ENTITIES:
         return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.MODEL__RELATIONS:
+        return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -178,6 +207,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return getSystemRoot();
       case MyDslPackage.MODEL__ENTITIES:
         return getEntities();
+      case MyDslPackage.MODEL__RELATIONS:
+        return getRelations();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -200,6 +231,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         getEntities().clear();
         getEntities().addAll((Collection<? extends Entity>)newValue);
         return;
+      case MyDslPackage.MODEL__RELATIONS:
+        getRelations().clear();
+        getRelations().addAll((Collection<? extends Relation>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -220,6 +255,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case MyDslPackage.MODEL__ENTITIES:
         getEntities().clear();
         return;
+      case MyDslPackage.MODEL__RELATIONS:
+        getRelations().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -238,6 +276,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return systemRoot != null;
       case MyDslPackage.MODEL__ENTITIES:
         return entities != null && !entities.isEmpty();
+      case MyDslPackage.MODEL__RELATIONS:
+        return relations != null && !relations.isEmpty();
     }
     return super.eIsSet(featureID);
   }

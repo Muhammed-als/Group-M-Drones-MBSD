@@ -15,7 +15,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  *
  * @generated
  */
-public class ConstraintImpl extends EntityImpl implements Constraint
+public class ConstraintImpl extends ConstraintClassesImpl implements Constraint
 {
   /**
    * <!-- begin-user-doc -->

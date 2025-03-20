@@ -77,7 +77,7 @@ public class ActionImpl extends EntityImpl implements Action
    * @generated
    * @ordered
    */
-  protected static final String ENERGY_USAGE_EDEFAULT = null;
+  protected static final float ENERGY_USAGE_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getEnergyUsage() <em>Energy Usage</em>}' attribute.
@@ -87,7 +87,7 @@ public class ActionImpl extends EntityImpl implements Action
    * @generated
    * @ordered
    */
-  protected String energyUsage = ENERGY_USAGE_EDEFAULT;
+  protected float energyUsage = ENERGY_USAGE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -166,7 +166,7 @@ public class ActionImpl extends EntityImpl implements Action
    * @generated
    */
   @Override
-  public String getEnergyUsage()
+  public float getEnergyUsage()
   {
     return energyUsage;
   }
@@ -177,9 +177,9 @@ public class ActionImpl extends EntityImpl implements Action
    * @generated
    */
   @Override
-  public void setEnergyUsage(String newEnergyUsage)
+  public void setEnergyUsage(float newEnergyUsage)
   {
-    String oldEnergyUsage = energyUsage;
+    float oldEnergyUsage = energyUsage;
     energyUsage = newEnergyUsage;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ACTION__ENERGY_USAGE, oldEnergyUsage, energyUsage));
@@ -222,7 +222,7 @@ public class ActionImpl extends EntityImpl implements Action
         setInputOutput((String)newValue);
         return;
       case MyDslPackage.ACTION__ENERGY_USAGE:
-        setEnergyUsage((String)newValue);
+        setEnergyUsage((Float)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -266,7 +266,7 @@ public class ActionImpl extends EntityImpl implements Action
       case MyDslPackage.ACTION__INPUT_OUTPUT:
         return INPUT_OUTPUT_EDEFAULT == null ? inputOutput != null : !INPUT_OUTPUT_EDEFAULT.equals(inputOutput);
       case MyDslPackage.ACTION__ENERGY_USAGE:
-        return ENERGY_USAGE_EDEFAULT == null ? energyUsage != null : !ENERGY_USAGE_EDEFAULT.equals(energyUsage);
+        return energyUsage != ENERGY_USAGE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

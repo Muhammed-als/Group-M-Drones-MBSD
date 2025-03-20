@@ -52,12 +52,12 @@ public interface Phase extends Entity
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Energy Usage</em>' attribute.
-   * @see #setEnergyUsage(String)
+   * @see #setEnergyUsage(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getPhase_EnergyUsage()
    * @model
    * @generated
    */
-  String getEnergyUsage();
+  float getEnergyUsage();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Phase#getEnergyUsage <em>Energy Usage</em>}' attribute.
@@ -67,7 +67,7 @@ public interface Phase extends Entity
    * @see #getEnergyUsage()
    * @generated
    */
-  void setEnergyUsage(String value);
+  void setEnergyUsage(float value);
 
   /**
    * Returns the value of the '<em><b>Add Sub Phase</b></em>' reference list.

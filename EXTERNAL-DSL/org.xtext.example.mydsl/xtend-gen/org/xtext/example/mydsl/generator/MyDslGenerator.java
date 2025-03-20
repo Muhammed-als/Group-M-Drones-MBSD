@@ -7,7 +7,7 @@ import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.Action;
+import java.util.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -15,10 +15,15 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xbase.lib.XbaseGenerated;
+import org.xtext.example.mydsl.myDsl.Action;
+import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Drone;
 import org.xtext.example.mydsl.myDsl.EnergyModel;
 import org.xtext.example.mydsl.myDsl.Entity;
@@ -26,6 +31,7 @@ import org.xtext.example.mydsl.myDsl.Mission;
 import org.xtext.example.mydsl.myDsl.MissionEvent;
 import org.xtext.example.mydsl.myDsl.Phase;
 import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.SafetyConstraint;
 import org.xtext.example.mydsl.myDsl.SubPhase;
 import org.xtext.example.mydsl.myDsl.SystemRoot;
@@ -59,13 +65,11 @@ public class MyDslGenerator extends AbstractGenerator {
             return "float";
           case "BOOLEAN":
             return "boolean";
-          case "LIST":
-            return "List";
           default:
-            return "String";
+            return this.type;
         }
       } else {
-        return "String";
+        return this.type;
       }
     }
   }
@@ -73,129 +77,219 @@ public class MyDslGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     SystemRoot root = ((SystemRoot[])Conversions.unwrapArray((Iterables.<SystemRoot>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), SystemRoot.class)), SystemRoot.class))[0];
-    if ((root != null)) {
-      EList<Entity> _entities = root.getEntities();
-      for (final Entity e : _entities) {
+    EList<Entity> _entities = root.getEntities();
+    for (final Entity e : _entities) {
+      {
+        Entity parent = this.findParentEntity(e, root.getRelations());
         String _name = root.getName();
         String _plus = (_name + "/");
         String _name_1 = e.getName();
         String _plus_1 = (_plus + _name_1);
         String _plus_2 = (_plus_1 + ".java");
-        fsa.generateFile(_plus_2, this.compile(e, root));
+        fsa.generateFile(_plus_2, this.compile(e, root, parent));
       }
     }
   }
 
-  public CharSequence compile(final Entity entity, final SystemRoot root) {
+  public Entity findParentEntity(final Entity entity, final List<Relation> relations) {
+    for (final Relation relation : relations) {
+      if ((Objects.equals(relation.getType(), "inherits") && Objects.equals(relation.getFrom(), entity))) {
+        return relation.getTo();
+      }
+    }
+    return null;
+  }
+
+  public CharSequence compile(final Entity entity, final SystemRoot root, final Entity parentClass) {
     CharSequence _xblockexpression = null;
     {
       final List<MyDslGenerator.AttributeInfo> attributes = this.getEntityAttributes(entity);
+      List<MyDslGenerator.AttributeInfo> _xifexpression = null;
+      if ((parentClass != null)) {
+        _xifexpression = this.getEntityAttributes(parentClass);
+      } else {
+        _xifexpression = CollectionLiterals.<MyDslGenerator.AttributeInfo>emptyList();
+      }
+      final List<MyDslGenerator.AttributeInfo> parentAttributes = _xifexpression;
       StringConcatenation _builder = new StringConcatenation();
+      _builder.append("    ");
       _builder.append("package ");
       String _name = root.getName();
-      _builder.append(_name);
+      _builder.append(_name, "    ");
       _builder.append(";");
       _builder.newLineIfNotEmpty();
+      _builder.append("    ");
+      _builder.append("import java.util.List;");
       _builder.newLine();
+      _builder.append("    ");
+      _builder.append("import java.util.ArrayList;");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.newLine();
+      _builder.append("    ");
       _builder.append("public class ");
       String _name_1 = entity.getName();
-      _builder.append(_name_1);
+      _builder.append(_name_1, "    ");
+      _builder.append(" ");
+      {
+        if ((parentClass != null)) {
+          _builder.append("extends ");
+          String _name_2 = parentClass.getName();
+          _builder.append(_name_2, "    ");
+        }
+      }
       _builder.append(" {");
       _builder.newLineIfNotEmpty();
       {
         for(final MyDslGenerator.AttributeInfo attr : attributes) {
+          _builder.append("        ");
           _builder.append("private ");
           String _javaType = attr.javaType();
-          _builder.append(_javaType);
+          _builder.append(_javaType, "        ");
           _builder.append(" ");
-          _builder.append(attr.name);
+          _builder.append(attr.name, "        ");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.append("                 ");
-      _builder.append("// Constructor with all attributes");
       _builder.newLine();
-      _builder.append("                 \t");
-      _builder.append("// ensures that the parameters are comma-separated");
-      _builder.newLine();
-      _builder.append("                 \t");
-      _builder.append("// https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html");
-      _builder.newLine();
-      _builder.append("                     ");
+      _builder.append("        ");
       _builder.append("public ");
-      String _name_2 = entity.getName();
-      _builder.append(_name_2, "                     ");
+      String _name_3 = entity.getName();
+      _builder.append(_name_3, "        ");
       _builder.append("(");
       {
-        boolean _hasElements = false;
-        for(final MyDslGenerator.AttributeInfo attr_1 : attributes) {
-          if (!_hasElements) {
-            _hasElements = true;
-          } else {
-            _builder.appendImmediate(", ", "                     ");
+        if ((parentClass != null)) {
+          _builder.newLineIfNotEmpty();
+          _builder.append("        ");
+          {
+            List<MyDslGenerator.AttributeInfo> _entityAttributes = this.getEntityAttributes(parentClass);
+            boolean _hasElements = false;
+            for(final MyDslGenerator.AttributeInfo attr_1 : _entityAttributes) {
+              if (!_hasElements) {
+                _hasElements = true;
+              } else {
+                _builder.appendImmediate(", ", "        ");
+              }
+              String _javaType_1 = attr_1.javaType();
+              _builder.append(_javaType_1, "        ");
+              _builder.append(" ");
+              _builder.append(attr_1.name, "        ");
+            }
           }
-          String _javaType_1 = attr_1.javaType();
-          _builder.append(_javaType_1, "                     ");
+          _builder.append(",");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("            ");
+      {
+        final Function1<MyDslGenerator.AttributeInfo, Boolean> _function = (MyDslGenerator.AttributeInfo it) -> {
+          return Boolean.valueOf(((parentClass == null) || (!this.getEntityAttributes(parentClass).contains(it))));
+        };
+        Iterable<MyDslGenerator.AttributeInfo> _filter = IterableExtensions.<MyDslGenerator.AttributeInfo>filter(attributes, _function);
+        boolean _hasElements_1 = false;
+        for(final MyDslGenerator.AttributeInfo attr_2 : _filter) {
+          if (!_hasElements_1) {
+            _hasElements_1 = true;
+          } else {
+            _builder.appendImmediate(", ", "            ");
+          }
+          String _javaType_2 = attr_2.javaType();
+          _builder.append(_javaType_2, "            ");
           _builder.append(" ");
-          _builder.append(attr_1.name, "                     ");
+          _builder.append(attr_2.name, "            ");
         }
       }
       _builder.append(") {");
       _builder.newLineIfNotEmpty();
-      {
-        for(final MyDslGenerator.AttributeInfo attr_2 : attributes) {
-          _builder.append(" \t                    ");
-          _builder.append("this.");
-          _builder.append(attr_2.name, " \t                    ");
-          _builder.append(" = ");
-          _builder.append(attr_2.name, " \t                    ");
-          _builder.append(";");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("                 \t");
-      _builder.append("}");
       _builder.newLine();
       {
-        for(final MyDslGenerator.AttributeInfo attr_3 : attributes) {
+        if ((parentClass != null)) {
+          _builder.append("            ");
+          _builder.append("super(");
+          {
+            List<MyDslGenerator.AttributeInfo> _entityAttributes_1 = this.getEntityAttributes(parentClass);
+            boolean _hasElements_2 = false;
+            for(final MyDslGenerator.AttributeInfo attr_3 : _entityAttributes_1) {
+              if (!_hasElements_2) {
+                _hasElements_2 = true;
+              } else {
+                _builder.appendImmediate(", ", "            ");
+              }
+              _builder.append(attr_3.name, "            ");
+            }
+          }
+          _builder.append(");");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.newLine();
+      {
+        final Function1<MyDslGenerator.AttributeInfo, Boolean> _function_1 = (MyDslGenerator.AttributeInfo it) -> {
+          return Boolean.valueOf(((parentClass == null) || (!this.getEntityAttributes(parentClass).contains(it))));
+        };
+        Iterable<MyDslGenerator.AttributeInfo> _filter_1 = IterableExtensions.<MyDslGenerator.AttributeInfo>filter(attributes, _function_1);
+        for(final MyDslGenerator.AttributeInfo attr_4 : _filter_1) {
+          _builder.append("            ");
+          _builder.append("this.");
+          _builder.append(attr_4.name, "            ");
+          _builder.append(" = ");
+          _builder.append(attr_4.name, "            ");
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("        ");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      {
+        for(final MyDslGenerator.AttributeInfo attr_5 : attributes) {
+          _builder.append("        ");
           _builder.append("public void set");
-          String _firstUpper = StringExtensions.toFirstUpper(attr_3.name);
-          _builder.append(_firstUpper);
+          String _firstUpper = StringExtensions.toFirstUpper(attr_5.name);
+          _builder.append(_firstUpper, "        ");
           _builder.append("(");
-          String _javaType_2 = attr_3.javaType();
-          _builder.append(_javaType_2);
+          String _javaType_3 = attr_5.javaType();
+          _builder.append(_javaType_3, "        ");
           _builder.append(" ");
-          _builder.append(attr_3.name);
+          _builder.append(attr_5.name, "        ");
           _builder.append(") {");
           _builder.newLineIfNotEmpty();
+          _builder.append("        ");
           _builder.append("    ");
           _builder.append("this.");
-          _builder.append(attr_3.name, "    ");
+          _builder.append(attr_5.name, "            ");
           _builder.append(" = ");
-          _builder.append(attr_3.name, "    ");
+          _builder.append(attr_5.name, "            ");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
+          _builder.append("        ");
           _builder.append("}");
           _builder.newLine();
+          _builder.append("\t");
           _builder.newLine();
+          _builder.append("        ");
           _builder.append("public ");
-          String _javaType_3 = attr_3.javaType();
-          _builder.append(_javaType_3);
+          String _javaType_4 = attr_5.javaType();
+          _builder.append(_javaType_4, "        ");
           _builder.append(" get");
-          String _firstUpper_1 = StringExtensions.toFirstUpper(attr_3.name);
-          _builder.append(_firstUpper_1);
+          String _firstUpper_1 = StringExtensions.toFirstUpper(attr_5.name);
+          _builder.append(_firstUpper_1, "        ");
           _builder.append("() {");
           _builder.newLineIfNotEmpty();
+          _builder.append("        ");
           _builder.append("    ");
           _builder.append("return this.");
-          _builder.append(attr_3.name, "    ");
+          _builder.append(attr_5.name, "            ");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
+          _builder.append("        ");
           _builder.append("}");
           _builder.newLine();
         }
       }
+      _builder.append("    ");
       _builder.append("}");
       _builder.newLine();
       _xblockexpression = _builder;
@@ -217,13 +311,13 @@ public class MyDslGenerator extends AbstractGenerator {
     result.add(_attributeInfo_4);
     MyDslGenerator.AttributeInfo _attributeInfo_5 = new MyDslGenerator.AttributeInfo("estimatedTime", "FLOAT");
     result.add(_attributeInfo_5);
-    MyDslGenerator.AttributeInfo _attributeInfo_6 = new MyDslGenerator.AttributeInfo("drones", "LIST");
+    MyDslGenerator.AttributeInfo _attributeInfo_6 = new MyDslGenerator.AttributeInfo("drones", "List<Object>");
     result.add(_attributeInfo_6);
-    MyDslGenerator.AttributeInfo _attributeInfo_7 = new MyDslGenerator.AttributeInfo("phases", "LIST");
+    MyDslGenerator.AttributeInfo _attributeInfo_7 = new MyDslGenerator.AttributeInfo("phases", "List<Object>");
     result.add(_attributeInfo_7);
-    MyDslGenerator.AttributeInfo _attributeInfo_8 = new MyDslGenerator.AttributeInfo("constraints", "LIST");
+    MyDslGenerator.AttributeInfo _attributeInfo_8 = new MyDslGenerator.AttributeInfo("constraints", "List<Object>");
     result.add(_attributeInfo_8);
-    MyDslGenerator.AttributeInfo _attributeInfo_9 = new MyDslGenerator.AttributeInfo("events", "LIST");
+    MyDslGenerator.AttributeInfo _attributeInfo_9 = new MyDslGenerator.AttributeInfo("events", "List<Object>");
     result.add(_attributeInfo_9);
     return result;
   }
@@ -240,7 +334,7 @@ public class MyDslGenerator extends AbstractGenerator {
     result.add(_attributeInfo_3);
     MyDslGenerator.AttributeInfo _attributeInfo_4 = new MyDslGenerator.AttributeInfo("role", "STRING");
     result.add(_attributeInfo_4);
-    MyDslGenerator.AttributeInfo _attributeInfo_5 = new MyDslGenerator.AttributeInfo("energyModels", "LIST");
+    MyDslGenerator.AttributeInfo _attributeInfo_5 = new MyDslGenerator.AttributeInfo("energyModels", "List<Object>");
     result.add(_attributeInfo_5);
     return result;
   }
@@ -262,7 +356,7 @@ public class MyDslGenerator extends AbstractGenerator {
     result.add(_attributeInfo);
     MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("energyUsage", "FLOAT");
     result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("subPhases", "LIST");
+    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("subPhases", "List<Object>");
     result.add(_attributeInfo_2);
     return result;
   }
@@ -273,7 +367,7 @@ public class MyDslGenerator extends AbstractGenerator {
     result.add(_attributeInfo);
     MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("duration", "FLOAT");
     result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("actions", "LIST");
+    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("actions", "List<Object>");
     result.add(_attributeInfo_2);
     return result;
   }
@@ -286,6 +380,15 @@ public class MyDslGenerator extends AbstractGenerator {
     result.add(_attributeInfo_1);
     MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("energyUsage", "FLOAT");
     result.add(_attributeInfo_2);
+    return result;
+  }
+
+  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final Constraint constraint) {
+    final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("constraintType", "STRING");
+    result.add(_attributeInfo);
+    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("description", "STRING");
+    result.add(_attributeInfo_1);
     return result;
   }
 
@@ -319,11 +422,15 @@ public class MyDslGenerator extends AbstractGenerator {
   }
 
   @XbaseGenerated
-  public List<MyDslGenerator.AttributeInfo> getEntityAttributes(final Object constraint) {
-    if (constraint instanceof RegulatoryConstraint) {
+  public List<MyDslGenerator.AttributeInfo> getEntityAttributes(final Entity constraint) {
+    if (constraint instanceof Constraint) {
+      return _getEntityAttributes((Constraint)constraint);
+    } else if (constraint instanceof RegulatoryConstraint) {
       return _getEntityAttributes((RegulatoryConstraint)constraint);
     } else if (constraint instanceof SafetyConstraint) {
       return _getEntityAttributes((SafetyConstraint)constraint);
+    } else if (constraint instanceof Action) {
+      return _getEntityAttributes((Action)constraint);
     } else if (constraint instanceof Drone) {
       return _getEntityAttributes((Drone)constraint);
     } else if (constraint instanceof EnergyModel) {
@@ -336,8 +443,6 @@ public class MyDslGenerator extends AbstractGenerator {
       return _getEntityAttributes((Phase)constraint);
     } else if (constraint instanceof SubPhase) {
       return _getEntityAttributes((SubPhase)constraint);
-    } else if (constraint instanceof Action) {
-      return _getEntityAttributes((Action)constraint);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(constraint).toString());

@@ -86,13 +86,22 @@ public interface MyDslPackage extends EPackage
   int MODEL__ENTITIES = 1;
 
   /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__RELATIONS = 2;
+
+  /**
    * The number of structural features of the '<em>Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 2;
+  int MODEL_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.SystemRootImpl <em>System Root</em>}' class.
@@ -123,13 +132,22 @@ public interface MyDslPackage extends EPackage
   int SYSTEM_ROOT__ENTITIES = 1;
 
   /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SYSTEM_ROOT__RELATIONS = 2;
+
+  /**
    * The number of structural features of the '<em>System Root</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SYSTEM_ROOT_FEATURE_COUNT = 2;
+  int SYSTEM_ROOT_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -580,14 +598,14 @@ public interface MyDslPackage extends EPackage
   int ACTION_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ConstraintImpl <em>Constraint</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ConstraintClassesImpl <em>Constraint Classes</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.ConstraintImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
+   * @see org.xtext.example.mydsl.myDsl.impl.ConstraintClassesImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraintClasses()
    * @generated
    */
-  int CONSTRAINT = 9;
+  int CONSTRAINT_CLASSES = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -596,7 +614,71 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONSTRAINT__NAME = ENTITY__NAME;
+  int CONSTRAINT_CLASSES__NAME = ENTITY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Constraint Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT_CLASSES__CONSTRAINT_TYPE = ENTITY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT_CLASSES__DESCRIPTION = ENTITY_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Constraint Classes</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT_CLASSES_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ConstraintImpl <em>Constraint</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ConstraintImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
+   * @generated
+   */
+  int CONSTRAINT = 10;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT__NAME = CONSTRAINT_CLASSES__NAME;
+
+  /**
+   * The feature id for the '<em><b>Constraint Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT__CONSTRAINT_TYPE = CONSTRAINT_CLASSES__CONSTRAINT_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT__DESCRIPTION = CONSTRAINT_CLASSES__DESCRIPTION;
 
   /**
    * The number of structural features of the '<em>Constraint</em>' class.
@@ -605,7 +687,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONSTRAINT_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 0;
+  int CONSTRAINT_FEATURE_COUNT = CONSTRAINT_CLASSES_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.SafetyConstraintImpl <em>Safety Constraint</em>}' class.
@@ -615,7 +697,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSafetyConstraint()
    * @generated
    */
-  int SAFETY_CONSTRAINT = 10;
+  int SAFETY_CONSTRAINT = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -624,7 +706,25 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SAFETY_CONSTRAINT__NAME = CONSTRAINT__NAME;
+  int SAFETY_CONSTRAINT__NAME = CONSTRAINT_CLASSES__NAME;
+
+  /**
+   * The feature id for the '<em><b>Constraint Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SAFETY_CONSTRAINT__CONSTRAINT_TYPE = CONSTRAINT_CLASSES__CONSTRAINT_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SAFETY_CONSTRAINT__DESCRIPTION = CONSTRAINT_CLASSES__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Min Battery</b></em>' attribute.
@@ -633,7 +733,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SAFETY_CONSTRAINT__MIN_BATTERY = CONSTRAINT_FEATURE_COUNT + 0;
+  int SAFETY_CONSTRAINT__MIN_BATTERY = CONSTRAINT_CLASSES_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Max Wind Speed</b></em>' attribute.
@@ -642,7 +742,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SAFETY_CONSTRAINT__MAX_WIND_SPEED = CONSTRAINT_FEATURE_COUNT + 1;
+  int SAFETY_CONSTRAINT__MAX_WIND_SPEED = CONSTRAINT_CLASSES_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Safety Constraint</em>' class.
@@ -651,7 +751,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SAFETY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
+  int SAFETY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_CLASSES_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RegulatoryConstraintImpl <em>Regulatory Constraint</em>}' class.
@@ -661,7 +761,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRegulatoryConstraint()
    * @generated
    */
-  int REGULATORY_CONSTRAINT = 11;
+  int REGULATORY_CONSTRAINT = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -670,7 +770,25 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGULATORY_CONSTRAINT__NAME = CONSTRAINT__NAME;
+  int REGULATORY_CONSTRAINT__NAME = CONSTRAINT_CLASSES__NAME;
+
+  /**
+   * The feature id for the '<em><b>Constraint Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REGULATORY_CONSTRAINT__CONSTRAINT_TYPE = CONSTRAINT_CLASSES__CONSTRAINT_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REGULATORY_CONSTRAINT__DESCRIPTION = CONSTRAINT_CLASSES__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Flight Permission</b></em>' attribute.
@@ -679,7 +797,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGULATORY_CONSTRAINT__FLIGHT_PERMISSION = CONSTRAINT_FEATURE_COUNT + 0;
+  int REGULATORY_CONSTRAINT__FLIGHT_PERMISSION = CONSTRAINT_CLASSES_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Altitude Limit</b></em>' attribute.
@@ -688,7 +806,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGULATORY_CONSTRAINT__ALTITUDE_LIMIT = CONSTRAINT_FEATURE_COUNT + 1;
+  int REGULATORY_CONSTRAINT__ALTITUDE_LIMIT = CONSTRAINT_CLASSES_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Regulatory Constraint</em>' class.
@@ -697,7 +815,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGULATORY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
+  int REGULATORY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_CLASSES_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MissionEventImpl <em>Mission Event</em>}' class.
@@ -707,7 +825,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMissionEvent()
    * @generated
    */
-  int MISSION_EVENT = 12;
+  int MISSION_EVENT = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -754,6 +872,61 @@ public interface MyDslPackage extends EPackage
    */
   int MISSION_EVENT_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
 
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RelationImpl <em>Relation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.RelationImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRelation()
+   * @generated
+   */
+  int RELATION = 14;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>From</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__FROM = 1;
+
+  /**
+   * The feature id for the '<em><b>To</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__TO = 2;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__TYPE = 3;
+
+  /**
+   * The number of structural features of the '<em>Relation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION_FEATURE_COUNT = 4;
+
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Model <em>Model</em>}'.
@@ -788,6 +961,17 @@ public interface MyDslPackage extends EPackage
   EReference getModel_Entities();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Model#getRelations <em>Relations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Relations</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Model#getRelations()
+   * @see #getModel()
+   * @generated
+   */
+  EReference getModel_Relations();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.SystemRoot <em>System Root</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -818,6 +1002,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getSystemRoot_Entities();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.SystemRoot#getRelations <em>Relations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Relations</em>'.
+   * @see org.xtext.example.mydsl.myDsl.SystemRoot#getRelations()
+   * @see #getSystemRoot()
+   * @generated
+   */
+  EReference getSystemRoot_Relations();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Entity <em>Entity</em>}'.
@@ -1209,6 +1404,38 @@ public interface MyDslPackage extends EPackage
   EAttribute getAction_EnergyUsage();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ConstraintClasses <em>Constraint Classes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Constraint Classes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ConstraintClasses
+   * @generated
+   */
+  EClass getConstraintClasses();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ConstraintClasses#getConstraintType <em>Constraint Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Constraint Type</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ConstraintClasses#getConstraintType()
+   * @see #getConstraintClasses()
+   * @generated
+   */
+  EAttribute getConstraintClasses_ConstraintType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ConstraintClasses#getDescription <em>Description</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Description</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ConstraintClasses#getDescription()
+   * @see #getConstraintClasses()
+   * @generated
+   */
+  EAttribute getConstraintClasses_Description();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Constraint <em>Constraint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1326,6 +1553,60 @@ public interface MyDslPackage extends EPackage
   EAttribute getMissionEvent_ResponseAction();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Relation <em>Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Relation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation
+   * @generated
+   */
+  EClass getRelation();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Relation#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation#getName()
+   * @see #getRelation()
+   * @generated
+   */
+  EAttribute getRelation_Name();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Relation#getFrom <em>From</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>From</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation#getFrom()
+   * @see #getRelation()
+   * @generated
+   */
+  EReference getRelation_From();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Relation#getTo <em>To</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>To</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation#getTo()
+   * @see #getRelation()
+   * @generated
+   */
+  EReference getRelation_To();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Relation#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation#getType()
+   * @see #getRelation()
+   * @generated
+   */
+  EAttribute getRelation_Type();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1375,6 +1656,14 @@ public interface MyDslPackage extends EPackage
     EReference MODEL__ENTITIES = eINSTANCE.getModel_Entities();
 
     /**
+     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODEL__RELATIONS = eINSTANCE.getModel_Relations();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.SystemRootImpl <em>System Root</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1399,6 +1688,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference SYSTEM_ROOT__ENTITIES = eINSTANCE.getSystemRoot_Entities();
+
+    /**
+     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SYSTEM_ROOT__RELATIONS = eINSTANCE.getSystemRoot_Relations();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -1703,6 +2000,32 @@ public interface MyDslPackage extends EPackage
     EAttribute ACTION__ENERGY_USAGE = eINSTANCE.getAction_EnergyUsage();
 
     /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ConstraintClassesImpl <em>Constraint Classes</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ConstraintClassesImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraintClasses()
+     * @generated
+     */
+    EClass CONSTRAINT_CLASSES = eINSTANCE.getConstraintClasses();
+
+    /**
+     * The meta object literal for the '<em><b>Constraint Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTRAINT_CLASSES__CONSTRAINT_TYPE = eINSTANCE.getConstraintClasses_ConstraintType();
+
+    /**
+     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTRAINT_CLASSES__DESCRIPTION = eINSTANCE.getConstraintClasses_Description();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ConstraintImpl <em>Constraint</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1797,6 +2120,48 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute MISSION_EVENT__RESPONSE_ACTION = eINSTANCE.getMissionEvent_ResponseAction();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.RelationImpl <em>Relation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.RelationImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRelation()
+     * @generated
+     */
+    EClass RELATION = eINSTANCE.getRelation();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATION__NAME = eINSTANCE.getRelation_Name();
+
+    /**
+     * The meta object literal for the '<em><b>From</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATION__FROM = eINSTANCE.getRelation_From();
+
+    /**
+     * The meta object literal for the '<em><b>To</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATION__TO = eINSTANCE.getRelation_To();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATION__TYPE = eINSTANCE.getRelation_Type();
 
   }
 

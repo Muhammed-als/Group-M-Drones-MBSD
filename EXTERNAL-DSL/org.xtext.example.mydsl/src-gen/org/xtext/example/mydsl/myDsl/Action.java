@@ -73,12 +73,12 @@ public interface Action extends Entity
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Energy Usage</em>' attribute.
-   * @see #setEnergyUsage(String)
+   * @see #setEnergyUsage(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAction_EnergyUsage()
    * @model
    * @generated
    */
-  String getEnergyUsage();
+  float getEnergyUsage();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Action#getEnergyUsage <em>Energy Usage</em>}' attribute.
@@ -88,6 +88,6 @@ public interface Action extends Entity
    * @see #getEnergyUsage()
    * @generated
    */
-  void setEnergyUsage(String value);
+  void setEnergyUsage(float value);
 
 } // Action

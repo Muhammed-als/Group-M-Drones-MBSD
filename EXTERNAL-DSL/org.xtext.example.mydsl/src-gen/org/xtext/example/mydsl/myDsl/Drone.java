@@ -55,12 +55,12 @@ public interface Drone extends Entity
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Batter Capacity</em>' attribute.
-   * @see #setBatterCapacity(String)
+   * @see #setBatterCapacity(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_BatterCapacity()
    * @model
    * @generated
    */
-  String getBatterCapacity();
+  float getBatterCapacity();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getBatterCapacity <em>Batter Capacity</em>}' attribute.
@@ -70,19 +70,19 @@ public interface Drone extends Entity
    * @see #getBatterCapacity()
    * @generated
    */
-  void setBatterCapacity(String value);
+  void setBatterCapacity(float value);
 
   /**
    * Returns the value of the '<em><b>Max Flight Time</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Max Flight Time</em>' attribute.
-   * @see #setMaxFlightTime(String)
+   * @see #setMaxFlightTime(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_MaxFlightTime()
    * @model
    * @generated
    */
-  String getMaxFlightTime();
+  float getMaxFlightTime();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getMaxFlightTime <em>Max Flight Time</em>}' attribute.
@@ -92,19 +92,19 @@ public interface Drone extends Entity
    * @see #getMaxFlightTime()
    * @generated
    */
-  void setMaxFlightTime(String value);
+  void setMaxFlightTime(float value);
 
   /**
    * Returns the value of the '<em><b>Payload Capacity</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Payload Capacity</em>' attribute.
-   * @see #setPayloadCapacity(String)
+   * @see #setPayloadCapacity(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_PayloadCapacity()
    * @model
    * @generated
    */
-  String getPayloadCapacity();
+  float getPayloadCapacity();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getPayloadCapacity <em>Payload Capacity</em>}' attribute.
@@ -114,7 +114,7 @@ public interface Drone extends Entity
    * @see #getPayloadCapacity()
    * @generated
    */
-  void setPayloadCapacity(String value);
+  void setPayloadCapacity(float value);
 
   /**
    * Returns the value of the '<em><b>Role</b></em>' attribute.

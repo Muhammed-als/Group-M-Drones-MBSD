@@ -67,7 +67,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    * @ordered
    */
-  protected static final String BATTER_CAPACITY_EDEFAULT = null;
+  protected static final float BATTER_CAPACITY_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getBatterCapacity() <em>Batter Capacity</em>}' attribute.
@@ -77,7 +77,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    * @ordered
    */
-  protected String batterCapacity = BATTER_CAPACITY_EDEFAULT;
+  protected float batterCapacity = BATTER_CAPACITY_EDEFAULT;
 
   /**
    * The default value of the '{@link #getMaxFlightTime() <em>Max Flight Time</em>}' attribute.
@@ -87,7 +87,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    * @ordered
    */
-  protected static final String MAX_FLIGHT_TIME_EDEFAULT = null;
+  protected static final float MAX_FLIGHT_TIME_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getMaxFlightTime() <em>Max Flight Time</em>}' attribute.
@@ -97,7 +97,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    * @ordered
    */
-  protected String maxFlightTime = MAX_FLIGHT_TIME_EDEFAULT;
+  protected float maxFlightTime = MAX_FLIGHT_TIME_EDEFAULT;
 
   /**
    * The default value of the '{@link #getPayloadCapacity() <em>Payload Capacity</em>}' attribute.
@@ -107,7 +107,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    * @ordered
    */
-  protected static final String PAYLOAD_CAPACITY_EDEFAULT = null;
+  protected static final float PAYLOAD_CAPACITY_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getPayloadCapacity() <em>Payload Capacity</em>}' attribute.
@@ -117,7 +117,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    * @ordered
    */
-  protected String payloadCapacity = PAYLOAD_CAPACITY_EDEFAULT;
+  protected float payloadCapacity = PAYLOAD_CAPACITY_EDEFAULT;
 
   /**
    * The default value of the '{@link #getRole() <em>Role</em>}' attribute.
@@ -201,7 +201,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public String getBatterCapacity()
+  public float getBatterCapacity()
   {
     return batterCapacity;
   }
@@ -212,9 +212,9 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public void setBatterCapacity(String newBatterCapacity)
+  public void setBatterCapacity(float newBatterCapacity)
   {
-    String oldBatterCapacity = batterCapacity;
+    float oldBatterCapacity = batterCapacity;
     batterCapacity = newBatterCapacity;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__BATTER_CAPACITY, oldBatterCapacity, batterCapacity));
@@ -226,7 +226,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public String getMaxFlightTime()
+  public float getMaxFlightTime()
   {
     return maxFlightTime;
   }
@@ -237,9 +237,9 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public void setMaxFlightTime(String newMaxFlightTime)
+  public void setMaxFlightTime(float newMaxFlightTime)
   {
-    String oldMaxFlightTime = maxFlightTime;
+    float oldMaxFlightTime = maxFlightTime;
     maxFlightTime = newMaxFlightTime;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__MAX_FLIGHT_TIME, oldMaxFlightTime, maxFlightTime));
@@ -251,7 +251,7 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public String getPayloadCapacity()
+  public float getPayloadCapacity()
   {
     return payloadCapacity;
   }
@@ -262,9 +262,9 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public void setPayloadCapacity(String newPayloadCapacity)
+  public void setPayloadCapacity(float newPayloadCapacity)
   {
-    String oldPayloadCapacity = payloadCapacity;
+    float oldPayloadCapacity = payloadCapacity;
     payloadCapacity = newPayloadCapacity;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__PAYLOAD_CAPACITY, oldPayloadCapacity, payloadCapacity));
@@ -351,13 +351,13 @@ public class DroneImpl extends EntityImpl implements Drone
         setType((String)newValue);
         return;
       case MyDslPackage.DRONE__BATTER_CAPACITY:
-        setBatterCapacity((String)newValue);
+        setBatterCapacity((Float)newValue);
         return;
       case MyDslPackage.DRONE__MAX_FLIGHT_TIME:
-        setMaxFlightTime((String)newValue);
+        setMaxFlightTime((Float)newValue);
         return;
       case MyDslPackage.DRONE__PAYLOAD_CAPACITY:
-        setPayloadCapacity((String)newValue);
+        setPayloadCapacity((Float)newValue);
         return;
       case MyDslPackage.DRONE__ROLE:
         setRole((String)newValue);
@@ -415,11 +415,11 @@ public class DroneImpl extends EntityImpl implements Drone
       case MyDslPackage.DRONE__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case MyDslPackage.DRONE__BATTER_CAPACITY:
-        return BATTER_CAPACITY_EDEFAULT == null ? batterCapacity != null : !BATTER_CAPACITY_EDEFAULT.equals(batterCapacity);
+        return batterCapacity != BATTER_CAPACITY_EDEFAULT;
       case MyDslPackage.DRONE__MAX_FLIGHT_TIME:
-        return MAX_FLIGHT_TIME_EDEFAULT == null ? maxFlightTime != null : !MAX_FLIGHT_TIME_EDEFAULT.equals(maxFlightTime);
+        return maxFlightTime != MAX_FLIGHT_TIME_EDEFAULT;
       case MyDslPackage.DRONE__PAYLOAD_CAPACITY:
-        return PAYLOAD_CAPACITY_EDEFAULT == null ? payloadCapacity != null : !PAYLOAD_CAPACITY_EDEFAULT.equals(payloadCapacity);
+        return payloadCapacity != PAYLOAD_CAPACITY_EDEFAULT;
       case MyDslPackage.DRONE__ROLE:
         return ROLE_EDEFAULT == null ? role != null : !ROLE_EDEFAULT.equals(role);
       case MyDslPackage.DRONE__ADD_ENERGY_MODEL:

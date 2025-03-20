@@ -30,14 +30,19 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cSystemRootSystemRootParserRuleCall_0_0 = (RuleCall)cSystemRootAssignment_0.eContents().get(0);
 		private final Assignment cEntitiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cEntitiesEntityParserRuleCall_1_0 = (RuleCall)cEntitiesAssignment_1.eContents().get(0);
+		private final Assignment cRelationsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRelationsRelationParserRuleCall_2_0 = (RuleCall)cRelationsAssignment_2.eContents().get(0);
 		
 		//Model:
 		//    systemRoot=SystemRoot
-		//    entities+=Entity*;
+		//    entities+=Entity*
+		//    relations+=Relation*
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//systemRoot=SystemRoot
 		//entities+=Entity*
+		//relations+=Relation*
 		public Group getGroup() { return cGroup; }
 		
 		//systemRoot=SystemRoot
@@ -51,6 +56,12 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Entity
 		public RuleCall getEntitiesEntityParserRuleCall_1_0() { return cEntitiesEntityParserRuleCall_1_0; }
+		
+		//relations+=Relation*
+		public Assignment getRelationsAssignment_2() { return cRelationsAssignment_2; }
+		
+		//Relation
+		public RuleCall getRelationsRelationParserRuleCall_2_0() { return cRelationsRelationParserRuleCall_2_0; }
 	}
 	public class SystemRootElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.SystemRoot");
@@ -60,13 +71,19 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cEntitiesAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cEntitiesEntityParserRuleCall_2_0 = (RuleCall)cEntitiesAssignment_2.eContents().get(0);
+		private final Assignment cRelationsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRelationsRelationParserRuleCall_3_0 = (RuleCall)cRelationsAssignment_3.eContents().get(0);
 		
 		//SystemRoot:
-		//    'system' name=ID entities+=Entity*
+		//    'system' name=ID
+		//    entities+=Entity*
+		//    relations+=Relation*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'system' name=ID entities+=Entity*
+		//'system' name=ID
+		//entities+=Entity*
+		//relations+=Relation*
 		public Group getGroup() { return cGroup; }
 		
 		//'system'
@@ -83,6 +100,12 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Entity
 		public RuleCall getEntitiesEntityParserRuleCall_2_0() { return cEntitiesEntityParserRuleCall_2_0; }
+		
+		//relations+=Relation*
+		public Assignment getRelationsAssignment_3() { return cRelationsAssignment_3; }
+		
+		//Relation
+		public RuleCall getRelationsRelationParserRuleCall_3_0() { return cRelationsRelationParserRuleCall_3_0; }
 	}
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Entity");
@@ -93,14 +116,14 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cPhaseParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cSubPhaseParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cActionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cConstraintParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cConstraintClassesParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cMissionEventParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
 		//Entity:
-		//    Mission | Drone | EnergyModel | Phase | SubPhase | Action | Constraint | MissionEvent;
+		//    Mission | Drone | EnergyModel | Phase | SubPhase | Action | ConstraintClasses | MissionEvent;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Mission | Drone | EnergyModel | Phase | SubPhase | Action | Constraint | MissionEvent
+		//Mission | Drone | EnergyModel | Phase | SubPhase | Action | ConstraintClasses | MissionEvent
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Mission
@@ -121,8 +144,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Action
 		public RuleCall getActionParserRuleCall_5() { return cActionParserRuleCall_5; }
 		
-		//Constraint
-		public RuleCall getConstraintParserRuleCall_6() { return cConstraintParserRuleCall_6; }
+		//ConstraintClasses
+		public RuleCall getConstraintClassesParserRuleCall_6() { return cConstraintClassesParserRuleCall_6; }
 		
 		//MissionEvent
 		public RuleCall getMissionEventParserRuleCall_7() { return cMissionEventParserRuleCall_7; }
@@ -157,7 +180,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cEstimatedTimeKeyword_18 = (Keyword)cGroup.eContents().get(18);
 		private final Keyword cEqualsSignKeyword_19 = (Keyword)cGroup.eContents().get(19);
 		private final Assignment cEstimatedTimeAssignment_20 = (Assignment)cGroup.eContents().get(20);
-		private final RuleCall cEstimatedTimeFLOATTerminalRuleCall_20_0 = (RuleCall)cEstimatedTimeAssignment_20.eContents().get(0);
+		private final RuleCall cEstimatedTimeFLOATParserRuleCall_20_0 = (RuleCall)cEstimatedTimeAssignment_20.eContents().get(0);
 		private final Keyword cAddDroneKeyword_21 = (Keyword)cGroup.eContents().get(21);
 		private final Keyword cEqualsSignKeyword_22 = (Keyword)cGroup.eContents().get(22);
 		private final Assignment cAddDronesAssignment_23 = (Assignment)cGroup.eContents().get(23);
@@ -181,13 +204,13 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cAddConstraintKeyword_29 = (Keyword)cGroup.eContents().get(29);
 		private final Keyword cEqualsSignKeyword_30 = (Keyword)cGroup.eContents().get(30);
 		private final Assignment cAddConstraintsAssignment_31 = (Assignment)cGroup.eContents().get(31);
-		private final CrossReference cAddConstraintsConstraintCrossReference_31_0 = (CrossReference)cAddConstraintsAssignment_31.eContents().get(0);
-		private final RuleCall cAddConstraintsConstraintIDTerminalRuleCall_31_0_1 = (RuleCall)cAddConstraintsConstraintCrossReference_31_0.eContents().get(1);
+		private final CrossReference cAddConstraintsConstraintClassesCrossReference_31_0 = (CrossReference)cAddConstraintsAssignment_31.eContents().get(0);
+		private final RuleCall cAddConstraintsConstraintClassesIDTerminalRuleCall_31_0_1 = (RuleCall)cAddConstraintsConstraintClassesCrossReference_31_0.eContents().get(1);
 		private final Group cGroup_32 = (Group)cGroup.eContents().get(32);
 		private final Keyword cCommaKeyword_32_0 = (Keyword)cGroup_32.eContents().get(0);
 		private final Assignment cAddConstraintsAssignment_32_1 = (Assignment)cGroup_32.eContents().get(1);
-		private final CrossReference cAddConstraintsConstraintCrossReference_32_1_0 = (CrossReference)cAddConstraintsAssignment_32_1.eContents().get(0);
-		private final RuleCall cAddConstraintsConstraintIDTerminalRuleCall_32_1_0_1 = (RuleCall)cAddConstraintsConstraintCrossReference_32_1_0.eContents().get(1);
+		private final CrossReference cAddConstraintsConstraintClassesCrossReference_32_1_0 = (CrossReference)cAddConstraintsAssignment_32_1.eContents().get(0);
+		private final RuleCall cAddConstraintsConstraintClassesIDTerminalRuleCall_32_1_0_1 = (RuleCall)cAddConstraintsConstraintClassesCrossReference_32_1_0.eContents().get(1);
 		private final Keyword cAddEventKeyword_33 = (Keyword)cGroup.eContents().get(33);
 		private final Keyword cEqualsSignKeyword_34 = (Keyword)cGroup.eContents().get(34);
 		private final Assignment cAddEventsAssignment_35 = (Assignment)cGroup.eContents().get(35);
@@ -210,7 +233,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        'estimatedTime' '=' estimatedTime=FLOAT
 		//        'addDrone' '=' addDrones+=[Drone] (',' addDrones+=[Drone])*
 		//        'addPhase' '=' addPhases+=[Phase] (',' addPhases+=[Phase])*
-		//        'addConstraint' '=' addConstraints+=[Constraint] (',' addConstraints+=[Constraint])*
+		//        'addConstraint' '=' addConstraints+=[ConstraintClasses] (',' addConstraints+=[ConstraintClasses])*
 		//        'addEvent' '=' addEvents+=[MissionEvent] (',' addEvents+=[MissionEvent])*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
@@ -224,7 +247,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    'estimatedTime' '=' estimatedTime=FLOAT
 		//    'addDrone' '=' addDrones+=[Drone] (',' addDrones+=[Drone])*
 		//    'addPhase' '=' addPhases+=[Phase] (',' addPhases+=[Phase])*
-		//    'addConstraint' '=' addConstraints+=[Constraint] (',' addConstraints+=[Constraint])*
+		//    'addConstraint' '=' addConstraints+=[ConstraintClasses] (',' addConstraints+=[ConstraintClasses])*
 		//    'addEvent' '=' addEvents+=[MissionEvent] (',' addEvents+=[MissionEvent])*
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -311,7 +334,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getEstimatedTimeAssignment_20() { return cEstimatedTimeAssignment_20; }
 		
 		//FLOAT
-		public RuleCall getEstimatedTimeFLOATTerminalRuleCall_20_0() { return cEstimatedTimeFLOATTerminalRuleCall_20_0; }
+		public RuleCall getEstimatedTimeFLOATParserRuleCall_20_0() { return cEstimatedTimeFLOATParserRuleCall_20_0; }
 		
 		//'addDrone'
 		public Keyword getAddDroneKeyword_21() { return cAddDroneKeyword_21; }
@@ -379,29 +402,29 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'='
 		public Keyword getEqualsSignKeyword_30() { return cEqualsSignKeyword_30; }
 		
-		//addConstraints+=[Constraint]
+		//addConstraints+=[ConstraintClasses]
 		public Assignment getAddConstraintsAssignment_31() { return cAddConstraintsAssignment_31; }
 		
-		//[Constraint]
-		public CrossReference getAddConstraintsConstraintCrossReference_31_0() { return cAddConstraintsConstraintCrossReference_31_0; }
+		//[ConstraintClasses]
+		public CrossReference getAddConstraintsConstraintClassesCrossReference_31_0() { return cAddConstraintsConstraintClassesCrossReference_31_0; }
 		
 		//ID
-		public RuleCall getAddConstraintsConstraintIDTerminalRuleCall_31_0_1() { return cAddConstraintsConstraintIDTerminalRuleCall_31_0_1; }
+		public RuleCall getAddConstraintsConstraintClassesIDTerminalRuleCall_31_0_1() { return cAddConstraintsConstraintClassesIDTerminalRuleCall_31_0_1; }
 		
-		//(',' addConstraints+=[Constraint])*
+		//(',' addConstraints+=[ConstraintClasses])*
 		public Group getGroup_32() { return cGroup_32; }
 		
 		//','
 		public Keyword getCommaKeyword_32_0() { return cCommaKeyword_32_0; }
 		
-		//addConstraints+=[Constraint]
+		//addConstraints+=[ConstraintClasses]
 		public Assignment getAddConstraintsAssignment_32_1() { return cAddConstraintsAssignment_32_1; }
 		
-		//[Constraint]
-		public CrossReference getAddConstraintsConstraintCrossReference_32_1_0() { return cAddConstraintsConstraintCrossReference_32_1_0; }
+		//[ConstraintClasses]
+		public CrossReference getAddConstraintsConstraintClassesCrossReference_32_1_0() { return cAddConstraintsConstraintClassesCrossReference_32_1_0; }
 		
 		//ID
-		public RuleCall getAddConstraintsConstraintIDTerminalRuleCall_32_1_0_1() { return cAddConstraintsConstraintIDTerminalRuleCall_32_1_0_1; }
+		public RuleCall getAddConstraintsConstraintClassesIDTerminalRuleCall_32_1_0_1() { return cAddConstraintsConstraintClassesIDTerminalRuleCall_32_1_0_1; }
 		
 		//'addEvent'
 		public Keyword getAddEventKeyword_33() { return cAddEventKeyword_33; }
@@ -450,15 +473,15 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cBatterCapacityKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cBatterCapacityAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cBatterCapacityFLOATTerminalRuleCall_8_0 = (RuleCall)cBatterCapacityAssignment_8.eContents().get(0);
+		private final RuleCall cBatterCapacityFLOATParserRuleCall_8_0 = (RuleCall)cBatterCapacityAssignment_8.eContents().get(0);
 		private final Keyword cMaxFlightTimeKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final Assignment cMaxFlightTimeAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final RuleCall cMaxFlightTimeFLOATTerminalRuleCall_11_0 = (RuleCall)cMaxFlightTimeAssignment_11.eContents().get(0);
+		private final RuleCall cMaxFlightTimeFLOATParserRuleCall_11_0 = (RuleCall)cMaxFlightTimeAssignment_11.eContents().get(0);
 		private final Keyword cPayloadCapacityKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		private final Keyword cEqualsSignKeyword_13 = (Keyword)cGroup.eContents().get(13);
 		private final Assignment cPayloadCapacityAssignment_14 = (Assignment)cGroup.eContents().get(14);
-		private final RuleCall cPayloadCapacityFLOATTerminalRuleCall_14_0 = (RuleCall)cPayloadCapacityAssignment_14.eContents().get(0);
+		private final RuleCall cPayloadCapacityFLOATParserRuleCall_14_0 = (RuleCall)cPayloadCapacityAssignment_14.eContents().get(0);
 		private final Keyword cRoleKeyword_15 = (Keyword)cGroup.eContents().get(15);
 		private final Keyword cEqualsSignKeyword_16 = (Keyword)cGroup.eContents().get(16);
 		private final Assignment cRoleAssignment_17 = (Assignment)cGroup.eContents().get(17);
@@ -481,7 +504,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        'batterCapacity' '=' batterCapacity=FLOAT
 		//        'maxFlightTime' '=' maxFlightTime=FLOAT
 		//        'payloadCapacity' '=' payloadCapacity=FLOAT
-		//        'role''=' role=STRING
+		//        'role' '=' role=STRING
 		//        'addEnergyModel' '=' addEnergyModel+=[EnergyModel] (',' addEnergyModel+=[EnergyModel])*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
@@ -491,7 +514,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    'batterCapacity' '=' batterCapacity=FLOAT
 		//    'maxFlightTime' '=' maxFlightTime=FLOAT
 		//    'payloadCapacity' '=' payloadCapacity=FLOAT
-		//    'role''=' role=STRING
+		//    'role' '=' role=STRING
 		//    'addEnergyModel' '=' addEnergyModel+=[EnergyModel] (',' addEnergyModel+=[EnergyModel])*
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -530,7 +553,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getBatterCapacityAssignment_8() { return cBatterCapacityAssignment_8; }
 		
 		//FLOAT
-		public RuleCall getBatterCapacityFLOATTerminalRuleCall_8_0() { return cBatterCapacityFLOATTerminalRuleCall_8_0; }
+		public RuleCall getBatterCapacityFLOATParserRuleCall_8_0() { return cBatterCapacityFLOATParserRuleCall_8_0; }
 		
 		//'maxFlightTime'
 		public Keyword getMaxFlightTimeKeyword_9() { return cMaxFlightTimeKeyword_9; }
@@ -542,7 +565,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getMaxFlightTimeAssignment_11() { return cMaxFlightTimeAssignment_11; }
 		
 		//FLOAT
-		public RuleCall getMaxFlightTimeFLOATTerminalRuleCall_11_0() { return cMaxFlightTimeFLOATTerminalRuleCall_11_0; }
+		public RuleCall getMaxFlightTimeFLOATParserRuleCall_11_0() { return cMaxFlightTimeFLOATParserRuleCall_11_0; }
 		
 		//'payloadCapacity'
 		public Keyword getPayloadCapacityKeyword_12() { return cPayloadCapacityKeyword_12; }
@@ -554,7 +577,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getPayloadCapacityAssignment_14() { return cPayloadCapacityAssignment_14; }
 		
 		//FLOAT
-		public RuleCall getPayloadCapacityFLOATTerminalRuleCall_14_0() { return cPayloadCapacityFLOATTerminalRuleCall_14_0; }
+		public RuleCall getPayloadCapacityFLOATParserRuleCall_14_0() { return cPayloadCapacityFLOATParserRuleCall_14_0; }
 		
 		//'role'
 		public Keyword getRoleKeyword_15() { return cRoleKeyword_15; }
@@ -611,15 +634,15 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cConsumptionRateKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cConsumptionRateAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cConsumptionRateFLOATTerminalRuleCall_5_0 = (RuleCall)cConsumptionRateAssignment_5.eContents().get(0);
+		private final RuleCall cConsumptionRateFLOATParserRuleCall_5_0 = (RuleCall)cConsumptionRateAssignment_5.eContents().get(0);
 		private final Keyword cBatteryHealthKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cBatteryHealthAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cBatteryHealthFLOATTerminalRuleCall_8_0 = (RuleCall)cBatteryHealthAssignment_8.eContents().get(0);
+		private final RuleCall cBatteryHealthFLOATParserRuleCall_8_0 = (RuleCall)cBatteryHealthAssignment_8.eContents().get(0);
 		private final Keyword cRechargeTimeKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final Assignment cRechargeTimeAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final RuleCall cRechargeTimeFLOATTerminalRuleCall_11_0 = (RuleCall)cRechargeTimeAssignment_11.eContents().get(0);
+		private final RuleCall cRechargeTimeFLOATParserRuleCall_11_0 = (RuleCall)cRechargeTimeAssignment_11.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//EnergyModel:
@@ -659,7 +682,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getConsumptionRateAssignment_5() { return cConsumptionRateAssignment_5; }
 		
 		//FLOAT
-		public RuleCall getConsumptionRateFLOATTerminalRuleCall_5_0() { return cConsumptionRateFLOATTerminalRuleCall_5_0; }
+		public RuleCall getConsumptionRateFLOATParserRuleCall_5_0() { return cConsumptionRateFLOATParserRuleCall_5_0; }
 		
 		//'batteryHealth'
 		public Keyword getBatteryHealthKeyword_6() { return cBatteryHealthKeyword_6; }
@@ -671,7 +694,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getBatteryHealthAssignment_8() { return cBatteryHealthAssignment_8; }
 		
 		//FLOAT
-		public RuleCall getBatteryHealthFLOATTerminalRuleCall_8_0() { return cBatteryHealthFLOATTerminalRuleCall_8_0; }
+		public RuleCall getBatteryHealthFLOATParserRuleCall_8_0() { return cBatteryHealthFLOATParserRuleCall_8_0; }
 		
 		//'rechargeTime'
 		public Keyword getRechargeTimeKeyword_9() { return cRechargeTimeKeyword_9; }
@@ -683,7 +706,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getRechargeTimeAssignment_11() { return cRechargeTimeAssignment_11; }
 		
 		//FLOAT
-		public RuleCall getRechargeTimeFLOATTerminalRuleCall_11_0() { return cRechargeTimeFLOATTerminalRuleCall_11_0; }
+		public RuleCall getRechargeTimeFLOATParserRuleCall_11_0() { return cRechargeTimeFLOATParserRuleCall_11_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
@@ -702,7 +725,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cEnergyUsageKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cEnergyUsageAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cEnergyUsageFLOATTerminalRuleCall_8_0 = (RuleCall)cEnergyUsageAssignment_8.eContents().get(0);
+		private final RuleCall cEnergyUsageFLOATParserRuleCall_8_0 = (RuleCall)cEnergyUsageAssignment_8.eContents().get(0);
 		private final Keyword cAddSubPhaseKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final Assignment cAddSubPhaseAssignment_11 = (Assignment)cGroup.eContents().get(11);
@@ -764,7 +787,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getEnergyUsageAssignment_8() { return cEnergyUsageAssignment_8; }
 		
 		//FLOAT
-		public RuleCall getEnergyUsageFLOATTerminalRuleCall_8_0() { return cEnergyUsageFLOATTerminalRuleCall_8_0; }
+		public RuleCall getEnergyUsageFLOATParserRuleCall_8_0() { return cEnergyUsageFLOATParserRuleCall_8_0; }
 		
 		//'addSubPhase'
 		public Keyword getAddSubPhaseKeyword_9() { return cAddSubPhaseKeyword_9; }
@@ -813,7 +836,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cDurationKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cDurationAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cDurationFLOATTerminalRuleCall_8_0 = (RuleCall)cDurationAssignment_8.eContents().get(0);
+		private final RuleCall cDurationFLOATParserRuleCall_8_0 = (RuleCall)cDurationAssignment_8.eContents().get(0);
 		private final Keyword cAddActionKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final Assignment cAddActionAssignment_11 = (Assignment)cGroup.eContents().get(11);
@@ -875,7 +898,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getDurationAssignment_8() { return cDurationAssignment_8; }
 		
 		//FLOAT
-		public RuleCall getDurationFLOATTerminalRuleCall_8_0() { return cDurationFLOATTerminalRuleCall_8_0; }
+		public RuleCall getDurationFLOATParserRuleCall_8_0() { return cDurationFLOATParserRuleCall_8_0; }
 		
 		//'addAction'
 		public Keyword getAddActionKeyword_9() { return cAddActionKeyword_9; }
@@ -928,7 +951,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cEnergyUsageKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final Assignment cEnergyUsageAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final RuleCall cEnergyUsageFLOATTerminalRuleCall_11_0 = (RuleCall)cEnergyUsageAssignment_11.eContents().get(0);
+		private final RuleCall cEnergyUsageFLOATParserRuleCall_11_0 = (RuleCall)cEnergyUsageAssignment_11.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//Action:
@@ -992,29 +1015,102 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Assignment getEnergyUsageAssignment_11() { return cEnergyUsageAssignment_11; }
 		
 		//FLOAT
-		public RuleCall getEnergyUsageFLOATTerminalRuleCall_11_0() { return cEnergyUsageFLOATTerminalRuleCall_11_0; }
+		public RuleCall getEnergyUsageFLOATParserRuleCall_11_0() { return cEnergyUsageFLOATParserRuleCall_11_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
 	}
-	public class ConstraintElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Constraint");
+	public class ConstraintClassesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ConstraintClasses");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cSafetyConstraintParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cRegulatoryConstraintParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cConstraintParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cSafetyConstraintParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRegulatoryConstraintParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
-		//Constraint:
-		//    SafetyConstraint | RegulatoryConstraint;
+		//ConstraintClasses:
+		//    Constraint | SafetyConstraint | RegulatoryConstraint;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//SafetyConstraint | RegulatoryConstraint
+		//Constraint | SafetyConstraint | RegulatoryConstraint
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//Constraint
+		public RuleCall getConstraintParserRuleCall_0() { return cConstraintParserRuleCall_0; }
+		
 		//SafetyConstraint
-		public RuleCall getSafetyConstraintParserRuleCall_0() { return cSafetyConstraintParserRuleCall_0; }
+		public RuleCall getSafetyConstraintParserRuleCall_1() { return cSafetyConstraintParserRuleCall_1; }
 		
 		//RegulatoryConstraint
-		public RuleCall getRegulatoryConstraintParserRuleCall_1() { return cRegulatoryConstraintParserRuleCall_1; }
+		public RuleCall getRegulatoryConstraintParserRuleCall_2() { return cRegulatoryConstraintParserRuleCall_2; }
+	}
+	public class ConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Constraint");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cConstraintKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cConstraintTypeKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cConstraintTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cConstraintTypeSTRINGTerminalRuleCall_5_0 = (RuleCall)cConstraintTypeAssignment_5.eContents().get(0);
+		private final Keyword cDescriptionKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cDescriptionAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cDescriptionSTRINGTerminalRuleCall_8_0 = (RuleCall)cDescriptionAssignment_8.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		
+		//Constraint:
+		//    'Constraint' name=ID '{'
+		//        'constraintType' '=' constraintType=STRING
+		//        'description' '=' description=STRING
+		//    '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Constraint' name=ID '{'
+		//    'constraintType' '=' constraintType=STRING
+		//    'description' '=' description=STRING
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'Constraint'
+		public Keyword getConstraintKeyword_0() { return cConstraintKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//'constraintType'
+		public Keyword getConstraintTypeKeyword_3() { return cConstraintTypeKeyword_3; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
+		
+		//constraintType=STRING
+		public Assignment getConstraintTypeAssignment_5() { return cConstraintTypeAssignment_5; }
+		
+		//STRING
+		public RuleCall getConstraintTypeSTRINGTerminalRuleCall_5_0() { return cConstraintTypeSTRINGTerminalRuleCall_5_0; }
+		
+		//'description'
+		public Keyword getDescriptionKeyword_6() { return cDescriptionKeyword_6; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_7() { return cEqualsSignKeyword_7; }
+		
+		//description=STRING
+		public Assignment getDescriptionAssignment_8() { return cDescriptionAssignment_8; }
+		
+		//STRING
+		public RuleCall getDescriptionSTRINGTerminalRuleCall_8_0() { return cDescriptionSTRINGTerminalRuleCall_8_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
 	}
 	public class SafetyConstraintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.SafetyConstraint");
@@ -1023,24 +1119,36 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cMinBatteryKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cConstraintTypeKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cMinBatteryAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cMinBatteryFLOATTerminalRuleCall_5_0 = (RuleCall)cMinBatteryAssignment_5.eContents().get(0);
-		private final Keyword cMaxWindSpeedKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cConstraintTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cConstraintTypeSTRINGTerminalRuleCall_5_0 = (RuleCall)cConstraintTypeAssignment_5.eContents().get(0);
+		private final Keyword cDescriptionKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Assignment cMaxWindSpeedAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cMaxWindSpeedFLOATTerminalRuleCall_8_0 = (RuleCall)cMaxWindSpeedAssignment_8.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cDescriptionAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cDescriptionSTRINGTerminalRuleCall_8_0 = (RuleCall)cDescriptionAssignment_8.eContents().get(0);
+		private final Keyword cMinBatteryKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Assignment cMinBatteryAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cMinBatteryFLOATParserRuleCall_11_0 = (RuleCall)cMinBatteryAssignment_11.eContents().get(0);
+		private final Keyword cMaxWindSpeedKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Keyword cEqualsSignKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Assignment cMaxWindSpeedAssignment_14 = (Assignment)cGroup.eContents().get(14);
+		private final RuleCall cMaxWindSpeedFLOATParserRuleCall_14_0 = (RuleCall)cMaxWindSpeedAssignment_14.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_15 = (Keyword)cGroup.eContents().get(15);
 		
 		//SafetyConstraint:
 		//    'SafetyConstraint' name=ID '{'
+		//        'constraintType' '=' constraintType=STRING?
+		//        'description' '=' description=STRING?
 		//        'minBattery' '=' minBattery=FLOAT
 		//        'maxWindSpeed' '=' maxWindSpeed=FLOAT
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'SafetyConstraint' name=ID '{'
+		//    'constraintType' '=' constraintType=STRING?
+		//    'description' '=' description=STRING?
 		//    'minBattery' '=' minBattery=FLOAT
 		//    'maxWindSpeed' '=' maxWindSpeed=FLOAT
 		//'}'
@@ -1058,32 +1166,56 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//'minBattery'
-		public Keyword getMinBatteryKeyword_3() { return cMinBatteryKeyword_3; }
+		//'constraintType'
+		public Keyword getConstraintTypeKeyword_3() { return cConstraintTypeKeyword_3; }
 		
 		//'='
 		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
 		
-		//minBattery=FLOAT
-		public Assignment getMinBatteryAssignment_5() { return cMinBatteryAssignment_5; }
+		//constraintType=STRING?
+		public Assignment getConstraintTypeAssignment_5() { return cConstraintTypeAssignment_5; }
 		
-		//FLOAT
-		public RuleCall getMinBatteryFLOATTerminalRuleCall_5_0() { return cMinBatteryFLOATTerminalRuleCall_5_0; }
+		//STRING
+		public RuleCall getConstraintTypeSTRINGTerminalRuleCall_5_0() { return cConstraintTypeSTRINGTerminalRuleCall_5_0; }
 		
-		//'maxWindSpeed'
-		public Keyword getMaxWindSpeedKeyword_6() { return cMaxWindSpeedKeyword_6; }
+		//'description'
+		public Keyword getDescriptionKeyword_6() { return cDescriptionKeyword_6; }
 		
 		//'='
 		public Keyword getEqualsSignKeyword_7() { return cEqualsSignKeyword_7; }
 		
-		//maxWindSpeed=FLOAT
-		public Assignment getMaxWindSpeedAssignment_8() { return cMaxWindSpeedAssignment_8; }
+		//description=STRING?
+		public Assignment getDescriptionAssignment_8() { return cDescriptionAssignment_8; }
+		
+		//STRING
+		public RuleCall getDescriptionSTRINGTerminalRuleCall_8_0() { return cDescriptionSTRINGTerminalRuleCall_8_0; }
+		
+		//'minBattery'
+		public Keyword getMinBatteryKeyword_9() { return cMinBatteryKeyword_9; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_10() { return cEqualsSignKeyword_10; }
+		
+		//minBattery=FLOAT
+		public Assignment getMinBatteryAssignment_11() { return cMinBatteryAssignment_11; }
 		
 		//FLOAT
-		public RuleCall getMaxWindSpeedFLOATTerminalRuleCall_8_0() { return cMaxWindSpeedFLOATTerminalRuleCall_8_0; }
+		public RuleCall getMinBatteryFLOATParserRuleCall_11_0() { return cMinBatteryFLOATParserRuleCall_11_0; }
+		
+		//'maxWindSpeed'
+		public Keyword getMaxWindSpeedKeyword_12() { return cMaxWindSpeedKeyword_12; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_13() { return cEqualsSignKeyword_13; }
+		
+		//maxWindSpeed=FLOAT
+		public Assignment getMaxWindSpeedAssignment_14() { return cMaxWindSpeedAssignment_14; }
+		
+		//FLOAT
+		public RuleCall getMaxWindSpeedFLOATParserRuleCall_14_0() { return cMaxWindSpeedFLOATParserRuleCall_14_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		public Keyword getRightCurlyBracketKeyword_15() { return cRightCurlyBracketKeyword_15; }
 	}
 	public class RegulatoryConstraintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.RegulatoryConstraint");
@@ -1092,24 +1224,36 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cFlightPermissionKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cConstraintTypeKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cFlightPermissionAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cFlightPermissionBOOLEANTerminalRuleCall_5_0 = (RuleCall)cFlightPermissionAssignment_5.eContents().get(0);
-		private final Keyword cAltitudeLimitKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cConstraintTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cConstraintTypeSTRINGTerminalRuleCall_5_0 = (RuleCall)cConstraintTypeAssignment_5.eContents().get(0);
+		private final Keyword cDescriptionKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Assignment cAltitudeLimitAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cAltitudeLimitINTTerminalRuleCall_8_0 = (RuleCall)cAltitudeLimitAssignment_8.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cDescriptionAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cDescriptionSTRINGTerminalRuleCall_8_0 = (RuleCall)cDescriptionAssignment_8.eContents().get(0);
+		private final Keyword cFlightPermissionKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Assignment cFlightPermissionAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cFlightPermissionBOOLEANTerminalRuleCall_11_0 = (RuleCall)cFlightPermissionAssignment_11.eContents().get(0);
+		private final Keyword cAltitudeLimitKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Keyword cEqualsSignKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Assignment cAltitudeLimitAssignment_14 = (Assignment)cGroup.eContents().get(14);
+		private final RuleCall cAltitudeLimitINTTerminalRuleCall_14_0 = (RuleCall)cAltitudeLimitAssignment_14.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_15 = (Keyword)cGroup.eContents().get(15);
 		
 		//RegulatoryConstraint:
 		//    'RegulatoryConstraint' name=ID '{'
+		//        'constraintType' '=' constraintType=STRING?
+		//        'description' '=' description=STRING?
 		//        'flightPermission' '=' flightPermission=BOOLEAN
 		//        'altitudeLimit' '=' altitudeLimit=INT
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'RegulatoryConstraint' name=ID '{'
+		//    'constraintType' '=' constraintType=STRING?
+		//    'description' '=' description=STRING?
 		//    'flightPermission' '=' flightPermission=BOOLEAN
 		//    'altitudeLimit' '=' altitudeLimit=INT
 		//'}'
@@ -1127,32 +1271,56 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//'flightPermission'
-		public Keyword getFlightPermissionKeyword_3() { return cFlightPermissionKeyword_3; }
+		//'constraintType'
+		public Keyword getConstraintTypeKeyword_3() { return cConstraintTypeKeyword_3; }
 		
 		//'='
 		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
 		
-		//flightPermission=BOOLEAN
-		public Assignment getFlightPermissionAssignment_5() { return cFlightPermissionAssignment_5; }
+		//constraintType=STRING?
+		public Assignment getConstraintTypeAssignment_5() { return cConstraintTypeAssignment_5; }
 		
-		//BOOLEAN
-		public RuleCall getFlightPermissionBOOLEANTerminalRuleCall_5_0() { return cFlightPermissionBOOLEANTerminalRuleCall_5_0; }
+		//STRING
+		public RuleCall getConstraintTypeSTRINGTerminalRuleCall_5_0() { return cConstraintTypeSTRINGTerminalRuleCall_5_0; }
 		
-		//'altitudeLimit'
-		public Keyword getAltitudeLimitKeyword_6() { return cAltitudeLimitKeyword_6; }
+		//'description'
+		public Keyword getDescriptionKeyword_6() { return cDescriptionKeyword_6; }
 		
 		//'='
 		public Keyword getEqualsSignKeyword_7() { return cEqualsSignKeyword_7; }
 		
+		//description=STRING?
+		public Assignment getDescriptionAssignment_8() { return cDescriptionAssignment_8; }
+		
+		//STRING
+		public RuleCall getDescriptionSTRINGTerminalRuleCall_8_0() { return cDescriptionSTRINGTerminalRuleCall_8_0; }
+		
+		//'flightPermission'
+		public Keyword getFlightPermissionKeyword_9() { return cFlightPermissionKeyword_9; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_10() { return cEqualsSignKeyword_10; }
+		
+		//flightPermission=BOOLEAN
+		public Assignment getFlightPermissionAssignment_11() { return cFlightPermissionAssignment_11; }
+		
+		//BOOLEAN
+		public RuleCall getFlightPermissionBOOLEANTerminalRuleCall_11_0() { return cFlightPermissionBOOLEANTerminalRuleCall_11_0; }
+		
+		//'altitudeLimit'
+		public Keyword getAltitudeLimitKeyword_12() { return cAltitudeLimitKeyword_12; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_13() { return cEqualsSignKeyword_13; }
+		
 		//altitudeLimit=INT
-		public Assignment getAltitudeLimitAssignment_8() { return cAltitudeLimitAssignment_8; }
+		public Assignment getAltitudeLimitAssignment_14() { return cAltitudeLimitAssignment_14; }
 		
 		//INT
-		public RuleCall getAltitudeLimitINTTerminalRuleCall_8_0() { return cAltitudeLimitINTTerminalRuleCall_8_0; }
+		public RuleCall getAltitudeLimitINTTerminalRuleCall_14_0() { return cAltitudeLimitINTTerminalRuleCall_14_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		public Keyword getRightCurlyBracketKeyword_15() { return cRightCurlyBracketKeyword_15; }
 	}
 	public class MissionEventElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.MissionEvent");
@@ -1241,6 +1409,125 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
 	}
+	public class RelationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Relation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRelationKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cFromKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cFromAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cFromEntityCrossReference_5_0 = (CrossReference)cFromAssignment_5.eContents().get(0);
+		private final RuleCall cFromEntityIDTerminalRuleCall_5_0_1 = (RuleCall)cFromEntityCrossReference_5_0.eContents().get(1);
+		private final Keyword cToKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cToAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final CrossReference cToEntityCrossReference_8_0 = (CrossReference)cToAssignment_8.eContents().get(0);
+		private final RuleCall cToEntityIDTerminalRuleCall_8_0_1 = (RuleCall)cToEntityCrossReference_8_0.eContents().get(1);
+		private final Keyword cTypeKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Assignment cTypeAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cTypeSTRINGTerminalRuleCall_11_0 = (RuleCall)cTypeAssignment_11.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		
+		//Relation:
+		//    'Relation' name=ID '{'
+		//        'from' '=' from=[Entity]
+		//        'to' '=' to=[Entity]
+		//        'type' '=' type=STRING  // e.g., "dependency", "uses", "inherits"
+		//    '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Relation' name=ID '{'
+		//    'from' '=' from=[Entity]
+		//    'to' '=' to=[Entity]
+		//    'type' '=' type=STRING  // e.g., "dependency", "uses", "inherits"
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'Relation'
+		public Keyword getRelationKeyword_0() { return cRelationKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//'from'
+		public Keyword getFromKeyword_3() { return cFromKeyword_3; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
+		
+		//from=[Entity]
+		public Assignment getFromAssignment_5() { return cFromAssignment_5; }
+		
+		//[Entity]
+		public CrossReference getFromEntityCrossReference_5_0() { return cFromEntityCrossReference_5_0; }
+		
+		//ID
+		public RuleCall getFromEntityIDTerminalRuleCall_5_0_1() { return cFromEntityIDTerminalRuleCall_5_0_1; }
+		
+		//'to'
+		public Keyword getToKeyword_6() { return cToKeyword_6; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_7() { return cEqualsSignKeyword_7; }
+		
+		//to=[Entity]
+		public Assignment getToAssignment_8() { return cToAssignment_8; }
+		
+		//[Entity]
+		public CrossReference getToEntityCrossReference_8_0() { return cToEntityCrossReference_8_0; }
+		
+		//ID
+		public RuleCall getToEntityIDTerminalRuleCall_8_0_1() { return cToEntityIDTerminalRuleCall_8_0_1; }
+		
+		//'type'
+		public Keyword getTypeKeyword_9() { return cTypeKeyword_9; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_10() { return cEqualsSignKeyword_10; }
+		
+		//type=STRING
+		public Assignment getTypeAssignment_11() { return cTypeAssignment_11; }
+		
+		//STRING
+		public RuleCall getTypeSTRINGTerminalRuleCall_11_0() { return cTypeSTRINGTerminalRuleCall_11_0; }
+		
+		//// e.g., "dependency", "uses", "inherits"
+		//  '}'
+		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
+	}
+	public class FLOATElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.FLOAT");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//FLOAT returns ecore::EFloat:
+		//    INT '.' INT?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//INT '.' INT?
+		public Group getGroup() { return cGroup; }
+		
+		//INT
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
+		
+		//INT?
+		public RuleCall getINTTerminalRuleCall_2() { return cINTTerminalRuleCall_2; }
+	}
 	
 	
 	private final ModelElements pModel;
@@ -1252,11 +1539,13 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final PhaseElements pPhase;
 	private final SubPhaseElements pSubPhase;
 	private final ActionElements pAction;
+	private final ConstraintClassesElements pConstraintClasses;
 	private final ConstraintElements pConstraint;
 	private final SafetyConstraintElements pSafetyConstraint;
 	private final RegulatoryConstraintElements pRegulatoryConstraint;
 	private final MissionEventElements pMissionEvent;
-	private final TerminalRule tFLOAT;
+	private final RelationElements pRelation;
+	private final FLOATElements pFLOAT;
 	private final TerminalRule tBOOLEAN;
 	
 	private final Grammar grammar;
@@ -1277,11 +1566,13 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pPhase = new PhaseElements();
 		this.pSubPhase = new SubPhaseElements();
 		this.pAction = new ActionElements();
+		this.pConstraintClasses = new ConstraintClassesElements();
 		this.pConstraint = new ConstraintElements();
 		this.pSafetyConstraint = new SafetyConstraintElements();
 		this.pRegulatoryConstraint = new RegulatoryConstraintElements();
 		this.pMissionEvent = new MissionEventElements();
-		this.tFLOAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.FLOAT");
+		this.pRelation = new RelationElements();
+		this.pFLOAT = new FLOATElements();
 		this.tBOOLEAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.BOOLEAN");
 	}
 	
@@ -1314,7 +1605,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//Model:
 	//    systemRoot=SystemRoot
-	//    entities+=Entity*;
+	//    entities+=Entity*
+	//    relations+=Relation*
+	//;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -1324,7 +1617,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//SystemRoot:
-	//    'system' name=ID entities+=Entity*
+	//    'system' name=ID
+	//    entities+=Entity*
+	//    relations+=Relation*
 	//;
 	public SystemRootElements getSystemRootAccess() {
 		return pSystemRoot;
@@ -1335,7 +1630,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Entity:
-	//    Mission | Drone | EnergyModel | Phase | SubPhase | Action | Constraint | MissionEvent;
+	//    Mission | Drone | EnergyModel | Phase | SubPhase | Action | ConstraintClasses | MissionEvent;
 	public EntityElements getEntityAccess() {
 		return pEntity;
 	}
@@ -1354,7 +1649,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        'estimatedTime' '=' estimatedTime=FLOAT
 	//        'addDrone' '=' addDrones+=[Drone] (',' addDrones+=[Drone])*
 	//        'addPhase' '=' addPhases+=[Phase] (',' addPhases+=[Phase])*
-	//        'addConstraint' '=' addConstraints+=[Constraint] (',' addConstraints+=[Constraint])*
+	//        'addConstraint' '=' addConstraints+=[ConstraintClasses] (',' addConstraints+=[ConstraintClasses])*
 	//        'addEvent' '=' addEvents+=[MissionEvent] (',' addEvents+=[MissionEvent])*
 	//    '}';
 	public MissionElements getMissionAccess() {
@@ -1371,7 +1666,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        'batterCapacity' '=' batterCapacity=FLOAT
 	//        'maxFlightTime' '=' maxFlightTime=FLOAT
 	//        'payloadCapacity' '=' payloadCapacity=FLOAT
-	//        'role''=' role=STRING
+	//        'role' '=' role=STRING
 	//        'addEnergyModel' '=' addEnergyModel+=[EnergyModel] (',' addEnergyModel+=[EnergyModel])*
 	//    '}';
 	public DroneElements getDroneAccess() {
@@ -1438,8 +1733,21 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getActionAccess().getRule();
 	}
 	
+	//ConstraintClasses:
+	//    Constraint | SafetyConstraint | RegulatoryConstraint;
+	public ConstraintClassesElements getConstraintClassesAccess() {
+		return pConstraintClasses;
+	}
+	
+	public ParserRule getConstraintClassesRule() {
+		return getConstraintClassesAccess().getRule();
+	}
+	
 	//Constraint:
-	//    SafetyConstraint | RegulatoryConstraint;
+	//    'Constraint' name=ID '{'
+	//        'constraintType' '=' constraintType=STRING
+	//        'description' '=' description=STRING
+	//    '}';
 	public ConstraintElements getConstraintAccess() {
 		return pConstraint;
 	}
@@ -1450,6 +1758,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//SafetyConstraint:
 	//    'SafetyConstraint' name=ID '{'
+	//        'constraintType' '=' constraintType=STRING?
+	//        'description' '=' description=STRING?
 	//        'minBattery' '=' minBattery=FLOAT
 	//        'maxWindSpeed' '=' maxWindSpeed=FLOAT
 	//    '}';
@@ -1463,6 +1773,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//RegulatoryConstraint:
 	//    'RegulatoryConstraint' name=ID '{'
+	//        'constraintType' '=' constraintType=STRING?
+	//        'description' '=' description=STRING?
 	//        'flightPermission' '=' flightPermission=BOOLEAN
 	//        'altitudeLimit' '=' altitudeLimit=INT
 	//    '}';
@@ -1488,11 +1800,28 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getMissionEventAccess().getRule();
 	}
 	
-	//// Define new types
-	//terminal FLOAT:
-	//    INT '.' INT;
-	public TerminalRule getFLOATRule() {
-		return tFLOAT;
+	//Relation:
+	//    'Relation' name=ID '{'
+	//        'from' '=' from=[Entity]
+	//        'to' '=' to=[Entity]
+	//        'type' '=' type=STRING  // e.g., "dependency", "uses", "inherits"
+	//    '}';
+	public RelationElements getRelationAccess() {
+		return pRelation;
+	}
+	
+	public ParserRule getRelationRule() {
+		return getRelationAccess().getRule();
+	}
+	
+	//FLOAT returns ecore::EFloat:
+	//    INT '.' INT?;
+	public FLOATElements getFLOATAccess() {
+		return pFLOAT;
+	}
+	
+	public ParserRule getFLOATRule() {
+		return getFLOATAccess().getRule();
 	}
 	
 	//terminal BOOLEAN:

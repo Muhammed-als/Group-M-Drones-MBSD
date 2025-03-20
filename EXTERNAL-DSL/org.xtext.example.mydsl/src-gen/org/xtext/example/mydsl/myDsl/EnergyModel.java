@@ -29,12 +29,12 @@ public interface EnergyModel extends Entity
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Consumption Rate</em>' attribute.
-   * @see #setConsumptionRate(String)
+   * @see #setConsumptionRate(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getEnergyModel_ConsumptionRate()
    * @model
    * @generated
    */
-  String getConsumptionRate();
+  float getConsumptionRate();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.EnergyModel#getConsumptionRate <em>Consumption Rate</em>}' attribute.
@@ -44,19 +44,19 @@ public interface EnergyModel extends Entity
    * @see #getConsumptionRate()
    * @generated
    */
-  void setConsumptionRate(String value);
+  void setConsumptionRate(float value);
 
   /**
    * Returns the value of the '<em><b>Battery Health</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Battery Health</em>' attribute.
-   * @see #setBatteryHealth(String)
+   * @see #setBatteryHealth(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getEnergyModel_BatteryHealth()
    * @model
    * @generated
    */
-  String getBatteryHealth();
+  float getBatteryHealth();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.EnergyModel#getBatteryHealth <em>Battery Health</em>}' attribute.
@@ -66,19 +66,19 @@ public interface EnergyModel extends Entity
    * @see #getBatteryHealth()
    * @generated
    */
-  void setBatteryHealth(String value);
+  void setBatteryHealth(float value);
 
   /**
    * Returns the value of the '<em><b>Recharge Time</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Recharge Time</em>' attribute.
-   * @see #setRechargeTime(String)
+   * @see #setRechargeTime(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getEnergyModel_RechargeTime()
    * @model
    * @generated
    */
-  String getRechargeTime();
+  float getRechargeTime();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.EnergyModel#getRechargeTime <em>Recharge Time</em>}' attribute.
@@ -88,6 +88,6 @@ public interface EnergyModel extends Entity
    * @see #getRechargeTime()
    * @generated
    */
-  void setRechargeTime(String value);
+  void setRechargeTime(float value);
 
 } // EnergyModel

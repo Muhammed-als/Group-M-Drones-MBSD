@@ -21,19 +21,19 @@ package org.xtext.example.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface SafetyConstraint extends Constraint
+public interface SafetyConstraint extends ConstraintClasses
 {
   /**
    * Returns the value of the '<em><b>Min Battery</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Min Battery</em>' attribute.
-   * @see #setMinBattery(String)
+   * @see #setMinBattery(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getSafetyConstraint_MinBattery()
    * @model
    * @generated
    */
-  String getMinBattery();
+  float getMinBattery();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.SafetyConstraint#getMinBattery <em>Min Battery</em>}' attribute.
@@ -43,19 +43,19 @@ public interface SafetyConstraint extends Constraint
    * @see #getMinBattery()
    * @generated
    */
-  void setMinBattery(String value);
+  void setMinBattery(float value);
 
   /**
    * Returns the value of the '<em><b>Max Wind Speed</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Max Wind Speed</em>' attribute.
-   * @see #setMaxWindSpeed(String)
+   * @see #setMaxWindSpeed(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getSafetyConstraint_MaxWindSpeed()
    * @model
    * @generated
    */
-  String getMaxWindSpeed();
+  float getMaxWindSpeed();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.SafetyConstraint#getMaxWindSpeed <em>Max Wind Speed</em>}' attribute.
@@ -65,6 +65,6 @@ public interface SafetyConstraint extends Constraint
    * @see #getMaxWindSpeed()
    * @generated
    */
-  void setMaxWindSpeed(String value);
+  void setMaxWindSpeed(float value);
 
 } // SafetyConstraint

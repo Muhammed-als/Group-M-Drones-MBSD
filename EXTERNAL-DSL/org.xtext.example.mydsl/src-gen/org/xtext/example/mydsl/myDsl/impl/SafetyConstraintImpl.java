@@ -26,7 +26,7 @@ import org.xtext.example.mydsl.myDsl.SafetyConstraint;
  *
  * @generated
  */
-public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstraint
+public class SafetyConstraintImpl extends ConstraintClassesImpl implements SafetyConstraint
 {
   /**
    * The default value of the '{@link #getMinBattery() <em>Min Battery</em>}' attribute.
@@ -36,7 +36,7 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
    * @generated
    * @ordered
    */
-  protected static final String MIN_BATTERY_EDEFAULT = null;
+  protected static final float MIN_BATTERY_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getMinBattery() <em>Min Battery</em>}' attribute.
@@ -46,7 +46,7 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
    * @generated
    * @ordered
    */
-  protected String minBattery = MIN_BATTERY_EDEFAULT;
+  protected float minBattery = MIN_BATTERY_EDEFAULT;
 
   /**
    * The default value of the '{@link #getMaxWindSpeed() <em>Max Wind Speed</em>}' attribute.
@@ -56,7 +56,7 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
    * @generated
    * @ordered
    */
-  protected static final String MAX_WIND_SPEED_EDEFAULT = null;
+  protected static final float MAX_WIND_SPEED_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getMaxWindSpeed() <em>Max Wind Speed</em>}' attribute.
@@ -66,7 +66,7 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
    * @generated
    * @ordered
    */
-  protected String maxWindSpeed = MAX_WIND_SPEED_EDEFAULT;
+  protected float maxWindSpeed = MAX_WIND_SPEED_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -95,7 +95,7 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
    * @generated
    */
   @Override
-  public String getMinBattery()
+  public float getMinBattery()
   {
     return minBattery;
   }
@@ -106,9 +106,9 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
    * @generated
    */
   @Override
-  public void setMinBattery(String newMinBattery)
+  public void setMinBattery(float newMinBattery)
   {
-    String oldMinBattery = minBattery;
+    float oldMinBattery = minBattery;
     minBattery = newMinBattery;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.SAFETY_CONSTRAINT__MIN_BATTERY, oldMinBattery, minBattery));
@@ -120,7 +120,7 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
    * @generated
    */
   @Override
-  public String getMaxWindSpeed()
+  public float getMaxWindSpeed()
   {
     return maxWindSpeed;
   }
@@ -131,9 +131,9 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
    * @generated
    */
   @Override
-  public void setMaxWindSpeed(String newMaxWindSpeed)
+  public void setMaxWindSpeed(float newMaxWindSpeed)
   {
-    String oldMaxWindSpeed = maxWindSpeed;
+    float oldMaxWindSpeed = maxWindSpeed;
     maxWindSpeed = newMaxWindSpeed;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.SAFETY_CONSTRAINT__MAX_WIND_SPEED, oldMaxWindSpeed, maxWindSpeed));
@@ -168,10 +168,10 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
     switch (featureID)
     {
       case MyDslPackage.SAFETY_CONSTRAINT__MIN_BATTERY:
-        setMinBattery((String)newValue);
+        setMinBattery((Float)newValue);
         return;
       case MyDslPackage.SAFETY_CONSTRAINT__MAX_WIND_SPEED:
-        setMaxWindSpeed((String)newValue);
+        setMaxWindSpeed((Float)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -208,9 +208,9 @@ public class SafetyConstraintImpl extends ConstraintImpl implements SafetyConstr
     switch (featureID)
     {
       case MyDslPackage.SAFETY_CONSTRAINT__MIN_BATTERY:
-        return MIN_BATTERY_EDEFAULT == null ? minBattery != null : !MIN_BATTERY_EDEFAULT.equals(minBattery);
+        return minBattery != MIN_BATTERY_EDEFAULT;
       case MyDslPackage.SAFETY_CONSTRAINT__MAX_WIND_SPEED:
-        return MAX_WIND_SPEED_EDEFAULT == null ? maxWindSpeed != null : !MAX_WIND_SPEED_EDEFAULT.equals(maxWindSpeed);
+        return maxWindSpeed != MAX_WIND_SPEED_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

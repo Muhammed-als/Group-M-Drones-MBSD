@@ -17,12 +17,14 @@
  import org.xtext.example.mydsl.myDsl.EnergyModel
  import org.xtext.example.mydsl.myDsl.Phase
  import org.xtext.example.mydsl.myDsl.SubPhase
- import javax.swing.Action
+ import org.xtext.example.mydsl.myDsl.Action
+ import org.xtext.example.mydsl.myDsl.Constraint
  import org.xtext.example.mydsl.myDsl.SafetyConstraint
  import org.xtext.example.mydsl.myDsl.RegulatoryConstraint
  import org.xtext.example.mydsl.myDsl.MissionEvent
- 
- /**
+ import org.xtext.example.mydsl.myDsl.Relation
+
+/**
   * Generates code from your model files on save.
   * 
   * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
@@ -30,42 +32,62 @@
  class MyDslGenerator extends AbstractGenerator {
  
  	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-         var root = resource.allContents.toIterable.filter(SystemRoot).get(0)
-         if (root !== null) {
-             for (e : root.entities) {
-                 fsa.generateFile(root.name + "/" + e.name + ".java", e.compile(root))
-             }
-         }
-     }
-     def compile(Entity entity, SystemRoot root){
-     	val attributes = getEntityAttributes(entity)
-     	'''
- 			package «root.name»;
- 			
- 			public class «entity.name» {
- 				«FOR attr : attributes»
-                     private «attr.javaType» «attr.name»;
-                 «ENDFOR»
-                 // Constructor with all attributes
-                 	// ensures that the parameters are comma-separated
-                 	// https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html
-                     public «entity.name»(«FOR attr : attributes SEPARATOR ", "»«attr.javaType» «attr.name»«ENDFOR») {
- 	                    «FOR attr : attributes»
- 	                    	this.«attr.name» = «attr.name»;
- 	                    «ENDFOR»
-                 	}
- 				«FOR attr : attributes»
- 	                public void set«attr.name.toFirstUpper»(«attr.javaType» «attr.name») {
- 	                    this.«attr.name» = «attr.name»;
- 	                }
- 	                
- 	                public «attr.javaType» get«attr.name.toFirstUpper»() {
- 	                    return this.«attr.name»;
- 	                }
-                 «ENDFOR»
- 			}
- 		'''
-     }
+	    var root = resource.allContents.toIterable.filter(SystemRoot).get(0)
+	    
+	        for (e : root.entities) {
+	            var parent = findParentEntity(e, root.relations)  // Find parent class
+	            fsa.generateFile(root.name + "/" + e.name + ".java", e.compile(root, parent))
+	        }
+	    
+	}
+	def Entity findParentEntity(Entity entity, List<Relation> relations) {
+	    for (relation : relations) {
+	        if (relation.type == "inherits" && relation.from == entity) {
+	            return relation.to  // Return the parent entity
+	        }
+	    }
+	    return null
+	}
+	def compile(Entity entity, SystemRoot root, Entity parentClass) {
+	    val attributes = getEntityAttributes(entity)
+        val parentAttributes = if (parentClass !== null) getEntityAttributes(parentClass) else emptyList
+		
+	    '''
+	    package «root.name»;
+	    import java.util.List;
+	    import java.util.ArrayList;
+	    
+	    public class «entity.name» «IF parentClass !== null»extends «parentClass.name»«ENDIF» {
+	        «FOR attr : attributes»
+	        private «attr.javaType» «attr.name»;
+	        «ENDFOR»
+	
+	        public «entity.name»(«IF parentClass !== null»
+	            «FOR attr : getEntityAttributes(parentClass) SEPARATOR ", "»«attr.javaType» «attr.name»«ENDFOR»,
+	        «ENDIF»
+	            «FOR attr : attributes.filter[it | parentClass === null || !getEntityAttributes(parentClass).contains(it)] SEPARATOR ", "»«attr.javaType» «attr.name»«ENDFOR») {
+	
+	            «IF parentClass !== null»
+	                super(«FOR attr : getEntityAttributes(parentClass) SEPARATOR ", "»«attr.name»«ENDFOR»);
+	            «ENDIF»
+	
+	            «FOR attr : attributes.filter[it | parentClass === null || !getEntityAttributes(parentClass).contains(it)]»
+	            this.«attr.name» = «attr.name»;
+	            «ENDFOR»
+	        }
+	
+	        «FOR attr : attributes»
+	        public void set«attr.name.toFirstUpper»(«attr.javaType» «attr.name») {
+	            this.«attr.name» = «attr.name»;
+	        }
+	
+	        public «attr.javaType» get«attr.name.toFirstUpper»() {
+	            return this.«attr.name»;
+	        }
+	        «ENDFOR»
+	    }
+	    '''
+	}	     
      static class AttributeInfo {
          String name
          String type
@@ -81,8 +103,7 @@
                  case "INT": return "int" 
                  case "FLOAT": return "float"
                  case "BOOLEAN": return "boolean"
-                 case "LIST": return "List"
-                 default: return "String"
+                 default: return type
              }
          }
      }
@@ -96,10 +117,10 @@
          result.add(new AttributeInfo("endLocation", "STRING"))
          result.add(new AttributeInfo("priority", "INT"))
          result.add(new AttributeInfo("estimatedTime", "FLOAT"))
-         result.add(new AttributeInfo("drones", "LIST"))
-         result.add(new AttributeInfo("phases", "LIST"))
-         result.add(new AttributeInfo("constraints", "LIST"))
-         result.add(new AttributeInfo("events", "LIST"))
+         result.add(new AttributeInfo("drones", "List<Object>"))
+         result.add(new AttributeInfo("phases", "List<Object>"))
+         result.add(new AttributeInfo("constraints", "List<Object>"))
+         result.add(new AttributeInfo("events", "List<Object>"))
          
          return result
      }
@@ -111,7 +132,7 @@
          result.add(new AttributeInfo("maxFlightTime", "FLOAT"))
          result.add(new AttributeInfo("payloadCapacity", "FLOAT"))
          result.add(new AttributeInfo("role", "STRING"))
-         result.add(new AttributeInfo("energyModels", "LIST"))
+         result.add(new AttributeInfo("energyModels", "List<Object>"))
          return result
      }
      
@@ -127,7 +148,7 @@
          val result = new ArrayList<AttributeInfo>()
          result.add(new AttributeInfo("phaseType", "STRING"))
          result.add(new AttributeInfo("energyUsage", "FLOAT"))
-         result.add(new AttributeInfo("subPhases", "LIST")) 
+         result.add(new AttributeInfo("subPhases", "List<Object>")) 
          return result
      }
      
@@ -135,7 +156,7 @@
          val result = new ArrayList<AttributeInfo>()
          result.add(new AttributeInfo("subPhaseType", "STRING"))
          result.add(new AttributeInfo("duration", "FLOAT"))
-         result.add(new AttributeInfo("actions", "LIST"))
+         result.add(new AttributeInfo("actions", "List<Object>"))
          return result
      }
      
@@ -144,6 +165,13 @@
          result.add(new AttributeInfo("actionType", "STRING"))
          result.add(new AttributeInfo("inputOutput", "STRING"))
          result.add(new AttributeInfo("energyUsage", "FLOAT"))
+         return result
+     }
+     
+     def dispatch List<AttributeInfo> getEntityAttributes(Constraint constraint) {
+         val result = new ArrayList<AttributeInfo>()
+         result.add(new AttributeInfo("constraintType", "STRING"))
+         result.add(new AttributeInfo("description", "STRING"))
          return result
      }
      

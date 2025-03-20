@@ -1,89 +1,111 @@
 system MedicalSystem
- Mission MedicalDelivery {
-     missionID = "Mission-001"
-     missionType = "Reconnaissance"
-     startLocation = "Hospital A"
-     endLocation = "Clinic B"
-     priority = 1
-     estimatedTime = 5.5
-     addDrone = DroneAlpha, DroneBeta
-     addPhase = Phase001, Phase002
- 	addConstraint = RegulatoryConstraint001, SafetyConstraint001
- 	addEvent = MissionEvent001, MissionEvent002
- }
- 
- Drone DroneAlpha {
-     modelType = "Quadcopter"
-     batterCapacity = 5000.0
-     maxFlightTime = 30.5
-     payloadCapacity = 2.5
-     role = "Surveillance"
-     addEnergyModel = EnergyModelA
- }
- 
- Drone DroneBeta {
-     modelType = "FixedWing"
-     batterCapacity = 7000.0
-     maxFlightTime = 45.0
-     payloadCapacity = 5.0
-     role = "Transport"
-     addEnergyModel = EnergyModelB
- }
- 
- EnergyModel EnergyModelA {
-     consumptionRate = 0.5
-     batteryHealth = 95.0
-     rechargeTime = 2.5
- }
- 
- EnergyModel EnergyModelB {
-     consumptionRate = 0.7
-     batteryHealth = 90.0
-     rechargeTime = 3.0
- }
- 
- Phase Phase001 {
-     phaseType = "Takeoff"
-     energyUsage = 20.5
-     addSubPhase = SubPhaseA
- }
- 
- Phase Phase002 {
-     phaseType = "Landing"
-     energyUsage = 18.0
-     addSubPhase = SubPhaseA
- }
- 
- SubPhase SubPhaseA {
-     subPhaseType = "Hover"
-     duration = 5.0
-     addAction = Action001
- }
- 
- Action Action001 {
-     actionType = "Scan"
-     inputOutput = "Scan Area"
-     energyUsage = 1.5
- }
- 
- SafetyConstraint SafetyConstraint001 {
-     minBattery = 15.0
-     maxWindSpeed = 12.5
- }
- 
- RegulatoryConstraint RegulatoryConstraint001 {
-     flightPermission = true
-     altitudeLimit = 120
- }
- 
- MissionEvent MissionEvent001 {
-     eventType = "BatteryLow"
-     impactLevel = 3
-     responseAction = "ReturnToBase"
- }
- 
- MissionEvent MissionEvent002 {
-     eventType = "ObstacleDetected"
-     impactLevel = 2
-     responseAction = "AvoidObstacle"
- }
+Mission MedicalDelivery {
+missionID = "Mission-001"
+missionType = "Reconnaissance"
+startLocation = "Hospital A"
+endLocation = "Clinic B"
+priority = 1
+estimatedTime = 5.5
+addDrone = DroneAlpha, DroneBeta
+addPhase = Phase001, Phase002
+addConstraint = SafetyConstraint001, RegulatoryConstraint001
+addEvent = MissionEvent001, MissionEvent002
+}
+
+Drone DroneAlpha {
+modelType = "Quadcopter"
+batterCapacity = 5000.0
+maxFlightTime = 30.5
+payloadCapacity = 2.5
+role = "Surveillance"
+addEnergyModel = EnergyModelA
+}
+
+Drone DroneBeta {
+modelType = "FixedWing"
+batterCapacity = 7000.0
+maxFlightTime = 45.0
+payloadCapacity = 5.0
+role = "Transport"
+addEnergyModel = EnergyModelB
+}
+
+EnergyModel EnergyModelA {
+consumptionRate = 0.5
+batteryHealth = 95.0
+rechargeTime = 2.5
+}
+
+EnergyModel EnergyModelB {
+consumptionRate = 0.7
+batteryHealth = 90.0
+rechargeTime = 3.0
+}
+
+Phase Phase001 {
+phaseType = "Takeoff"
+energyUsage = 20.5
+addSubPhase = SubPhaseA
+}
+
+Phase Phase002 {
+phaseType = "Landing"
+energyUsage = 18.0
+addSubPhase = SubPhaseA
+}
+
+SubPhase SubPhaseA {
+subPhaseType = "Hover"
+duration = 5.0
+addAction = Action001
+}
+
+Action Action001 {
+actionType = "Scan"
+inputOutput = "Scan Area"
+energyUsage = 1.5
+}
+
+Constraint Constraint001 {
+constraintType = "General"
+description = "GeneralConstraint"
+}
+
+SafetyConstraint SafetyConstraint001 {
+constraintType = "Battery"
+description = "Ensures battery level is sufficient"
+minBattery = 15.0
+maxWindSpeed = 12.5
+}
+
+RegulatoryConstraint RegulatoryConstraint001 {
+constraintType = "Airspace"
+description = "Ensures compliance with flight regulations"
+flightPermission = true
+altitudeLimit = 120
+}
+
+MissionEvent MissionEvent001 {
+eventType = "BatteryLow"
+impactLevel = 3
+responseAction = "ReturnToBase"
+}
+
+MissionEvent MissionEvent002 {
+eventType = "ObstacleDetected"
+impactLevel = 2
+responseAction = "AvoidObstacle"
+}
+
+Relation InheritSafetyConstraint {
+from = SafetyConstraint001
+to = Constraint001
+type = "inherits"
+
+}
+
+Relation InheritRegulatoryConstraint {
+from = RegulatoryConstraint001
+to = Constraint001
+type = "inherits"
+}

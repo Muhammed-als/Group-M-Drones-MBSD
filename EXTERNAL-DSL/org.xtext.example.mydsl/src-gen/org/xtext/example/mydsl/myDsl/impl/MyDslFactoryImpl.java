@@ -74,10 +74,12 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.PHASE: return createPhase();
       case MyDslPackage.SUB_PHASE: return createSubPhase();
       case MyDslPackage.ACTION: return createAction();
+      case MyDslPackage.CONSTRAINT_CLASSES: return createConstraintClasses();
       case MyDslPackage.CONSTRAINT: return createConstraint();
       case MyDslPackage.SAFETY_CONSTRAINT: return createSafetyConstraint();
       case MyDslPackage.REGULATORY_CONSTRAINT: return createRegulatoryConstraint();
       case MyDslPackage.MISSION_EVENT: return createMissionEvent();
+      case MyDslPackage.RELATION: return createRelation();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -197,6 +199,18 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
+  public ConstraintClasses createConstraintClasses()
+  {
+    ConstraintClassesImpl constraintClasses = new ConstraintClassesImpl();
+    return constraintClasses;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Constraint createConstraint()
   {
     ConstraintImpl constraint = new ConstraintImpl();
@@ -237,6 +251,18 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     MissionEventImpl missionEvent = new MissionEventImpl();
     return missionEvent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Relation createRelation()
+  {
+    RelationImpl relation = new RelationImpl();
+    return relation;
   }
 
   /**

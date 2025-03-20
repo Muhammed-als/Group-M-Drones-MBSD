@@ -14,6 +14,6 @@ package org.xtext.example.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface Constraint extends Entity
+public interface Constraint extends ConstraintClasses
 {
 } // Constraint

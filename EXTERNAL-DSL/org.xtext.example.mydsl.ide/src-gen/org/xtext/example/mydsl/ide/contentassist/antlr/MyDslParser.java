@@ -32,7 +32,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MyDslGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getEntityAccess().getAlternatives(), "rule__Entity__Alternatives");
-			builder.put(grammarAccess.getConstraintAccess().getAlternatives(), "rule__Constraint__Alternatives");
+			builder.put(grammarAccess.getConstraintClassesAccess().getAlternatives(), "rule__ConstraintClasses__Alternatives");
 			builder.put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
 			builder.put(grammarAccess.getSystemRootAccess().getGroup(), "rule__SystemRoot__Group__0");
 			builder.put(grammarAccess.getMissionAccess().getGroup(), "rule__Mission__Group__0");
@@ -48,13 +48,18 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSubPhaseAccess().getGroup(), "rule__SubPhase__Group__0");
 			builder.put(grammarAccess.getSubPhaseAccess().getGroup_12(), "rule__SubPhase__Group_12__0");
 			builder.put(grammarAccess.getActionAccess().getGroup(), "rule__Action__Group__0");
+			builder.put(grammarAccess.getConstraintAccess().getGroup(), "rule__Constraint__Group__0");
 			builder.put(grammarAccess.getSafetyConstraintAccess().getGroup(), "rule__SafetyConstraint__Group__0");
 			builder.put(grammarAccess.getRegulatoryConstraintAccess().getGroup(), "rule__RegulatoryConstraint__Group__0");
 			builder.put(grammarAccess.getMissionEventAccess().getGroup(), "rule__MissionEvent__Group__0");
+			builder.put(grammarAccess.getRelationAccess().getGroup(), "rule__Relation__Group__0");
+			builder.put(grammarAccess.getFLOATAccess().getGroup(), "rule__FLOAT__Group__0");
 			builder.put(grammarAccess.getModelAccess().getSystemRootAssignment_0(), "rule__Model__SystemRootAssignment_0");
 			builder.put(grammarAccess.getModelAccess().getEntitiesAssignment_1(), "rule__Model__EntitiesAssignment_1");
+			builder.put(grammarAccess.getModelAccess().getRelationsAssignment_2(), "rule__Model__RelationsAssignment_2");
 			builder.put(grammarAccess.getSystemRootAccess().getNameAssignment_1(), "rule__SystemRoot__NameAssignment_1");
 			builder.put(grammarAccess.getSystemRootAccess().getEntitiesAssignment_2(), "rule__SystemRoot__EntitiesAssignment_2");
+			builder.put(grammarAccess.getSystemRootAccess().getRelationsAssignment_3(), "rule__SystemRoot__RelationsAssignment_3");
 			builder.put(grammarAccess.getMissionAccess().getNameAssignment_1(), "rule__Mission__NameAssignment_1");
 			builder.put(grammarAccess.getMissionAccess().getIdAssignment_5(), "rule__Mission__IdAssignment_5");
 			builder.put(grammarAccess.getMissionAccess().getMissionTypeAssignment_8(), "rule__Mission__MissionTypeAssignment_8");
@@ -96,16 +101,27 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getActionAccess().getActionTypeAssignment_5(), "rule__Action__ActionTypeAssignment_5");
 			builder.put(grammarAccess.getActionAccess().getInputOutputAssignment_8(), "rule__Action__InputOutputAssignment_8");
 			builder.put(grammarAccess.getActionAccess().getEnergyUsageAssignment_11(), "rule__Action__EnergyUsageAssignment_11");
+			builder.put(grammarAccess.getConstraintAccess().getNameAssignment_1(), "rule__Constraint__NameAssignment_1");
+			builder.put(grammarAccess.getConstraintAccess().getConstraintTypeAssignment_5(), "rule__Constraint__ConstraintTypeAssignment_5");
+			builder.put(grammarAccess.getConstraintAccess().getDescriptionAssignment_8(), "rule__Constraint__DescriptionAssignment_8");
 			builder.put(grammarAccess.getSafetyConstraintAccess().getNameAssignment_1(), "rule__SafetyConstraint__NameAssignment_1");
-			builder.put(grammarAccess.getSafetyConstraintAccess().getMinBatteryAssignment_5(), "rule__SafetyConstraint__MinBatteryAssignment_5");
-			builder.put(grammarAccess.getSafetyConstraintAccess().getMaxWindSpeedAssignment_8(), "rule__SafetyConstraint__MaxWindSpeedAssignment_8");
+			builder.put(grammarAccess.getSafetyConstraintAccess().getConstraintTypeAssignment_5(), "rule__SafetyConstraint__ConstraintTypeAssignment_5");
+			builder.put(grammarAccess.getSafetyConstraintAccess().getDescriptionAssignment_8(), "rule__SafetyConstraint__DescriptionAssignment_8");
+			builder.put(grammarAccess.getSafetyConstraintAccess().getMinBatteryAssignment_11(), "rule__SafetyConstraint__MinBatteryAssignment_11");
+			builder.put(grammarAccess.getSafetyConstraintAccess().getMaxWindSpeedAssignment_14(), "rule__SafetyConstraint__MaxWindSpeedAssignment_14");
 			builder.put(grammarAccess.getRegulatoryConstraintAccess().getNameAssignment_1(), "rule__RegulatoryConstraint__NameAssignment_1");
-			builder.put(grammarAccess.getRegulatoryConstraintAccess().getFlightPermissionAssignment_5(), "rule__RegulatoryConstraint__FlightPermissionAssignment_5");
-			builder.put(grammarAccess.getRegulatoryConstraintAccess().getAltitudeLimitAssignment_8(), "rule__RegulatoryConstraint__AltitudeLimitAssignment_8");
+			builder.put(grammarAccess.getRegulatoryConstraintAccess().getConstraintTypeAssignment_5(), "rule__RegulatoryConstraint__ConstraintTypeAssignment_5");
+			builder.put(grammarAccess.getRegulatoryConstraintAccess().getDescriptionAssignment_8(), "rule__RegulatoryConstraint__DescriptionAssignment_8");
+			builder.put(grammarAccess.getRegulatoryConstraintAccess().getFlightPermissionAssignment_11(), "rule__RegulatoryConstraint__FlightPermissionAssignment_11");
+			builder.put(grammarAccess.getRegulatoryConstraintAccess().getAltitudeLimitAssignment_14(), "rule__RegulatoryConstraint__AltitudeLimitAssignment_14");
 			builder.put(grammarAccess.getMissionEventAccess().getNameAssignment_1(), "rule__MissionEvent__NameAssignment_1");
 			builder.put(grammarAccess.getMissionEventAccess().getEventTypeAssignment_5(), "rule__MissionEvent__EventTypeAssignment_5");
 			builder.put(grammarAccess.getMissionEventAccess().getImpactLevelAssignment_8(), "rule__MissionEvent__ImpactLevelAssignment_8");
 			builder.put(grammarAccess.getMissionEventAccess().getResponseActionAssignment_11(), "rule__MissionEvent__ResponseActionAssignment_11");
+			builder.put(grammarAccess.getRelationAccess().getNameAssignment_1(), "rule__Relation__NameAssignment_1");
+			builder.put(grammarAccess.getRelationAccess().getFromAssignment_5(), "rule__Relation__FromAssignment_5");
+			builder.put(grammarAccess.getRelationAccess().getToAssignment_8(), "rule__Relation__ToAssignment_8");
+			builder.put(grammarAccess.getRelationAccess().getTypeAssignment_11(), "rule__Relation__TypeAssignment_11");
 		}
 	}
 	

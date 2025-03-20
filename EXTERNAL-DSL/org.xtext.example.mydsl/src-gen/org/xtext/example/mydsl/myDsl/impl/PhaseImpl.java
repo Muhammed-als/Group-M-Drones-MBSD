@@ -64,7 +64,7 @@ public class PhaseImpl extends EntityImpl implements Phase
    * @generated
    * @ordered
    */
-  protected static final String ENERGY_USAGE_EDEFAULT = null;
+  protected static final float ENERGY_USAGE_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getEnergyUsage() <em>Energy Usage</em>}' attribute.
@@ -74,7 +74,7 @@ public class PhaseImpl extends EntityImpl implements Phase
    * @generated
    * @ordered
    */
-  protected String energyUsage = ENERGY_USAGE_EDEFAULT;
+  protected float energyUsage = ENERGY_USAGE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAddSubPhase() <em>Add Sub Phase</em>}' reference list.
@@ -138,7 +138,7 @@ public class PhaseImpl extends EntityImpl implements Phase
    * @generated
    */
   @Override
-  public String getEnergyUsage()
+  public float getEnergyUsage()
   {
     return energyUsage;
   }
@@ -149,9 +149,9 @@ public class PhaseImpl extends EntityImpl implements Phase
    * @generated
    */
   @Override
-  public void setEnergyUsage(String newEnergyUsage)
+  public void setEnergyUsage(float newEnergyUsage)
   {
-    String oldEnergyUsage = energyUsage;
+    float oldEnergyUsage = energyUsage;
     energyUsage = newEnergyUsage;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.PHASE__ENERGY_USAGE, oldEnergyUsage, energyUsage));
@@ -207,7 +207,7 @@ public class PhaseImpl extends EntityImpl implements Phase
         setPhaseType((String)newValue);
         return;
       case MyDslPackage.PHASE__ENERGY_USAGE:
-        setEnergyUsage((String)newValue);
+        setEnergyUsage((Float)newValue);
         return;
       case MyDslPackage.PHASE__ADD_SUB_PHASE:
         getAddSubPhase().clear();
@@ -253,7 +253,7 @@ public class PhaseImpl extends EntityImpl implements Phase
       case MyDslPackage.PHASE__PHASE_TYPE:
         return PHASE_TYPE_EDEFAULT == null ? phaseType != null : !PHASE_TYPE_EDEFAULT.equals(phaseType);
       case MyDslPackage.PHASE__ENERGY_USAGE:
-        return ENERGY_USAGE_EDEFAULT == null ? energyUsage != null : !ENERGY_USAGE_EDEFAULT.equals(energyUsage);
+        return energyUsage != ENERGY_USAGE_EDEFAULT;
       case MyDslPackage.PHASE__ADD_SUB_PHASE:
         return addSubPhase != null && !addSubPhase.isEmpty();
     }

@@ -14,6 +14,7 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Drone;
 import org.xtext.example.mydsl.myDsl.EnergyModel;
 import org.xtext.example.mydsl.myDsl.Mission;
@@ -22,6 +23,7 @@ import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Phase;
 import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.SafetyConstraint;
 import org.xtext.example.mydsl.myDsl.SubPhase;
 import org.xtext.example.mydsl.myDsl.SystemRoot;
@@ -44,6 +46,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.ACTION:
 				sequence_Action(context, (org.xtext.example.mydsl.myDsl.Action) semanticObject); 
 				return; 
+			case MyDslPackage.CONSTRAINT:
+				sequence_Constraint(context, (Constraint) semanticObject); 
+				return; 
 			case MyDslPackage.DRONE:
 				sequence_Drone(context, (Drone) semanticObject); 
 				return; 
@@ -64,6 +69,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.REGULATORY_CONSTRAINT:
 				sequence_RegulatoryConstraint(context, (RegulatoryConstraint) semanticObject); 
+				return; 
+			case MyDslPackage.RELATION:
+				sequence_Relation(context, (Relation) semanticObject); 
 				return; 
 			case MyDslPackage.SAFETY_CONSTRAINT:
 				sequence_SafetyConstraint(context, (SafetyConstraint) semanticObject); 
@@ -104,7 +112,35 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		feeder.accept(grammarAccess.getActionAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getActionAccess().getActionTypeSTRINGTerminalRuleCall_5_0(), semanticObject.getActionType());
 		feeder.accept(grammarAccess.getActionAccess().getInputOutputSTRINGTerminalRuleCall_8_0(), semanticObject.getInputOutput());
-		feeder.accept(grammarAccess.getActionAccess().getEnergyUsageFLOATTerminalRuleCall_11_0(), semanticObject.getEnergyUsage());
+		feeder.accept(grammarAccess.getActionAccess().getEnergyUsageFLOATParserRuleCall_11_0(), semanticObject.getEnergyUsage());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Entity returns Constraint
+	 *     ConstraintClasses returns Constraint
+	 *     Constraint returns Constraint
+	 *
+	 * Constraint:
+	 *     (name=ID constraintType=STRING description=STRING)
+	 * </pre>
+	 */
+	protected void sequence_Constraint(ISerializationContext context, Constraint semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.ENTITY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.ENTITY__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CONSTRAINT_CLASSES__CONSTRAINT_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CONSTRAINT_CLASSES__CONSTRAINT_TYPE));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CONSTRAINT_CLASSES__DESCRIPTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CONSTRAINT_CLASSES__DESCRIPTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getConstraintAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getConstraintAccess().getConstraintTypeSTRINGTerminalRuleCall_5_0(), semanticObject.getConstraintType());
+		feeder.accept(grammarAccess.getConstraintAccess().getDescriptionSTRINGTerminalRuleCall_8_0(), semanticObject.getDescription());
 		feeder.finish();
 	}
 	
@@ -156,9 +192,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEnergyModelAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getEnergyModelAccess().getConsumptionRateFLOATTerminalRuleCall_5_0(), semanticObject.getConsumptionRate());
-		feeder.accept(grammarAccess.getEnergyModelAccess().getBatteryHealthFLOATTerminalRuleCall_8_0(), semanticObject.getBatteryHealth());
-		feeder.accept(grammarAccess.getEnergyModelAccess().getRechargeTimeFLOATTerminalRuleCall_11_0(), semanticObject.getRechargeTime());
+		feeder.accept(grammarAccess.getEnergyModelAccess().getConsumptionRateFLOATParserRuleCall_5_0(), semanticObject.getConsumptionRate());
+		feeder.accept(grammarAccess.getEnergyModelAccess().getBatteryHealthFLOATParserRuleCall_8_0(), semanticObject.getBatteryHealth());
+		feeder.accept(grammarAccess.getEnergyModelAccess().getRechargeTimeFLOATParserRuleCall_11_0(), semanticObject.getRechargeTime());
 		feeder.finish();
 	}
 	
@@ -212,8 +248,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         addDrones+=[Drone|ID]* 
 	 *         addPhases+=[Phase|ID] 
 	 *         addPhases+=[Phase|ID]* 
-	 *         addConstraints+=[Constraint|ID] 
-	 *         addConstraints+=[Constraint|ID]* 
+	 *         addConstraints+=[ConstraintClasses|ID] 
+	 *         addConstraints+=[ConstraintClasses|ID]* 
 	 *         addEvents+=[MissionEvent|ID] 
 	 *         addEvents+=[MissionEvent|ID]*
 	 *     )
@@ -230,7 +266,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (systemRoot=SystemRoot entities+=Entity*)
+	 *     (systemRoot=SystemRoot entities+=Entity* relations+=Relation*)
 	 * </pre>
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
@@ -257,26 +293,43 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * <pre>
 	 * Contexts:
 	 *     Entity returns RegulatoryConstraint
-	 *     Constraint returns RegulatoryConstraint
+	 *     ConstraintClasses returns RegulatoryConstraint
 	 *     RegulatoryConstraint returns RegulatoryConstraint
 	 *
 	 * Constraint:
-	 *     (name=ID flightPermission=BOOLEAN altitudeLimit=INT)
+	 *     (name=ID constraintType=STRING? description=STRING? flightPermission=BOOLEAN altitudeLimit=INT)
 	 * </pre>
 	 */
 	protected void sequence_RegulatoryConstraint(ISerializationContext context, RegulatoryConstraint semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Relation returns Relation
+	 *
+	 * Constraint:
+	 *     (name=ID from=[Entity|ID] to=[Entity|ID] type=STRING)
+	 * </pre>
+	 */
+	protected void sequence_Relation(ISerializationContext context, Relation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.ENTITY__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.ENTITY__NAME));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.REGULATORY_CONSTRAINT__FLIGHT_PERMISSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.REGULATORY_CONSTRAINT__FLIGHT_PERMISSION));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.REGULATORY_CONSTRAINT__ALTITUDE_LIMIT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.REGULATORY_CONSTRAINT__ALTITUDE_LIMIT));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RELATION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RELATION__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RELATION__FROM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RELATION__FROM));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RELATION__TO) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RELATION__TO));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RELATION__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RELATION__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRegulatoryConstraintAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRegulatoryConstraintAccess().getFlightPermissionBOOLEANTerminalRuleCall_5_0(), semanticObject.getFlightPermission());
-		feeder.accept(grammarAccess.getRegulatoryConstraintAccess().getAltitudeLimitINTTerminalRuleCall_8_0(), semanticObject.getAltitudeLimit());
+		feeder.accept(grammarAccess.getRelationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getRelationAccess().getFromEntityIDTerminalRuleCall_5_0_1(), semanticObject.eGet(MyDslPackage.Literals.RELATION__FROM, false));
+		feeder.accept(grammarAccess.getRelationAccess().getToEntityIDTerminalRuleCall_8_0_1(), semanticObject.eGet(MyDslPackage.Literals.RELATION__TO, false));
+		feeder.accept(grammarAccess.getRelationAccess().getTypeSTRINGTerminalRuleCall_11_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -285,27 +338,15 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * <pre>
 	 * Contexts:
 	 *     Entity returns SafetyConstraint
-	 *     Constraint returns SafetyConstraint
+	 *     ConstraintClasses returns SafetyConstraint
 	 *     SafetyConstraint returns SafetyConstraint
 	 *
 	 * Constraint:
-	 *     (name=ID minBattery=FLOAT maxWindSpeed=FLOAT)
+	 *     (name=ID constraintType=STRING? description=STRING? minBattery=FLOAT maxWindSpeed=FLOAT)
 	 * </pre>
 	 */
 	protected void sequence_SafetyConstraint(ISerializationContext context, SafetyConstraint semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.ENTITY__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.ENTITY__NAME));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SAFETY_CONSTRAINT__MIN_BATTERY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SAFETY_CONSTRAINT__MIN_BATTERY));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SAFETY_CONSTRAINT__MAX_WIND_SPEED) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SAFETY_CONSTRAINT__MAX_WIND_SPEED));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSafetyConstraintAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getSafetyConstraintAccess().getMinBatteryFLOATTerminalRuleCall_5_0(), semanticObject.getMinBattery());
-		feeder.accept(grammarAccess.getSafetyConstraintAccess().getMaxWindSpeedFLOATTerminalRuleCall_8_0(), semanticObject.getMaxWindSpeed());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -330,7 +371,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     SystemRoot returns SystemRoot
 	 *
 	 * Constraint:
-	 *     (name=ID entities+=Entity*)
+	 *     (name=ID entities+=Entity* relations+=Relation*)
 	 * </pre>
 	 */
 	protected void sequence_SystemRoot(ISerializationContext context, SystemRoot semanticObject) {

@@ -147,12 +147,12 @@ public interface Mission extends Entity
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Estimated Time</em>' attribute.
-   * @see #setEstimatedTime(String)
+   * @see #setEstimatedTime(float)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMission_EstimatedTime()
    * @model
    * @generated
    */
-  String getEstimatedTime();
+  float getEstimatedTime();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Mission#getEstimatedTime <em>Estimated Time</em>}' attribute.
@@ -162,7 +162,7 @@ public interface Mission extends Entity
    * @see #getEstimatedTime()
    * @generated
    */
-  void setEstimatedTime(String value);
+  void setEstimatedTime(float value);
 
   /**
    * Returns the value of the '<em><b>Add Drones</b></em>' reference list.
@@ -190,7 +190,7 @@ public interface Mission extends Entity
 
   /**
    * Returns the value of the '<em><b>Add Constraints</b></em>' reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Constraint}.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ConstraintClasses}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Add Constraints</em>' reference list.
@@ -198,7 +198,7 @@ public interface Mission extends Entity
    * @model
    * @generated
    */
-  EList<Constraint> getAddConstraints();
+  EList<ConstraintClasses> getAddConstraints();
 
   /**
    * Returns the value of the '<em><b>Add Events</b></em>' reference list.

@@ -64,7 +64,7 @@ public class SubPhaseImpl extends EntityImpl implements SubPhase
    * @generated
    * @ordered
    */
-  protected static final String DURATION_EDEFAULT = null;
+  protected static final float DURATION_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getDuration() <em>Duration</em>}' attribute.
@@ -74,7 +74,7 @@ public class SubPhaseImpl extends EntityImpl implements SubPhase
    * @generated
    * @ordered
    */
-  protected String duration = DURATION_EDEFAULT;
+  protected float duration = DURATION_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAddAction() <em>Add Action</em>}' reference list.
@@ -138,7 +138,7 @@ public class SubPhaseImpl extends EntityImpl implements SubPhase
    * @generated
    */
   @Override
-  public String getDuration()
+  public float getDuration()
   {
     return duration;
   }
@@ -149,9 +149,9 @@ public class SubPhaseImpl extends EntityImpl implements SubPhase
    * @generated
    */
   @Override
-  public void setDuration(String newDuration)
+  public void setDuration(float newDuration)
   {
-    String oldDuration = duration;
+    float oldDuration = duration;
     duration = newDuration;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.SUB_PHASE__DURATION, oldDuration, duration));
@@ -207,7 +207,7 @@ public class SubPhaseImpl extends EntityImpl implements SubPhase
         setSubPhaseType((String)newValue);
         return;
       case MyDslPackage.SUB_PHASE__DURATION:
-        setDuration((String)newValue);
+        setDuration((Float)newValue);
         return;
       case MyDslPackage.SUB_PHASE__ADD_ACTION:
         getAddAction().clear();
@@ -253,7 +253,7 @@ public class SubPhaseImpl extends EntityImpl implements SubPhase
       case MyDslPackage.SUB_PHASE__SUB_PHASE_TYPE:
         return SUB_PHASE_TYPE_EDEFAULT == null ? subPhaseType != null : !SUB_PHASE_TYPE_EDEFAULT.equals(subPhaseType);
       case MyDslPackage.SUB_PHASE__DURATION:
-        return DURATION_EDEFAULT == null ? duration != null : !DURATION_EDEFAULT.equals(duration);
+        return duration != DURATION_EDEFAULT;
       case MyDslPackage.SUB_PHASE__ADD_ACTION:
         return addAction != null && !addAction.isEmpty();
     }
