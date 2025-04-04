@@ -99,6 +99,22 @@ public class MyDslSwitch<T> extends Switch<T>
         Mission mission = (Mission)theEObject;
         T result = caseMission(mission);
         if (result == null) result = caseEntity(mission);
+        if (result == null) result = caseActionElement(mission);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.ACTION_ELEMENT:
+      {
+        ActionElement actionElement = (ActionElement)theEObject;
+        T result = caseActionElement(actionElement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.DRONE_GROUP:
+      {
+        DroneGroup droneGroup = (DroneGroup)theEObject;
+        T result = caseDroneGroup(droneGroup);
+        if (result == null) result = caseEntity(droneGroup);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -110,35 +126,12 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.ENERGY_MODEL:
-      {
-        EnergyModel energyModel = (EnergyModel)theEObject;
-        T result = caseEnergyModel(energyModel);
-        if (result == null) result = caseEntity(energyModel);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.PHASE:
-      {
-        Phase phase = (Phase)theEObject;
-        T result = casePhase(phase);
-        if (result == null) result = caseEntity(phase);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.SUB_PHASE:
-      {
-        SubPhase subPhase = (SubPhase)theEObject;
-        T result = caseSubPhase(subPhase);
-        if (result == null) result = caseEntity(subPhase);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case MyDslPackage.ACTION:
       {
         Action action = (Action)theEObject;
         T result = caseAction(action);
         if (result == null) result = caseEntity(action);
+        if (result == null) result = caseActionElement(action);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -159,12 +152,12 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.SAFETY_CONSTRAINT:
+      case MyDslPackage.PERMISSION_CONSTRAINT:
       {
-        SafetyConstraint safetyConstraint = (SafetyConstraint)theEObject;
-        T result = caseSafetyConstraint(safetyConstraint);
-        if (result == null) result = caseConstraintClasses(safetyConstraint);
-        if (result == null) result = caseEntity(safetyConstraint);
+        PermissionConstraint permissionConstraint = (PermissionConstraint)theEObject;
+        T result = casePermissionConstraint(permissionConstraint);
+        if (result == null) result = caseConstraintClasses(permissionConstraint);
+        if (result == null) result = caseEntity(permissionConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -174,14 +167,6 @@ public class MyDslSwitch<T> extends Switch<T>
         T result = caseRegulatoryConstraint(regulatoryConstraint);
         if (result == null) result = caseConstraintClasses(regulatoryConstraint);
         if (result == null) result = caseEntity(regulatoryConstraint);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.MISSION_EVENT:
-      {
-        MissionEvent missionEvent = (MissionEvent)theEObject;
-        T result = caseMissionEvent(missionEvent);
-        if (result == null) result = caseEntity(missionEvent);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -261,6 +246,38 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Action Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Action Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseActionElement(ActionElement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Drone Group</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Drone Group</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDroneGroup(DroneGroup object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Drone</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -272,54 +289,6 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDrone(Drone object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Energy Model</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Energy Model</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEnergyModel(EnergyModel object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Phase</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Phase</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePhase(Phase object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Sub Phase</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Sub Phase</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSubPhase(SubPhase object)
   {
     return null;
   }
@@ -373,17 +342,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Safety Constraint</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Permission Constraint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Safety Constraint</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Permission Constraint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSafetyConstraint(SafetyConstraint object)
+  public T casePermissionConstraint(PermissionConstraint object)
   {
     return null;
   }
@@ -400,22 +369,6 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRegulatoryConstraint(RegulatoryConstraint object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Mission Event</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Mission Event</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseMissionEvent(MissionEvent object)
   {
     return null;
   }

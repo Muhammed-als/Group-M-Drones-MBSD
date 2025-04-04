@@ -20,9 +20,8 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ActionImpl#getActionType <em>Action Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ActionImpl#getInputOutput <em>Input Output</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ActionImpl#getEnergyUsage <em>Energy Usage</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ActionImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ActionImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -30,64 +29,44 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 public class ActionImpl extends EntityImpl implements Action
 {
   /**
-   * The default value of the '{@link #getActionType() <em>Action Type</em>}' attribute.
+   * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getActionType()
+   * @see #getDescription()
    * @generated
    * @ordered
    */
-  protected static final String ACTION_TYPE_EDEFAULT = null;
+  protected static final String DESCRIPTION_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getActionType() <em>Action Type</em>}' attribute.
+   * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getActionType()
+   * @see #getDescription()
    * @generated
    * @ordered
    */
-  protected String actionType = ACTION_TYPE_EDEFAULT;
+  protected String description = DESCRIPTION_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getInputOutput() <em>Input Output</em>}' attribute.
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getInputOutput()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final String INPUT_OUTPUT_EDEFAULT = null;
+  protected static final String TYPE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInputOutput() <em>Input Output</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getInputOutput()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected String inputOutput = INPUT_OUTPUT_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getEnergyUsage() <em>Energy Usage</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEnergyUsage()
-   * @generated
-   * @ordered
-   */
-  protected static final float ENERGY_USAGE_EDEFAULT = 0.0F;
-
-  /**
-   * The cached value of the '{@link #getEnergyUsage() <em>Energy Usage</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEnergyUsage()
-   * @generated
-   * @ordered
-   */
-  protected float energyUsage = ENERGY_USAGE_EDEFAULT;
+  protected String type = TYPE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,9 +95,9 @@ public class ActionImpl extends EntityImpl implements Action
    * @generated
    */
   @Override
-  public String getActionType()
+  public String getDescription()
   {
-    return actionType;
+    return description;
   }
 
   /**
@@ -127,12 +106,12 @@ public class ActionImpl extends EntityImpl implements Action
    * @generated
    */
   @Override
-  public void setActionType(String newActionType)
+  public void setDescription(String newDescription)
   {
-    String oldActionType = actionType;
-    actionType = newActionType;
+    String oldDescription = description;
+    description = newDescription;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ACTION__ACTION_TYPE, oldActionType, actionType));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ACTION__DESCRIPTION, oldDescription, description));
   }
 
   /**
@@ -141,9 +120,9 @@ public class ActionImpl extends EntityImpl implements Action
    * @generated
    */
   @Override
-  public String getInputOutput()
+  public String getType()
   {
-    return inputOutput;
+    return type;
   }
 
   /**
@@ -152,37 +131,12 @@ public class ActionImpl extends EntityImpl implements Action
    * @generated
    */
   @Override
-  public void setInputOutput(String newInputOutput)
+  public void setType(String newType)
   {
-    String oldInputOutput = inputOutput;
-    inputOutput = newInputOutput;
+    String oldType = type;
+    type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ACTION__INPUT_OUTPUT, oldInputOutput, inputOutput));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public float getEnergyUsage()
-  {
-    return energyUsage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setEnergyUsage(float newEnergyUsage)
-  {
-    float oldEnergyUsage = energyUsage;
-    energyUsage = newEnergyUsage;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ACTION__ENERGY_USAGE, oldEnergyUsage, energyUsage));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ACTION__TYPE, oldType, type));
   }
 
   /**
@@ -195,12 +149,10 @@ public class ActionImpl extends EntityImpl implements Action
   {
     switch (featureID)
     {
-      case MyDslPackage.ACTION__ACTION_TYPE:
-        return getActionType();
-      case MyDslPackage.ACTION__INPUT_OUTPUT:
-        return getInputOutput();
-      case MyDslPackage.ACTION__ENERGY_USAGE:
-        return getEnergyUsage();
+      case MyDslPackage.ACTION__DESCRIPTION:
+        return getDescription();
+      case MyDslPackage.ACTION__TYPE:
+        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -215,14 +167,11 @@ public class ActionImpl extends EntityImpl implements Action
   {
     switch (featureID)
     {
-      case MyDslPackage.ACTION__ACTION_TYPE:
-        setActionType((String)newValue);
+      case MyDslPackage.ACTION__DESCRIPTION:
+        setDescription((String)newValue);
         return;
-      case MyDslPackage.ACTION__INPUT_OUTPUT:
-        setInputOutput((String)newValue);
-        return;
-      case MyDslPackage.ACTION__ENERGY_USAGE:
-        setEnergyUsage((Float)newValue);
+      case MyDslPackage.ACTION__TYPE:
+        setType((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -238,14 +187,11 @@ public class ActionImpl extends EntityImpl implements Action
   {
     switch (featureID)
     {
-      case MyDslPackage.ACTION__ACTION_TYPE:
-        setActionType(ACTION_TYPE_EDEFAULT);
+      case MyDslPackage.ACTION__DESCRIPTION:
+        setDescription(DESCRIPTION_EDEFAULT);
         return;
-      case MyDslPackage.ACTION__INPUT_OUTPUT:
-        setInputOutput(INPUT_OUTPUT_EDEFAULT);
-        return;
-      case MyDslPackage.ACTION__ENERGY_USAGE:
-        setEnergyUsage(ENERGY_USAGE_EDEFAULT);
+      case MyDslPackage.ACTION__TYPE:
+        setType(TYPE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -261,12 +207,10 @@ public class ActionImpl extends EntityImpl implements Action
   {
     switch (featureID)
     {
-      case MyDslPackage.ACTION__ACTION_TYPE:
-        return ACTION_TYPE_EDEFAULT == null ? actionType != null : !ACTION_TYPE_EDEFAULT.equals(actionType);
-      case MyDslPackage.ACTION__INPUT_OUTPUT:
-        return INPUT_OUTPUT_EDEFAULT == null ? inputOutput != null : !INPUT_OUTPUT_EDEFAULT.equals(inputOutput);
-      case MyDslPackage.ACTION__ENERGY_USAGE:
-        return energyUsage != ENERGY_USAGE_EDEFAULT;
+      case MyDslPackage.ACTION__DESCRIPTION:
+        return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+      case MyDslPackage.ACTION__TYPE:
+        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
     }
     return super.eIsSet(featureID);
   }
@@ -282,12 +226,10 @@ public class ActionImpl extends EntityImpl implements Action
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (actionType: ");
-    result.append(actionType);
-    result.append(", inputOutput: ");
-    result.append(inputOutput);
-    result.append(", energyUsage: ");
-    result.append(energyUsage);
+    result.append(" (description: ");
+    result.append(description);
+    result.append(", type: ");
+    result.append(type);
     result.append(')');
     return result.toString();
   }

@@ -96,24 +96,19 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createMissionAdapter();
       }
       @Override
+      public Adapter caseActionElement(ActionElement object)
+      {
+        return createActionElementAdapter();
+      }
+      @Override
+      public Adapter caseDroneGroup(DroneGroup object)
+      {
+        return createDroneGroupAdapter();
+      }
+      @Override
       public Adapter caseDrone(Drone object)
       {
         return createDroneAdapter();
-      }
-      @Override
-      public Adapter caseEnergyModel(EnergyModel object)
-      {
-        return createEnergyModelAdapter();
-      }
-      @Override
-      public Adapter casePhase(Phase object)
-      {
-        return createPhaseAdapter();
-      }
-      @Override
-      public Adapter caseSubPhase(SubPhase object)
-      {
-        return createSubPhaseAdapter();
       }
       @Override
       public Adapter caseAction(Action object)
@@ -131,19 +126,14 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createConstraintAdapter();
       }
       @Override
-      public Adapter caseSafetyConstraint(SafetyConstraint object)
+      public Adapter casePermissionConstraint(PermissionConstraint object)
       {
-        return createSafetyConstraintAdapter();
+        return createPermissionConstraintAdapter();
       }
       @Override
       public Adapter caseRegulatoryConstraint(RegulatoryConstraint object)
       {
         return createRegulatoryConstraintAdapter();
-      }
-      @Override
-      public Adapter caseMissionEvent(MissionEvent object)
-      {
-        return createMissionEventAdapter();
       }
       @Override
       public Adapter caseRelation(Relation object)
@@ -233,6 +223,36 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ActionElement <em>Action Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ActionElement
+   * @generated
+   */
+  public Adapter createActionElementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.DroneGroup <em>Drone Group</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.DroneGroup
+   * @generated
+   */
+  public Adapter createDroneGroupAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Drone <em>Drone</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -243,51 +263,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDroneAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.EnergyModel <em>Energy Model</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.EnergyModel
-   * @generated
-   */
-  public Adapter createEnergyModelAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Phase <em>Phase</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Phase
-   * @generated
-   */
-  public Adapter createPhaseAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.SubPhase <em>Sub Phase</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.SubPhase
-   * @generated
-   */
-  public Adapter createSubPhaseAdapter()
   {
     return null;
   }
@@ -338,16 +313,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.SafetyConstraint <em>Safety Constraint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.PermissionConstraint <em>Permission Constraint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.SafetyConstraint
+   * @see org.xtext.example.mydsl.myDsl.PermissionConstraint
    * @generated
    */
-  public Adapter createSafetyConstraintAdapter()
+  public Adapter createPermissionConstraintAdapter()
   {
     return null;
   }
@@ -363,21 +338,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRegulatoryConstraintAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.MissionEvent <em>Mission Event</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.MissionEvent
-   * @generated
-   */
-  public Adapter createMissionEventAdapter()
   {
     return null;
   }

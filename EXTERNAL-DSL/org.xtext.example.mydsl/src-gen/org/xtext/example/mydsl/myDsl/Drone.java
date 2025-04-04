@@ -3,7 +3,6 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,12 +13,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getBatterCapacity <em>Batter Capacity</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getMaxFlightTime <em>Max Flight Time</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getPayloadCapacity <em>Payload Capacity</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getRole <em>Role</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getAddEnergyModel <em>Add Energy Model</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getIp <em>Ip</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Drone#getSerialNumber <em>Serial Number</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone()
@@ -29,125 +24,47 @@ import org.eclipse.emf.common.util.EList;
 public interface Drone extends Entity
 {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Ip</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' attribute.
-   * @see #setType(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_Type()
+   * @return the value of the '<em>Ip</em>' attribute.
+   * @see #setIp(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_Ip()
    * @model
    * @generated
    */
-  String getType();
+  String getIp();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getType <em>Type</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getIp <em>Ip</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' attribute.
-   * @see #getType()
+   * @param value the new value of the '<em>Ip</em>' attribute.
+   * @see #getIp()
    * @generated
    */
-  void setType(String value);
+  void setIp(String value);
 
   /**
-   * Returns the value of the '<em><b>Batter Capacity</b></em>' attribute.
+   * Returns the value of the '<em><b>Serial Number</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Batter Capacity</em>' attribute.
-   * @see #setBatterCapacity(float)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_BatterCapacity()
+   * @return the value of the '<em>Serial Number</em>' attribute.
+   * @see #setSerialNumber(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_SerialNumber()
    * @model
    * @generated
    */
-  float getBatterCapacity();
+  String getSerialNumber();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getBatterCapacity <em>Batter Capacity</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getSerialNumber <em>Serial Number</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Batter Capacity</em>' attribute.
-   * @see #getBatterCapacity()
+   * @param value the new value of the '<em>Serial Number</em>' attribute.
+   * @see #getSerialNumber()
    * @generated
    */
-  void setBatterCapacity(float value);
-
-  /**
-   * Returns the value of the '<em><b>Max Flight Time</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Max Flight Time</em>' attribute.
-   * @see #setMaxFlightTime(float)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_MaxFlightTime()
-   * @model
-   * @generated
-   */
-  float getMaxFlightTime();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getMaxFlightTime <em>Max Flight Time</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Max Flight Time</em>' attribute.
-   * @see #getMaxFlightTime()
-   * @generated
-   */
-  void setMaxFlightTime(float value);
-
-  /**
-   * Returns the value of the '<em><b>Payload Capacity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Payload Capacity</em>' attribute.
-   * @see #setPayloadCapacity(float)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_PayloadCapacity()
-   * @model
-   * @generated
-   */
-  float getPayloadCapacity();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getPayloadCapacity <em>Payload Capacity</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Payload Capacity</em>' attribute.
-   * @see #getPayloadCapacity()
-   * @generated
-   */
-  void setPayloadCapacity(float value);
-
-  /**
-   * Returns the value of the '<em><b>Role</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Role</em>' attribute.
-   * @see #setRole(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_Role()
-   * @model
-   * @generated
-   */
-  String getRole();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Drone#getRole <em>Role</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Role</em>' attribute.
-   * @see #getRole()
-   * @generated
-   */
-  void setRole(String value);
-
-  /**
-   * Returns the value of the '<em><b>Add Energy Model</b></em>' reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.EnergyModel}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Add Energy Model</em>' reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDrone_AddEnergyModel()
-   * @model
-   * @generated
-   */
-  EList<EnergyModel> getAddEnergyModel();
+  void setSerialNumber(String value);
 
 } // Drone

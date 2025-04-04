@@ -69,16 +69,14 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.SYSTEM_ROOT: return createSystemRoot();
       case MyDslPackage.ENTITY: return createEntity();
       case MyDslPackage.MISSION: return createMission();
+      case MyDslPackage.ACTION_ELEMENT: return createActionElement();
+      case MyDslPackage.DRONE_GROUP: return createDroneGroup();
       case MyDslPackage.DRONE: return createDrone();
-      case MyDslPackage.ENERGY_MODEL: return createEnergyModel();
-      case MyDslPackage.PHASE: return createPhase();
-      case MyDslPackage.SUB_PHASE: return createSubPhase();
       case MyDslPackage.ACTION: return createAction();
       case MyDslPackage.CONSTRAINT_CLASSES: return createConstraintClasses();
       case MyDslPackage.CONSTRAINT: return createConstraint();
-      case MyDslPackage.SAFETY_CONSTRAINT: return createSafetyConstraint();
+      case MyDslPackage.PERMISSION_CONSTRAINT: return createPermissionConstraint();
       case MyDslPackage.REGULATORY_CONSTRAINT: return createRegulatoryConstraint();
-      case MyDslPackage.MISSION_EVENT: return createMissionEvent();
       case MyDslPackage.RELATION: return createRelation();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -139,46 +137,34 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
+  public ActionElement createActionElement()
+  {
+    ActionElementImpl actionElement = new ActionElementImpl();
+    return actionElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DroneGroup createDroneGroup()
+  {
+    DroneGroupImpl droneGroup = new DroneGroupImpl();
+    return droneGroup;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Drone createDrone()
   {
     DroneImpl drone = new DroneImpl();
     return drone;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EnergyModel createEnergyModel()
-  {
-    EnergyModelImpl energyModel = new EnergyModelImpl();
-    return energyModel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Phase createPhase()
-  {
-    PhaseImpl phase = new PhaseImpl();
-    return phase;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public SubPhase createSubPhase()
-  {
-    SubPhaseImpl subPhase = new SubPhaseImpl();
-    return subPhase;
   }
 
   /**
@@ -223,10 +209,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
-  public SafetyConstraint createSafetyConstraint()
+  public PermissionConstraint createPermissionConstraint()
   {
-    SafetyConstraintImpl safetyConstraint = new SafetyConstraintImpl();
-    return safetyConstraint;
+    PermissionConstraintImpl permissionConstraint = new PermissionConstraintImpl();
+    return permissionConstraint;
   }
 
   /**
@@ -239,18 +225,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     RegulatoryConstraintImpl regulatoryConstraint = new RegulatoryConstraintImpl();
     return regulatoryConstraint;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public MissionEvent createMissionEvent()
-  {
-    MissionEventImpl missionEvent = new MissionEventImpl();
-    return missionEvent;
   }
 
   /**

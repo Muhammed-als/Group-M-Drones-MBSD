@@ -20,7 +20,6 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ConstraintClassesImpl#getConstraintType <em>Constraint Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ConstraintClassesImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
@@ -28,26 +27,6 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  */
 public class ConstraintClassesImpl extends EntityImpl implements ConstraintClasses
 {
-  /**
-   * The default value of the '{@link #getConstraintType() <em>Constraint Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getConstraintType()
-   * @generated
-   * @ordered
-   */
-  protected static final String CONSTRAINT_TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getConstraintType() <em>Constraint Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getConstraintType()
-   * @generated
-   * @ordered
-   */
-  protected String constraintType = CONSTRAINT_TYPE_EDEFAULT;
-
   /**
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -95,31 +74,6 @@ public class ConstraintClassesImpl extends EntityImpl implements ConstraintClass
    * @generated
    */
   @Override
-  public String getConstraintType()
-  {
-    return constraintType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setConstraintType(String newConstraintType)
-  {
-    String oldConstraintType = constraintType;
-    constraintType = newConstraintType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CONSTRAINT_CLASSES__CONSTRAINT_TYPE, oldConstraintType, constraintType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public String getDescription()
   {
     return description;
@@ -149,8 +103,6 @@ public class ConstraintClassesImpl extends EntityImpl implements ConstraintClass
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRAINT_CLASSES__CONSTRAINT_TYPE:
-        return getConstraintType();
       case MyDslPackage.CONSTRAINT_CLASSES__DESCRIPTION:
         return getDescription();
     }
@@ -167,9 +119,6 @@ public class ConstraintClassesImpl extends EntityImpl implements ConstraintClass
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRAINT_CLASSES__CONSTRAINT_TYPE:
-        setConstraintType((String)newValue);
-        return;
       case MyDslPackage.CONSTRAINT_CLASSES__DESCRIPTION:
         setDescription((String)newValue);
         return;
@@ -187,9 +136,6 @@ public class ConstraintClassesImpl extends EntityImpl implements ConstraintClass
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRAINT_CLASSES__CONSTRAINT_TYPE:
-        setConstraintType(CONSTRAINT_TYPE_EDEFAULT);
-        return;
       case MyDslPackage.CONSTRAINT_CLASSES__DESCRIPTION:
         setDescription(DESCRIPTION_EDEFAULT);
         return;
@@ -207,8 +153,6 @@ public class ConstraintClassesImpl extends EntityImpl implements ConstraintClass
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRAINT_CLASSES__CONSTRAINT_TYPE:
-        return CONSTRAINT_TYPE_EDEFAULT == null ? constraintType != null : !CONSTRAINT_TYPE_EDEFAULT.equals(constraintType);
       case MyDslPackage.CONSTRAINT_CLASSES__DESCRIPTION:
         return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
     }
@@ -226,9 +170,7 @@ public class ConstraintClassesImpl extends EntityImpl implements ConstraintClass
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (constraintType: ");
-    result.append(constraintType);
-    result.append(", description: ");
+    result.append(" (description: ");
     result.append(description);
     result.append(')');
     return result.toString();

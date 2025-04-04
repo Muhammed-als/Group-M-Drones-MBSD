@@ -13,7 +13,6 @@ package org.xtext.example.mydsl.myDsl;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ConstraintClasses#getConstraintType <em>Constraint Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ConstraintClasses#getDescription <em>Description</em>}</li>
  * </ul>
  *
@@ -23,28 +22,6 @@ package org.xtext.example.mydsl.myDsl;
  */
 public interface ConstraintClasses extends Entity
 {
-  /**
-   * Returns the value of the '<em><b>Constraint Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Constraint Type</em>' attribute.
-   * @see #setConstraintType(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getConstraintClasses_ConstraintType()
-   * @model
-   * @generated
-   */
-  String getConstraintType();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ConstraintClasses#getConstraintType <em>Constraint Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Constraint Type</em>' attribute.
-   * @see #getConstraintType()
-   * @generated
-   */
-  void setConstraintType(String value);
-
   /**
    * Returns the value of the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->

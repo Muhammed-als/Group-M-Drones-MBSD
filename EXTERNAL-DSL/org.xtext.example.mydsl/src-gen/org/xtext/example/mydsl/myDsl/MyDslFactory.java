@@ -60,6 +60,24 @@ public interface MyDslFactory extends EFactory
   Mission createMission();
 
   /**
+   * Returns a new object of class '<em>Action Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Action Element</em>'.
+   * @generated
+   */
+  ActionElement createActionElement();
+
+  /**
+   * Returns a new object of class '<em>Drone Group</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Drone Group</em>'.
+   * @generated
+   */
+  DroneGroup createDroneGroup();
+
+  /**
    * Returns a new object of class '<em>Drone</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -67,33 +85,6 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Drone createDrone();
-
-  /**
-   * Returns a new object of class '<em>Energy Model</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Energy Model</em>'.
-   * @generated
-   */
-  EnergyModel createEnergyModel();
-
-  /**
-   * Returns a new object of class '<em>Phase</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Phase</em>'.
-   * @generated
-   */
-  Phase createPhase();
-
-  /**
-   * Returns a new object of class '<em>Sub Phase</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Sub Phase</em>'.
-   * @generated
-   */
-  SubPhase createSubPhase();
 
   /**
    * Returns a new object of class '<em>Action</em>'.
@@ -123,13 +114,13 @@ public interface MyDslFactory extends EFactory
   Constraint createConstraint();
 
   /**
-   * Returns a new object of class '<em>Safety Constraint</em>'.
+   * Returns a new object of class '<em>Permission Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Safety Constraint</em>'.
+   * @return a new object of class '<em>Permission Constraint</em>'.
    * @generated
    */
-  SafetyConstraint createSafetyConstraint();
+  PermissionConstraint createPermissionConstraint();
 
   /**
    * Returns a new object of class '<em>Regulatory Constraint</em>'.
@@ -139,15 +130,6 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   RegulatoryConstraint createRegulatoryConstraint();
-
-  /**
-   * Returns a new object of class '<em>Mission Event</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Mission Event</em>'.
-   * @generated
-   */
-  MissionEvent createMissionEvent();
 
   /**
    * Returns a new object of class '<em>Relation</em>'.

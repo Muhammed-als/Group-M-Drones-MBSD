@@ -3,20 +3,13 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.xtext.example.mydsl.myDsl.Drone;
-import org.xtext.example.mydsl.myDsl.EnergyModel;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
 /**
@@ -27,12 +20,8 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getBatterCapacity <em>Batter Capacity</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getMaxFlightTime <em>Max Flight Time</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getPayloadCapacity <em>Payload Capacity</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getRole <em>Role</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getAddEnergyModel <em>Add Energy Model</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getIp <em>Ip</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl#getSerialNumber <em>Serial Number</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,114 +29,44 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 public class DroneImpl extends EntityImpl implements Drone
 {
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The default value of the '{@link #getIp() <em>Ip</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getIp()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
+  protected static final String IP_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getIp() <em>Ip</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getIp()
    * @generated
    * @ordered
    */
-  protected String type = TYPE_EDEFAULT;
+  protected String ip = IP_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getBatterCapacity() <em>Batter Capacity</em>}' attribute.
+   * The default value of the '{@link #getSerialNumber() <em>Serial Number</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBatterCapacity()
+   * @see #getSerialNumber()
    * @generated
    * @ordered
    */
-  protected static final float BATTER_CAPACITY_EDEFAULT = 0.0F;
+  protected static final String SERIAL_NUMBER_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getBatterCapacity() <em>Batter Capacity</em>}' attribute.
+   * The cached value of the '{@link #getSerialNumber() <em>Serial Number</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBatterCapacity()
+   * @see #getSerialNumber()
    * @generated
    * @ordered
    */
-  protected float batterCapacity = BATTER_CAPACITY_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getMaxFlightTime() <em>Max Flight Time</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMaxFlightTime()
-   * @generated
-   * @ordered
-   */
-  protected static final float MAX_FLIGHT_TIME_EDEFAULT = 0.0F;
-
-  /**
-   * The cached value of the '{@link #getMaxFlightTime() <em>Max Flight Time</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMaxFlightTime()
-   * @generated
-   * @ordered
-   */
-  protected float maxFlightTime = MAX_FLIGHT_TIME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getPayloadCapacity() <em>Payload Capacity</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPayloadCapacity()
-   * @generated
-   * @ordered
-   */
-  protected static final float PAYLOAD_CAPACITY_EDEFAULT = 0.0F;
-
-  /**
-   * The cached value of the '{@link #getPayloadCapacity() <em>Payload Capacity</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPayloadCapacity()
-   * @generated
-   * @ordered
-   */
-  protected float payloadCapacity = PAYLOAD_CAPACITY_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getRole() <em>Role</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRole()
-   * @generated
-   * @ordered
-   */
-  protected static final String ROLE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getRole() <em>Role</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRole()
-   * @generated
-   * @ordered
-   */
-  protected String role = ROLE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getAddEnergyModel() <em>Add Energy Model</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAddEnergyModel()
-   * @generated
-   * @ordered
-   */
-  protected EList<EnergyModel> addEnergyModel;
+  protected String serialNumber = SERIAL_NUMBER_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -176,9 +95,9 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public String getType()
+  public String getIp()
   {
-    return type;
+    return ip;
   }
 
   /**
@@ -187,12 +106,12 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public void setType(String newType)
+  public void setIp(String newIp)
   {
-    String oldType = type;
-    type = newType;
+    String oldIp = ip;
+    ip = newIp;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__IP, oldIp, ip));
   }
 
   /**
@@ -201,9 +120,9 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public float getBatterCapacity()
+  public String getSerialNumber()
   {
-    return batterCapacity;
+    return serialNumber;
   }
 
   /**
@@ -212,102 +131,12 @@ public class DroneImpl extends EntityImpl implements Drone
    * @generated
    */
   @Override
-  public void setBatterCapacity(float newBatterCapacity)
+  public void setSerialNumber(String newSerialNumber)
   {
-    float oldBatterCapacity = batterCapacity;
-    batterCapacity = newBatterCapacity;
+    String oldSerialNumber = serialNumber;
+    serialNumber = newSerialNumber;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__BATTER_CAPACITY, oldBatterCapacity, batterCapacity));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public float getMaxFlightTime()
-  {
-    return maxFlightTime;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setMaxFlightTime(float newMaxFlightTime)
-  {
-    float oldMaxFlightTime = maxFlightTime;
-    maxFlightTime = newMaxFlightTime;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__MAX_FLIGHT_TIME, oldMaxFlightTime, maxFlightTime));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public float getPayloadCapacity()
-  {
-    return payloadCapacity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setPayloadCapacity(float newPayloadCapacity)
-  {
-    float oldPayloadCapacity = payloadCapacity;
-    payloadCapacity = newPayloadCapacity;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__PAYLOAD_CAPACITY, oldPayloadCapacity, payloadCapacity));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getRole()
-  {
-    return role;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setRole(String newRole)
-  {
-    String oldRole = role;
-    role = newRole;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__ROLE, oldRole, role));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<EnergyModel> getAddEnergyModel()
-  {
-    if (addEnergyModel == null)
-    {
-      addEnergyModel = new EObjectResolvingEList<EnergyModel>(EnergyModel.class, this, MyDslPackage.DRONE__ADD_ENERGY_MODEL);
-    }
-    return addEnergyModel;
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DRONE__SERIAL_NUMBER, oldSerialNumber, serialNumber));
   }
 
   /**
@@ -320,18 +149,10 @@ public class DroneImpl extends EntityImpl implements Drone
   {
     switch (featureID)
     {
-      case MyDslPackage.DRONE__TYPE:
-        return getType();
-      case MyDslPackage.DRONE__BATTER_CAPACITY:
-        return getBatterCapacity();
-      case MyDslPackage.DRONE__MAX_FLIGHT_TIME:
-        return getMaxFlightTime();
-      case MyDslPackage.DRONE__PAYLOAD_CAPACITY:
-        return getPayloadCapacity();
-      case MyDslPackage.DRONE__ROLE:
-        return getRole();
-      case MyDslPackage.DRONE__ADD_ENERGY_MODEL:
-        return getAddEnergyModel();
+      case MyDslPackage.DRONE__IP:
+        return getIp();
+      case MyDslPackage.DRONE__SERIAL_NUMBER:
+        return getSerialNumber();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -341,30 +162,16 @@ public class DroneImpl extends EntityImpl implements Drone
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case MyDslPackage.DRONE__TYPE:
-        setType((String)newValue);
+      case MyDslPackage.DRONE__IP:
+        setIp((String)newValue);
         return;
-      case MyDslPackage.DRONE__BATTER_CAPACITY:
-        setBatterCapacity((Float)newValue);
-        return;
-      case MyDslPackage.DRONE__MAX_FLIGHT_TIME:
-        setMaxFlightTime((Float)newValue);
-        return;
-      case MyDslPackage.DRONE__PAYLOAD_CAPACITY:
-        setPayloadCapacity((Float)newValue);
-        return;
-      case MyDslPackage.DRONE__ROLE:
-        setRole((String)newValue);
-        return;
-      case MyDslPackage.DRONE__ADD_ENERGY_MODEL:
-        getAddEnergyModel().clear();
-        getAddEnergyModel().addAll((Collection<? extends EnergyModel>)newValue);
+      case MyDslPackage.DRONE__SERIAL_NUMBER:
+        setSerialNumber((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -380,23 +187,11 @@ public class DroneImpl extends EntityImpl implements Drone
   {
     switch (featureID)
     {
-      case MyDslPackage.DRONE__TYPE:
-        setType(TYPE_EDEFAULT);
+      case MyDslPackage.DRONE__IP:
+        setIp(IP_EDEFAULT);
         return;
-      case MyDslPackage.DRONE__BATTER_CAPACITY:
-        setBatterCapacity(BATTER_CAPACITY_EDEFAULT);
-        return;
-      case MyDslPackage.DRONE__MAX_FLIGHT_TIME:
-        setMaxFlightTime(MAX_FLIGHT_TIME_EDEFAULT);
-        return;
-      case MyDslPackage.DRONE__PAYLOAD_CAPACITY:
-        setPayloadCapacity(PAYLOAD_CAPACITY_EDEFAULT);
-        return;
-      case MyDslPackage.DRONE__ROLE:
-        setRole(ROLE_EDEFAULT);
-        return;
-      case MyDslPackage.DRONE__ADD_ENERGY_MODEL:
-        getAddEnergyModel().clear();
+      case MyDslPackage.DRONE__SERIAL_NUMBER:
+        setSerialNumber(SERIAL_NUMBER_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -412,18 +207,10 @@ public class DroneImpl extends EntityImpl implements Drone
   {
     switch (featureID)
     {
-      case MyDslPackage.DRONE__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-      case MyDslPackage.DRONE__BATTER_CAPACITY:
-        return batterCapacity != BATTER_CAPACITY_EDEFAULT;
-      case MyDslPackage.DRONE__MAX_FLIGHT_TIME:
-        return maxFlightTime != MAX_FLIGHT_TIME_EDEFAULT;
-      case MyDslPackage.DRONE__PAYLOAD_CAPACITY:
-        return payloadCapacity != PAYLOAD_CAPACITY_EDEFAULT;
-      case MyDslPackage.DRONE__ROLE:
-        return ROLE_EDEFAULT == null ? role != null : !ROLE_EDEFAULT.equals(role);
-      case MyDslPackage.DRONE__ADD_ENERGY_MODEL:
-        return addEnergyModel != null && !addEnergyModel.isEmpty();
+      case MyDslPackage.DRONE__IP:
+        return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
+      case MyDslPackage.DRONE__SERIAL_NUMBER:
+        return SERIAL_NUMBER_EDEFAULT == null ? serialNumber != null : !SERIAL_NUMBER_EDEFAULT.equals(serialNumber);
     }
     return super.eIsSet(featureID);
   }
@@ -439,16 +226,10 @@ public class DroneImpl extends EntityImpl implements Drone
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (type: ");
-    result.append(type);
-    result.append(", batterCapacity: ");
-    result.append(batterCapacity);
-    result.append(", maxFlightTime: ");
-    result.append(maxFlightTime);
-    result.append(", payloadCapacity: ");
-    result.append(payloadCapacity);
-    result.append(", role: ");
-    result.append(role);
+    result.append(" (ip: ");
+    result.append(ip);
+    result.append(", serialNumber: ");
+    result.append(serialNumber);
     result.append(')');
     return result.toString();
   }

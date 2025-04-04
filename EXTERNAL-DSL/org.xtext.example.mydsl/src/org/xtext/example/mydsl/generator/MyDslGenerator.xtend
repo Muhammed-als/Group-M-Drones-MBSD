@@ -14,12 +14,8 @@
  import java.util.ArrayList
  import org.xtext.example.mydsl.myDsl.Mission
  import org.xtext.example.mydsl.myDsl.Drone
- import org.xtext.example.mydsl.myDsl.EnergyModel
- import org.xtext.example.mydsl.myDsl.Phase
- import org.xtext.example.mydsl.myDsl.SubPhase
  import org.xtext.example.mydsl.myDsl.Action
  import org.xtext.example.mydsl.myDsl.Constraint
- import org.xtext.example.mydsl.myDsl.SafetyConstraint
  import org.xtext.example.mydsl.myDsl.RegulatoryConstraint
  import org.xtext.example.mydsl.myDsl.MissionEvent
  import org.xtext.example.mydsl.myDsl.Relation

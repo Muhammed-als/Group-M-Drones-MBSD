@@ -1,0 +1,109 @@
+@startuml
+
+' === Abstract/Interface Types ===
+abstract class ActionElement
+note right of ActionElement
+  Abstract type allowing a Mission
+  to include both Actions and
+  other Missions in its action list
+end note
+
+' === Concrete Classes ===
+class Mission {
+    droneGroup: DroneGroup
+    actions: List<ActionElement>
+    constraints: List<Constraint>
+}
+note left of Mission
+  Represents a high-level task
+  assigned to a drone group.
+  Can include Actions or nested Missions.
+end note
+
+class DroneGroup {
+    drones: List<Drone>
+}
+note right of DroneGroup
+  Groups multiple drones
+  for coordinated missions.
+end note
+
+class Drone {
+    ip: String
+    serialNumber: String
+}
+note right of Drone
+  Represents an individual drone
+  with its connection and identification info.
+end note
+
+class Action {
+    description: String
+    type: String
+}
+note right of Action
+  A concrete task like "Scan" or "Deliver"
+  executed by a drone.
+end note
+
+abstract Constraint {
+    description: String
+}
+note right of Constraint
+  Base class for all constraints
+  (e.g., regulatory or permission-based).
+end note
+
+class PermissionConstraint {
+    description: String
+}
+note right of PermissionConstraint
+  Ensures mission permissions, e.g., battery level.
+end note
+
+class RegulatoryConstraint {
+    description: String
+}
+note right of RegulatoryConstraint
+  Ensures legal/regulatory compliance.
+end note
+
+class Relation {
+    name: String
+    from: Entity
+    to: Entity
+    type: String
+}
+note bottom of Relation
+  Defines semantic links between entities,
+  like inheritance or dependencies.
+end note
+
+abstract class Entity
+note right of Entity
+  A general type for any component
+  that can participate in a relation.
+end note
+
+' === Inheritance ===
+ActionElement <|-- Mission
+ActionElement <|-- Action
+
+Constraint <|-- PermissionConstraint
+Constraint <|-- RegulatoryConstraint
+
+Entity <|-- Mission
+Entity <|-- DroneGroup
+Entity <|-- Drone
+Entity <|-- Action
+Entity <|-- Constraint
+Entity <|-- PermissionConstraint
+Entity <|-- RegulatoryConstraint
+
+' === Relationships ===
+Mission "1" --> "1" DroneGroup : contains
+Mission "1" --> "1..*" ActionElement : triggers
+Mission "1" --> "0..*" Constraint : constraints
+DroneGroup "1" --> "1..*" Drone : contains
+
+@enduml

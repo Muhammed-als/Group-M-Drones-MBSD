@@ -5,24 +5,26 @@ package org.xtext.example.mydsl.myDsl.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.xtext.example.mydsl.myDsl.ActionElement;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Regulatory Constraint</b></em>'.
+ * An implementation of the model object '<em><b>Action Element</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class RegulatoryConstraintImpl extends ConstraintClassesImpl implements RegulatoryConstraint
+public class ActionElementImpl extends MinimalEObjectImpl.Container implements ActionElement
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RegulatoryConstraintImpl()
+  protected ActionElementImpl()
   {
     super();
   }
@@ -35,7 +37,7 @@ public class RegulatoryConstraintImpl extends ConstraintClassesImpl implements R
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.REGULATORY_CONSTRAINT;
+    return MyDslPackage.Literals.ACTION_ELEMENT;
   }
 
-} //RegulatoryConstraintImpl
+} //ActionElementImpl

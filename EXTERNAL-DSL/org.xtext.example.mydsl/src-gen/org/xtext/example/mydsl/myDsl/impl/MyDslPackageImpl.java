@@ -11,21 +11,19 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.mydsl.myDsl.Action;
+import org.xtext.example.mydsl.myDsl.ActionElement;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ConstraintClasses;
 import org.xtext.example.mydsl.myDsl.Drone;
-import org.xtext.example.mydsl.myDsl.EnergyModel;
+import org.xtext.example.mydsl.myDsl.DroneGroup;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Mission;
-import org.xtext.example.mydsl.myDsl.MissionEvent;
 import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Phase;
+import org.xtext.example.mydsl.myDsl.PermissionConstraint;
 import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
 import org.xtext.example.mydsl.myDsl.Relation;
-import org.xtext.example.mydsl.myDsl.SafetyConstraint;
-import org.xtext.example.mydsl.myDsl.SubPhase;
 import org.xtext.example.mydsl.myDsl.SystemRoot;
 
 /**
@@ -69,28 +67,21 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass actionElementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass droneGroupEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass droneEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass energyModelEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass phaseEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass subPhaseEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,7 +109,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass safetyConstraintEClass = null;
+  private EClass permissionConstraintEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,13 +117,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass regulatoryConstraintEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass missionEventEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -330,9 +314,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Id()
+  public EReference getMission_DroneGroup()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(0);
+    return (EReference)missionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -341,9 +325,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_MissionType()
+  public EReference getMission_Actions()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(1);
+    return (EReference)missionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -352,9 +336,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_StartLocation()
+  public EReference getMission_Constraints()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(2);
+    return (EReference)missionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -363,9 +347,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_EndLocation()
+  public EClass getActionElement()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(3);
+    return actionElementEClass;
   }
 
   /**
@@ -374,9 +358,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Priority()
+  public EClass getDroneGroup()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(4);
+    return droneGroupEClass;
   }
 
   /**
@@ -385,53 +369,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_EstimatedTime()
+  public EReference getDroneGroup_Drones()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getMission_AddDrones()
-  {
-    return (EReference)missionEClass.getEStructuralFeatures().get(6);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getMission_AddPhases()
-  {
-    return (EReference)missionEClass.getEStructuralFeatures().get(7);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getMission_AddConstraints()
-  {
-    return (EReference)missionEClass.getEStructuralFeatures().get(8);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getMission_AddEvents()
-  {
-    return (EReference)missionEClass.getEStructuralFeatures().get(9);
+    return (EReference)droneGroupEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -451,7 +391,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getDrone_Type()
+  public EAttribute getDrone_Ip()
   {
     return (EAttribute)droneEClass.getEStructuralFeatures().get(0);
   }
@@ -462,185 +402,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getDrone_BatterCapacity()
+  public EAttribute getDrone_SerialNumber()
   {
     return (EAttribute)droneEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getDrone_MaxFlightTime()
-  {
-    return (EAttribute)droneEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getDrone_PayloadCapacity()
-  {
-    return (EAttribute)droneEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getDrone_Role()
-  {
-    return (EAttribute)droneEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getDrone_AddEnergyModel()
-  {
-    return (EReference)droneEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getEnergyModel()
-  {
-    return energyModelEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getEnergyModel_ConsumptionRate()
-  {
-    return (EAttribute)energyModelEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getEnergyModel_BatteryHealth()
-  {
-    return (EAttribute)energyModelEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getEnergyModel_RechargeTime()
-  {
-    return (EAttribute)energyModelEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getPhase()
-  {
-    return phaseEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getPhase_PhaseType()
-  {
-    return (EAttribute)phaseEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getPhase_EnergyUsage()
-  {
-    return (EAttribute)phaseEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getPhase_AddSubPhase()
-  {
-    return (EReference)phaseEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getSubPhase()
-  {
-    return subPhaseEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSubPhase_SubPhaseType()
-  {
-    return (EAttribute)subPhaseEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSubPhase_Duration()
-  {
-    return (EAttribute)subPhaseEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getSubPhase_AddAction()
-  {
-    return (EReference)subPhaseEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -660,7 +424,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getAction_ActionType()
+  public EAttribute getAction_Description()
   {
     return (EAttribute)actionEClass.getEStructuralFeatures().get(0);
   }
@@ -671,20 +435,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getAction_InputOutput()
+  public EAttribute getAction_Type()
   {
     return (EAttribute)actionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAction_EnergyUsage()
-  {
-    return (EAttribute)actionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -704,20 +457,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getConstraintClasses_ConstraintType()
-  {
-    return (EAttribute)constraintClassesEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getConstraintClasses_Description()
   {
-    return (EAttribute)constraintClassesEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)constraintClassesEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -737,31 +479,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EClass getSafetyConstraint()
+  public EClass getPermissionConstraint()
   {
-    return safetyConstraintEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSafetyConstraint_MinBattery()
-  {
-    return (EAttribute)safetyConstraintEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSafetyConstraint_MaxWindSpeed()
-  {
-    return (EAttribute)safetyConstraintEClass.getEStructuralFeatures().get(1);
+    return permissionConstraintEClass;
   }
 
   /**
@@ -773,72 +493,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EClass getRegulatoryConstraint()
   {
     return regulatoryConstraintEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getRegulatoryConstraint_FlightPermission()
-  {
-    return (EAttribute)regulatoryConstraintEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getRegulatoryConstraint_AltitudeLimit()
-  {
-    return (EAttribute)regulatoryConstraintEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getMissionEvent()
-  {
-    return missionEventEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getMissionEvent_EventType()
-  {
-    return (EAttribute)missionEventEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getMissionEvent_ImpactLevel()
-  {
-    return (EAttribute)missionEventEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getMissionEvent_ResponseAction()
-  {
-    return (EAttribute)missionEventEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -941,63 +595,31 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(entityEClass, ENTITY__NAME);
 
     missionEClass = createEClass(MISSION);
-    createEAttribute(missionEClass, MISSION__ID);
-    createEAttribute(missionEClass, MISSION__MISSION_TYPE);
-    createEAttribute(missionEClass, MISSION__START_LOCATION);
-    createEAttribute(missionEClass, MISSION__END_LOCATION);
-    createEAttribute(missionEClass, MISSION__PRIORITY);
-    createEAttribute(missionEClass, MISSION__ESTIMATED_TIME);
-    createEReference(missionEClass, MISSION__ADD_DRONES);
-    createEReference(missionEClass, MISSION__ADD_PHASES);
-    createEReference(missionEClass, MISSION__ADD_CONSTRAINTS);
-    createEReference(missionEClass, MISSION__ADD_EVENTS);
+    createEReference(missionEClass, MISSION__DRONE_GROUP);
+    createEReference(missionEClass, MISSION__ACTIONS);
+    createEReference(missionEClass, MISSION__CONSTRAINTS);
+
+    actionElementEClass = createEClass(ACTION_ELEMENT);
+
+    droneGroupEClass = createEClass(DRONE_GROUP);
+    createEReference(droneGroupEClass, DRONE_GROUP__DRONES);
 
     droneEClass = createEClass(DRONE);
-    createEAttribute(droneEClass, DRONE__TYPE);
-    createEAttribute(droneEClass, DRONE__BATTER_CAPACITY);
-    createEAttribute(droneEClass, DRONE__MAX_FLIGHT_TIME);
-    createEAttribute(droneEClass, DRONE__PAYLOAD_CAPACITY);
-    createEAttribute(droneEClass, DRONE__ROLE);
-    createEReference(droneEClass, DRONE__ADD_ENERGY_MODEL);
-
-    energyModelEClass = createEClass(ENERGY_MODEL);
-    createEAttribute(energyModelEClass, ENERGY_MODEL__CONSUMPTION_RATE);
-    createEAttribute(energyModelEClass, ENERGY_MODEL__BATTERY_HEALTH);
-    createEAttribute(energyModelEClass, ENERGY_MODEL__RECHARGE_TIME);
-
-    phaseEClass = createEClass(PHASE);
-    createEAttribute(phaseEClass, PHASE__PHASE_TYPE);
-    createEAttribute(phaseEClass, PHASE__ENERGY_USAGE);
-    createEReference(phaseEClass, PHASE__ADD_SUB_PHASE);
-
-    subPhaseEClass = createEClass(SUB_PHASE);
-    createEAttribute(subPhaseEClass, SUB_PHASE__SUB_PHASE_TYPE);
-    createEAttribute(subPhaseEClass, SUB_PHASE__DURATION);
-    createEReference(subPhaseEClass, SUB_PHASE__ADD_ACTION);
+    createEAttribute(droneEClass, DRONE__IP);
+    createEAttribute(droneEClass, DRONE__SERIAL_NUMBER);
 
     actionEClass = createEClass(ACTION);
-    createEAttribute(actionEClass, ACTION__ACTION_TYPE);
-    createEAttribute(actionEClass, ACTION__INPUT_OUTPUT);
-    createEAttribute(actionEClass, ACTION__ENERGY_USAGE);
+    createEAttribute(actionEClass, ACTION__DESCRIPTION);
+    createEAttribute(actionEClass, ACTION__TYPE);
 
     constraintClassesEClass = createEClass(CONSTRAINT_CLASSES);
-    createEAttribute(constraintClassesEClass, CONSTRAINT_CLASSES__CONSTRAINT_TYPE);
     createEAttribute(constraintClassesEClass, CONSTRAINT_CLASSES__DESCRIPTION);
 
     constraintEClass = createEClass(CONSTRAINT);
 
-    safetyConstraintEClass = createEClass(SAFETY_CONSTRAINT);
-    createEAttribute(safetyConstraintEClass, SAFETY_CONSTRAINT__MIN_BATTERY);
-    createEAttribute(safetyConstraintEClass, SAFETY_CONSTRAINT__MAX_WIND_SPEED);
+    permissionConstraintEClass = createEClass(PERMISSION_CONSTRAINT);
 
     regulatoryConstraintEClass = createEClass(REGULATORY_CONSTRAINT);
-    createEAttribute(regulatoryConstraintEClass, REGULATORY_CONSTRAINT__FLIGHT_PERMISSION);
-    createEAttribute(regulatoryConstraintEClass, REGULATORY_CONSTRAINT__ALTITUDE_LIMIT);
-
-    missionEventEClass = createEClass(MISSION_EVENT);
-    createEAttribute(missionEventEClass, MISSION_EVENT__EVENT_TYPE);
-    createEAttribute(missionEventEClass, MISSION_EVENT__IMPACT_LEVEL);
-    createEAttribute(missionEventEClass, MISSION_EVENT__RESPONSE_ACTION);
 
     relationEClass = createEClass(RELATION);
     createEAttribute(relationEClass, RELATION__NAME);
@@ -1036,16 +658,15 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     // Add supertypes to classes
     missionEClass.getESuperTypes().add(this.getEntity());
+    missionEClass.getESuperTypes().add(this.getActionElement());
+    droneGroupEClass.getESuperTypes().add(this.getEntity());
     droneEClass.getESuperTypes().add(this.getEntity());
-    energyModelEClass.getESuperTypes().add(this.getEntity());
-    phaseEClass.getESuperTypes().add(this.getEntity());
-    subPhaseEClass.getESuperTypes().add(this.getEntity());
     actionEClass.getESuperTypes().add(this.getEntity());
+    actionEClass.getESuperTypes().add(this.getActionElement());
     constraintClassesEClass.getESuperTypes().add(this.getEntity());
     constraintEClass.getESuperTypes().add(this.getConstraintClasses());
-    safetyConstraintEClass.getESuperTypes().add(this.getConstraintClasses());
+    permissionConstraintEClass.getESuperTypes().add(this.getConstraintClasses());
     regulatoryConstraintEClass.getESuperTypes().add(this.getConstraintClasses());
-    missionEventEClass.getESuperTypes().add(this.getEntity());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1062,63 +683,31 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(missionEClass, Mission.class, "Mission", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMission_Id(), ecorePackage.getEString(), "id", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_MissionType(), ecorePackage.getEString(), "missionType", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_StartLocation(), ecorePackage.getEString(), "startLocation", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_EndLocation(), ecorePackage.getEString(), "endLocation", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_EstimatedTime(), ecorePackage.getEFloat(), "estimatedTime", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMission_AddDrones(), this.getDrone(), null, "addDrones", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMission_AddPhases(), this.getPhase(), null, "addPhases", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMission_AddConstraints(), this.getConstraintClasses(), null, "addConstraints", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMission_AddEvents(), this.getMissionEvent(), null, "addEvents", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_DroneGroup(), this.getDroneGroup(), null, "droneGroup", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_Actions(), this.getActionElement(), null, "actions", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_Constraints(), this.getConstraintClasses(), null, "constraints", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(actionElementEClass, ActionElement.class, "ActionElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(droneGroupEClass, DroneGroup.class, "DroneGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDroneGroup_Drones(), this.getDrone(), null, "drones", null, 0, -1, DroneGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(droneEClass, Drone.class, "Drone", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDrone_Type(), ecorePackage.getEString(), "type", null, 0, 1, Drone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDrone_BatterCapacity(), ecorePackage.getEFloat(), "batterCapacity", null, 0, 1, Drone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDrone_MaxFlightTime(), ecorePackage.getEFloat(), "maxFlightTime", null, 0, 1, Drone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDrone_PayloadCapacity(), ecorePackage.getEFloat(), "payloadCapacity", null, 0, 1, Drone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDrone_Role(), ecorePackage.getEString(), "role", null, 0, 1, Drone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDrone_AddEnergyModel(), this.getEnergyModel(), null, "addEnergyModel", null, 0, -1, Drone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(energyModelEClass, EnergyModel.class, "EnergyModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEnergyModel_ConsumptionRate(), ecorePackage.getEFloat(), "consumptionRate", null, 0, 1, EnergyModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEnergyModel_BatteryHealth(), ecorePackage.getEFloat(), "batteryHealth", null, 0, 1, EnergyModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEnergyModel_RechargeTime(), ecorePackage.getEFloat(), "rechargeTime", null, 0, 1, EnergyModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(phaseEClass, Phase.class, "Phase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPhase_PhaseType(), ecorePackage.getEString(), "phaseType", null, 0, 1, Phase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPhase_EnergyUsage(), ecorePackage.getEFloat(), "energyUsage", null, 0, 1, Phase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPhase_AddSubPhase(), this.getSubPhase(), null, "addSubPhase", null, 0, -1, Phase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(subPhaseEClass, SubPhase.class, "SubPhase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSubPhase_SubPhaseType(), ecorePackage.getEString(), "subPhaseType", null, 0, 1, SubPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSubPhase_Duration(), ecorePackage.getEFloat(), "duration", null, 0, 1, SubPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSubPhase_AddAction(), this.getAction(), null, "addAction", null, 0, -1, SubPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDrone_Ip(), ecorePackage.getEString(), "ip", null, 0, 1, Drone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDrone_SerialNumber(), ecorePackage.getEString(), "serialNumber", null, 0, 1, Drone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAction_ActionType(), ecorePackage.getEString(), "actionType", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAction_InputOutput(), ecorePackage.getEString(), "inputOutput", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAction_EnergyUsage(), ecorePackage.getEFloat(), "energyUsage", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAction_Description(), ecorePackage.getEString(), "description", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAction_Type(), ecorePackage.getEString(), "type", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constraintClassesEClass, ConstraintClasses.class, "ConstraintClasses", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getConstraintClasses_ConstraintType(), ecorePackage.getEString(), "constraintType", null, 0, 1, ConstraintClasses.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConstraintClasses_Description(), ecorePackage.getEString(), "description", null, 0, 1, ConstraintClasses.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(safetyConstraintEClass, SafetyConstraint.class, "SafetyConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSafetyConstraint_MinBattery(), ecorePackage.getEFloat(), "minBattery", null, 0, 1, SafetyConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSafetyConstraint_MaxWindSpeed(), ecorePackage.getEFloat(), "maxWindSpeed", null, 0, 1, SafetyConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(permissionConstraintEClass, PermissionConstraint.class, "PermissionConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(regulatoryConstraintEClass, RegulatoryConstraint.class, "RegulatoryConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRegulatoryConstraint_FlightPermission(), ecorePackage.getEString(), "flightPermission", null, 0, 1, RegulatoryConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRegulatoryConstraint_AltitudeLimit(), ecorePackage.getEInt(), "altitudeLimit", null, 0, 1, RegulatoryConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(missionEventEClass, MissionEvent.class, "MissionEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMissionEvent_EventType(), ecorePackage.getEString(), "eventType", null, 0, 1, MissionEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMissionEvent_ImpactLevel(), ecorePackage.getEInt(), "impactLevel", null, 0, 1, MissionEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMissionEvent_ResponseAction(), ecorePackage.getEString(), "responseAction", null, 0, 1, MissionEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relationEClass, Relation.class, "Relation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRelation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

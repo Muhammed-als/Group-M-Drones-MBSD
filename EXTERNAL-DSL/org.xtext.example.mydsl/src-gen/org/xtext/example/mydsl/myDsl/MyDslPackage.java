@@ -197,94 +197,31 @@ public interface MyDslPackage extends EPackage
   int MISSION__NAME = ENTITY__NAME;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * The feature id for the '<em><b>Drone Group</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MISSION__ID = ENTITY_FEATURE_COUNT + 0;
+  int MISSION__DRONE_GROUP = ENTITY_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Mission Type</b></em>' attribute.
+   * The feature id for the '<em><b>Actions</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MISSION__MISSION_TYPE = ENTITY_FEATURE_COUNT + 1;
+  int MISSION__ACTIONS = ENTITY_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Start Location</b></em>' attribute.
+   * The feature id for the '<em><b>Constraints</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MISSION__START_LOCATION = ENTITY_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>End Location</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION__END_LOCATION = ENTITY_FEATURE_COUNT + 3;
-
-  /**
-   * The feature id for the '<em><b>Priority</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION__PRIORITY = ENTITY_FEATURE_COUNT + 4;
-
-  /**
-   * The feature id for the '<em><b>Estimated Time</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION__ESTIMATED_TIME = ENTITY_FEATURE_COUNT + 5;
-
-  /**
-   * The feature id for the '<em><b>Add Drones</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION__ADD_DRONES = ENTITY_FEATURE_COUNT + 6;
-
-  /**
-   * The feature id for the '<em><b>Add Phases</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION__ADD_PHASES = ENTITY_FEATURE_COUNT + 7;
-
-  /**
-   * The feature id for the '<em><b>Add Constraints</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION__ADD_CONSTRAINTS = ENTITY_FEATURE_COUNT + 8;
-
-  /**
-   * The feature id for the '<em><b>Add Events</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION__ADD_EVENTS = ENTITY_FEATURE_COUNT + 9;
+  int MISSION__CONSTRAINTS = ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Mission</em>' class.
@@ -293,7 +230,63 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 10;
+  int MISSION_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ActionElementImpl <em>Action Element</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ActionElementImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getActionElement()
+   * @generated
+   */
+  int ACTION_ELEMENT = 4;
+
+  /**
+   * The number of structural features of the '<em>Action Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION_ELEMENT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DroneGroupImpl <em>Drone Group</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.DroneGroupImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDroneGroup()
+   * @generated
+   */
+  int DRONE_GROUP = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DRONE_GROUP__NAME = ENTITY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Drones</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DRONE_GROUP__DRONES = ENTITY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Drone Group</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DRONE_GROUP_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl <em>Drone</em>}' class.
@@ -303,7 +296,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDrone()
    * @generated
    */
-  int DRONE = 4;
+  int DRONE = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -315,58 +308,22 @@ public interface MyDslPackage extends EPackage
   int DRONE__NAME = ENTITY__NAME;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Ip</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DRONE__TYPE = ENTITY_FEATURE_COUNT + 0;
+  int DRONE__IP = ENTITY_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Batter Capacity</b></em>' attribute.
+   * The feature id for the '<em><b>Serial Number</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DRONE__BATTER_CAPACITY = ENTITY_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Max Flight Time</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DRONE__MAX_FLIGHT_TIME = ENTITY_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Payload Capacity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DRONE__PAYLOAD_CAPACITY = ENTITY_FEATURE_COUNT + 3;
-
-  /**
-   * The feature id for the '<em><b>Role</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DRONE__ROLE = ENTITY_FEATURE_COUNT + 4;
-
-  /**
-   * The feature id for the '<em><b>Add Energy Model</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DRONE__ADD_ENERGY_MODEL = ENTITY_FEATURE_COUNT + 5;
+  int DRONE__SERIAL_NUMBER = ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Drone</em>' class.
@@ -375,172 +332,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DRONE_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 6;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.EnergyModelImpl <em>Energy Model</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.EnergyModelImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getEnergyModel()
-   * @generated
-   */
-  int ENERGY_MODEL = 5;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENERGY_MODEL__NAME = ENTITY__NAME;
-
-  /**
-   * The feature id for the '<em><b>Consumption Rate</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENERGY_MODEL__CONSUMPTION_RATE = ENTITY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Battery Health</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENERGY_MODEL__BATTERY_HEALTH = ENTITY_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Recharge Time</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENERGY_MODEL__RECHARGE_TIME = ENTITY_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Energy Model</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENERGY_MODEL_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.PhaseImpl <em>Phase</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.PhaseImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPhase()
-   * @generated
-   */
-  int PHASE = 6;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PHASE__NAME = ENTITY__NAME;
-
-  /**
-   * The feature id for the '<em><b>Phase Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PHASE__PHASE_TYPE = ENTITY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Energy Usage</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PHASE__ENERGY_USAGE = ENTITY_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Add Sub Phase</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PHASE__ADD_SUB_PHASE = ENTITY_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Phase</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PHASE_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.SubPhaseImpl <em>Sub Phase</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.SubPhaseImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSubPhase()
-   * @generated
-   */
-  int SUB_PHASE = 7;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUB_PHASE__NAME = ENTITY__NAME;
-
-  /**
-   * The feature id for the '<em><b>Sub Phase Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUB_PHASE__SUB_PHASE_TYPE = ENTITY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Duration</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUB_PHASE__DURATION = ENTITY_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Add Action</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUB_PHASE__ADD_ACTION = ENTITY_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Sub Phase</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUB_PHASE_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
+  int DRONE_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ActionImpl <em>Action</em>}' class.
@@ -550,7 +342,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAction()
    * @generated
    */
-  int ACTION = 8;
+  int ACTION = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -562,31 +354,22 @@ public interface MyDslPackage extends EPackage
   int ACTION__NAME = ENTITY__NAME;
 
   /**
-   * The feature id for the '<em><b>Action Type</b></em>' attribute.
+   * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTION__ACTION_TYPE = ENTITY_FEATURE_COUNT + 0;
+  int ACTION__DESCRIPTION = ENTITY_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Input Output</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTION__INPUT_OUTPUT = ENTITY_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Energy Usage</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTION__ENERGY_USAGE = ENTITY_FEATURE_COUNT + 2;
+  int ACTION__TYPE = ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Action</em>' class.
@@ -595,7 +378,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ACTION_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
+  int ACTION_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ConstraintClassesImpl <em>Constraint Classes</em>}' class.
@@ -605,7 +388,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraintClasses()
    * @generated
    */
-  int CONSTRAINT_CLASSES = 9;
+  int CONSTRAINT_CLASSES = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -617,22 +400,13 @@ public interface MyDslPackage extends EPackage
   int CONSTRAINT_CLASSES__NAME = ENTITY__NAME;
 
   /**
-   * The feature id for the '<em><b>Constraint Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONSTRAINT_CLASSES__CONSTRAINT_TYPE = ENTITY_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONSTRAINT_CLASSES__DESCRIPTION = ENTITY_FEATURE_COUNT + 1;
+  int CONSTRAINT_CLASSES__DESCRIPTION = ENTITY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Constraint Classes</em>' class.
@@ -641,7 +415,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONSTRAINT_CLASSES_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 2;
+  int CONSTRAINT_CLASSES_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -651,7 +425,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 10;
+  int CONSTRAINT = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -661,15 +435,6 @@ public interface MyDslPackage extends EPackage
    * @ordered
    */
   int CONSTRAINT__NAME = CONSTRAINT_CLASSES__NAME;
-
-  /**
-   * The feature id for the '<em><b>Constraint Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONSTRAINT__CONSTRAINT_TYPE = CONSTRAINT_CLASSES__CONSTRAINT_TYPE;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -690,14 +455,14 @@ public interface MyDslPackage extends EPackage
   int CONSTRAINT_FEATURE_COUNT = CONSTRAINT_CLASSES_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.SafetyConstraintImpl <em>Safety Constraint</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.PermissionConstraintImpl <em>Permission Constraint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.SafetyConstraintImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSafetyConstraint()
+   * @see org.xtext.example.mydsl.myDsl.impl.PermissionConstraintImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPermissionConstraint()
    * @generated
    */
-  int SAFETY_CONSTRAINT = 11;
+  int PERMISSION_CONSTRAINT = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -706,16 +471,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SAFETY_CONSTRAINT__NAME = CONSTRAINT_CLASSES__NAME;
-
-  /**
-   * The feature id for the '<em><b>Constraint Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SAFETY_CONSTRAINT__CONSTRAINT_TYPE = CONSTRAINT_CLASSES__CONSTRAINT_TYPE;
+  int PERMISSION_CONSTRAINT__NAME = CONSTRAINT_CLASSES__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -724,34 +480,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SAFETY_CONSTRAINT__DESCRIPTION = CONSTRAINT_CLASSES__DESCRIPTION;
+  int PERMISSION_CONSTRAINT__DESCRIPTION = CONSTRAINT_CLASSES__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Min Battery</b></em>' attribute.
+   * The number of structural features of the '<em>Permission Constraint</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SAFETY_CONSTRAINT__MIN_BATTERY = CONSTRAINT_CLASSES_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Max Wind Speed</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SAFETY_CONSTRAINT__MAX_WIND_SPEED = CONSTRAINT_CLASSES_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Safety Constraint</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SAFETY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_CLASSES_FEATURE_COUNT + 2;
+  int PERMISSION_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_CLASSES_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RegulatoryConstraintImpl <em>Regulatory Constraint</em>}' class.
@@ -761,7 +499,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRegulatoryConstraint()
    * @generated
    */
-  int REGULATORY_CONSTRAINT = 12;
+  int REGULATORY_CONSTRAINT = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -773,15 +511,6 @@ public interface MyDslPackage extends EPackage
   int REGULATORY_CONSTRAINT__NAME = CONSTRAINT_CLASSES__NAME;
 
   /**
-   * The feature id for the '<em><b>Constraint Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REGULATORY_CONSTRAINT__CONSTRAINT_TYPE = CONSTRAINT_CLASSES__CONSTRAINT_TYPE;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -791,86 +520,13 @@ public interface MyDslPackage extends EPackage
   int REGULATORY_CONSTRAINT__DESCRIPTION = CONSTRAINT_CLASSES__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Flight Permission</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REGULATORY_CONSTRAINT__FLIGHT_PERMISSION = CONSTRAINT_CLASSES_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Altitude Limit</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REGULATORY_CONSTRAINT__ALTITUDE_LIMIT = CONSTRAINT_CLASSES_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Regulatory Constraint</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REGULATORY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_CLASSES_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MissionEventImpl <em>Mission Event</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.MissionEventImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMissionEvent()
-   * @generated
-   */
-  int MISSION_EVENT = 13;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION_EVENT__NAME = ENTITY__NAME;
-
-  /**
-   * The feature id for the '<em><b>Event Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION_EVENT__EVENT_TYPE = ENTITY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Impact Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION_EVENT__IMPACT_LEVEL = ENTITY_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Response Action</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION_EVENT__RESPONSE_ACTION = ENTITY_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Mission Event</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MISSION_EVENT_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
+  int REGULATORY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_CLASSES_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RelationImpl <em>Relation</em>}' class.
@@ -880,7 +536,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRelation()
    * @generated
    */
-  int RELATION = 14;
+  int RELATION = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1046,114 +702,68 @@ public interface MyDslPackage extends EPackage
   EClass getMission();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Mission#getId <em>Id</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Mission#getDroneGroup <em>Drone Group</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getId()
+   * @return the meta object for the reference '<em>Drone Group</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Mission#getDroneGroup()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_Id();
+  EReference getMission_DroneGroup();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Mission#getMissionType <em>Mission Type</em>}'.
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Mission#getActions <em>Actions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Mission Type</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getMissionType()
+   * @return the meta object for the reference list '<em>Actions</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Mission#getActions()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_MissionType();
+  EReference getMission_Actions();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Mission#getStartLocation <em>Start Location</em>}'.
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Mission#getConstraints <em>Constraints</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Start Location</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getStartLocation()
+   * @return the meta object for the reference list '<em>Constraints</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Mission#getConstraints()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_StartLocation();
+  EReference getMission_Constraints();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Mission#getEndLocation <em>End Location</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ActionElement <em>Action Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>End Location</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getEndLocation()
-   * @see #getMission()
+   * @return the meta object for class '<em>Action Element</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ActionElement
    * @generated
    */
-  EAttribute getMission_EndLocation();
+  EClass getActionElement();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Mission#getPriority <em>Priority</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DroneGroup <em>Drone Group</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Priority</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getPriority()
-   * @see #getMission()
+   * @return the meta object for class '<em>Drone Group</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DroneGroup
    * @generated
    */
-  EAttribute getMission_Priority();
+  EClass getDroneGroup();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Mission#getEstimatedTime <em>Estimated Time</em>}'.
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.DroneGroup#getDrones <em>Drones</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Estimated Time</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getEstimatedTime()
-   * @see #getMission()
+   * @return the meta object for the reference list '<em>Drones</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DroneGroup#getDrones()
+   * @see #getDroneGroup()
    * @generated
    */
-  EAttribute getMission_EstimatedTime();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Mission#getAddDrones <em>Add Drones</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Add Drones</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getAddDrones()
-   * @see #getMission()
-   * @generated
-   */
-  EReference getMission_AddDrones();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Mission#getAddPhases <em>Add Phases</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Add Phases</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getAddPhases()
-   * @see #getMission()
-   * @generated
-   */
-  EReference getMission_AddPhases();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Mission#getAddConstraints <em>Add Constraints</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Add Constraints</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getAddConstraints()
-   * @see #getMission()
-   * @generated
-   */
-  EReference getMission_AddConstraints();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Mission#getAddEvents <em>Add Events</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Add Events</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Mission#getAddEvents()
-   * @see #getMission()
-   * @generated
-   */
-  EReference getMission_AddEvents();
+  EReference getDroneGroup_Drones();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Drone <em>Drone</em>}'.
@@ -1166,199 +776,26 @@ public interface MyDslPackage extends EPackage
   EClass getDrone();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Drone#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Drone#getIp <em>Ip</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Drone#getType()
+   * @return the meta object for the attribute '<em>Ip</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Drone#getIp()
    * @see #getDrone()
    * @generated
    */
-  EAttribute getDrone_Type();
+  EAttribute getDrone_Ip();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Drone#getBatterCapacity <em>Batter Capacity</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Drone#getSerialNumber <em>Serial Number</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Batter Capacity</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Drone#getBatterCapacity()
+   * @return the meta object for the attribute '<em>Serial Number</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Drone#getSerialNumber()
    * @see #getDrone()
    * @generated
    */
-  EAttribute getDrone_BatterCapacity();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Drone#getMaxFlightTime <em>Max Flight Time</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Max Flight Time</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Drone#getMaxFlightTime()
-   * @see #getDrone()
-   * @generated
-   */
-  EAttribute getDrone_MaxFlightTime();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Drone#getPayloadCapacity <em>Payload Capacity</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Payload Capacity</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Drone#getPayloadCapacity()
-   * @see #getDrone()
-   * @generated
-   */
-  EAttribute getDrone_PayloadCapacity();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Drone#getRole <em>Role</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Role</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Drone#getRole()
-   * @see #getDrone()
-   * @generated
-   */
-  EAttribute getDrone_Role();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Drone#getAddEnergyModel <em>Add Energy Model</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Add Energy Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Drone#getAddEnergyModel()
-   * @see #getDrone()
-   * @generated
-   */
-  EReference getDrone_AddEnergyModel();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.EnergyModel <em>Energy Model</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Energy Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.EnergyModel
-   * @generated
-   */
-  EClass getEnergyModel();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.EnergyModel#getConsumptionRate <em>Consumption Rate</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Consumption Rate</em>'.
-   * @see org.xtext.example.mydsl.myDsl.EnergyModel#getConsumptionRate()
-   * @see #getEnergyModel()
-   * @generated
-   */
-  EAttribute getEnergyModel_ConsumptionRate();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.EnergyModel#getBatteryHealth <em>Battery Health</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Battery Health</em>'.
-   * @see org.xtext.example.mydsl.myDsl.EnergyModel#getBatteryHealth()
-   * @see #getEnergyModel()
-   * @generated
-   */
-  EAttribute getEnergyModel_BatteryHealth();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.EnergyModel#getRechargeTime <em>Recharge Time</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Recharge Time</em>'.
-   * @see org.xtext.example.mydsl.myDsl.EnergyModel#getRechargeTime()
-   * @see #getEnergyModel()
-   * @generated
-   */
-  EAttribute getEnergyModel_RechargeTime();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Phase <em>Phase</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Phase</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Phase
-   * @generated
-   */
-  EClass getPhase();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Phase#getPhaseType <em>Phase Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Phase Type</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Phase#getPhaseType()
-   * @see #getPhase()
-   * @generated
-   */
-  EAttribute getPhase_PhaseType();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Phase#getEnergyUsage <em>Energy Usage</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Energy Usage</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Phase#getEnergyUsage()
-   * @see #getPhase()
-   * @generated
-   */
-  EAttribute getPhase_EnergyUsage();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Phase#getAddSubPhase <em>Add Sub Phase</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Add Sub Phase</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Phase#getAddSubPhase()
-   * @see #getPhase()
-   * @generated
-   */
-  EReference getPhase_AddSubPhase();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.SubPhase <em>Sub Phase</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Sub Phase</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SubPhase
-   * @generated
-   */
-  EClass getSubPhase();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.SubPhase#getSubPhaseType <em>Sub Phase Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Sub Phase Type</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SubPhase#getSubPhaseType()
-   * @see #getSubPhase()
-   * @generated
-   */
-  EAttribute getSubPhase_SubPhaseType();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.SubPhase#getDuration <em>Duration</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Duration</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SubPhase#getDuration()
-   * @see #getSubPhase()
-   * @generated
-   */
-  EAttribute getSubPhase_Duration();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.SubPhase#getAddAction <em>Add Action</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Add Action</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SubPhase#getAddAction()
-   * @see #getSubPhase()
-   * @generated
-   */
-  EReference getSubPhase_AddAction();
+  EAttribute getDrone_SerialNumber();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Action <em>Action</em>}'.
@@ -1371,37 +808,26 @@ public interface MyDslPackage extends EPackage
   EClass getAction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Action#getActionType <em>Action Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Action#getDescription <em>Description</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Action Type</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Action#getActionType()
+   * @return the meta object for the attribute '<em>Description</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Action#getDescription()
    * @see #getAction()
    * @generated
    */
-  EAttribute getAction_ActionType();
+  EAttribute getAction_Description();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Action#getInputOutput <em>Input Output</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Action#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Input Output</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Action#getInputOutput()
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Action#getType()
    * @see #getAction()
    * @generated
    */
-  EAttribute getAction_InputOutput();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Action#getEnergyUsage <em>Energy Usage</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Energy Usage</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Action#getEnergyUsage()
-   * @see #getAction()
-   * @generated
-   */
-  EAttribute getAction_EnergyUsage();
+  EAttribute getAction_Type();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ConstraintClasses <em>Constraint Classes</em>}'.
@@ -1412,17 +838,6 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getConstraintClasses();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ConstraintClasses#getConstraintType <em>Constraint Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Constraint Type</em>'.
-   * @see org.xtext.example.mydsl.myDsl.ConstraintClasses#getConstraintType()
-   * @see #getConstraintClasses()
-   * @generated
-   */
-  EAttribute getConstraintClasses_ConstraintType();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ConstraintClasses#getDescription <em>Description</em>}'.
@@ -1446,36 +861,14 @@ public interface MyDslPackage extends EPackage
   EClass getConstraint();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.SafetyConstraint <em>Safety Constraint</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.PermissionConstraint <em>Permission Constraint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Safety Constraint</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SafetyConstraint
+   * @return the meta object for class '<em>Permission Constraint</em>'.
+   * @see org.xtext.example.mydsl.myDsl.PermissionConstraint
    * @generated
    */
-  EClass getSafetyConstraint();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.SafetyConstraint#getMinBattery <em>Min Battery</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Min Battery</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SafetyConstraint#getMinBattery()
-   * @see #getSafetyConstraint()
-   * @generated
-   */
-  EAttribute getSafetyConstraint_MinBattery();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.SafetyConstraint#getMaxWindSpeed <em>Max Wind Speed</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Max Wind Speed</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SafetyConstraint#getMaxWindSpeed()
-   * @see #getSafetyConstraint()
-   * @generated
-   */
-  EAttribute getSafetyConstraint_MaxWindSpeed();
+  EClass getPermissionConstraint();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.RegulatoryConstraint <em>Regulatory Constraint</em>}'.
@@ -1486,71 +879,6 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getRegulatoryConstraint();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.RegulatoryConstraint#getFlightPermission <em>Flight Permission</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Flight Permission</em>'.
-   * @see org.xtext.example.mydsl.myDsl.RegulatoryConstraint#getFlightPermission()
-   * @see #getRegulatoryConstraint()
-   * @generated
-   */
-  EAttribute getRegulatoryConstraint_FlightPermission();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.RegulatoryConstraint#getAltitudeLimit <em>Altitude Limit</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Altitude Limit</em>'.
-   * @see org.xtext.example.mydsl.myDsl.RegulatoryConstraint#getAltitudeLimit()
-   * @see #getRegulatoryConstraint()
-   * @generated
-   */
-  EAttribute getRegulatoryConstraint_AltitudeLimit();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.MissionEvent <em>Mission Event</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Mission Event</em>'.
-   * @see org.xtext.example.mydsl.myDsl.MissionEvent
-   * @generated
-   */
-  EClass getMissionEvent();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.MissionEvent#getEventType <em>Event Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Event Type</em>'.
-   * @see org.xtext.example.mydsl.myDsl.MissionEvent#getEventType()
-   * @see #getMissionEvent()
-   * @generated
-   */
-  EAttribute getMissionEvent_EventType();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.MissionEvent#getImpactLevel <em>Impact Level</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Impact Level</em>'.
-   * @see org.xtext.example.mydsl.myDsl.MissionEvent#getImpactLevel()
-   * @see #getMissionEvent()
-   * @generated
-   */
-  EAttribute getMissionEvent_ImpactLevel();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.MissionEvent#getResponseAction <em>Response Action</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Response Action</em>'.
-   * @see org.xtext.example.mydsl.myDsl.MissionEvent#getResponseAction()
-   * @see #getMissionEvent()
-   * @generated
-   */
-  EAttribute getMissionEvent_ResponseAction();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Relation <em>Relation</em>}'.
@@ -1726,84 +1054,56 @@ public interface MyDslPackage extends EPackage
     EClass MISSION = eINSTANCE.getMission();
 
     /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Drone Group</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__ID = eINSTANCE.getMission_Id();
+    EReference MISSION__DRONE_GROUP = eINSTANCE.getMission_DroneGroup();
 
     /**
-     * The meta object literal for the '<em><b>Mission Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Actions</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__MISSION_TYPE = eINSTANCE.getMission_MissionType();
+    EReference MISSION__ACTIONS = eINSTANCE.getMission_Actions();
 
     /**
-     * The meta object literal for the '<em><b>Start Location</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Constraints</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__START_LOCATION = eINSTANCE.getMission_StartLocation();
+    EReference MISSION__CONSTRAINTS = eINSTANCE.getMission_Constraints();
 
     /**
-     * The meta object literal for the '<em><b>End Location</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ActionElementImpl <em>Action Element</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ActionElementImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getActionElement()
      * @generated
      */
-    EAttribute MISSION__END_LOCATION = eINSTANCE.getMission_EndLocation();
+    EClass ACTION_ELEMENT = eINSTANCE.getActionElement();
 
     /**
-     * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DroneGroupImpl <em>Drone Group</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.DroneGroupImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDroneGroup()
      * @generated
      */
-    EAttribute MISSION__PRIORITY = eINSTANCE.getMission_Priority();
+    EClass DRONE_GROUP = eINSTANCE.getDroneGroup();
 
     /**
-     * The meta object literal for the '<em><b>Estimated Time</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Drones</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__ESTIMATED_TIME = eINSTANCE.getMission_EstimatedTime();
-
-    /**
-     * The meta object literal for the '<em><b>Add Drones</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MISSION__ADD_DRONES = eINSTANCE.getMission_AddDrones();
-
-    /**
-     * The meta object literal for the '<em><b>Add Phases</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MISSION__ADD_PHASES = eINSTANCE.getMission_AddPhases();
-
-    /**
-     * The meta object literal for the '<em><b>Add Constraints</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MISSION__ADD_CONSTRAINTS = eINSTANCE.getMission_AddConstraints();
-
-    /**
-     * The meta object literal for the '<em><b>Add Events</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MISSION__ADD_EVENTS = eINSTANCE.getMission_AddEvents();
+    EReference DRONE_GROUP__DRONES = eINSTANCE.getDroneGroup_Drones();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DroneImpl <em>Drone</em>}' class.
@@ -1816,154 +1116,20 @@ public interface MyDslPackage extends EPackage
     EClass DRONE = eINSTANCE.getDrone();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Ip</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DRONE__TYPE = eINSTANCE.getDrone_Type();
+    EAttribute DRONE__IP = eINSTANCE.getDrone_Ip();
 
     /**
-     * The meta object literal for the '<em><b>Batter Capacity</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Serial Number</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DRONE__BATTER_CAPACITY = eINSTANCE.getDrone_BatterCapacity();
-
-    /**
-     * The meta object literal for the '<em><b>Max Flight Time</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DRONE__MAX_FLIGHT_TIME = eINSTANCE.getDrone_MaxFlightTime();
-
-    /**
-     * The meta object literal for the '<em><b>Payload Capacity</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DRONE__PAYLOAD_CAPACITY = eINSTANCE.getDrone_PayloadCapacity();
-
-    /**
-     * The meta object literal for the '<em><b>Role</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DRONE__ROLE = eINSTANCE.getDrone_Role();
-
-    /**
-     * The meta object literal for the '<em><b>Add Energy Model</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DRONE__ADD_ENERGY_MODEL = eINSTANCE.getDrone_AddEnergyModel();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.EnergyModelImpl <em>Energy Model</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.EnergyModelImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getEnergyModel()
-     * @generated
-     */
-    EClass ENERGY_MODEL = eINSTANCE.getEnergyModel();
-
-    /**
-     * The meta object literal for the '<em><b>Consumption Rate</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENERGY_MODEL__CONSUMPTION_RATE = eINSTANCE.getEnergyModel_ConsumptionRate();
-
-    /**
-     * The meta object literal for the '<em><b>Battery Health</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENERGY_MODEL__BATTERY_HEALTH = eINSTANCE.getEnergyModel_BatteryHealth();
-
-    /**
-     * The meta object literal for the '<em><b>Recharge Time</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENERGY_MODEL__RECHARGE_TIME = eINSTANCE.getEnergyModel_RechargeTime();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.PhaseImpl <em>Phase</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.PhaseImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPhase()
-     * @generated
-     */
-    EClass PHASE = eINSTANCE.getPhase();
-
-    /**
-     * The meta object literal for the '<em><b>Phase Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PHASE__PHASE_TYPE = eINSTANCE.getPhase_PhaseType();
-
-    /**
-     * The meta object literal for the '<em><b>Energy Usage</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PHASE__ENERGY_USAGE = eINSTANCE.getPhase_EnergyUsage();
-
-    /**
-     * The meta object literal for the '<em><b>Add Sub Phase</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PHASE__ADD_SUB_PHASE = eINSTANCE.getPhase_AddSubPhase();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.SubPhaseImpl <em>Sub Phase</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.SubPhaseImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSubPhase()
-     * @generated
-     */
-    EClass SUB_PHASE = eINSTANCE.getSubPhase();
-
-    /**
-     * The meta object literal for the '<em><b>Sub Phase Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SUB_PHASE__SUB_PHASE_TYPE = eINSTANCE.getSubPhase_SubPhaseType();
-
-    /**
-     * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SUB_PHASE__DURATION = eINSTANCE.getSubPhase_Duration();
-
-    /**
-     * The meta object literal for the '<em><b>Add Action</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SUB_PHASE__ADD_ACTION = eINSTANCE.getSubPhase_AddAction();
+    EAttribute DRONE__SERIAL_NUMBER = eINSTANCE.getDrone_SerialNumber();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ActionImpl <em>Action</em>}' class.
@@ -1976,28 +1142,20 @@ public interface MyDslPackage extends EPackage
     EClass ACTION = eINSTANCE.getAction();
 
     /**
-     * The meta object literal for the '<em><b>Action Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ACTION__ACTION_TYPE = eINSTANCE.getAction_ActionType();
+    EAttribute ACTION__DESCRIPTION = eINSTANCE.getAction_Description();
 
     /**
-     * The meta object literal for the '<em><b>Input Output</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ACTION__INPUT_OUTPUT = eINSTANCE.getAction_InputOutput();
-
-    /**
-     * The meta object literal for the '<em><b>Energy Usage</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ACTION__ENERGY_USAGE = eINSTANCE.getAction_EnergyUsage();
+    EAttribute ACTION__TYPE = eINSTANCE.getAction_Type();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ConstraintClassesImpl <em>Constraint Classes</em>}' class.
@@ -2008,14 +1166,6 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass CONSTRAINT_CLASSES = eINSTANCE.getConstraintClasses();
-
-    /**
-     * The meta object literal for the '<em><b>Constraint Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONSTRAINT_CLASSES__CONSTRAINT_TYPE = eINSTANCE.getConstraintClasses_ConstraintType();
 
     /**
      * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -2036,30 +1186,14 @@ public interface MyDslPackage extends EPackage
     EClass CONSTRAINT = eINSTANCE.getConstraint();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.SafetyConstraintImpl <em>Safety Constraint</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.PermissionConstraintImpl <em>Permission Constraint</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.SafetyConstraintImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSafetyConstraint()
+     * @see org.xtext.example.mydsl.myDsl.impl.PermissionConstraintImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPermissionConstraint()
      * @generated
      */
-    EClass SAFETY_CONSTRAINT = eINSTANCE.getSafetyConstraint();
-
-    /**
-     * The meta object literal for the '<em><b>Min Battery</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SAFETY_CONSTRAINT__MIN_BATTERY = eINSTANCE.getSafetyConstraint_MinBattery();
-
-    /**
-     * The meta object literal for the '<em><b>Max Wind Speed</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SAFETY_CONSTRAINT__MAX_WIND_SPEED = eINSTANCE.getSafetyConstraint_MaxWindSpeed();
+    EClass PERMISSION_CONSTRAINT = eINSTANCE.getPermissionConstraint();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.RegulatoryConstraintImpl <em>Regulatory Constraint</em>}' class.
@@ -2070,56 +1204,6 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass REGULATORY_CONSTRAINT = eINSTANCE.getRegulatoryConstraint();
-
-    /**
-     * The meta object literal for the '<em><b>Flight Permission</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute REGULATORY_CONSTRAINT__FLIGHT_PERMISSION = eINSTANCE.getRegulatoryConstraint_FlightPermission();
-
-    /**
-     * The meta object literal for the '<em><b>Altitude Limit</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute REGULATORY_CONSTRAINT__ALTITUDE_LIMIT = eINSTANCE.getRegulatoryConstraint_AltitudeLimit();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MissionEventImpl <em>Mission Event</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.MissionEventImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMissionEvent()
-     * @generated
-     */
-    EClass MISSION_EVENT = eINSTANCE.getMissionEvent();
-
-    /**
-     * The meta object literal for the '<em><b>Event Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MISSION_EVENT__EVENT_TYPE = eINSTANCE.getMissionEvent_EventType();
-
-    /**
-     * The meta object literal for the '<em><b>Impact Level</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MISSION_EVENT__IMPACT_LEVEL = eINSTANCE.getMissionEvent_ImpactLevel();
-
-    /**
-     * The meta object literal for the '<em><b>Response Action</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MISSION_EVENT__RESPONSE_ACTION = eINSTANCE.getMissionEvent_ResponseAction();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.RelationImpl <em>Relation</em>}' class.

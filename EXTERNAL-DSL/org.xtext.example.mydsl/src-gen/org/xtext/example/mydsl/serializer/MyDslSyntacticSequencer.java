@@ -10,6 +10,9 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
@@ -18,10 +21,12 @@ import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected MyDslGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (MyDslGrammarAccess) access;
+		match_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getMissionAccess().getConstraintsKeyword_12_0()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getEqualsSignKeyword_12_1()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getLeftSquareBracketKeyword_12_2()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getRightSquareBracketKeyword_12_4()));
 	}
 	
 	@Override
@@ -36,8 +41,24 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if (match_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q.equals(syntax))
+				emit_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     ('constraints' '=' '[' ']')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     actions+=[ActionElement|ID] ']' (ambiguity) '}' (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

@@ -6,23 +6,23 @@ package org.xtext.example.mydsl.myDsl.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
+import org.xtext.example.mydsl.myDsl.PermissionConstraint;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Regulatory Constraint</b></em>'.
+ * An implementation of the model object '<em><b>Permission Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class RegulatoryConstraintImpl extends ConstraintClassesImpl implements RegulatoryConstraint
+public class PermissionConstraintImpl extends ConstraintClassesImpl implements PermissionConstraint
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RegulatoryConstraintImpl()
+  protected PermissionConstraintImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class RegulatoryConstraintImpl extends ConstraintClassesImpl implements R
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.REGULATORY_CONSTRAINT;
+    return MyDslPackage.Literals.PERMISSION_CONSTRAINT;
   }
 
-} //RegulatoryConstraintImpl
+} //PermissionConstraintImpl

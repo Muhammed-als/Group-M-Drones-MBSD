@@ -9,13 +9,6 @@ package org.xtext.example.mydsl.myDsl;
  * A representation of the model object '<em><b>Regulatory Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.RegulatoryConstraint#getFlightPermission <em>Flight Permission</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.RegulatoryConstraint#getAltitudeLimit <em>Altitude Limit</em>}</li>
- * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRegulatoryConstraint()
  * @model
@@ -23,48 +16,4 @@ package org.xtext.example.mydsl.myDsl;
  */
 public interface RegulatoryConstraint extends ConstraintClasses
 {
-  /**
-   * Returns the value of the '<em><b>Flight Permission</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Flight Permission</em>' attribute.
-   * @see #setFlightPermission(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRegulatoryConstraint_FlightPermission()
-   * @model
-   * @generated
-   */
-  String getFlightPermission();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.RegulatoryConstraint#getFlightPermission <em>Flight Permission</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Flight Permission</em>' attribute.
-   * @see #getFlightPermission()
-   * @generated
-   */
-  void setFlightPermission(String value);
-
-  /**
-   * Returns the value of the '<em><b>Altitude Limit</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Altitude Limit</em>' attribute.
-   * @see #setAltitudeLimit(int)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRegulatoryConstraint_AltitudeLimit()
-   * @model
-   * @generated
-   */
-  int getAltitudeLimit();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.RegulatoryConstraint#getAltitudeLimit <em>Altitude Limit</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Altitude Limit</em>' attribute.
-   * @see #getAltitudeLimit()
-   * @generated
-   */
-  void setAltitudeLimit(int value);
-
 } // RegulatoryConstraint
