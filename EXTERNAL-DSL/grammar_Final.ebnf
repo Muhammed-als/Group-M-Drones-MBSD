@@ -1,0 +1,73 @@
+(* Basic definitions *)
+STRING = '"', {character}, '"';
+INT = digit, {digit};
+FLOAT = digit, {digit}, ".", digit, {digit};
+BOOLEAN = "true" | "false";
+DIGIT = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+LETTER = "a".."z" | "A".."Z";
+NAME = LETTER, {LETTER | DIGIT | "_"};
+character = LETTER | DIGIT | " " | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "-" | "_" | "+" | "=" | "[" | "]" | "{" | "}" | "|" | "\" | ";" | ":" | "'" | "," | "." | "<" | ">" | "/" | "?";
+
+(* Grammar for Drone Mission System *)
+Model = SystemRoot, {Entity}, {Relation};
+
+SystemRoot = "system", NAME, {Entity}, {Relation};
+
+Entity = Mission | DroneGroup | Drone | Action | ConstraintClasses | ActionElement;
+
+Mission = "Mission", NAME, "{",
+    "droneGroup", "=", DroneGroupRef,
+    "actions", "=", "[", ActionElementRef, {",", ActionElementRef}, "]",
+    ["constraints", "=", "[", [ConstraintClassesRef, {",", ConstraintClassesRef}], "]"],
+    "}"
+;
+
+ActionElement = Action | Mission;
+
+DroneGroup = "DroneGroup", NAME, "{",
+    "drones", "=", "[", DroneRef, {",", DroneRef}, "]",
+    "}"
+;
+
+Drone = "Drone", NAME, "{",
+    "ip", "=", STRING,
+    "serialNumber", "=", STRING,
+    "}"
+;
+
+Action = "Action", NAME, "{",
+    "description", "=", STRING,
+    "type", "=", STRING,
+    "}"
+;
+
+ConstraintClasses = Constraint | PermissionConstraint | RegulatoryConstraint;
+
+Constraint = "Constraint", NAME, "{",
+    "description", "=", STRING,
+    "}"
+;
+
+PermissionConstraint = "PermissionConstraint", NAME, "{",
+    ["description", "=", STRING],
+    "}"
+;
+
+RegulatoryConstraint = "RegulatoryConstraint", NAME, "{",
+    ["description", "=", STRING],
+    "}"
+;
+
+Relation = "Relation", NAME, "{",
+    "from", "=", EntityRef,
+    "to", "=", EntityRef,
+    "type", "=", STRING,
+    "}"
+;
+
+(* References *)
+DroneGroupRef = NAME;
+DroneRef = NAME;
+ActionElementRef = NAME;
+ConstraintClassesRef = NAME;
+EntityRef = NAME;

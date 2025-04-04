@@ -817,29 +817,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  '}'
 		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
 	}
-	public class FLOATElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.FLOAT");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		
-		//FLOAT returns ecore::EFloat:
-		//    INT '.' INT?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//INT '.' INT?
-		public Group getGroup() { return cGroup; }
-		
-		//INT
-		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
-		
-		//INT?
-		public RuleCall getINTTerminalRuleCall_2() { return cINTTerminalRuleCall_2; }
-	}
 	
 	
 	private final ModelElements pModel;
@@ -855,8 +832,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final PermissionConstraintElements pPermissionConstraint;
 	private final RegulatoryConstraintElements pRegulatoryConstraint;
 	private final RelationElements pRelation;
-	private final FLOATElements pFLOAT;
-	private final TerminalRule tBOOLEAN;
 	
 	private final Grammar grammar;
 	
@@ -880,8 +855,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pPermissionConstraint = new PermissionConstraintElements();
 		this.pRegulatoryConstraint = new RegulatoryConstraintElements();
 		this.pRelation = new RelationElements();
-		this.pFLOAT = new FLOATElements();
-		this.tBOOLEAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.BOOLEAN");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1071,22 +1044,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getRelationRule() {
 		return getRelationAccess().getRule();
-	}
-	
-	//FLOAT returns ecore::EFloat:
-	//    INT '.' INT?;
-	public FLOATElements getFLOATAccess() {
-		return pFLOAT;
-	}
-	
-	public ParserRule getFLOATRule() {
-		return getFLOATAccess().getRule();
-	}
-	
-	//terminal BOOLEAN:
-	//    ('true' | 'false');
-	public TerminalRule getBOOLEANRule() {
-		return tBOOLEAN;
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
