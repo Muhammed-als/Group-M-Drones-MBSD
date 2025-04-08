@@ -6,22 +6,34 @@ package org.xtext.example.mydsl.generator;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xbase.lib.XbaseGenerated;
 import org.xtext.example.mydsl.myDsl.Action;
+import org.xtext.example.mydsl.myDsl.ActionElement;
 import org.xtext.example.mydsl.myDsl.Constraint;
+import org.xtext.example.mydsl.myDsl.ConstraintClasses;
 import org.xtext.example.mydsl.myDsl.Drone;
+import org.xtext.example.mydsl.myDsl.DroneGroup;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Mission;
+import org.xtext.example.mydsl.myDsl.PermissionConstraint;
 import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.SystemRoot;
@@ -91,152 +103,332 @@ public class MyDslGenerator extends AbstractGenerator {
   }
 
   public CharSequence compile(final Entity entity, final SystemRoot root, final Entity parentClass) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getEntityAttributes(EnergyModel) from the type MyDslGenerator refers to the missing type EnergyModel"
-      + "\nThe method getEntityAttributes(EnergyModel) from the type MyDslGenerator refers to the missing type EnergyModel"
-      + "\nThe method getEntityAttributes(EnergyModel) from the type MyDslGenerator refers to the missing type EnergyModel"
-      + "\nThe method getEntityAttributes(EnergyModel) from the type MyDslGenerator refers to the missing type EnergyModel"
-      + "\nThe method getEntityAttributes(EnergyModel) from the type MyDslGenerator refers to the missing type EnergyModel");
+    CharSequence _xblockexpression = null;
+    {
+      final List<MyDslGenerator.AttributeInfo> attributes = this.getEntityAttributes(entity);
+      final Map<String, String> values = this.getAttributeValues(entity);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package ");
+      String _name = root.getName();
+      _builder.append(_name);
+      _builder.append(";");
+      _builder.newLineIfNotEmpty();
+      _builder.append("import java.util.*;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("public class ");
+      String _name_1 = entity.getName();
+      _builder.append(_name_1);
+      _builder.append(" ");
+      {
+        if ((parentClass != null)) {
+          _builder.append("extends ");
+          String _name_2 = parentClass.getName();
+          _builder.append(_name_2);
+        }
+      }
+      _builder.append(" {");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.newLine();
+      {
+        for(final MyDslGenerator.AttributeInfo attr : attributes) {
+          _builder.append("    ");
+          _builder.append("private ");
+          String _javaType = attr.javaType();
+          _builder.append(_javaType, "    ");
+          _builder.append(" ");
+          _builder.append(attr.name, "    ");
+          {
+            boolean _containsKey = values.containsKey(attr.name);
+            if (_containsKey) {
+              _builder.append(" = ");
+              String _get = values.get(attr.name);
+              _builder.append(_get, "    ");
+            } else {
+              _builder.append(" = null");
+            }
+          }
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.newLine();
+      {
+        for(final MyDslGenerator.AttributeInfo attr_1 : attributes) {
+          _builder.append("    ");
+          _builder.append("public void set");
+          String _firstUpper = StringExtensions.toFirstUpper(attr_1.name);
+          _builder.append(_firstUpper, "    ");
+          _builder.append("(");
+          String _javaType_1 = attr_1.javaType();
+          _builder.append(_javaType_1, "    ");
+          _builder.append(" ");
+          _builder.append(attr_1.name, "    ");
+          _builder.append(") {");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("    ");
+          _builder.append("this.");
+          _builder.append(attr_1.name, "        ");
+          _builder.append(" = ");
+          _builder.append(attr_1.name, "        ");
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("}");
+          _builder.newLine();
+          _builder.newLine();
+          _builder.append("    ");
+          _builder.append("public ");
+          String _javaType_2 = attr_1.javaType();
+          _builder.append(_javaType_2, "    ");
+          _builder.append(" get");
+          String _firstUpper_1 = StringExtensions.toFirstUpper(attr_1.name);
+          _builder.append(_firstUpper_1, "    ");
+          _builder.append("() {");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("    ");
+          _builder.append("return this.");
+          _builder.append(attr_1.name, "        ");
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("}");
+          _builder.newLine();
+        }
+      }
+      _builder.append("}");
+      _builder.newLine();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
   }
 
   protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final Mission mission) {
     final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("missionID", "STRING");
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("droneGroup", "Object");
     result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("missionType", "STRING");
+    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("actions", "List<Object>");
     result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("startLocation", "STRING");
+    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("constraints", "List<Object>");
     result.add(_attributeInfo_2);
-    MyDslGenerator.AttributeInfo _attributeInfo_3 = new MyDslGenerator.AttributeInfo("endLocation", "STRING");
-    result.add(_attributeInfo_3);
-    MyDslGenerator.AttributeInfo _attributeInfo_4 = new MyDslGenerator.AttributeInfo("priority", "INT");
-    result.add(_attributeInfo_4);
-    MyDslGenerator.AttributeInfo _attributeInfo_5 = new MyDslGenerator.AttributeInfo("estimatedTime", "FLOAT");
-    result.add(_attributeInfo_5);
-    MyDslGenerator.AttributeInfo _attributeInfo_6 = new MyDslGenerator.AttributeInfo("drones", "List<Object>");
-    result.add(_attributeInfo_6);
-    MyDslGenerator.AttributeInfo _attributeInfo_7 = new MyDslGenerator.AttributeInfo("phases", "List<Object>");
-    result.add(_attributeInfo_7);
-    MyDslGenerator.AttributeInfo _attributeInfo_8 = new MyDslGenerator.AttributeInfo("constraints", "List<Object>");
-    result.add(_attributeInfo_8);
-    MyDslGenerator.AttributeInfo _attributeInfo_9 = new MyDslGenerator.AttributeInfo("events", "List<Object>");
-    result.add(_attributeInfo_9);
     return result;
   }
 
   protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final Drone drone) {
     final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("type", "STRING");
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("ip", "STRING");
     result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("batterCapacity", "FLOAT");
+    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("serialNumber", "STRING");
     result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("maxFlightTime", "FLOAT");
-    result.add(_attributeInfo_2);
-    MyDslGenerator.AttributeInfo _attributeInfo_3 = new MyDslGenerator.AttributeInfo("payloadCapacity", "FLOAT");
-    result.add(_attributeInfo_3);
-    MyDslGenerator.AttributeInfo _attributeInfo_4 = new MyDslGenerator.AttributeInfo("role", "STRING");
-    result.add(_attributeInfo_4);
-    MyDslGenerator.AttributeInfo _attributeInfo_5 = new MyDslGenerator.AttributeInfo("energyModels", "List<Object>");
-    result.add(_attributeInfo_5);
     return result;
   }
 
-  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final /* EnergyModel */Object model) {
+  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final DroneGroup droneGroup) {
     final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("consumptionRate", "FLOAT");
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("drones", "List<Object>");
     result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("batteryHealth", "FLOAT");
-    result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("rechargeTime", "FLOAT");
-    result.add(_attributeInfo_2);
-    return result;
-  }
-
-  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final /* Phase */Object phase) {
-    final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("phaseType", "STRING");
-    result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("energyUsage", "FLOAT");
-    result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("subPhases", "List<Object>");
-    result.add(_attributeInfo_2);
-    return result;
-  }
-
-  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final /* SubPhase */Object subPhase) {
-    final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("subPhaseType", "STRING");
-    result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("duration", "FLOAT");
-    result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("actions", "List<Object>");
-    result.add(_attributeInfo_2);
     return result;
   }
 
   protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final Action action) {
     final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("actionType", "STRING");
-    result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("inputOutput", "STRING");
-    result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("energyUsage", "FLOAT");
-    result.add(_attributeInfo_2);
-    return result;
-  }
-
-  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final Constraint constraint) {
-    final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("constraintType", "STRING");
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("type", "STRING");
     result.add(_attributeInfo);
     MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("description", "STRING");
     result.add(_attributeInfo_1);
     return result;
   }
 
-  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final /* SafetyConstraint */Object constraint) {
+  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final Constraint constraint) {
     final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("minBattery", "FLOAT");
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("description", "STRING");
     result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("maxWindSpeed", "FLOAT");
-    result.add(_attributeInfo_1);
+    return result;
+  }
+
+  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final PermissionConstraint constraint) {
+    final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("description", "STRING");
+    result.add(_attributeInfo);
     return result;
   }
 
   protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final RegulatoryConstraint constraint) {
     final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("flightPermission", "BOOLEAN");
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("description", "STRING");
     result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("altitudeLimit", "INT");
-    result.add(_attributeInfo_1);
     return result;
   }
 
-  protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final /* MissionEvent */Object event) {
-    final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("eventType", "STRING");
-    result.add(_attributeInfo);
-    MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("impactLevel", "INT");
-    result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("responseAction", "STRING");
-    result.add(_attributeInfo_2);
+  protected Map<String, String> _getAttributeValues(final Drone drone) {
+    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
+    String _ip = drone.getIp();
+    String _plus = ("\"" + _ip);
+    String _plus_1 = (_plus + "\"");
+    result.put("ip", _plus_1);
+    String _serialNumber = drone.getSerialNumber();
+    String _plus_2 = ("\"" + _serialNumber);
+    String _plus_3 = (_plus_2 + "\"");
+    result.put("serialNumber", _plus_3);
+    return result;
+  }
+
+  protected Map<String, String> _getAttributeValues(final DroneGroup droneGroup) {
+    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
+    final Function1<Drone, String> _function = (Drone d) -> {
+      String _name = d.getName();
+      String _plus = ("new " + _name);
+      return (_plus + "()");
+    };
+    final String droneInstances = IterableExtensions.join(ListExtensions.<Drone, String>map(droneGroup.getDrones(), _function), ", ");
+    result.put("drones", (("Arrays.asList(" + droneInstances) + ")"));
+    return result;
+  }
+
+  protected Map<String, String> _getAttributeValues(final Mission mission) {
+    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
+    DroneGroup _droneGroup = mission.getDroneGroup();
+    String _name = ((DroneGroup) _droneGroup).getName();
+    String _plus = ("new " + _name);
+    String _plus_1 = (_plus + "()");
+    result.put("droneGroup", _plus_1);
+    final Function1<ActionElement, String> _function = (ActionElement a) -> {
+      String _xifexpression = null;
+      if ((a instanceof Action)) {
+        String _name_1 = ((Action) a).getName();
+        String _plus_2 = ("new " + _name_1);
+        _xifexpression = (_plus_2 + "()");
+      } else {
+        String _xifexpression_1 = null;
+        if ((a instanceof Mission)) {
+          String _name_2 = ((Mission) a).getName();
+          String _plus_3 = ("new " + _name_2);
+          _xifexpression_1 = (_plus_3 + "()");
+        } else {
+          _xifexpression_1 = "null";
+        }
+        _xifexpression = _xifexpression_1;
+      }
+      return _xifexpression;
+    };
+    final String actionList = IterableExtensions.join(ListExtensions.<ActionElement, String>map(mission.getActions(), _function), ", ");
+    result.put("actions", (("Arrays.asList(" + actionList) + ")"));
+    final Function1<ConstraintClasses, String> _function_1 = (ConstraintClasses c) -> {
+      String _switchResult = null;
+      boolean _matched = false;
+      if (c instanceof Constraint) {
+        _matched=true;
+        String _name_1 = ((Constraint)c).getName();
+        String _plus_2 = ("new " + _name_1);
+        _switchResult = (_plus_2 + "()");
+      }
+      if (!_matched) {
+        if (c instanceof PermissionConstraint) {
+          _matched=true;
+          String _name_1 = ((PermissionConstraint)c).getName();
+          String _plus_2 = ("new " + _name_1);
+          _switchResult = (_plus_2 + "()");
+        }
+      }
+      if (!_matched) {
+        if (c instanceof RegulatoryConstraint) {
+          _matched=true;
+          String _name_1 = ((RegulatoryConstraint)c).getName();
+          String _plus_2 = ("new " + _name_1);
+          _switchResult = (_plus_2 + "()");
+        }
+      }
+      if (!_matched) {
+        _switchResult = "null";
+      }
+      return _switchResult;
+    };
+    final String constraintList = IterableExtensions.join(ListExtensions.<ConstraintClasses, String>map(mission.getConstraints(), _function_1), ", ");
+    result.put("constraints", (("Arrays.asList(" + constraintList) + ")"));
+    return result;
+  }
+
+  protected Map<String, String> _getAttributeValues(final Action action) {
+    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
+    String _type = action.getType();
+    String _plus = ("\"" + _type);
+    String _plus_1 = (_plus + "\"");
+    result.put("type", _plus_1);
+    String _description = action.getDescription();
+    String _plus_2 = ("\"" + _description);
+    String _plus_3 = (_plus_2 + "\"");
+    result.put("description", _plus_3);
+    return result;
+  }
+
+  protected Map<String, String> _getAttributeValues(final Constraint constraint) {
+    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
+    String _description = constraint.getDescription();
+    String _plus = ("\"" + _description);
+    String _plus_1 = (_plus + "\"");
+    result.put("description", _plus_1);
+    return result;
+  }
+
+  protected Map<String, String> _getAttributeValues(final PermissionConstraint constraint) {
+    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
+    String _description = constraint.getDescription();
+    String _plus = ("\"" + _description);
+    String _plus_1 = (_plus + "\"");
+    result.put("description", _plus_1);
+    return result;
+  }
+
+  protected Map<String, String> _getAttributeValues(final RegulatoryConstraint constraint) {
+    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
+    String _description = constraint.getDescription();
+    String _plus = ("\"" + _description);
+    String _plus_1 = (_plus + "\"");
+    result.put("description", _plus_1);
     return result;
   }
 
   @XbaseGenerated
-  public List<MyDslGenerator.AttributeInfo> getEntityAttributes(final EnergyModel constraint) {
-    if (constraint != null) {
-      return _getEntityAttributes(constraint);
-    } else if (constraint != null) {
-      return _getEntityAttributes(constraint);
-    } else if (constraint != null) {
-      return _getEntityAttributes(constraint);
-    } else if (constraint != null) {
-      return _getEntityAttributes(constraint);
-    } else if (constraint != null) {
-      return _getEntityAttributes(constraint);
-    } else if (constraint != null) {
-      return _getEntityAttributes(constraint);
+  public List<MyDslGenerator.AttributeInfo> getEntityAttributes(final Entity constraint) {
+    if (constraint instanceof Constraint) {
+      return _getEntityAttributes((Constraint)constraint);
+    } else if (constraint instanceof PermissionConstraint) {
+      return _getEntityAttributes((PermissionConstraint)constraint);
+    } else if (constraint instanceof RegulatoryConstraint) {
+      return _getEntityAttributes((RegulatoryConstraint)constraint);
+    } else if (constraint instanceof Action) {
+      return _getEntityAttributes((Action)constraint);
+    } else if (constraint instanceof Drone) {
+      return _getEntityAttributes((Drone)constraint);
+    } else if (constraint instanceof DroneGroup) {
+      return _getEntityAttributes((DroneGroup)constraint);
+    } else if (constraint instanceof Mission) {
+      return _getEntityAttributes((Mission)constraint);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(constraint).toString());
+    }
+  }
+
+  @XbaseGenerated
+  public Map<String, String> getAttributeValues(final Entity constraint) {
+    if (constraint instanceof Constraint) {
+      return _getAttributeValues((Constraint)constraint);
+    } else if (constraint instanceof PermissionConstraint) {
+      return _getAttributeValues((PermissionConstraint)constraint);
+    } else if (constraint instanceof RegulatoryConstraint) {
+      return _getAttributeValues((RegulatoryConstraint)constraint);
+    } else if (constraint instanceof Action) {
+      return _getAttributeValues((Action)constraint);
+    } else if (constraint instanceof Drone) {
+      return _getAttributeValues((Drone)constraint);
+    } else if (constraint instanceof DroneGroup) {
+      return _getAttributeValues((DroneGroup)constraint);
+    } else if (constraint instanceof Mission) {
+      return _getAttributeValues((Mission)constraint);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(constraint).toString());

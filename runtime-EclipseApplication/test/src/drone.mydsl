@@ -14,12 +14,12 @@ DroneGroup DroneGroupAlpha{
 }
 Drone DroneAlpha {
 	ip = "127.0.0.1"
-	serialNumber = "wfqwwqffqwdq"
+	serialNumber = "serialNumber"
 }
 
 Drone DroneBeta {
 	ip = "127.0.0.1"
-	serialNumber = "wfqwwqffqwdq"
+	serialNumber = "wfqwwqffqwdsq"
 }
 
 Action Action001 {
