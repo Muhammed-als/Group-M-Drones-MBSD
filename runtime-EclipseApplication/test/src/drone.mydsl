@@ -1,54 +1,68 @@
-system MedicalSystem
-Mission MedicalDelivery {
-	droneGroup = DroneGroupAlpha
-	actions = [Action001, Test]
-	constraints = [PermissionConstraint001]
-}
-Mission Test {
-	droneGroup = DroneGroupAlpha
-	actions = [Action001]
-	constraints = [PermissionConstraint001]
-}
-DroneGroup DroneGroupAlpha{
-	drones = [DroneAlpha, DroneBeta]
-}
-Drone DroneAlpha {
-	ip = "127.0.0.1"
-	serialNumber = "serialNumber"
+system MedicalSystems
+
+Drone {
+	name = droneAlpha
+	ip = "127.0.0.11"
+	serialNumber = "serialNusmberss"
 }
 
-Drone DroneBeta {
+Drone  {
+	name = droneBeta
 	ip = "127.0.0.1"
 	serialNumber = "wfqwwqffqwdsq"
 }
+DroneGroup {
+	name = droneGroupAlpha
+	drones = [droneAlpha, droneBeta]
+}
 
-Action Action001 {
+
+Action  {
+	name = action001
 	description = "scan things"
 	type = "Scan"
 }
 
-Constraint Constraint001 {
-	description = "GeneralConstraint"
+Constraint {
+	name = constraint001
+	description = "GeneralConstraints"
 }
 
-PermissionConstraint PermissionConstraint001 {
+PermissionConstraint {
+	name = permissionConstraint001
 	description = "Ensures battery level is sufficient"
 }
 
-RegulatoryConstraint RegulatoryConstraint001 {
+RegulatoryConstraint {
+	name = regulatoryConstraint001
 	description = "Ensures battery level is sufficient"
 
 }
-
-Relation InheritSafetyConstraint {
-from = PermissionConstraint001
-to = Constraint001
-type = "inherits"
-
+Mission {
+	name = Test
+	droneGroup = droneGroupAlpha
+	actions = [action001]
+	constraints = [permissionConstraint001]
 }
 
-Relation InheritRegulatoryConstraint {
-from = RegulatoryConstraint001
-to = Constraint001
-type = "inherits"
+Mission {
+	name = MedicalDelivery 
+	droneGroup = droneGroupAlpha
+	actions = [action001, Test]
+	constraints = [permissionConstraint001]
+}
+
+
+Relation {
+	name = InheritSafetyConstraint
+	from = permissionConstraint001
+	to = constraint001
+	type = "inherits"
+}
+
+Relation {
+	name = InheritRegulatoryConstraint
+	from = regulatoryConstraint001
+	to = constraint001
+	type = "inherits"
 }

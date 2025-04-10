@@ -18,7 +18,8 @@ Entity:
     Mission | DroneGroup | Drone | Action | ConstraintClasses;
 
 Mission:
-    'Mission' name=ID '{'
+    'Mission' '{'
+    	'name' '=' name=ID
         'droneGroup' '=' droneGroup=[DroneGroup]
         'actions' '=' '[' actions+=[ActionElement] (',' actions+=[ActionElement])* ']'
         ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?
@@ -29,19 +30,22 @@ ActionElement:
 
 
 DroneGroup:
-	'DroneGroup' name=ID '{'
+	'DroneGroup' '{'
+    	'name' '=' name=ID
 		'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']'
 	'}'
 ;
 Drone:
-    'Drone' name=ID '{'
+    'Drone' '{'
+    	'name' '=' name=ID
         'ip' '=' ip=STRING
         'serialNumber' '=' serialNumber=STRING 
     '}'
 ;
 
 Action:
-    'Action' name=ID '{'
+    'Action' '{'
+    	'name' '=' name=ID
         'description' '=' description=STRING
         'type' '=' type=STRING
     '}'
@@ -51,22 +55,26 @@ ConstraintClasses:
     Constraint | PermissionConstraint | RegulatoryConstraint;
 
 Constraint:
-    'Constraint' name=ID '{'
+    'Constraint' '{'
+    	'name' '=' name=ID
         'description' '=' description=STRING
     '}';
 
 PermissionConstraint:
-    'PermissionConstraint' name=ID '{'
+    'PermissionConstraint' '{'
+    	'name' '=' name=ID
         'description' '=' description=STRING?
     '}';
 
 RegulatoryConstraint:
-    'RegulatoryConstraint' name=ID '{'
+    'RegulatoryConstraint' '{'
+    	'name' '=' name=ID
         'description' '=' description=STRING?
     '}';
 
 Relation:
-    'Relation' name=ID '{'
+    'Relation' '{'
+    	'name' '=' name=ID
         'from' '=' from=[Entity]
         'to' '=' to=[Entity]
         'type' '=' type=STRING  // e.g., "dependency", "uses", "inherits"

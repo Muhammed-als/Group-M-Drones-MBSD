@@ -96,9 +96,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.ACTION__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getActionAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getActionAccess().getDescriptionSTRINGTerminalRuleCall_5_0(), semanticObject.getDescription());
-		feeder.accept(grammarAccess.getActionAccess().getTypeSTRINGTerminalRuleCall_8_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getActionAccess().getNameIDTerminalRuleCall_4_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getActionAccess().getDescriptionSTRINGTerminalRuleCall_7_0(), semanticObject.getDescription());
+		feeder.accept(grammarAccess.getActionAccess().getTypeSTRINGTerminalRuleCall_10_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -122,8 +122,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CONSTRAINT_CLASSES__DESCRIPTION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConstraintAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getConstraintAccess().getDescriptionSTRINGTerminalRuleCall_5_0(), semanticObject.getDescription());
+		feeder.accept(grammarAccess.getConstraintAccess().getNameIDTerminalRuleCall_4_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getConstraintAccess().getDescriptionSTRINGTerminalRuleCall_7_0(), semanticObject.getDescription());
 		feeder.finish();
 	}
 	
@@ -163,9 +163,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DRONE__SERIAL_NUMBER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDroneAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getDroneAccess().getIpSTRINGTerminalRuleCall_5_0(), semanticObject.getIp());
-		feeder.accept(grammarAccess.getDroneAccess().getSerialNumberSTRINGTerminalRuleCall_8_0(), semanticObject.getSerialNumber());
+		feeder.accept(grammarAccess.getDroneAccess().getNameIDTerminalRuleCall_4_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDroneAccess().getIpSTRINGTerminalRuleCall_7_0(), semanticObject.getIp());
+		feeder.accept(grammarAccess.getDroneAccess().getSerialNumberSTRINGTerminalRuleCall_10_0(), semanticObject.getSerialNumber());
 		feeder.finish();
 	}
 	
@@ -259,10 +259,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RELATION__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRelationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRelationAccess().getFromEntityIDTerminalRuleCall_5_0_1(), semanticObject.eGet(MyDslPackage.Literals.RELATION__FROM, false));
-		feeder.accept(grammarAccess.getRelationAccess().getToEntityIDTerminalRuleCall_8_0_1(), semanticObject.eGet(MyDslPackage.Literals.RELATION__TO, false));
-		feeder.accept(grammarAccess.getRelationAccess().getTypeSTRINGTerminalRuleCall_11_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getRelationAccess().getNameIDTerminalRuleCall_4_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getRelationAccess().getFromEntityIDTerminalRuleCall_7_0_1(), semanticObject.eGet(MyDslPackage.Literals.RELATION__FROM, false));
+		feeder.accept(grammarAccess.getRelationAccess().getToEntityIDTerminalRuleCall_10_0_1(), semanticObject.eGet(MyDslPackage.Literals.RELATION__TO, false));
+		feeder.accept(grammarAccess.getRelationAccess().getTypeSTRINGTerminalRuleCall_13_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

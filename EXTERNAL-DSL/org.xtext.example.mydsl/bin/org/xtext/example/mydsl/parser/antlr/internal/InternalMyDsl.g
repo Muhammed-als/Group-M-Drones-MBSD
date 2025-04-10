@@ -298,11 +298,23 @@ ruleMission returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getMissionAccess().getMissionKeyword_0());
 		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getMissionAccess().getLeftCurlyBracketKeyword_1());
+		}
+		otherlv_2='name'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getMissionAccess().getNameKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getMissionAccess().getEqualsSignKeyword_3());
+		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_name_4_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getMissionAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_4_0, grammarAccess.getMissionAccess().getNameIDTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -311,22 +323,18 @@ ruleMission returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_4_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_5='droneGroup'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getMissionAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getMissionAccess().getDroneGroupKeyword_5());
 		}
-		otherlv_3='droneGroup'
+		otherlv_6='='
 		{
-			newLeafNode(otherlv_3, grammarAccess.getMissionAccess().getDroneGroupKeyword_3());
-		}
-		otherlv_4='='
-		{
-			newLeafNode(otherlv_4, grammarAccess.getMissionAccess().getEqualsSignKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getMissionAccess().getEqualsSignKeyword_6());
 		}
 		(
 			(
@@ -335,23 +343,23 @@ ruleMission returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getMissionRule());
 					}
 				}
-				otherlv_5=RULE_ID
+				otherlv_7=RULE_ID
 				{
-					newLeafNode(otherlv_5, grammarAccess.getMissionAccess().getDroneGroupDroneGroupCrossReference_5_0());
+					newLeafNode(otherlv_7, grammarAccess.getMissionAccess().getDroneGroupDroneGroupCrossReference_7_0());
 				}
 			)
 		)
-		otherlv_6='actions'
+		otherlv_8='actions'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getMissionAccess().getActionsKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getMissionAccess().getActionsKeyword_8());
 		}
-		otherlv_7='='
+		otherlv_9='='
 		{
-			newLeafNode(otherlv_7, grammarAccess.getMissionAccess().getEqualsSignKeyword_7());
+			newLeafNode(otherlv_9, grammarAccess.getMissionAccess().getEqualsSignKeyword_9());
 		}
-		otherlv_8='['
+		otherlv_10='['
 		{
-			newLeafNode(otherlv_8, grammarAccess.getMissionAccess().getLeftSquareBracketKeyword_8());
+			newLeafNode(otherlv_10, grammarAccess.getMissionAccess().getLeftSquareBracketKeyword_10());
 		}
 		(
 			(
@@ -360,16 +368,16 @@ ruleMission returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getMissionRule());
 					}
 				}
-				otherlv_9=RULE_ID
+				otherlv_11=RULE_ID
 				{
-					newLeafNode(otherlv_9, grammarAccess.getMissionAccess().getActionsActionElementCrossReference_9_0());
+					newLeafNode(otherlv_11, grammarAccess.getMissionAccess().getActionsActionElementCrossReference_11_0());
 				}
 			)
 		)
 		(
-			otherlv_10=','
+			otherlv_12=','
 			{
-				newLeafNode(otherlv_10, grammarAccess.getMissionAccess().getCommaKeyword_10_0());
+				newLeafNode(otherlv_12, grammarAccess.getMissionAccess().getCommaKeyword_12_0());
 			}
 			(
 				(
@@ -378,29 +386,29 @@ ruleMission returns [EObject current=null]
 							$current = createModelElement(grammarAccess.getMissionRule());
 						}
 					}
-					otherlv_11=RULE_ID
+					otherlv_13=RULE_ID
 					{
-						newLeafNode(otherlv_11, grammarAccess.getMissionAccess().getActionsActionElementCrossReference_10_1_0());
+						newLeafNode(otherlv_13, grammarAccess.getMissionAccess().getActionsActionElementCrossReference_12_1_0());
 					}
 				)
 			)
 		)*
-		otherlv_12=']'
+		otherlv_14=']'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getMissionAccess().getRightSquareBracketKeyword_11());
+			newLeafNode(otherlv_14, grammarAccess.getMissionAccess().getRightSquareBracketKeyword_13());
 		}
 		(
-			otherlv_13='constraints'
+			otherlv_15='constraints'
 			{
-				newLeafNode(otherlv_13, grammarAccess.getMissionAccess().getConstraintsKeyword_12_0());
+				newLeafNode(otherlv_15, grammarAccess.getMissionAccess().getConstraintsKeyword_14_0());
 			}
-			otherlv_14='='
+			otherlv_16='='
 			{
-				newLeafNode(otherlv_14, grammarAccess.getMissionAccess().getEqualsSignKeyword_12_1());
+				newLeafNode(otherlv_16, grammarAccess.getMissionAccess().getEqualsSignKeyword_14_1());
 			}
-			otherlv_15='['
+			otherlv_17='['
 			{
-				newLeafNode(otherlv_15, grammarAccess.getMissionAccess().getLeftSquareBracketKeyword_12_2());
+				newLeafNode(otherlv_17, grammarAccess.getMissionAccess().getLeftSquareBracketKeyword_14_2());
 			}
 			(
 				(
@@ -410,16 +418,16 @@ ruleMission returns [EObject current=null]
 								$current = createModelElement(grammarAccess.getMissionRule());
 							}
 						}
-						otherlv_16=RULE_ID
+						otherlv_18=RULE_ID
 						{
-							newLeafNode(otherlv_16, grammarAccess.getMissionAccess().getConstraintsConstraintClassesCrossReference_12_3_0_0());
+							newLeafNode(otherlv_18, grammarAccess.getMissionAccess().getConstraintsConstraintClassesCrossReference_14_3_0_0());
 						}
 					)
 				)
 				(
-					otherlv_17=','
+					otherlv_19=','
 					{
-						newLeafNode(otherlv_17, grammarAccess.getMissionAccess().getCommaKeyword_12_3_1_0());
+						newLeafNode(otherlv_19, grammarAccess.getMissionAccess().getCommaKeyword_14_3_1_0());
 					}
 					(
 						(
@@ -428,22 +436,22 @@ ruleMission returns [EObject current=null]
 									$current = createModelElement(grammarAccess.getMissionRule());
 								}
 							}
-							otherlv_18=RULE_ID
+							otherlv_20=RULE_ID
 							{
-								newLeafNode(otherlv_18, grammarAccess.getMissionAccess().getConstraintsConstraintClassesCrossReference_12_3_1_1_0());
+								newLeafNode(otherlv_20, grammarAccess.getMissionAccess().getConstraintsConstraintClassesCrossReference_14_3_1_1_0());
 							}
 						)
 					)
 				)*
 			)?
-			otherlv_19=']'
+			otherlv_21=']'
 			{
-				newLeafNode(otherlv_19, grammarAccess.getMissionAccess().getRightSquareBracketKeyword_12_4());
+				newLeafNode(otherlv_21, grammarAccess.getMissionAccess().getRightSquareBracketKeyword_14_4());
 			}
 		)?
-		otherlv_20='}'
+		otherlv_22='}'
 		{
-			newLeafNode(otherlv_20, grammarAccess.getMissionAccess().getRightCurlyBracketKeyword_13());
+			newLeafNode(otherlv_22, grammarAccess.getMissionAccess().getRightCurlyBracketKeyword_15());
 		}
 	)
 ;
@@ -468,11 +476,23 @@ ruleDroneGroup returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getDroneGroupAccess().getDroneGroupKeyword_0());
 		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getDroneGroupAccess().getLeftCurlyBracketKeyword_1());
+		}
+		otherlv_2='name'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getDroneGroupAccess().getNameKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getDroneGroupAccess().getEqualsSignKeyword_3());
+		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_name_4_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getDroneGroupAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_4_0, grammarAccess.getDroneGroupAccess().getNameIDTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -481,26 +501,22 @@ ruleDroneGroup returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_4_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_5='drones'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getDroneGroupAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getDroneGroupAccess().getDronesKeyword_5());
 		}
-		otherlv_3='drones'
+		otherlv_6='='
 		{
-			newLeafNode(otherlv_3, grammarAccess.getDroneGroupAccess().getDronesKeyword_3());
+			newLeafNode(otherlv_6, grammarAccess.getDroneGroupAccess().getEqualsSignKeyword_6());
 		}
-		otherlv_4='='
+		otherlv_7='['
 		{
-			newLeafNode(otherlv_4, grammarAccess.getDroneGroupAccess().getEqualsSignKeyword_4());
-		}
-		otherlv_5='['
-		{
-			newLeafNode(otherlv_5, grammarAccess.getDroneGroupAccess().getLeftSquareBracketKeyword_5());
+			newLeafNode(otherlv_7, grammarAccess.getDroneGroupAccess().getLeftSquareBracketKeyword_7());
 		}
 		(
 			(
@@ -509,16 +525,16 @@ ruleDroneGroup returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getDroneGroupRule());
 					}
 				}
-				otherlv_6=RULE_ID
+				otherlv_8=RULE_ID
 				{
-					newLeafNode(otherlv_6, grammarAccess.getDroneGroupAccess().getDronesDroneCrossReference_6_0());
+					newLeafNode(otherlv_8, grammarAccess.getDroneGroupAccess().getDronesDroneCrossReference_8_0());
 				}
 			)
 		)
 		(
-			otherlv_7=','
+			otherlv_9=','
 			{
-				newLeafNode(otherlv_7, grammarAccess.getDroneGroupAccess().getCommaKeyword_7_0());
+				newLeafNode(otherlv_9, grammarAccess.getDroneGroupAccess().getCommaKeyword_9_0());
 			}
 			(
 				(
@@ -527,20 +543,20 @@ ruleDroneGroup returns [EObject current=null]
 							$current = createModelElement(grammarAccess.getDroneGroupRule());
 						}
 					}
-					otherlv_8=RULE_ID
+					otherlv_10=RULE_ID
 					{
-						newLeafNode(otherlv_8, grammarAccess.getDroneGroupAccess().getDronesDroneCrossReference_7_1_0());
+						newLeafNode(otherlv_10, grammarAccess.getDroneGroupAccess().getDronesDroneCrossReference_9_1_0());
 					}
 				)
 			)
 		)*
-		otherlv_9=']'
+		otherlv_11=']'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getDroneGroupAccess().getRightSquareBracketKeyword_8());
+			newLeafNode(otherlv_11, grammarAccess.getDroneGroupAccess().getRightSquareBracketKeyword_10());
 		}
-		otherlv_10='}'
+		otherlv_12='}'
 		{
-			newLeafNode(otherlv_10, grammarAccess.getDroneGroupAccess().getRightCurlyBracketKeyword_9());
+			newLeafNode(otherlv_12, grammarAccess.getDroneGroupAccess().getRightCurlyBracketKeyword_11());
 		}
 	)
 ;
@@ -565,11 +581,23 @@ ruleDrone returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getDroneAccess().getDroneKeyword_0());
 		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getDroneAccess().getLeftCurlyBracketKeyword_1());
+		}
+		otherlv_2='name'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getDroneAccess().getNameKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getDroneAccess().getEqualsSignKeyword_3());
+		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_name_4_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getDroneAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_4_0, grammarAccess.getDroneAccess().getNameIDTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -578,28 +606,24 @@ ruleDrone returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_4_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_5='ip'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getDroneAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getDroneAccess().getIpKeyword_5());
 		}
-		otherlv_3='ip'
+		otherlv_6='='
 		{
-			newLeafNode(otherlv_3, grammarAccess.getDroneAccess().getIpKeyword_3());
-		}
-		otherlv_4='='
-		{
-			newLeafNode(otherlv_4, grammarAccess.getDroneAccess().getEqualsSignKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getDroneAccess().getEqualsSignKeyword_6());
 		}
 		(
 			(
-				lv_ip_5_0=RULE_STRING
+				lv_ip_7_0=RULE_STRING
 				{
-					newLeafNode(lv_ip_5_0, grammarAccess.getDroneAccess().getIpSTRINGTerminalRuleCall_5_0());
+					newLeafNode(lv_ip_7_0, grammarAccess.getDroneAccess().getIpSTRINGTerminalRuleCall_7_0());
 				}
 				{
 					if ($current==null) {
@@ -608,24 +632,24 @@ ruleDrone returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"ip",
-						lv_ip_5_0,
+						lv_ip_7_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
-		otherlv_6='serialNumber'
+		otherlv_8='serialNumber'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getDroneAccess().getSerialNumberKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getDroneAccess().getSerialNumberKeyword_8());
 		}
-		otherlv_7='='
+		otherlv_9='='
 		{
-			newLeafNode(otherlv_7, grammarAccess.getDroneAccess().getEqualsSignKeyword_7());
+			newLeafNode(otherlv_9, grammarAccess.getDroneAccess().getEqualsSignKeyword_9());
 		}
 		(
 			(
-				lv_serialNumber_8_0=RULE_STRING
+				lv_serialNumber_10_0=RULE_STRING
 				{
-					newLeafNode(lv_serialNumber_8_0, grammarAccess.getDroneAccess().getSerialNumberSTRINGTerminalRuleCall_8_0());
+					newLeafNode(lv_serialNumber_10_0, grammarAccess.getDroneAccess().getSerialNumberSTRINGTerminalRuleCall_10_0());
 				}
 				{
 					if ($current==null) {
@@ -634,14 +658,14 @@ ruleDrone returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"serialNumber",
-						lv_serialNumber_8_0,
+						lv_serialNumber_10_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
-		otherlv_9='}'
+		otherlv_11='}'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getDroneAccess().getRightCurlyBracketKeyword_9());
+			newLeafNode(otherlv_11, grammarAccess.getDroneAccess().getRightCurlyBracketKeyword_11());
 		}
 	)
 ;
@@ -666,11 +690,23 @@ ruleAction returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getActionAccess().getActionKeyword_0());
 		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getActionAccess().getLeftCurlyBracketKeyword_1());
+		}
+		otherlv_2='name'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getActionAccess().getNameKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getActionAccess().getEqualsSignKeyword_3());
+		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_name_4_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getActionAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_4_0, grammarAccess.getActionAccess().getNameIDTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -679,28 +715,24 @@ ruleAction returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_4_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_5='description'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getActionAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getActionAccess().getDescriptionKeyword_5());
 		}
-		otherlv_3='description'
+		otherlv_6='='
 		{
-			newLeafNode(otherlv_3, grammarAccess.getActionAccess().getDescriptionKeyword_3());
-		}
-		otherlv_4='='
-		{
-			newLeafNode(otherlv_4, grammarAccess.getActionAccess().getEqualsSignKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getActionAccess().getEqualsSignKeyword_6());
 		}
 		(
 			(
-				lv_description_5_0=RULE_STRING
+				lv_description_7_0=RULE_STRING
 				{
-					newLeafNode(lv_description_5_0, grammarAccess.getActionAccess().getDescriptionSTRINGTerminalRuleCall_5_0());
+					newLeafNode(lv_description_7_0, grammarAccess.getActionAccess().getDescriptionSTRINGTerminalRuleCall_7_0());
 				}
 				{
 					if ($current==null) {
@@ -709,24 +741,24 @@ ruleAction returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"description",
-						lv_description_5_0,
+						lv_description_7_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
-		otherlv_6='type'
+		otherlv_8='type'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getActionAccess().getTypeKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getActionAccess().getTypeKeyword_8());
 		}
-		otherlv_7='='
+		otherlv_9='='
 		{
-			newLeafNode(otherlv_7, grammarAccess.getActionAccess().getEqualsSignKeyword_7());
+			newLeafNode(otherlv_9, grammarAccess.getActionAccess().getEqualsSignKeyword_9());
 		}
 		(
 			(
-				lv_type_8_0=RULE_STRING
+				lv_type_10_0=RULE_STRING
 				{
-					newLeafNode(lv_type_8_0, grammarAccess.getActionAccess().getTypeSTRINGTerminalRuleCall_8_0());
+					newLeafNode(lv_type_10_0, grammarAccess.getActionAccess().getTypeSTRINGTerminalRuleCall_10_0());
 				}
 				{
 					if ($current==null) {
@@ -735,14 +767,14 @@ ruleAction returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"type",
-						lv_type_8_0,
+						lv_type_10_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
-		otherlv_9='}'
+		otherlv_11='}'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getActionAccess().getRightCurlyBracketKeyword_9());
+			newLeafNode(otherlv_11, grammarAccess.getActionAccess().getRightCurlyBracketKeyword_11());
 		}
 	)
 ;
@@ -812,11 +844,23 @@ ruleConstraint returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getConstraintAccess().getConstraintKeyword_0());
 		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getConstraintAccess().getLeftCurlyBracketKeyword_1());
+		}
+		otherlv_2='name'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getConstraintAccess().getNameKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getConstraintAccess().getEqualsSignKeyword_3());
+		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_name_4_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getConstraintAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_4_0, grammarAccess.getConstraintAccess().getNameIDTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -825,28 +869,24 @@ ruleConstraint returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_4_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_5='description'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getConstraintAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getConstraintAccess().getDescriptionKeyword_5());
 		}
-		otherlv_3='description'
+		otherlv_6='='
 		{
-			newLeafNode(otherlv_3, grammarAccess.getConstraintAccess().getDescriptionKeyword_3());
-		}
-		otherlv_4='='
-		{
-			newLeafNode(otherlv_4, grammarAccess.getConstraintAccess().getEqualsSignKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getConstraintAccess().getEqualsSignKeyword_6());
 		}
 		(
 			(
-				lv_description_5_0=RULE_STRING
+				lv_description_7_0=RULE_STRING
 				{
-					newLeafNode(lv_description_5_0, grammarAccess.getConstraintAccess().getDescriptionSTRINGTerminalRuleCall_5_0());
+					newLeafNode(lv_description_7_0, grammarAccess.getConstraintAccess().getDescriptionSTRINGTerminalRuleCall_7_0());
 				}
 				{
 					if ($current==null) {
@@ -855,14 +895,14 @@ ruleConstraint returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"description",
-						lv_description_5_0,
+						lv_description_7_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
-		otherlv_6='}'
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getConstraintAccess().getRightCurlyBracketKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getConstraintAccess().getRightCurlyBracketKeyword_8());
 		}
 	)
 ;
@@ -887,11 +927,23 @@ rulePermissionConstraint returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getPermissionConstraintAccess().getPermissionConstraintKeyword_0());
 		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getPermissionConstraintAccess().getLeftCurlyBracketKeyword_1());
+		}
+		otherlv_2='name'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getPermissionConstraintAccess().getNameKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getPermissionConstraintAccess().getEqualsSignKeyword_3());
+		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_name_4_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getPermissionConstraintAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_4_0, grammarAccess.getPermissionConstraintAccess().getNameIDTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -900,28 +952,24 @@ rulePermissionConstraint returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_4_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_5='description'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getPermissionConstraintAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getPermissionConstraintAccess().getDescriptionKeyword_5());
 		}
-		otherlv_3='description'
+		otherlv_6='='
 		{
-			newLeafNode(otherlv_3, grammarAccess.getPermissionConstraintAccess().getDescriptionKeyword_3());
-		}
-		otherlv_4='='
-		{
-			newLeafNode(otherlv_4, grammarAccess.getPermissionConstraintAccess().getEqualsSignKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getPermissionConstraintAccess().getEqualsSignKeyword_6());
 		}
 		(
 			(
-				lv_description_5_0=RULE_STRING
+				lv_description_7_0=RULE_STRING
 				{
-					newLeafNode(lv_description_5_0, grammarAccess.getPermissionConstraintAccess().getDescriptionSTRINGTerminalRuleCall_5_0());
+					newLeafNode(lv_description_7_0, grammarAccess.getPermissionConstraintAccess().getDescriptionSTRINGTerminalRuleCall_7_0());
 				}
 				{
 					if ($current==null) {
@@ -930,14 +978,14 @@ rulePermissionConstraint returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"description",
-						lv_description_5_0,
+						lv_description_7_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)?
-		otherlv_6='}'
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getPermissionConstraintAccess().getRightCurlyBracketKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getPermissionConstraintAccess().getRightCurlyBracketKeyword_8());
 		}
 	)
 ;
@@ -962,11 +1010,23 @@ ruleRegulatoryConstraint returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getRegulatoryConstraintAccess().getRegulatoryConstraintKeyword_0());
 		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRegulatoryConstraintAccess().getLeftCurlyBracketKeyword_1());
+		}
+		otherlv_2='name'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRegulatoryConstraintAccess().getNameKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getRegulatoryConstraintAccess().getEqualsSignKeyword_3());
+		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_name_4_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getRegulatoryConstraintAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_4_0, grammarAccess.getRegulatoryConstraintAccess().getNameIDTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -975,28 +1035,24 @@ ruleRegulatoryConstraint returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_4_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_5='description'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getRegulatoryConstraintAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getRegulatoryConstraintAccess().getDescriptionKeyword_5());
 		}
-		otherlv_3='description'
+		otherlv_6='='
 		{
-			newLeafNode(otherlv_3, grammarAccess.getRegulatoryConstraintAccess().getDescriptionKeyword_3());
-		}
-		otherlv_4='='
-		{
-			newLeafNode(otherlv_4, grammarAccess.getRegulatoryConstraintAccess().getEqualsSignKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getRegulatoryConstraintAccess().getEqualsSignKeyword_6());
 		}
 		(
 			(
-				lv_description_5_0=RULE_STRING
+				lv_description_7_0=RULE_STRING
 				{
-					newLeafNode(lv_description_5_0, grammarAccess.getRegulatoryConstraintAccess().getDescriptionSTRINGTerminalRuleCall_5_0());
+					newLeafNode(lv_description_7_0, grammarAccess.getRegulatoryConstraintAccess().getDescriptionSTRINGTerminalRuleCall_7_0());
 				}
 				{
 					if ($current==null) {
@@ -1005,14 +1061,14 @@ ruleRegulatoryConstraint returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"description",
-						lv_description_5_0,
+						lv_description_7_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)?
-		otherlv_6='}'
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getRegulatoryConstraintAccess().getRightCurlyBracketKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getRegulatoryConstraintAccess().getRightCurlyBracketKeyword_8());
 		}
 	)
 ;
@@ -1037,11 +1093,23 @@ ruleRelation returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getRelationAccess().getRelationKeyword_0());
 		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRelationAccess().getLeftCurlyBracketKeyword_1());
+		}
+		otherlv_2='name'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRelationAccess().getNameKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getRelationAccess().getEqualsSignKeyword_3());
+		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_name_4_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getRelationAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_4_0, grammarAccess.getRelationAccess().getNameIDTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -1050,22 +1118,18 @@ ruleRelation returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_4_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_5='from'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getRelationAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getRelationAccess().getFromKeyword_5());
 		}
-		otherlv_3='from'
+		otherlv_6='='
 		{
-			newLeafNode(otherlv_3, grammarAccess.getRelationAccess().getFromKeyword_3());
-		}
-		otherlv_4='='
-		{
-			newLeafNode(otherlv_4, grammarAccess.getRelationAccess().getEqualsSignKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getRelationAccess().getEqualsSignKeyword_6());
 		}
 		(
 			(
@@ -1074,19 +1138,19 @@ ruleRelation returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getRelationRule());
 					}
 				}
-				otherlv_5=RULE_ID
+				otherlv_7=RULE_ID
 				{
-					newLeafNode(otherlv_5, grammarAccess.getRelationAccess().getFromEntityCrossReference_5_0());
+					newLeafNode(otherlv_7, grammarAccess.getRelationAccess().getFromEntityCrossReference_7_0());
 				}
 			)
 		)
-		otherlv_6='to'
+		otherlv_8='to'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getRelationAccess().getToKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getRelationAccess().getToKeyword_8());
 		}
-		otherlv_7='='
+		otherlv_9='='
 		{
-			newLeafNode(otherlv_7, grammarAccess.getRelationAccess().getEqualsSignKeyword_7());
+			newLeafNode(otherlv_9, grammarAccess.getRelationAccess().getEqualsSignKeyword_9());
 		}
 		(
 			(
@@ -1095,25 +1159,25 @@ ruleRelation returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getRelationRule());
 					}
 				}
-				otherlv_8=RULE_ID
+				otherlv_10=RULE_ID
 				{
-					newLeafNode(otherlv_8, grammarAccess.getRelationAccess().getToEntityCrossReference_8_0());
+					newLeafNode(otherlv_10, grammarAccess.getRelationAccess().getToEntityCrossReference_10_0());
 				}
 			)
 		)
-		otherlv_9='type'
+		otherlv_11='type'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getRelationAccess().getTypeKeyword_9());
+			newLeafNode(otherlv_11, grammarAccess.getRelationAccess().getTypeKeyword_11());
 		}
-		otherlv_10='='
+		otherlv_12='='
 		{
-			newLeafNode(otherlv_10, grammarAccess.getRelationAccess().getEqualsSignKeyword_10());
+			newLeafNode(otherlv_12, grammarAccess.getRelationAccess().getEqualsSignKeyword_12());
 		}
 		(
 			(
-				lv_type_11_0=RULE_STRING
+				lv_type_13_0=RULE_STRING
 				{
-					newLeafNode(lv_type_11_0, grammarAccess.getRelationAccess().getTypeSTRINGTerminalRuleCall_11_0());
+					newLeafNode(lv_type_13_0, grammarAccess.getRelationAccess().getTypeSTRINGTerminalRuleCall_13_0());
 				}
 				{
 					if ($current==null) {
@@ -1122,14 +1186,14 @@ ruleRelation returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"type",
-						lv_type_11_0,
+						lv_type_13_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
-		otherlv_12='}'
+		otherlv_14='}'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getRelationAccess().getRightCurlyBracketKeyword_12());
+			newLeafNode(otherlv_14, grammarAccess.getRelationAccess().getRightCurlyBracketKeyword_14());
 		}
 	)
 ;

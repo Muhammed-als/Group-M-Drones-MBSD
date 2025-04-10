@@ -21,12 +21,12 @@ import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected MyDslGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q;
+	protected AbstractElementAlias match_Mission___ConstraintsKeyword_14_0_EqualsSignKeyword_14_1_LeftSquareBracketKeyword_14_2_RightSquareBracketKeyword_14_4__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (MyDslGrammarAccess) access;
-		match_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getMissionAccess().getConstraintsKeyword_12_0()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getEqualsSignKeyword_12_1()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getLeftSquareBracketKeyword_12_2()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getRightSquareBracketKeyword_12_4()));
+		match_Mission___ConstraintsKeyword_14_0_EqualsSignKeyword_14_1_LeftSquareBracketKeyword_14_2_RightSquareBracketKeyword_14_4__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getMissionAccess().getConstraintsKeyword_14_0()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getEqualsSignKeyword_14_1()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getLeftSquareBracketKeyword_14_2()), new TokenAlias(false, false, grammarAccess.getMissionAccess().getRightSquareBracketKeyword_14_4()));
 	}
 	
 	@Override
@@ -41,8 +41,8 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q.equals(syntax))
-				emit_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Mission___ConstraintsKeyword_14_0_EqualsSignKeyword_14_1_LeftSquareBracketKeyword_14_2_RightSquareBracketKeyword_14_4__q.equals(syntax))
+				emit_Mission___ConstraintsKeyword_14_0_EqualsSignKeyword_14_1_LeftSquareBracketKeyword_14_2_RightSquareBracketKeyword_14_4__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -57,7 +57,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 
 	 * </pre>
 	 */
-	protected void emit_Mission___ConstraintsKeyword_12_0_EqualsSignKeyword_12_1_LeftSquareBracketKeyword_12_2_RightSquareBracketKeyword_12_4__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Mission___ConstraintsKeyword_14_0_EqualsSignKeyword_14_1_LeftSquareBracketKeyword_14_2_RightSquareBracketKeyword_14_4__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -21,6 +21,7 @@
 import org.xtext.example.mydsl.myDsl.PermissionConstraint
 import org.xtext.example.mydsl.myDsl.DroneGroup
 import java.util.Map
+import org.xtext.example.mydsl.myDsl.MyDslFactory
 
 /**
  * Generates code from your model files on save.
@@ -31,47 +32,104 @@ class MyDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		var root = resource.allContents.toIterable.filter(SystemRoot).get(0);
-		
-		for (e: root.entities) {
-			var parent = findParentEntity(e, root.relations);
-			fsa.generateFile(root.name + "/" + e.name + ".java", e.compile(root, parent))
+		val types = root.entities.map[e | e.eClass.name].toSet
+		for (typeName : types) {
+		    fsa.generateFile(root.name + "/" + typeName + ".java", generateClassForType(typeName, root))
 		}
+		fsa.generateFile(root.name + "/SystemInitializer.java", generateSystemInitializer(root))
 	}
-	
-	def Entity findParentEntity(Entity entity, List<Relation> relations) {
-		for (relation: relations) {
-			if (relation.type == "inherits" && relation.from == entity) {
-				return relation.to;
-			}
-		}
-		
-		return null;
-	}
-	
-	def compile(Entity entity, SystemRoot root, Entity parentClass) {
-		val attributes = getEntityAttributes(entity)
-	    val values = getAttributeValues(entity)
+	def generateClassForType(String typeName, SystemRoot root) {
+		val attributes = getEntityAttributes(typeName)
+		val parentClass = findParentEntity(typeName, root)
 		'''
 		package «root.name»;
 		import java.util.*;
 		
-		public class «entity.name» «IF parentClass !== null»extends «parentClass.name»«ENDIF» {
-			
+		public class «typeName» «IF parentClass !== null»extends «parentClass»«ENDIF» {
 		    «FOR attr : attributes»
-		    private «attr.javaType» «attr.name»«IF values.containsKey(attr.name)» = «values.get(attr.name)»«ELSE» = null«ENDIF»;
+		    	private «attr.javaType» «attr.name»;
 		    «ENDFOR»
+		    
+		    // Constructor
+		        public «typeName»(«attributes.map[a|a.javaType + " " + a.name].join(", ")») {
+	            «FOR attr : attributes»
+	                this.«attr.name» = «attr.name»;
+	            «ENDFOR»
+	        }
 		
 		    «FOR attr : attributes»
-		    public void set«attr.name.toFirstUpper»(«attr.javaType» «attr.name») {
-		        this.«attr.name» = «attr.name»;
-		    }
-
-		    public «attr.javaType» get«attr.name.toFirstUpper»() {
-		        return this.«attr.name»;
-		    }
+			    public void set«attr.name.toFirstUpper»(«attr.javaType» «attr.name») {
+			        this.«attr.name» = «attr.name»;
+			    }
+	
+			    public «attr.javaType» get«attr.name.toFirstUpper»() {
+			        return this.«attr.name»;
+			    }
 		    «ENDFOR»
 		}
 		'''
+	}
+	
+	def String findParentEntity(String typeName, SystemRoot root) {
+	    for (relation : root.relations) {
+	        if (relation.type == "inherits" && relation.from.eClass.name == typeName) {
+	            return relation.to.eClass.name
+	        }
+	    }
+	    return null
+	}
+	
+	def generateSystemInitializer(SystemRoot root) {
+		'''
+		package «root.name»;
+		
+		public class SystemInitializer {
+		    public static void main(String[] args) {
+		    
+	            «FOR e : root.entities»
+	                «generateEntityInstantiation(e)»
+	            «ENDFOR»
+	    
+	            System.out.println("System «root.name» initialized.");
+	        }
+		}
+		'''
+	}
+	def generateEntityInstantiation(Entity e) {
+		val typeName = e.eClass.name
+		val name = e.name
+	
+		switch e {
+			Mission: '''
+	        Mission «name» = new Mission("«e.name»", «e.droneGroup.name», Arrays.asList(«e.actions.map[a|
+				switch a {
+					Mission: a.name
+					Action: a.name
+					default: "// unknown"
+				}
+			].join(", ")»), Arrays.asList(«e.constraints.map[c|c.name].join(", ")»));
+			'''
+			DroneGroup: '''
+	        DroneGroup «name» = new DroneGroup("«e.name»", Arrays.asList(«e.drones.map[d|d.name].join(", ")»));
+			'''
+			Drone: '''
+	        Drone «name» = new Drone("«e.name»", "«e.ip»", "«e.serialNumber»");
+			'''
+			Action: '''
+	        Action «name» = new Action("«e.name»", "«e.description»", "«e.type»");
+			'''
+			PermissionConstraint: '''
+	        Constraint «name» = new PermissionConstraint("«e.name»", "«e.description»");
+			'''
+			/* 
+			Constraint: '''
+	        Constraint «name» = new Constraint("«e.name»", "«e.description»");
+			'''
+			*/
+			RegulatoryConstraint: '''
+	        Constraint «name» = new RegulatoryConstraint("«e.name»", "«e.description»");
+			'''
+		}
 	}
 	
 	static class AttributeInfo {
@@ -95,11 +153,24 @@ class MyDslGenerator extends AbstractGenerator {
      }
      
      // Dispatch method to get attributes for each entity type
+     def List<AttributeInfo> getEntityAttributes(String typeName) {
+     	// Instead of writing new Mission() we use MyDslFactory.eINSTANCE.createMission()
+	    switch typeName {
+	        case "Mission": getEntityAttributes(MyDslFactory.eINSTANCE.createMission())
+	        case "Drone": getEntityAttributes(MyDslFactory.eINSTANCE.createDrone())
+	        case "DroneGroup": getEntityAttributes(MyDslFactory.eINSTANCE.createDroneGroup())
+	        case "Action": getEntityAttributes(MyDslFactory.eINSTANCE.createAction())
+	        case "PermissionConstraint": getEntityAttributes(MyDslFactory.eINSTANCE.createPermissionConstraint())
+	        case "RegulatoryConstraint": getEntityAttributes(MyDslFactory.eINSTANCE.createRegulatoryConstraint())
+	        case "Constraint": getEntityAttributes(MyDslFactory.eINSTANCE.createConstraint())
+	        default: newArrayList
+	    }
+	}
      def dispatch List<AttributeInfo> getEntityAttributes(Mission mission) {
 	    val result = new ArrayList<AttributeInfo>()
-	    result.add(new AttributeInfo("droneGroup", "Object")) // not List<Object>
-	    result.add(new AttributeInfo("actions", "List<Object>")) // still okay if mixed
-	    result.add(new AttributeInfo("constraints", "List<Object>")) // be specific
+	    result.add(new AttributeInfo("droneGroup", "DroneGroup"))
+	    result.add(new AttributeInfo("actions", "List<Object>")) 
+	    result.add(new AttributeInfo("constraints", "List<Constraint>"))
 	    return result
 	}
      
@@ -112,7 +183,7 @@ class MyDslGenerator extends AbstractGenerator {
      
      def dispatch List<AttributeInfo> getEntityAttributes(DroneGroup droneGroup) {
      	val result = new ArrayList<AttributeInfo>()
-     	result.add(new AttributeInfo("drones", "List<Object>"))
+     	result.add(new AttributeInfo("drones", "List<Drone>"))
      	return result
      }
 
@@ -140,69 +211,4 @@ class MyDslGenerator extends AbstractGenerator {
          result.add(new AttributeInfo("description", "STRING"))
          return result
      }
-  	// Dispatch method to get values for each entity type
-  	def dispatch Map<String, String> getAttributeValues(Drone drone) {
-  		val result = newHashMap
-  		result.put("ip", "\"" + drone.ip + "\"")
-	    result.put("serialNumber", "\"" + drone.serialNumber + "\"")
-	    return result	
-	}
-	def dispatch Map<String, String> getAttributeValues(DroneGroup droneGroup) {
-	    val result = newHashMap
-	    val droneInstances = droneGroup.drones.map[d | "new " + d.name + "()"].join(", ")
-	    result.put("drones", "Arrays.asList(" + droneInstances + ")")
-	    return result
-	}
-	
-	def dispatch Map<String, String> getAttributeValues(Mission mission) {
-	    val result = newHashMap
-		result.put("droneGroup", "new " + (mission.droneGroup as DroneGroup).name + "()")	
-		
-	    val actionList = mission.actions.map[a |
-	        if (a instanceof Action)
-	            "new " + (a as Action).name + "()"
-	        else if (a instanceof Mission)
-	            "new " + (a as Mission).name + "()"
-	        else
-	            "null"
-	    ].join(", ")
-	    result.put("actions", "Arrays.asList(" + actionList + ")")
-	
-	    val constraintList = mission.constraints.map[c |
-		    switch c {
-		        Constraint: "new " + c.name + "()"
-		        PermissionConstraint: "new " + c.name + "()"
-		        RegulatoryConstraint: "new " + c.name + "()"
-		        default: "null"
-		    }
-		].join(", ")
-	    result.put("constraints", "Arrays.asList(" + constraintList + ")")
-	
-	    return result
-	}
-	
-	def dispatch Map<String, String> getAttributeValues(Action action) {
-	    val result = newHashMap
-	    result.put("type", "\"" + action.type + "\"")
-	    result.put("description", "\"" + action.description + "\"")
-	    return result
-	}
-	
-	def dispatch Map<String, String> getAttributeValues(Constraint constraint) {
-	    val result = newHashMap
-	    result.put("description", "\"" + constraint.description + "\"")
-	    return result
-	}
-	
-	def dispatch Map<String, String> getAttributeValues(PermissionConstraint constraint) {
-	    val result = newHashMap
-	    result.put("description", "\"" + constraint.description + "\"")
-	    return result
-	}
-	
-	def dispatch Map<String, String> getAttributeValues(RegulatoryConstraint constraint) {
-	    val result = newHashMap
-	    result.put("description", "\"" + constraint.description + "\"")
-	    return result
-	}
 }

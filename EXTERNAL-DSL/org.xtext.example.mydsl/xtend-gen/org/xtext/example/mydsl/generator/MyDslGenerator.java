@@ -6,10 +6,9 @@ package org.xtext.example.mydsl.generator;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,6 +32,7 @@ import org.xtext.example.mydsl.myDsl.Drone;
 import org.xtext.example.mydsl.myDsl.DroneGroup;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Mission;
+import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.PermissionConstraint;
 import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
 import org.xtext.example.mydsl.myDsl.Relation;
@@ -79,34 +79,27 @@ public class MyDslGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     SystemRoot root = ((SystemRoot[])Conversions.unwrapArray((Iterables.<SystemRoot>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), SystemRoot.class)), SystemRoot.class))[0];
-    EList<Entity> _entities = root.getEntities();
-    for (final Entity e : _entities) {
-      {
-        Entity parent = this.findParentEntity(e, root.getRelations());
-        String _name = root.getName();
-        String _plus = (_name + "/");
-        String _name_1 = e.getName();
-        String _plus_1 = (_plus + _name_1);
-        String _plus_2 = (_plus_1 + ".java");
-        fsa.generateFile(_plus_2, this.compile(e, root, parent));
-      }
+    final Function1<Entity, String> _function = (Entity e) -> {
+      return e.eClass().getName();
+    };
+    final Set<String> types = IterableExtensions.<String>toSet(ListExtensions.<Entity, String>map(root.getEntities(), _function));
+    for (final String typeName : types) {
+      String _name = root.getName();
+      String _plus = (_name + "/");
+      String _plus_1 = (_plus + typeName);
+      String _plus_2 = (_plus_1 + ".java");
+      fsa.generateFile(_plus_2, this.generateClassForType(typeName, root));
     }
+    String _name_1 = root.getName();
+    String _plus_3 = (_name_1 + "/SystemInitializer.java");
+    fsa.generateFile(_plus_3, this.generateSystemInitializer(root));
   }
 
-  public Entity findParentEntity(final Entity entity, final List<Relation> relations) {
-    for (final Relation relation : relations) {
-      if ((Objects.equals(relation.getType(), "inherits") && Objects.equals(relation.getFrom(), entity))) {
-        return relation.getTo();
-      }
-    }
-    return null;
-  }
-
-  public CharSequence compile(final Entity entity, final SystemRoot root, final Entity parentClass) {
+  public CharSequence generateClassForType(final String typeName, final SystemRoot root) {
     CharSequence _xblockexpression = null;
     {
-      final List<MyDslGenerator.AttributeInfo> attributes = this.getEntityAttributes(entity);
-      final Map<String, String> values = this.getAttributeValues(entity);
+      final List<MyDslGenerator.AttributeInfo> attributes = this.getEntityAttributes(typeName);
+      final String parentClass = this.findParentEntity(typeName, root);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package ");
       String _name = root.getName();
@@ -117,20 +110,16 @@ public class MyDslGenerator extends AbstractGenerator {
       _builder.newLine();
       _builder.newLine();
       _builder.append("public class ");
-      String _name_1 = entity.getName();
-      _builder.append(_name_1);
+      _builder.append(typeName);
       _builder.append(" ");
       {
         if ((parentClass != null)) {
           _builder.append("extends ");
-          String _name_2 = parentClass.getName();
-          _builder.append(_name_2);
+          _builder.append(parentClass);
         }
       }
       _builder.append(" {");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.newLine();
       {
         for(final MyDslGenerator.AttributeInfo attr : attributes) {
           _builder.append("    ");
@@ -139,62 +128,79 @@ public class MyDslGenerator extends AbstractGenerator {
           _builder.append(_javaType, "    ");
           _builder.append(" ");
           _builder.append(attr.name, "    ");
-          {
-            boolean _containsKey = values.containsKey(attr.name);
-            if (_containsKey) {
-              _builder.append(" = ");
-              String _get = values.get(attr.name);
-              _builder.append(_get, "    ");
-            } else {
-              _builder.append(" = null");
-            }
-          }
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
       }
+      _builder.append("    ");
       _builder.newLine();
+      _builder.append("    ");
+      _builder.append("// Constructor");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("public ");
+      _builder.append(typeName, "        ");
+      _builder.append("(");
+      final Function1<MyDslGenerator.AttributeInfo, String> _function = (MyDslGenerator.AttributeInfo a) -> {
+        String _javaType_1 = a.javaType();
+        String _plus = (_javaType_1 + " ");
+        return (_plus + a.name);
+      };
+      String _join = IterableExtensions.join(ListExtensions.<MyDslGenerator.AttributeInfo, String>map(attributes, _function), ", ");
+      _builder.append(_join, "        ");
+      _builder.append(") {");
+      _builder.newLineIfNotEmpty();
       {
         for(final MyDslGenerator.AttributeInfo attr_1 : attributes) {
-          _builder.append("    ");
+          _builder.append("\t            ");
+          _builder.append("this.");
+          _builder.append(attr_1.name, "\t            ");
+          _builder.append(" = ");
+          _builder.append(attr_1.name, "\t            ");
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("\t        ");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      {
+        for(final MyDslGenerator.AttributeInfo attr_2 : attributes) {
           _builder.append("public void set");
-          String _firstUpper = StringExtensions.toFirstUpper(attr_1.name);
-          _builder.append(_firstUpper, "    ");
+          String _firstUpper = StringExtensions.toFirstUpper(attr_2.name);
+          _builder.append(_firstUpper);
           _builder.append("(");
-          String _javaType_1 = attr_1.javaType();
-          _builder.append(_javaType_1, "    ");
+          String _javaType_1 = attr_2.javaType();
+          _builder.append(_javaType_1);
           _builder.append(" ");
-          _builder.append(attr_1.name, "    ");
+          _builder.append(attr_2.name);
           _builder.append(") {");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
-          _builder.append("    ");
           _builder.append("this.");
-          _builder.append(attr_1.name, "        ");
+          _builder.append(attr_2.name, "    ");
           _builder.append(" = ");
-          _builder.append(attr_1.name, "        ");
+          _builder.append(attr_2.name, "    ");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
           _builder.append("}");
           _builder.newLine();
+          _builder.append("\t");
           _builder.newLine();
-          _builder.append("    ");
           _builder.append("public ");
-          String _javaType_2 = attr_1.javaType();
-          _builder.append(_javaType_2, "    ");
+          String _javaType_2 = attr_2.javaType();
+          _builder.append(_javaType_2);
           _builder.append(" get");
-          String _firstUpper_1 = StringExtensions.toFirstUpper(attr_1.name);
-          _builder.append(_firstUpper_1, "    ");
+          String _firstUpper_1 = StringExtensions.toFirstUpper(attr_2.name);
+          _builder.append(_firstUpper_1);
           _builder.append("() {");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
-          _builder.append("    ");
           _builder.append("return this.");
-          _builder.append(attr_1.name, "        ");
+          _builder.append(attr_2.name, "    ");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
-          _builder.append("    ");
           _builder.append("}");
           _builder.newLine();
         }
@@ -206,13 +212,246 @@ public class MyDslGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
 
+  public String findParentEntity(final String typeName, final SystemRoot root) {
+    EList<Relation> _relations = root.getRelations();
+    for (final Relation relation : _relations) {
+      if ((Objects.equals(relation.getType(), "inherits") && Objects.equals(relation.getFrom().eClass().getName(), typeName))) {
+        return relation.getTo().eClass().getName();
+      }
+    }
+    return null;
+  }
+
+  public CharSequence generateSystemInitializer(final SystemRoot root) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package ");
+    String _name = root.getName();
+    _builder.append(_name);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("public class SystemInitializer {");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public static void main(String[] args) {");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    {
+      EList<Entity> _entities = root.getEntities();
+      for(final Entity e : _entities) {
+        _builder.append("\t            ");
+        CharSequence _generateEntityInstantiation = this.generateEntityInstantiation(e);
+        _builder.append(_generateEntityInstantiation, "\t            ");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t    ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("System.out.println(\"System ");
+    String _name_1 = root.getName();
+    _builder.append(_name_1, "\t            ");
+    _builder.append(" initialized.\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t        ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+
+  public CharSequence generateEntityInstantiation(final Entity e) {
+    CharSequence _xblockexpression = null;
+    {
+      final String typeName = e.eClass().getName();
+      final String name = e.getName();
+      CharSequence _switchResult = null;
+      boolean _matched = false;
+      if (e instanceof Mission) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Mission ");
+        _builder.append(name);
+        _builder.append(" = new Mission(\"");
+        String _name = ((Mission)e).getName();
+        _builder.append(_name);
+        _builder.append("\", ");
+        String _name_1 = ((Mission)e).getDroneGroup().getName();
+        _builder.append(_name_1);
+        _builder.append(", Arrays.asList(");
+        final Function1<ActionElement, String> _function = (ActionElement a) -> {
+          String _switchResult_1 = null;
+          boolean _matched_1 = false;
+          if (a instanceof Mission) {
+            _matched_1=true;
+            _switchResult_1 = ((Mission)a).getName();
+          }
+          if (!_matched_1) {
+            if (a instanceof Action) {
+              _matched_1=true;
+              _switchResult_1 = ((Action)a).getName();
+            }
+          }
+          if (!_matched_1) {
+            _switchResult_1 = "// unknown";
+          }
+          return _switchResult_1;
+        };
+        String _join = IterableExtensions.join(ListExtensions.<ActionElement, String>map(((Mission)e).getActions(), _function), ", ");
+        _builder.append(_join);
+        _builder.append("), Arrays.asList(");
+        final Function1<ConstraintClasses, String> _function_1 = (ConstraintClasses c) -> {
+          return c.getName();
+        };
+        String _join_1 = IterableExtensions.join(ListExtensions.<ConstraintClasses, String>map(((Mission)e).getConstraints(), _function_1), ", ");
+        _builder.append(_join_1);
+        _builder.append("));");
+        _builder.newLineIfNotEmpty();
+        _switchResult = _builder;
+      }
+      if (!_matched) {
+        if (e instanceof DroneGroup) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("DroneGroup ");
+          _builder.append(name);
+          _builder.append(" = new DroneGroup(\"");
+          String _name = ((DroneGroup)e).getName();
+          _builder.append(_name);
+          _builder.append("\", Arrays.asList(");
+          final Function1<Drone, String> _function = (Drone d) -> {
+            return d.getName();
+          };
+          String _join = IterableExtensions.join(ListExtensions.<Drone, String>map(((DroneGroup)e).getDrones(), _function), ", ");
+          _builder.append(_join);
+          _builder.append("));");
+          _builder.newLineIfNotEmpty();
+          _switchResult = _builder;
+        }
+      }
+      if (!_matched) {
+        if (e instanceof Drone) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Drone ");
+          _builder.append(name);
+          _builder.append(" = new Drone(\"");
+          String _name = ((Drone)e).getName();
+          _builder.append(_name);
+          _builder.append("\", \"");
+          String _ip = ((Drone)e).getIp();
+          _builder.append(_ip);
+          _builder.append("\", \"");
+          String _serialNumber = ((Drone)e).getSerialNumber();
+          _builder.append(_serialNumber);
+          _builder.append("\");");
+          _builder.newLineIfNotEmpty();
+          _switchResult = _builder;
+        }
+      }
+      if (!_matched) {
+        if (e instanceof Action) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Action ");
+          _builder.append(name);
+          _builder.append(" = new Action(\"");
+          String _name = ((Action)e).getName();
+          _builder.append(_name);
+          _builder.append("\", \"");
+          String _description = ((Action)e).getDescription();
+          _builder.append(_description);
+          _builder.append("\", \"");
+          String _type = ((Action)e).getType();
+          _builder.append(_type);
+          _builder.append("\");");
+          _builder.newLineIfNotEmpty();
+          _switchResult = _builder;
+        }
+      }
+      if (!_matched) {
+        if (e instanceof PermissionConstraint) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Constraint ");
+          _builder.append(name);
+          _builder.append(" = new PermissionConstraint(\"");
+          String _name = ((PermissionConstraint)e).getName();
+          _builder.append(_name);
+          _builder.append("\", \"");
+          String _description = ((PermissionConstraint)e).getDescription();
+          _builder.append(_description);
+          _builder.append("\");");
+          _builder.newLineIfNotEmpty();
+          _switchResult = _builder;
+        }
+      }
+      if (!_matched) {
+        if (e instanceof RegulatoryConstraint) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Constraint ");
+          _builder.append(name);
+          _builder.append(" = new RegulatoryConstraint(\"");
+          String _name = ((RegulatoryConstraint)e).getName();
+          _builder.append(_name);
+          _builder.append("\", \"");
+          String _description = ((RegulatoryConstraint)e).getDescription();
+          _builder.append(_description);
+          _builder.append("\");");
+          _builder.newLineIfNotEmpty();
+          _switchResult = _builder;
+        }
+      }
+      _xblockexpression = _switchResult;
+    }
+    return _xblockexpression;
+  }
+
+  public List<MyDslGenerator.AttributeInfo> getEntityAttributes(final String typeName) {
+    List<MyDslGenerator.AttributeInfo> _switchResult = null;
+    if (typeName != null) {
+      switch (typeName) {
+        case "Mission":
+          _switchResult = this.getEntityAttributes(MyDslFactory.eINSTANCE.createMission());
+          break;
+        case "Drone":
+          _switchResult = this.getEntityAttributes(MyDslFactory.eINSTANCE.createDrone());
+          break;
+        case "DroneGroup":
+          _switchResult = this.getEntityAttributes(MyDslFactory.eINSTANCE.createDroneGroup());
+          break;
+        case "Action":
+          _switchResult = this.getEntityAttributes(MyDslFactory.eINSTANCE.createAction());
+          break;
+        case "PermissionConstraint":
+          _switchResult = this.getEntityAttributes(MyDslFactory.eINSTANCE.createPermissionConstraint());
+          break;
+        case "RegulatoryConstraint":
+          _switchResult = this.getEntityAttributes(MyDslFactory.eINSTANCE.createRegulatoryConstraint());
+          break;
+        case "Constraint":
+          _switchResult = this.getEntityAttributes(MyDslFactory.eINSTANCE.createConstraint());
+          break;
+        default:
+          _switchResult = CollectionLiterals.<MyDslGenerator.AttributeInfo>newArrayList();
+          break;
+      }
+    } else {
+      _switchResult = CollectionLiterals.<MyDslGenerator.AttributeInfo>newArrayList();
+    }
+    return _switchResult;
+  }
+
   protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final Mission mission) {
     final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("droneGroup", "Object");
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("droneGroup", "DroneGroup");
     result.add(_attributeInfo);
     MyDslGenerator.AttributeInfo _attributeInfo_1 = new MyDslGenerator.AttributeInfo("actions", "List<Object>");
     result.add(_attributeInfo_1);
-    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("constraints", "List<Object>");
+    MyDslGenerator.AttributeInfo _attributeInfo_2 = new MyDslGenerator.AttributeInfo("constraints", "List<Constraint>");
     result.add(_attributeInfo_2);
     return result;
   }
@@ -228,7 +467,7 @@ public class MyDslGenerator extends AbstractGenerator {
 
   protected List<MyDslGenerator.AttributeInfo> _getEntityAttributes(final DroneGroup droneGroup) {
     final ArrayList<MyDslGenerator.AttributeInfo> result = new ArrayList<MyDslGenerator.AttributeInfo>();
-    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("drones", "List<Object>");
+    MyDslGenerator.AttributeInfo _attributeInfo = new MyDslGenerator.AttributeInfo("drones", "List<Drone>");
     result.add(_attributeInfo);
     return result;
   }
@@ -263,134 +502,6 @@ public class MyDslGenerator extends AbstractGenerator {
     return result;
   }
 
-  protected Map<String, String> _getAttributeValues(final Drone drone) {
-    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
-    String _ip = drone.getIp();
-    String _plus = ("\"" + _ip);
-    String _plus_1 = (_plus + "\"");
-    result.put("ip", _plus_1);
-    String _serialNumber = drone.getSerialNumber();
-    String _plus_2 = ("\"" + _serialNumber);
-    String _plus_3 = (_plus_2 + "\"");
-    result.put("serialNumber", _plus_3);
-    return result;
-  }
-
-  protected Map<String, String> _getAttributeValues(final DroneGroup droneGroup) {
-    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
-    final Function1<Drone, String> _function = (Drone d) -> {
-      String _name = d.getName();
-      String _plus = ("new " + _name);
-      return (_plus + "()");
-    };
-    final String droneInstances = IterableExtensions.join(ListExtensions.<Drone, String>map(droneGroup.getDrones(), _function), ", ");
-    result.put("drones", (("Arrays.asList(" + droneInstances) + ")"));
-    return result;
-  }
-
-  protected Map<String, String> _getAttributeValues(final Mission mission) {
-    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
-    DroneGroup _droneGroup = mission.getDroneGroup();
-    String _name = ((DroneGroup) _droneGroup).getName();
-    String _plus = ("new " + _name);
-    String _plus_1 = (_plus + "()");
-    result.put("droneGroup", _plus_1);
-    final Function1<ActionElement, String> _function = (ActionElement a) -> {
-      String _xifexpression = null;
-      if ((a instanceof Action)) {
-        String _name_1 = ((Action) a).getName();
-        String _plus_2 = ("new " + _name_1);
-        _xifexpression = (_plus_2 + "()");
-      } else {
-        String _xifexpression_1 = null;
-        if ((a instanceof Mission)) {
-          String _name_2 = ((Mission) a).getName();
-          String _plus_3 = ("new " + _name_2);
-          _xifexpression_1 = (_plus_3 + "()");
-        } else {
-          _xifexpression_1 = "null";
-        }
-        _xifexpression = _xifexpression_1;
-      }
-      return _xifexpression;
-    };
-    final String actionList = IterableExtensions.join(ListExtensions.<ActionElement, String>map(mission.getActions(), _function), ", ");
-    result.put("actions", (("Arrays.asList(" + actionList) + ")"));
-    final Function1<ConstraintClasses, String> _function_1 = (ConstraintClasses c) -> {
-      String _switchResult = null;
-      boolean _matched = false;
-      if (c instanceof Constraint) {
-        _matched=true;
-        String _name_1 = ((Constraint)c).getName();
-        String _plus_2 = ("new " + _name_1);
-        _switchResult = (_plus_2 + "()");
-      }
-      if (!_matched) {
-        if (c instanceof PermissionConstraint) {
-          _matched=true;
-          String _name_1 = ((PermissionConstraint)c).getName();
-          String _plus_2 = ("new " + _name_1);
-          _switchResult = (_plus_2 + "()");
-        }
-      }
-      if (!_matched) {
-        if (c instanceof RegulatoryConstraint) {
-          _matched=true;
-          String _name_1 = ((RegulatoryConstraint)c).getName();
-          String _plus_2 = ("new " + _name_1);
-          _switchResult = (_plus_2 + "()");
-        }
-      }
-      if (!_matched) {
-        _switchResult = "null";
-      }
-      return _switchResult;
-    };
-    final String constraintList = IterableExtensions.join(ListExtensions.<ConstraintClasses, String>map(mission.getConstraints(), _function_1), ", ");
-    result.put("constraints", (("Arrays.asList(" + constraintList) + ")"));
-    return result;
-  }
-
-  protected Map<String, String> _getAttributeValues(final Action action) {
-    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
-    String _type = action.getType();
-    String _plus = ("\"" + _type);
-    String _plus_1 = (_plus + "\"");
-    result.put("type", _plus_1);
-    String _description = action.getDescription();
-    String _plus_2 = ("\"" + _description);
-    String _plus_3 = (_plus_2 + "\"");
-    result.put("description", _plus_3);
-    return result;
-  }
-
-  protected Map<String, String> _getAttributeValues(final Constraint constraint) {
-    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
-    String _description = constraint.getDescription();
-    String _plus = ("\"" + _description);
-    String _plus_1 = (_plus + "\"");
-    result.put("description", _plus_1);
-    return result;
-  }
-
-  protected Map<String, String> _getAttributeValues(final PermissionConstraint constraint) {
-    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
-    String _description = constraint.getDescription();
-    String _plus = ("\"" + _description);
-    String _plus_1 = (_plus + "\"");
-    result.put("description", _plus_1);
-    return result;
-  }
-
-  protected Map<String, String> _getAttributeValues(final RegulatoryConstraint constraint) {
-    final HashMap<String, String> result = CollectionLiterals.<String, String>newHashMap();
-    String _description = constraint.getDescription();
-    String _plus = ("\"" + _description);
-    String _plus_1 = (_plus + "\"");
-    result.put("description", _plus_1);
-    return result;
-  }
-
   @XbaseGenerated
   public List<MyDslGenerator.AttributeInfo> getEntityAttributes(final Entity constraint) {
     if (constraint instanceof Constraint) {
@@ -407,28 +518,6 @@ public class MyDslGenerator extends AbstractGenerator {
       return _getEntityAttributes((DroneGroup)constraint);
     } else if (constraint instanceof Mission) {
       return _getEntityAttributes((Mission)constraint);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(constraint).toString());
-    }
-  }
-
-  @XbaseGenerated
-  public Map<String, String> getAttributeValues(final Entity constraint) {
-    if (constraint instanceof Constraint) {
-      return _getAttributeValues((Constraint)constraint);
-    } else if (constraint instanceof PermissionConstraint) {
-      return _getAttributeValues((PermissionConstraint)constraint);
-    } else if (constraint instanceof RegulatoryConstraint) {
-      return _getAttributeValues((RegulatoryConstraint)constraint);
-    } else if (constraint instanceof Action) {
-      return _getAttributeValues((Action)constraint);
-    } else if (constraint instanceof Drone) {
-      return _getAttributeValues((Drone)constraint);
-    } else if (constraint instanceof DroneGroup) {
-      return _getAttributeValues((DroneGroup)constraint);
-    } else if (constraint instanceof Mission) {
-      return _getAttributeValues((Mission)constraint);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(constraint).toString());
