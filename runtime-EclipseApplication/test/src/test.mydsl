@@ -3,7 +3,7 @@ system MedicalSystems
 Drone {
 	name = droneAlpha
 	ip = "127.0.0.11"
-	serialNumber = "serialNusmberss"
+	serialNumber = "serial number"
 }
 
 Drone  {

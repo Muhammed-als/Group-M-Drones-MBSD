@@ -9,9 +9,8 @@ NAME = LETTER, {LETTER | DIGIT | "_"};
 character = LETTER | DIGIT | " " | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "-" | "_" | "+" | "=" | "[" | "]" | "{" | "}" | "|" | "\" | ";" | ":" | "'" | "," | "." | "<" | ">" | "/" | "?";
 
 (* Grammar for Drone Mission System *)
-Model = SystemRoot, {Entity}, {Relation};
 
-SystemRoot = "system", NAME, {Entity}, {Relation};
+Model = "system", NAME, {Entity}, {Relation};
 
 Entity = Mission | DroneGroup | Drone | Action | ConstraintClasses | ActionElement;
 

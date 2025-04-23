@@ -85,6 +85,15 @@ note right of Entity
   that can participate in a relation.
 end note
 
+abstract class Model {
+  name: String
+  entities: List<Entity>
+  relations: List<Relation>
+}
+
+Model <|-- Entity
+Model <|-- Relation
+
 ' === Inheritance ===
 ActionElement <|-- Mission
 ActionElement <|-- Action

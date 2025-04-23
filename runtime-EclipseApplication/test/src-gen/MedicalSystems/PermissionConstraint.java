@@ -6,14 +6,14 @@ public class PermissionConstraint extends Constraint {
     
     // Constructor
         public PermissionConstraint(String description) {
-	            this.description = description;
-	        }
-
+super(description);
+            this.description = description;
+	        	}
 public void setDescription(String description) {
     this.description = description;
 }
-	
+		
 public String getDescription() {
     return this.description;
 }
-}
+	}

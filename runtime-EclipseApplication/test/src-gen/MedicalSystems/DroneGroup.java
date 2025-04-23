@@ -6,14 +6,13 @@ public class DroneGroup  {
     
     // Constructor
         public DroneGroup(List<Drone> drones) {
-	            this.drones = drones;
-	        }
-
+            this.drones = drones;
+	        	}
 public void setDrones(List<Drone> drones) {
     this.drones = drones;
 }
-	
+		
 public List<Drone> getDrones() {
     return this.drones;
 }
-}
+	}

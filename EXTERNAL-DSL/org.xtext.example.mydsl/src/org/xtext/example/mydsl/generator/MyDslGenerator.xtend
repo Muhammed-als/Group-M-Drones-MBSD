@@ -7,7 +7,8 @@
  import org.eclipse.xtext.generator.AbstractGenerator;
  import org.eclipse.xtext.generator.IFileSystemAccess2;
  import org.eclipse.xtext.generator.IGeneratorContext;
- 
+ import org.eclipse.emf.common.util.EList
+ import org.eclipse.emf.ecore.EObject
  import org.xtext.example.mydsl.myDsl.SystemRoot;
  import org.xtext.example.mydsl.myDsl.Entity;
  import java.util.List
@@ -36,7 +37,7 @@ class MyDslGenerator extends AbstractGenerator {
 		for (typeName : types) {
 		    fsa.generateFile(root.name + "/" + typeName + ".java", generateClassForType(typeName, root))
 		}
-		fsa.generateFile(root.name + "/SystemInitializer.java", generateSystemInitializer(root))
+		fsa.generateFile("/SystemInitializer.java", generateSystemInitializer(root))
 	}
 	def generateClassForType(String typeName, SystemRoot root) {
 		val attributes = getEntityAttributes(typeName)
@@ -52,21 +53,23 @@ class MyDslGenerator extends AbstractGenerator {
 		    
 		    // Constructor
 		        public «typeName»(«attributes.map[a|a.javaType + " " + a.name].join(", ")») {
-	            «FOR attr : attributes»
-	                this.«attr.name» = «attr.name»;
-	            «ENDFOR»
-	        }
+		            «IF parentClass !== null»
+	 	                super(«FOR attr : getEntityAttributes(parentClass) SEPARATOR ", "»«attr.name»«ENDFOR»);
+	 	            «ENDIF»
+		            «FOR attr : attributes»
+		                this.«attr.name» = «attr.name»;
+		            «ENDFOR»
+	        	}
+			    «FOR attr : attributes»
+				    public void set«attr.name.toFirstUpper»(«attr.javaType» «attr.name») {
+				        this.«attr.name» = «attr.name»;
+				    }
 		
-		    «FOR attr : attributes»
-			    public void set«attr.name.toFirstUpper»(«attr.javaType» «attr.name») {
-			        this.«attr.name» = «attr.name»;
-			    }
-	
-			    public «attr.javaType» get«attr.name.toFirstUpper»() {
-			        return this.«attr.name»;
-			    }
-		    «ENDFOR»
-		}
+				    public «attr.javaType» get«attr.name.toFirstUpper»() {
+				        return this.«attr.name»;
+				    }
+			    «ENDFOR»
+			}
 		'''
 	}
 	
@@ -80,10 +83,19 @@ class MyDslGenerator extends AbstractGenerator {
 	}
 	
 	def generateSystemInitializer(SystemRoot root) {
-		'''
-		package «root.name»;
-		
+		'''	
+		import java.util.Arrays;
+		import MedicalSystems.Drone;
+		import MedicalSystems.DroneGroup;
+		import MedicalSystems.Action;
+		import MedicalSystems.Constraint;
+		import MedicalSystems.PermissionConstraint;
+		import MedicalSystems.RegulatoryConstraint;
+		import MedicalSystems.Mission;	
 		public class SystemInitializer {
+			public SystemInitializer(){
+				
+			}
 		    public static void main(String[] args) {
 		    
 	            «FOR e : root.entities»
@@ -101,7 +113,7 @@ class MyDslGenerator extends AbstractGenerator {
 	
 		switch e {
 			Mission: '''
-	        Mission «name» = new Mission("«e.name»", «e.droneGroup.name», Arrays.asList(«e.actions.map[a|
+	        Mission «name» = new Mission(«e.droneGroup.name», Arrays.asList(«e.actions.map[a|
 				switch a {
 					Mission: a.name
 					Action: a.name
@@ -110,16 +122,16 @@ class MyDslGenerator extends AbstractGenerator {
 			].join(", ")»), Arrays.asList(«e.constraints.map[c|c.name].join(", ")»));
 			'''
 			DroneGroup: '''
-	        DroneGroup «name» = new DroneGroup("«e.name»", Arrays.asList(«e.drones.map[d|d.name].join(", ")»));
+	        DroneGroup «name» = new DroneGroup(Arrays.asList(«e.drones.map[d|d.name].join(", ")»));
 			'''
 			Drone: '''
-	        Drone «name» = new Drone("«e.name»", "«e.ip»", "«e.serialNumber»");
+	        Drone «name» = new Drone("«e.ip»", "«e.serialNumber»");
 			'''
 			Action: '''
-	        Action «name» = new Action("«e.name»", "«e.description»", "«e.type»");
+	        Action «name» = new Action("«e.description»", "«e.type»");
 			'''
 			PermissionConstraint: '''
-	        Constraint «name» = new PermissionConstraint("«e.name»", "«e.description»");
+	        Constraint «name» = new PermissionConstraint("«e.description»");
 			'''
 			/* 
 			Constraint: '''
@@ -127,7 +139,7 @@ class MyDslGenerator extends AbstractGenerator {
 			'''
 			*/
 			RegulatoryConstraint: '''
-	        Constraint «name» = new RegulatoryConstraint("«e.name»", "«e.description»");
+	        Constraint «name» = new RegulatoryConstraint("«e.description»");
 			'''
 		}
 	}

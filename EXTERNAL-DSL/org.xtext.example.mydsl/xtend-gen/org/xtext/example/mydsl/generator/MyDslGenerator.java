@@ -90,9 +90,7 @@ public class MyDslGenerator extends AbstractGenerator {
       String _plus_2 = (_plus_1 + ".java");
       fsa.generateFile(_plus_2, this.generateClassForType(typeName, root));
     }
-    String _name_1 = root.getName();
-    String _plus_3 = (_name_1 + "/SystemInitializer.java");
-    fsa.generateFile(_plus_3, this.generateSystemInitializer(root));
+    fsa.generateFile("/SystemInitializer.java", this.generateSystemInitializer(root));
   }
 
   public CharSequence generateClassForType(final String typeName, final SystemRoot root) {
@@ -151,60 +149,79 @@ public class MyDslGenerator extends AbstractGenerator {
       _builder.append(") {");
       _builder.newLineIfNotEmpty();
       {
-        for(final MyDslGenerator.AttributeInfo attr_1 : attributes) {
-          _builder.append("\t            ");
+        if ((parentClass != null)) {
+          _builder.append("super(");
+          {
+            List<MyDslGenerator.AttributeInfo> _entityAttributes = this.getEntityAttributes(parentClass);
+            boolean _hasElements = false;
+            for(final MyDslGenerator.AttributeInfo attr_1 : _entityAttributes) {
+              if (!_hasElements) {
+                _hasElements = true;
+              } else {
+                _builder.appendImmediate(", ", "");
+              }
+              _builder.append(attr_1.name);
+            }
+          }
+          _builder.append(");");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      {
+        for(final MyDslGenerator.AttributeInfo attr_2 : attributes) {
+          _builder.append("            ");
           _builder.append("this.");
-          _builder.append(attr_1.name, "\t            ");
+          _builder.append(attr_2.name, "            ");
           _builder.append(" = ");
-          _builder.append(attr_1.name, "\t            ");
+          _builder.append(attr_2.name, "            ");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.append("\t        ");
+      _builder.append("\t        \t");
       _builder.append("}");
       _builder.newLine();
-      _builder.newLine();
       {
-        for(final MyDslGenerator.AttributeInfo attr_2 : attributes) {
+        for(final MyDslGenerator.AttributeInfo attr_3 : attributes) {
           _builder.append("public void set");
-          String _firstUpper = StringExtensions.toFirstUpper(attr_2.name);
+          String _firstUpper = StringExtensions.toFirstUpper(attr_3.name);
           _builder.append(_firstUpper);
           _builder.append("(");
-          String _javaType_1 = attr_2.javaType();
+          String _javaType_1 = attr_3.javaType();
           _builder.append(_javaType_1);
           _builder.append(" ");
-          _builder.append(attr_2.name);
+          _builder.append(attr_3.name);
           _builder.append(") {");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
           _builder.append("this.");
-          _builder.append(attr_2.name, "    ");
+          _builder.append(attr_3.name, "    ");
           _builder.append(" = ");
-          _builder.append(attr_2.name, "    ");
+          _builder.append(attr_3.name, "    ");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
           _builder.append("}");
           _builder.newLine();
-          _builder.append("\t");
+          _builder.append("\t\t");
           _builder.newLine();
           _builder.append("public ");
-          String _javaType_2 = attr_2.javaType();
+          String _javaType_2 = attr_3.javaType();
           _builder.append(_javaType_2);
           _builder.append(" get");
-          String _firstUpper_1 = StringExtensions.toFirstUpper(attr_2.name);
+          String _firstUpper_1 = StringExtensions.toFirstUpper(attr_3.name);
           _builder.append(_firstUpper_1);
           _builder.append("() {");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
           _builder.append("return this.");
-          _builder.append(attr_2.name, "    ");
+          _builder.append(attr_3.name, "    ");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
           _builder.append("}");
           _builder.newLine();
         }
       }
+      _builder.append("\t");
       _builder.append("}");
       _builder.newLine();
       _xblockexpression = _builder;
@@ -224,13 +241,31 @@ public class MyDslGenerator extends AbstractGenerator {
 
   public CharSequence generateSystemInitializer(final SystemRoot root) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package ");
-    String _name = root.getName();
-    _builder.append(_name);
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
+    _builder.append("import java.util.Arrays;");
+    _builder.newLine();
+    _builder.append("import MedicalSystems.Drone;");
+    _builder.newLine();
+    _builder.append("import MedicalSystems.DroneGroup;");
+    _builder.newLine();
+    _builder.append("import MedicalSystems.Action;");
+    _builder.newLine();
+    _builder.append("import MedicalSystems.Constraint;");
+    _builder.newLine();
+    _builder.append("import MedicalSystems.PermissionConstraint;");
+    _builder.newLine();
+    _builder.append("import MedicalSystems.RegulatoryConstraint;");
+    _builder.newLine();
+    _builder.append("import MedicalSystems.Mission;\t");
     _builder.newLine();
     _builder.append("public class SystemInitializer {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public SystemInitializer(){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("public static void main(String[] args) {");
@@ -250,8 +285,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t            ");
     _builder.append("System.out.println(\"System ");
-    String _name_1 = root.getName();
-    _builder.append(_name_1, "\t            ");
+    String _name = root.getName();
+    _builder.append(_name, "\t            ");
     _builder.append(" initialized.\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t        ");
@@ -274,12 +309,9 @@ public class MyDslGenerator extends AbstractGenerator {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("Mission ");
         _builder.append(name);
-        _builder.append(" = new Mission(\"");
-        String _name = ((Mission)e).getName();
+        _builder.append(" = new Mission(");
+        String _name = ((Mission)e).getDroneGroup().getName();
         _builder.append(_name);
-        _builder.append("\", ");
-        String _name_1 = ((Mission)e).getDroneGroup().getName();
-        _builder.append(_name_1);
         _builder.append(", Arrays.asList(");
         final Function1<ActionElement, String> _function = (ActionElement a) -> {
           String _switchResult_1 = null;
@@ -317,10 +349,7 @@ public class MyDslGenerator extends AbstractGenerator {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("DroneGroup ");
           _builder.append(name);
-          _builder.append(" = new DroneGroup(\"");
-          String _name = ((DroneGroup)e).getName();
-          _builder.append(_name);
-          _builder.append("\", Arrays.asList(");
+          _builder.append(" = new DroneGroup(Arrays.asList(");
           final Function1<Drone, String> _function = (Drone d) -> {
             return d.getName();
           };
@@ -338,9 +367,6 @@ public class MyDslGenerator extends AbstractGenerator {
           _builder.append("Drone ");
           _builder.append(name);
           _builder.append(" = new Drone(\"");
-          String _name = ((Drone)e).getName();
-          _builder.append(_name);
-          _builder.append("\", \"");
           String _ip = ((Drone)e).getIp();
           _builder.append(_ip);
           _builder.append("\", \"");
@@ -358,9 +384,6 @@ public class MyDslGenerator extends AbstractGenerator {
           _builder.append("Action ");
           _builder.append(name);
           _builder.append(" = new Action(\"");
-          String _name = ((Action)e).getName();
-          _builder.append(_name);
-          _builder.append("\", \"");
           String _description = ((Action)e).getDescription();
           _builder.append(_description);
           _builder.append("\", \"");
@@ -378,9 +401,6 @@ public class MyDslGenerator extends AbstractGenerator {
           _builder.append("Constraint ");
           _builder.append(name);
           _builder.append(" = new PermissionConstraint(\"");
-          String _name = ((PermissionConstraint)e).getName();
-          _builder.append(_name);
-          _builder.append("\", \"");
           String _description = ((PermissionConstraint)e).getDescription();
           _builder.append(_description);
           _builder.append("\");");
@@ -395,9 +415,6 @@ public class MyDslGenerator extends AbstractGenerator {
           _builder.append("Constraint ");
           _builder.append(name);
           _builder.append(" = new RegulatoryConstraint(\"");
-          String _name = ((RegulatoryConstraint)e).getName();
-          _builder.append(_name);
-          _builder.append("\", \"");
           String _description = ((RegulatoryConstraint)e).getDescription();
           _builder.append(_description);
           _builder.append("\");");

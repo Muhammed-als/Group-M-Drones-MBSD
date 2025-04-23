@@ -6,14 +6,13 @@ public class Constraint  {
     
     // Constructor
         public Constraint(String description) {
-	            this.description = description;
-	        }
-
+            this.description = description;
+	        	}
 public void setDescription(String description) {
     this.description = description;
 }
-	
+		
 public String getDescription() {
     return this.description;
 }
-}
+	}
