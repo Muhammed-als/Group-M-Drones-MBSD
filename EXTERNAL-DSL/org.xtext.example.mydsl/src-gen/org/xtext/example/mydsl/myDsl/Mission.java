@@ -48,16 +48,26 @@ public interface Mission extends Entity, ActionElement
   void setDroneGroup(DroneGroup value);
 
   /**
-   * Returns the value of the '<em><b>Actions</b></em>' reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ActionElement}.
+   * Returns the value of the '<em><b>Actions</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Actions</em>' reference list.
+   * @return the value of the '<em>Actions</em>' containment reference.
+   * @see #setActions(ActionExpression)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMission_Actions()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  EList<ActionElement> getActions();
+  ActionExpression getActions();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Mission#getActions <em>Actions</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Actions</em>' containment reference.
+   * @see #getActions()
+   * @generated
+   */
+  void setActions(ActionExpression value);
 
   /**
    * Returns the value of the '<em><b>Constraints</b></em>' reference list.

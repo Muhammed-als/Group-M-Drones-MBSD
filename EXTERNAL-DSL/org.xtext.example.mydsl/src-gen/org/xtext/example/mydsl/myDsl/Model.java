@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Model#getSystemRoot <em>System Root</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Model#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Model#getEntities <em>Entities</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Model#getRelations <em>Relations</em>}</li>
  * </ul>
@@ -28,26 +28,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface Model extends EObject
 {
   /**
-   * Returns the value of the '<em><b>System Root</b></em>' containment reference.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>System Root</em>' containment reference.
-   * @see #setSystemRoot(SystemRoot)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getModel_SystemRoot()
-   * @model containment="true"
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getModel_Name()
+   * @model
    * @generated
    */
-  SystemRoot getSystemRoot();
+  String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Model#getSystemRoot <em>System Root</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Model#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>System Root</em>' containment reference.
-   * @see #getSystemRoot()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setSystemRoot(SystemRoot value);
+  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Entities</b></em>' containment reference list.

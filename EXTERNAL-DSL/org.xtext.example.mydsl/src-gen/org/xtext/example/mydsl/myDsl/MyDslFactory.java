@@ -33,15 +33,6 @@ public interface MyDslFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>System Root</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>System Root</em>'.
-   * @generated
-   */
-  SystemRoot createSystemRoot();
-
-  /**
    * Returns a new object of class '<em>Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -67,6 +58,24 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   ActionElement createActionElement();
+
+  /**
+   * Returns a new object of class '<em>Action Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Action Expression</em>'.
+   * @generated
+   */
+  ActionExpression createActionExpression();
+
+  /**
+   * Returns a new object of class '<em>Primary Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Primary Expression</em>'.
+   * @generated
+   */
+  PrimaryExpression createPrimaryExpression();
 
   /**
    * Returns a new object of class '<em>Drone Group</em>'.
@@ -139,6 +148,24 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Relation createRelation();
+
+  /**
+   * Returns a new object of class '<em>Or Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Or Expression</em>'.
+   * @generated
+   */
+  OrExpression createOrExpression();
+
+  /**
+   * Returns a new object of class '<em>Then Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Then Expression</em>'.
+   * @generated
+   */
+  ThenExpression createThenExpression();
 
   /**
    * Returns the package supported by this factory.

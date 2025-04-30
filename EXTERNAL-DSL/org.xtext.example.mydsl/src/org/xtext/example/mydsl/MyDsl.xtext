@@ -4,12 +4,6 @@ generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
 
 Model:
-    systemRoot=SystemRoot
-    entities+=Entity*
-    relations+=Relation*
-;
-
-SystemRoot:
     'system' name=ID
     entities+=Entity*
     relations+=Relation*
@@ -22,13 +16,34 @@ Mission:
     'Mission' '{'
     	'name' '=' name=ID
         'droneGroup' '=' droneGroup=[DroneGroup]
-        'actions' '=' '[' actions+=[ActionElement] (',' actions+=[ActionElement])* ']'
+        'actions' '=' actions=ActionExpression
         ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?
     '}'
 ;
 ActionElement:
-    Action | Mission;
+    Action | Mission
+;
 
+// action expressions (like "action1 then action2 or Mission3")
+ActionExpression:
+    OrExpression
+;
+// Handle the 'or' operator, lowest precedence
+// Allow doing the following: (A then B) or C or D
+OrExpression returns ActionExpression:
+    ThenExpression ({OrExpression.left=current} 'or' right=ThenExpression)*
+;
+
+// Handles the 'then' operator, higher precedence than 'or'.
+// Allow doing the following:  A then B then C
+ThenExpression returns ActionExpression:
+    PrimaryExpression ({ThenExpression.left=current} 'then' right=PrimaryExpression)*
+;
+
+PrimaryExpression:
+    '(' expression=ActionExpression ')' | // e.g., (Mission1 or action1)
+    actionRef=[ActionElement] // A reference to either an Action or another Mission
+;
 
 DroneGroup:
 	'DroneGroup' '{'

@@ -26,17 +26,21 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xbase.lib.XbaseGenerated;
 import org.xtext.example.mydsl.myDsl.Action;
 import org.xtext.example.mydsl.myDsl.ActionElement;
+import org.xtext.example.mydsl.myDsl.ActionExpression;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ConstraintClasses;
 import org.xtext.example.mydsl.myDsl.Drone;
 import org.xtext.example.mydsl.myDsl.DroneGroup;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Mission;
+import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
+import org.xtext.example.mydsl.myDsl.OrExpression;
 import org.xtext.example.mydsl.myDsl.PermissionConstraint;
+import org.xtext.example.mydsl.myDsl.PrimaryExpression;
 import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
 import org.xtext.example.mydsl.myDsl.Relation;
-import org.xtext.example.mydsl.myDsl.SystemRoot;
+import org.xtext.example.mydsl.myDsl.ThenExpression;
 
 /**
  * Generates code from your model files on save.
@@ -78,7 +82,7 @@ public class MyDslGenerator extends AbstractGenerator {
 
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    SystemRoot root = ((SystemRoot[])Conversions.unwrapArray((Iterables.<SystemRoot>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), SystemRoot.class)), SystemRoot.class))[0];
+    Model root = ((Model[])Conversions.unwrapArray((Iterables.<Model>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Model.class)), Model.class))[0];
     final Function1<Entity, String> _function = (Entity e) -> {
       return e.eClass().getName();
     };
@@ -93,7 +97,7 @@ public class MyDslGenerator extends AbstractGenerator {
     fsa.generateFile("/SystemInitializer.java", this.generateSystemInitializer(root));
   }
 
-  public CharSequence generateClassForType(final String typeName, final SystemRoot root) {
+  public CharSequence generateClassForType(final String typeName, final Model root) {
     CharSequence _xblockexpression = null;
     {
       final List<MyDslGenerator.AttributeInfo> attributes = this.getEntityAttributes(typeName);
@@ -229,7 +233,7 @@ public class MyDslGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
 
-  public String findParentEntity(final String typeName, final SystemRoot root) {
+  public String findParentEntity(final String typeName, final Model root) {
     EList<Relation> _relations = root.getRelations();
     for (final Relation relation : _relations) {
       if ((Objects.equals(relation.getType(), "inherits") && Objects.equals(relation.getFrom().eClass().getName(), typeName))) {
@@ -239,7 +243,7 @@ public class MyDslGenerator extends AbstractGenerator {
     return null;
   }
 
-  public CharSequence generateSystemInitializer(final SystemRoot root) {
+  public CharSequence generateSystemInitializer(final Model root) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("import java.util.Arrays;");
     _builder.newLine();
@@ -310,20 +314,35 @@ public class MyDslGenerator extends AbstractGenerator {
         _builder.append("Mission ");
         _builder.append(name);
         _builder.append(" = new Mission(");
+        _builder.newLineIfNotEmpty();
         String _name = ((Mission)e).getDroneGroup().getName();
         _builder.append(_name);
-        _builder.append(", Arrays.asList(");
-        final Function1<ActionElement, String> _function = (ActionElement a) -> {
+        _builder.append(", ");
+        _builder.newLineIfNotEmpty();
+        _builder.append("Arrays.asList(");
+        ActionExpression _actions = ((Mission)e).getActions();
+        String _join = IterableExtensions.join(this.extractActionRefs(((EObject) _actions)), ", ");
+        _builder.append(_join);
+        _builder.append("), ");
+        _builder.newLineIfNotEmpty();
+        _builder.append("Arrays.asList(");
+        final Function1<ConstraintClasses, String> _function = (ConstraintClasses c) -> {
           String _switchResult_1 = null;
           boolean _matched_1 = false;
-          if (a instanceof Mission) {
+          if (c instanceof Constraint) {
             _matched_1=true;
-            _switchResult_1 = ((Mission)a).getName();
+            _switchResult_1 = ((Constraint)c).getName();
           }
           if (!_matched_1) {
-            if (a instanceof Action) {
+            if (c instanceof PermissionConstraint) {
               _matched_1=true;
-              _switchResult_1 = ((Action)a).getName();
+              _switchResult_1 = ((PermissionConstraint)c).getName();
+            }
+          }
+          if (!_matched_1) {
+            if (c instanceof RegulatoryConstraint) {
+              _matched_1=true;
+              _switchResult_1 = ((RegulatoryConstraint)c).getName();
             }
           }
           if (!_matched_1) {
@@ -331,16 +350,12 @@ public class MyDslGenerator extends AbstractGenerator {
           }
           return _switchResult_1;
         };
-        String _join = IterableExtensions.join(ListExtensions.<ActionElement, String>map(((Mission)e).getActions(), _function), ", ");
-        _builder.append(_join);
-        _builder.append("), Arrays.asList(");
-        final Function1<ConstraintClasses, String> _function_1 = (ConstraintClasses c) -> {
-          return c.getName();
-        };
-        String _join_1 = IterableExtensions.join(ListExtensions.<ConstraintClasses, String>map(((Mission)e).getConstraints(), _function_1), ", ");
+        String _join_1 = IterableExtensions.join(ListExtensions.<ConstraintClasses, String>map(((Mission)e).getConstraints(), _function), ", ");
         _builder.append(_join_1);
-        _builder.append("));");
+        _builder.append(")");
         _builder.newLineIfNotEmpty();
+        _builder.append(");");
+        _builder.newLine();
         _switchResult = _builder;
       }
       if (!_matched) {
@@ -425,6 +440,50 @@ public class MyDslGenerator extends AbstractGenerator {
       _xblockexpression = _switchResult;
     }
     return _xblockexpression;
+  }
+
+  public List<String> extractActionRefs(final EObject expr) {
+    boolean _matched = false;
+    if (expr instanceof OrExpression) {
+      _matched=true;
+      List<String> _extractActionRefs = this.extractActionRefs(((OrExpression) expr).getLeft());
+      List<String> _extractActionRefs_1 = this.extractActionRefs(((OrExpression) expr).getRight());
+      return IterableExtensions.<String>toList(Iterables.<String>concat(_extractActionRefs, _extractActionRefs_1));
+    }
+    if (!_matched) {
+      if (expr instanceof ThenExpression) {
+        _matched=true;
+        List<String> _extractActionRefs = this.extractActionRefs(((ThenExpression) expr).getLeft());
+        List<String> _extractActionRefs_1 = this.extractActionRefs(((ThenExpression) expr).getRight());
+        return IterableExtensions.<String>toList(Iterables.<String>concat(_extractActionRefs, _extractActionRefs_1));
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof PrimaryExpression) {
+        _matched=true;
+        final PrimaryExpression pe = ((PrimaryExpression) expr);
+        ActionExpression _expression = pe.getExpression();
+        boolean _tripleNotEquals = (_expression != null);
+        if (_tripleNotEquals) {
+          return this.extractActionRefs(pe.getExpression());
+        }
+        ActionElement _actionRef = pe.getActionRef();
+        if ((_actionRef instanceof Action)) {
+          ActionElement _actionRef_1 = pe.getActionRef();
+          return CollectionLiterals.<String>newArrayList(((Action) _actionRef_1).getName());
+        } else {
+          ActionElement _actionRef_2 = pe.getActionRef();
+          if ((_actionRef_2 instanceof Mission)) {
+            ActionElement _actionRef_3 = pe.getActionRef();
+            return CollectionLiterals.<String>newArrayList(((Mission) _actionRef_3).getName());
+          }
+        }
+      }
+    }
+    if (!_matched) {
+      return CollectionLiterals.<String>newArrayList();
+    }
+    return null;
   }
 
   public List<MyDslGenerator.AttributeInfo> getEntityAttributes(final String typeName) {

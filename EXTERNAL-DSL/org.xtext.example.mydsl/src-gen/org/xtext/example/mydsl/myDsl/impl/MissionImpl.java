@@ -6,6 +6,7 @@ package org.xtext.example.mydsl.myDsl.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -16,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.xtext.example.mydsl.myDsl.ActionElement;
+import org.xtext.example.mydsl.myDsl.ActionExpression;
 import org.xtext.example.mydsl.myDsl.ConstraintClasses;
 import org.xtext.example.mydsl.myDsl.DroneGroup;
 import org.xtext.example.mydsl.myDsl.Mission;
@@ -50,14 +51,14 @@ public class MissionImpl extends EntityImpl implements Mission
   protected DroneGroup droneGroup;
 
   /**
-   * The cached value of the '{@link #getActions() <em>Actions</em>}' reference list.
+   * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getActions()
    * @generated
    * @ordered
    */
-  protected EList<ActionElement> actions;
+  protected ActionExpression actions;
 
   /**
    * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' reference list.
@@ -141,13 +142,48 @@ public class MissionImpl extends EntityImpl implements Mission
    * @generated
    */
   @Override
-  public EList<ActionElement> getActions()
+  public ActionExpression getActions()
   {
-    if (actions == null)
-    {
-      actions = new EObjectResolvingEList<ActionElement>(ActionElement.class, this, MyDslPackage.MISSION__ACTIONS);
-    }
     return actions;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetActions(ActionExpression newActions, NotificationChain msgs)
+  {
+    ActionExpression oldActions = actions;
+    actions = newActions;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.MISSION__ACTIONS, oldActions, newActions);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setActions(ActionExpression newActions)
+  {
+    if (newActions != actions)
+    {
+      NotificationChain msgs = null;
+      if (actions != null)
+        msgs = ((InternalEObject)actions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MISSION__ACTIONS, null, msgs);
+      if (newActions != null)
+        msgs = ((InternalEObject)newActions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MISSION__ACTIONS, null, msgs);
+      msgs = basicSetActions(newActions, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MISSION__ACTIONS, newActions, newActions));
   }
 
   /**
@@ -163,6 +199,22 @@ public class MissionImpl extends EntityImpl implements Mission
       constraints = new EObjectResolvingEList<ConstraintClasses>(ConstraintClasses.class, this, MyDslPackage.MISSION__CONSTRAINTS);
     }
     return constraints;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.MISSION__ACTIONS:
+        return basicSetActions(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -201,8 +253,7 @@ public class MissionImpl extends EntityImpl implements Mission
         setDroneGroup((DroneGroup)newValue);
         return;
       case MyDslPackage.MISSION__ACTIONS:
-        getActions().clear();
-        getActions().addAll((Collection<? extends ActionElement>)newValue);
+        setActions((ActionExpression)newValue);
         return;
       case MyDslPackage.MISSION__CONSTRAINTS:
         getConstraints().clear();
@@ -226,7 +277,7 @@ public class MissionImpl extends EntityImpl implements Mission
         setDroneGroup((DroneGroup)null);
         return;
       case MyDslPackage.MISSION__ACTIONS:
-        getActions().clear();
+        setActions((ActionExpression)null);
         return;
       case MyDslPackage.MISSION__CONSTRAINTS:
         getConstraints().clear();
@@ -248,7 +299,7 @@ public class MissionImpl extends EntityImpl implements Mission
       case MyDslPackage.MISSION__DRONE_GROUP:
         return droneGroup != null;
       case MyDslPackage.MISSION__ACTIONS:
-        return actions != null && !actions.isEmpty();
+        return actions != null;
       case MyDslPackage.MISSION__CONSTRAINTS:
         return constraints != null && !constraints.isEmpty();
     }

@@ -2,14 +2,14 @@ system MedicalSystems
 
 Drone {
 	name = droneAlpha
-	ip = "127.0.0.11"
-	serialNumber = "serial number"
+	ip = "127.0.0.1"
+	serialNumber = "serial numbers"
 }
 
 Drone  {
 	name = droneBeta
 	ip = "127.0.0.1"
-	serialNumber = "wfqwwqffqwdsq"
+	serialNumber = "wfqwwqffqwd"
 }
 DroneGroup {
 	name = droneGroupAlpha
@@ -41,14 +41,14 @@ RegulatoryConstraint {
 Mission {
 	name = Test
 	droneGroup = droneGroupAlpha
-	actions = [action001]
+	actions= action001
 	constraints = [permissionConstraint001]
 }
 
 Mission {
 	name = MedicalDelivery 
 	droneGroup = droneGroupAlpha
-	actions = [action001, Test]
+	actions= action001 then Test then (action001 or Test) then Test then Test
 	constraints = [permissionConstraint001]
 }
 

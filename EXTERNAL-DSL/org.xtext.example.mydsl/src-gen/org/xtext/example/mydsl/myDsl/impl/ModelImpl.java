@@ -23,7 +23,6 @@ import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Relation;
-import org.xtext.example.mydsl.myDsl.SystemRoot;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +32,7 @@ import org.xtext.example.mydsl.myDsl.SystemRoot;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getSystemRoot <em>System Root</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getEntities <em>Entities</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ModelImpl#getRelations <em>Relations</em>}</li>
  * </ul>
@@ -43,14 +42,24 @@ import org.xtext.example.mydsl.myDsl.SystemRoot;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getSystemRoot() <em>System Root</em>}' containment reference.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSystemRoot()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected SystemRoot systemRoot;
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
@@ -99,26 +108,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public SystemRoot getSystemRoot()
+  public String getName()
   {
-    return systemRoot;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetSystemRoot(SystemRoot newSystemRoot, NotificationChain msgs)
-  {
-    SystemRoot oldSystemRoot = systemRoot;
-    systemRoot = newSystemRoot;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.MODEL__SYSTEM_ROOT, oldSystemRoot, newSystemRoot);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+    return name;
   }
 
   /**
@@ -127,20 +119,12 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public void setSystemRoot(SystemRoot newSystemRoot)
+  public void setName(String newName)
   {
-    if (newSystemRoot != systemRoot)
-    {
-      NotificationChain msgs = null;
-      if (systemRoot != null)
-        msgs = ((InternalEObject)systemRoot).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MODEL__SYSTEM_ROOT, null, msgs);
-      if (newSystemRoot != null)
-        msgs = ((InternalEObject)newSystemRoot).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MODEL__SYSTEM_ROOT, null, msgs);
-      msgs = basicSetSystemRoot(newSystemRoot, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MODEL__SYSTEM_ROOT, newSystemRoot, newSystemRoot));
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MODEL__NAME, oldName, name));
   }
 
   /**
@@ -183,8 +167,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__SYSTEM_ROOT:
-        return basicSetSystemRoot(null, msgs);
       case MyDslPackage.MODEL__ENTITIES:
         return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
       case MyDslPackage.MODEL__RELATIONS:
@@ -203,8 +185,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__SYSTEM_ROOT:
-        return getSystemRoot();
+      case MyDslPackage.MODEL__NAME:
+        return getName();
       case MyDslPackage.MODEL__ENTITIES:
         return getEntities();
       case MyDslPackage.MODEL__RELATIONS:
@@ -224,8 +206,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__SYSTEM_ROOT:
-        setSystemRoot((SystemRoot)newValue);
+      case MyDslPackage.MODEL__NAME:
+        setName((String)newValue);
         return;
       case MyDslPackage.MODEL__ENTITIES:
         getEntities().clear();
@@ -249,8 +231,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__SYSTEM_ROOT:
-        setSystemRoot((SystemRoot)null);
+      case MyDslPackage.MODEL__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case MyDslPackage.MODEL__ENTITIES:
         getEntities().clear();
@@ -272,14 +254,31 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__SYSTEM_ROOT:
-        return systemRoot != null;
+      case MyDslPackage.MODEL__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.MODEL__ENTITIES:
         return entities != null && !entities.isEmpty();
       case MyDslPackage.MODEL__RELATIONS:
         return relations != null && !relations.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //ModelImpl

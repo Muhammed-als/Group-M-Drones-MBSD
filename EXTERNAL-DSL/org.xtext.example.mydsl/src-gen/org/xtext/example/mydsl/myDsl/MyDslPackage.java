@@ -68,13 +68,13 @@ public interface MyDslPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>System Root</b></em>' containment reference.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__SYSTEM_ROOT = 0;
+  int MODEL__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Entities</b></em>' containment reference list.
@@ -104,52 +104,6 @@ public interface MyDslPackage extends EPackage
   int MODEL_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.SystemRootImpl <em>System Root</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.SystemRootImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSystemRoot()
-   * @generated
-   */
-  int SYSTEM_ROOT = 1;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SYSTEM_ROOT__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Entities</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SYSTEM_ROOT__ENTITIES = 1;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SYSTEM_ROOT__RELATIONS = 2;
-
-  /**
-   * The number of structural features of the '<em>System Root</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SYSTEM_ROOT_FEATURE_COUNT = 3;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -157,7 +111,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 2;
+  int ENTITY = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -185,7 +139,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMission()
    * @generated
    */
-  int MISSION = 3;
+  int MISSION = 2;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -206,7 +160,7 @@ public interface MyDslPackage extends EPackage
   int MISSION__DRONE_GROUP = ENTITY_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Actions</b></em>' reference list.
+   * The feature id for the '<em><b>Actions</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -240,7 +194,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getActionElement()
    * @generated
    */
-  int ACTION_ELEMENT = 4;
+  int ACTION_ELEMENT = 3;
 
   /**
    * The number of structural features of the '<em>Action Element</em>' class.
@@ -252,6 +206,62 @@ public interface MyDslPackage extends EPackage
   int ACTION_ELEMENT_FEATURE_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ActionExpressionImpl <em>Action Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ActionExpressionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getActionExpression()
+   * @generated
+   */
+  int ACTION_EXPRESSION = 4;
+
+  /**
+   * The number of structural features of the '<em>Action Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION_EXPRESSION_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.PrimaryExpressionImpl <em>Primary Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.PrimaryExpressionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPrimaryExpression()
+   * @generated
+   */
+  int PRIMARY_EXPRESSION = 5;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION__EXPRESSION = ACTION_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Action Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION__ACTION_REF = ACTION_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Primary Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION_FEATURE_COUNT = ACTION_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DroneGroupImpl <em>Drone Group</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -259,7 +269,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDroneGroup()
    * @generated
    */
-  int DRONE_GROUP = 5;
+  int DRONE_GROUP = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -296,7 +306,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDrone()
    * @generated
    */
-  int DRONE = 6;
+  int DRONE = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -342,7 +352,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAction()
    * @generated
    */
-  int ACTION = 7;
+  int ACTION = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -388,7 +398,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraintClasses()
    * @generated
    */
-  int CONSTRAINT_CLASSES = 8;
+  int CONSTRAINT_CLASSES = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -425,7 +435,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 9;
+  int CONSTRAINT = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -462,7 +472,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPermissionConstraint()
    * @generated
    */
-  int PERMISSION_CONSTRAINT = 10;
+  int PERMISSION_CONSTRAINT = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -499,7 +509,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRegulatoryConstraint()
    * @generated
    */
-  int REGULATORY_CONSTRAINT = 11;
+  int REGULATORY_CONSTRAINT = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -536,7 +546,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRelation()
    * @generated
    */
-  int RELATION = 12;
+  int RELATION = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -583,6 +593,80 @@ public interface MyDslPackage extends EPackage
    */
   int RELATION_FEATURE_COUNT = 4;
 
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.OrExpressionImpl <em>Or Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.OrExpressionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getOrExpression()
+   * @generated
+   */
+  int OR_EXPRESSION = 14;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_EXPRESSION__LEFT = ACTION_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_EXPRESSION__RIGHT = ACTION_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Or Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_EXPRESSION_FEATURE_COUNT = ACTION_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ThenExpressionImpl <em>Then Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ThenExpressionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getThenExpression()
+   * @generated
+   */
+  int THEN_EXPRESSION = 15;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int THEN_EXPRESSION__LEFT = ACTION_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int THEN_EXPRESSION__RIGHT = ACTION_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Then Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int THEN_EXPRESSION_FEATURE_COUNT = ACTION_EXPRESSION_FEATURE_COUNT + 2;
+
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Model <em>Model</em>}'.
@@ -595,15 +679,15 @@ public interface MyDslPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Model#getSystemRoot <em>System Root</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Model#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>System Root</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Model#getSystemRoot()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Model#getName()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_SystemRoot();
+  EAttribute getModel_Name();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Model#getEntities <em>Entities</em>}'.
@@ -626,49 +710,6 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getModel_Relations();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.SystemRoot <em>System Root</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>System Root</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SystemRoot
-   * @generated
-   */
-  EClass getSystemRoot();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.SystemRoot#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SystemRoot#getName()
-   * @see #getSystemRoot()
-   * @generated
-   */
-  EAttribute getSystemRoot_Name();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.SystemRoot#getEntities <em>Entities</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Entities</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SystemRoot#getEntities()
-   * @see #getSystemRoot()
-   * @generated
-   */
-  EReference getSystemRoot_Entities();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.SystemRoot#getRelations <em>Relations</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Relations</em>'.
-   * @see org.xtext.example.mydsl.myDsl.SystemRoot#getRelations()
-   * @see #getSystemRoot()
-   * @generated
-   */
-  EReference getSystemRoot_Relations();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Entity <em>Entity</em>}'.
@@ -713,10 +754,10 @@ public interface MyDslPackage extends EPackage
   EReference getMission_DroneGroup();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Mission#getActions <em>Actions</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Mission#getActions <em>Actions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Actions</em>'.
+   * @return the meta object for the containment reference '<em>Actions</em>'.
    * @see org.xtext.example.mydsl.myDsl.Mission#getActions()
    * @see #getMission()
    * @generated
@@ -743,6 +784,48 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getActionElement();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ActionExpression <em>Action Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Action Expression</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ActionExpression
+   * @generated
+   */
+  EClass getActionExpression();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.PrimaryExpression <em>Primary Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primary Expression</em>'.
+   * @see org.xtext.example.mydsl.myDsl.PrimaryExpression
+   * @generated
+   */
+  EClass getPrimaryExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.PrimaryExpression#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.xtext.example.mydsl.myDsl.PrimaryExpression#getExpression()
+   * @see #getPrimaryExpression()
+   * @generated
+   */
+  EReference getPrimaryExpression_Expression();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.PrimaryExpression#getActionRef <em>Action Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Action Ref</em>'.
+   * @see org.xtext.example.mydsl.myDsl.PrimaryExpression#getActionRef()
+   * @see #getPrimaryExpression()
+   * @generated
+   */
+  EReference getPrimaryExpression_ActionRef();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DroneGroup <em>Drone Group</em>}'.
@@ -935,6 +1018,70 @@ public interface MyDslPackage extends EPackage
   EAttribute getRelation_Type();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.OrExpression <em>Or Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Or Expression</em>'.
+   * @see org.xtext.example.mydsl.myDsl.OrExpression
+   * @generated
+   */
+  EClass getOrExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.OrExpression#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.example.mydsl.myDsl.OrExpression#getLeft()
+   * @see #getOrExpression()
+   * @generated
+   */
+  EReference getOrExpression_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.OrExpression#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.myDsl.OrExpression#getRight()
+   * @see #getOrExpression()
+   * @generated
+   */
+  EReference getOrExpression_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ThenExpression <em>Then Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Then Expression</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ThenExpression
+   * @generated
+   */
+  EClass getThenExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.ThenExpression#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ThenExpression#getLeft()
+   * @see #getThenExpression()
+   * @generated
+   */
+  EReference getThenExpression_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.ThenExpression#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ThenExpression#getRight()
+   * @see #getThenExpression()
+   * @generated
+   */
+  EReference getThenExpression_Right();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -968,12 +1115,12 @@ public interface MyDslPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>System Root</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__SYSTEM_ROOT = eINSTANCE.getModel_SystemRoot();
+    EAttribute MODEL__NAME = eINSTANCE.getModel_Name();
 
     /**
      * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
@@ -990,40 +1137,6 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference MODEL__RELATIONS = eINSTANCE.getModel_Relations();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.SystemRootImpl <em>System Root</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.SystemRootImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSystemRoot()
-     * @generated
-     */
-    EClass SYSTEM_ROOT = eINSTANCE.getSystemRoot();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SYSTEM_ROOT__NAME = eINSTANCE.getSystemRoot_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SYSTEM_ROOT__ENTITIES = eINSTANCE.getSystemRoot_Entities();
-
-    /**
-     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SYSTEM_ROOT__RELATIONS = eINSTANCE.getSystemRoot_Relations();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -1062,7 +1175,7 @@ public interface MyDslPackage extends EPackage
     EReference MISSION__DRONE_GROUP = eINSTANCE.getMission_DroneGroup();
 
     /**
-     * The meta object literal for the '<em><b>Actions</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Actions</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1086,6 +1199,42 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass ACTION_ELEMENT = eINSTANCE.getActionElement();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ActionExpressionImpl <em>Action Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ActionExpressionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getActionExpression()
+     * @generated
+     */
+    EClass ACTION_EXPRESSION = eINSTANCE.getActionExpression();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.PrimaryExpressionImpl <em>Primary Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.PrimaryExpressionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPrimaryExpression()
+     * @generated
+     */
+    EClass PRIMARY_EXPRESSION = eINSTANCE.getPrimaryExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PRIMARY_EXPRESSION__EXPRESSION = eINSTANCE.getPrimaryExpression_Expression();
+
+    /**
+     * The meta object literal for the '<em><b>Action Ref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PRIMARY_EXPRESSION__ACTION_REF = eINSTANCE.getPrimaryExpression_ActionRef();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DroneGroupImpl <em>Drone Group</em>}' class.
@@ -1246,6 +1395,58 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute RELATION__TYPE = eINSTANCE.getRelation_Type();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.OrExpressionImpl <em>Or Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.OrExpressionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getOrExpression()
+     * @generated
+     */
+    EClass OR_EXPRESSION = eINSTANCE.getOrExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OR_EXPRESSION__LEFT = eINSTANCE.getOrExpression_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OR_EXPRESSION__RIGHT = eINSTANCE.getOrExpression_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ThenExpressionImpl <em>Then Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ThenExpressionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getThenExpression()
+     * @generated
+     */
+    EClass THEN_EXPRESSION = eINSTANCE.getThenExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference THEN_EXPRESSION__LEFT = eINSTANCE.getThenExpression_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference THEN_EXPRESSION__RIGHT = eINSTANCE.getThenExpression_Right();
 
   }
 

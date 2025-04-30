@@ -9,7 +9,7 @@
  import org.eclipse.xtext.generator.IGeneratorContext;
  import org.eclipse.emf.common.util.EList
  import org.eclipse.emf.ecore.EObject
- import org.xtext.example.mydsl.myDsl.SystemRoot;
+ import org.xtext.example.mydsl.myDsl.Model;
  import org.xtext.example.mydsl.myDsl.Entity;
  import java.util.List
  import java.util.ArrayList
@@ -23,6 +23,11 @@ import org.xtext.example.mydsl.myDsl.PermissionConstraint
 import org.xtext.example.mydsl.myDsl.DroneGroup
 import java.util.Map
 import org.xtext.example.mydsl.myDsl.MyDslFactory
+import org.xtext.example.mydsl.myDsl.ActionExpression
+import org.xtext.example.mydsl.myDsl.OrExpression
+import org.xtext.example.mydsl.myDsl.ThenExpression
+import org.xtext.example.mydsl.myDsl.PrimaryExpression
+import org.xtext.example.mydsl.myDsl.ActionElement
 
 /**
  * Generates code from your model files on save.
@@ -32,14 +37,14 @@ import org.xtext.example.mydsl.myDsl.MyDslFactory
 class MyDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		var root = resource.allContents.toIterable.filter(SystemRoot).get(0);
+		var root = resource.allContents.toIterable.filter(Model).get(0);
 		val types = root.entities.map[e | e.eClass.name].toSet
 		for (typeName : types) {
 		    fsa.generateFile(root.name + "/" + typeName + ".java", generateClassForType(typeName, root))
 		}
 		fsa.generateFile("/SystemInitializer.java", generateSystemInitializer(root))
 	}
-	def generateClassForType(String typeName, SystemRoot root) {
+	def generateClassForType(String typeName, Model root) {
 		val attributes = getEntityAttributes(typeName)
 		val parentClass = findParentEntity(typeName, root)
 		'''
@@ -73,7 +78,7 @@ class MyDslGenerator extends AbstractGenerator {
 		'''
 	}
 	
-	def String findParentEntity(String typeName, SystemRoot root) {
+	def String findParentEntity(String typeName, Model root) {
 	    for (relation : root.relations) {
 	        if (relation.type == "inherits" && relation.from.eClass.name == typeName) {
 	            return relation.to.eClass.name
@@ -82,7 +87,7 @@ class MyDslGenerator extends AbstractGenerator {
 	    return null
 	}
 	
-	def generateSystemInitializer(SystemRoot root) {
+	def generateSystemInitializer(Model root) {
 		'''	
 		import java.util.Arrays;
 		import MedicalSystems.Drone;
@@ -113,13 +118,18 @@ class MyDslGenerator extends AbstractGenerator {
 	
 		switch e {
 			Mission: '''
-	        Mission «name» = new Mission(«e.droneGroup.name», Arrays.asList(«e.actions.map[a|
-				switch a {
-					Mission: a.name
-					Action: a.name
-					default: "// unknown"
-				}
-			].join(", ")»), Arrays.asList(«e.constraints.map[c|c.name].join(", ")»));
+	        Mission «name» = new Mission(
+	        «e.droneGroup.name», 
+	        Arrays.asList(«extractActionRefs(e.actions as EObject).join(", ")»), 
+	        Arrays.asList(«e.constraints.map[c|
+	        	switch c {
+	        		Constraint: c.name
+	        		PermissionConstraint: c.name
+	        		RegulatoryConstraint: c.name
+	        		default: "// unknown"
+	        	}
+	        ].join(", ")»)
+	        );
 			'''
 			DroneGroup: '''
 	        DroneGroup «name» = new DroneGroup(Arrays.asList(«e.drones.map[d|d.name].join(", ")»));
@@ -143,6 +153,30 @@ class MyDslGenerator extends AbstractGenerator {
 			'''
 		}
 	}
+	def List<String> extractActionRefs(EObject expr) {
+	    switch expr {
+	        OrExpression: {
+	            return (extractActionRefs((expr as OrExpression).left) +
+	                    extractActionRefs((expr as OrExpression).right)).toList
+	        }
+	        ThenExpression: {
+	            return (extractActionRefs((expr as ThenExpression).left) +
+	                    extractActionRefs((expr as ThenExpression).right)).toList
+	        }
+	        
+	        PrimaryExpression: {
+	            val pe = expr as PrimaryExpression
+	            if (pe.expression !== null)
+	                return extractActionRefs(pe.expression)
+	            if (pe.actionRef instanceof Action)
+	                return newArrayList((pe.actionRef as Action).name)
+                else if (pe.actionRef instanceof Mission)
+	                return newArrayList((pe.actionRef as Mission).name)
+	        }
+	        default: return newArrayList
+	    }
+	}
+	
 	
 	static class AttributeInfo {
          String name

@@ -2,14 +2,6 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="myDsl" nsURI="http://www.xtext.org/example/mydsl/MyDsl" nsPrefix="myDsl">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="systemRoot" eType="#//SystemRoot"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
-        eType="#//Entity" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
-        eType="#//Relation" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SystemRoot">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
         eType="#//Entity" containment="true"/>
@@ -21,12 +13,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mission" eSuperTypes="#//Entity #//ActionElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="droneGroup" eType="#//DroneGroup"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" unique="false"
-        upperBound="-1" eType="#//ActionElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" eType="#//ActionExpression"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" unique="false"
         upperBound="-1" eType="#//ConstraintClasses"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimaryExpression" eSuperTypes="#//ActionExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//ActionExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionRef" eType="#//ActionElement"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DroneGroup" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="drones" unique="false"
         upperBound="-1" eType="#//Drone"/>
@@ -50,5 +48,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Entity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//Entity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//ActionExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ActionExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ActionExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ThenExpression" eSuperTypes="#//ActionExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ActionExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//PrimaryExpression"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

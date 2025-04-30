@@ -20,10 +20,12 @@ import org.xtext.example.mydsl.myDsl.DroneGroup;
 import org.xtext.example.mydsl.myDsl.Mission;
 import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.OrExpression;
 import org.xtext.example.mydsl.myDsl.PermissionConstraint;
+import org.xtext.example.mydsl.myDsl.PrimaryExpression;
 import org.xtext.example.mydsl.myDsl.RegulatoryConstraint;
 import org.xtext.example.mydsl.myDsl.Relation;
-import org.xtext.example.mydsl.myDsl.SystemRoot;
+import org.xtext.example.mydsl.myDsl.ThenExpression;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 
 @SuppressWarnings("all")
@@ -58,8 +60,14 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
+			case MyDslPackage.OR_EXPRESSION:
+				sequence_OrExpression(context, (OrExpression) semanticObject); 
+				return; 
 			case MyDslPackage.PERMISSION_CONSTRAINT:
 				sequence_PermissionConstraint(context, (PermissionConstraint) semanticObject); 
+				return; 
+			case MyDslPackage.PRIMARY_EXPRESSION:
+				sequence_PrimaryExpression(context, (PrimaryExpression) semanticObject); 
 				return; 
 			case MyDslPackage.REGULATORY_CONSTRAINT:
 				sequence_RegulatoryConstraint(context, (RegulatoryConstraint) semanticObject); 
@@ -67,8 +75,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.RELATION:
 				sequence_Relation(context, (Relation) semanticObject); 
 				return; 
-			case MyDslPackage.SYSTEM_ROOT:
-				sequence_SystemRoot(context, (SystemRoot) semanticObject); 
+			case MyDslPackage.THEN_EXPRESSION:
+				sequence_ThenExpression(context, (ThenExpression) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -178,13 +186,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ActionElement returns Mission
 	 *
 	 * Constraint:
-	 *     (
-	 *         name=ID 
-	 *         droneGroup=[DroneGroup|ID] 
-	 *         actions+=[ActionElement|ID] 
-	 *         actions+=[ActionElement|ID]* 
-	 *         (constraints+=[ConstraintClasses|ID] constraints+=[ConstraintClasses|ID]*)?
-	 *     )
+	 *     (name=ID droneGroup=[DroneGroup|ID] actions=ActionExpression (constraints+=[ConstraintClasses|ID] constraints+=[ConstraintClasses|ID]*)?)
 	 * </pre>
 	 */
 	protected void sequence_Mission(ISerializationContext context, Mission semanticObject) {
@@ -198,11 +200,36 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (systemRoot=SystemRoot entities+=Entity* relations+=Relation*)
+	 *     (name=ID entities+=Entity* relations+=Relation*)
 	 * </pre>
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ActionExpression returns OrExpression
+	 *     OrExpression returns OrExpression
+	 *     OrExpression.OrExpression_1_0 returns OrExpression
+	 *
+	 * Constraint:
+	 *     (left=OrExpression_OrExpression_1_0 right=ThenExpression)
+	 * </pre>
+	 */
+	protected void sequence_OrExpression(ISerializationContext context, OrExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOrExpressionAccess().getOrExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getOrExpressionAccess().getRightThenExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	
@@ -218,6 +245,25 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * </pre>
 	 */
 	protected void sequence_PermissionConstraint(ISerializationContext context, PermissionConstraint semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ActionExpression returns PrimaryExpression
+	 *     OrExpression returns PrimaryExpression
+	 *     OrExpression.OrExpression_1_0 returns PrimaryExpression
+	 *     ThenExpression returns PrimaryExpression
+	 *     ThenExpression.ThenExpression_1_0 returns PrimaryExpression
+	 *     PrimaryExpression returns PrimaryExpression
+	 *
+	 * Constraint:
+	 *     (expression=ActionExpression | actionRef=[ActionElement|ID])
+	 * </pre>
+	 */
+	protected void sequence_PrimaryExpression(ISerializationContext context, PrimaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -270,14 +316,27 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     SystemRoot returns SystemRoot
+	 *     ActionExpression returns ThenExpression
+	 *     OrExpression returns ThenExpression
+	 *     OrExpression.OrExpression_1_0 returns ThenExpression
+	 *     ThenExpression returns ThenExpression
+	 *     ThenExpression.ThenExpression_1_0 returns ThenExpression
 	 *
 	 * Constraint:
-	 *     (name=ID entities+=Entity* relations+=Relation*)
+	 *     (left=ThenExpression_ThenExpression_1_0 right=PrimaryExpression)
 	 * </pre>
 	 */
-	protected void sequence_SystemRoot(ISerializationContext context, SystemRoot semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ThenExpression(ISerializationContext context, ThenExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.THEN_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.THEN_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.THEN_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.THEN_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getThenExpressionAccess().getThenExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getThenExpressionAccess().getRightPrimaryExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	

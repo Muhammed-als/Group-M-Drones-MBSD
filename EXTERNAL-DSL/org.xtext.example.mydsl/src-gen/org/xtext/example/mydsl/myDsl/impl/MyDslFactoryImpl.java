@@ -66,10 +66,11 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
     switch (eClass.getClassifierID())
     {
       case MyDslPackage.MODEL: return createModel();
-      case MyDslPackage.SYSTEM_ROOT: return createSystemRoot();
       case MyDslPackage.ENTITY: return createEntity();
       case MyDslPackage.MISSION: return createMission();
       case MyDslPackage.ACTION_ELEMENT: return createActionElement();
+      case MyDslPackage.ACTION_EXPRESSION: return createActionExpression();
+      case MyDslPackage.PRIMARY_EXPRESSION: return createPrimaryExpression();
       case MyDslPackage.DRONE_GROUP: return createDroneGroup();
       case MyDslPackage.DRONE: return createDrone();
       case MyDslPackage.ACTION: return createAction();
@@ -78,6 +79,8 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.PERMISSION_CONSTRAINT: return createPermissionConstraint();
       case MyDslPackage.REGULATORY_CONSTRAINT: return createRegulatoryConstraint();
       case MyDslPackage.RELATION: return createRelation();
+      case MyDslPackage.OR_EXPRESSION: return createOrExpression();
+      case MyDslPackage.THEN_EXPRESSION: return createThenExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -93,18 +96,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     ModelImpl model = new ModelImpl();
     return model;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public SystemRoot createSystemRoot()
-  {
-    SystemRootImpl systemRoot = new SystemRootImpl();
-    return systemRoot;
   }
 
   /**
@@ -141,6 +132,30 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     ActionElementImpl actionElement = new ActionElementImpl();
     return actionElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ActionExpression createActionExpression()
+  {
+    ActionExpressionImpl actionExpression = new ActionExpressionImpl();
+    return actionExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PrimaryExpression createPrimaryExpression()
+  {
+    PrimaryExpressionImpl primaryExpression = new PrimaryExpressionImpl();
+    return primaryExpression;
   }
 
   /**
@@ -237,6 +252,30 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     RelationImpl relation = new RelationImpl();
     return relation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public OrExpression createOrExpression()
+  {
+    OrExpressionImpl orExpression = new OrExpressionImpl();
+    return orExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ThenExpression createThenExpression()
+  {
+    ThenExpressionImpl thenExpression = new ThenExpressionImpl();
+    return thenExpression;
   }
 
   /**
