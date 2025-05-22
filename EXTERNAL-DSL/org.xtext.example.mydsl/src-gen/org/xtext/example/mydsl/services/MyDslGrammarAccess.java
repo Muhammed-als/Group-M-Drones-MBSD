@@ -37,13 +37,13 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Model:
 		//    'system' name=ID
-		//    entities+=Entity*
-		//    relations+=Relation*
+		//    entities+=Entity*              // Zero or more entities
+		//    relations+=Relation*           // Zero or more relations
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'system' name=ID
-		//entities+=Entity*
+		//entities+=Entity*              // Zero or more entities
 		//relations+=Relation*
 		public Group getGroup() { return cGroup; }
 		
@@ -62,6 +62,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Entity
 		public RuleCall getEntitiesEntityParserRuleCall_2_0() { return cEntitiesEntityParserRuleCall_2_0; }
 		
+		//          // Zero or more entities
 		//relations+=Relation*
 		public Assignment getRelationsAssignment_3() { return cRelationsAssignment_3; }
 		
@@ -77,6 +78,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cActionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cConstraintClassesParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
+		//// This allows 'entities' in the model to include any of these.
 		//Entity:
 		//    Mission | DroneGroup | Drone | Action | ConstraintClasses;
 		@Override public ParserRule getRule() { return rule; }
@@ -133,21 +135,26 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cRightSquareBracketKeyword_11_4 = (Keyword)cGroup_11.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
+		///*
+		// * Mission definition, with required and optional fields.
+		// * Includes a name, reference to a drone group, an action expression,
+		// * and an optional list of constraints.
+		// */
 		//Mission:
 		//    'Mission' '{'
 		//        'name' '=' name=ID
-		//        'droneGroup' '=' droneGroup=[DroneGroup]
-		//        'actions' '=' actions=ActionExpression
-		//        ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?
+		//        'droneGroup' '=' droneGroup=[DroneGroup] // Reference to a DroneGroup
+		//        'actions' '=' actions=ActionExpression // Parsed action expression
+		//        ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?  // Optional list of constraints
 		//    '}'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Mission' '{'
 		//    'name' '=' name=ID
-		//    'droneGroup' '=' droneGroup=[DroneGroup]
-		//    'actions' '=' actions=ActionExpression
-		//    ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?
+		//    'droneGroup' '=' droneGroup=[DroneGroup] // Reference to a DroneGroup
+		//    'actions' '=' actions=ActionExpression // Parsed action expression
+		//    ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?  // Optional list of constraints
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -184,7 +191,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ID
 		public RuleCall getDroneGroupDroneGroupIDTerminalRuleCall_7_0_1() { return cDroneGroupDroneGroupIDTerminalRuleCall_7_0_1; }
 		
-		//'actions'
+		//// Reference to a DroneGroup
+		//       'actions'
 		public Keyword getActionsKeyword_8() { return cActionsKeyword_8; }
 		
 		//'='
@@ -196,7 +204,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ActionExpression
 		public RuleCall getActionsActionExpressionParserRuleCall_10_0() { return cActionsActionExpressionParserRuleCall_10_0; }
 		
-		//('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?
+		//// Parsed action expression
+		//       ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?
 		public Group getGroup_11() { return cGroup_11; }
 		
 		//'constraints'
@@ -238,7 +247,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//']'
 		public Keyword getRightSquareBracketKeyword_11_4() { return cRightSquareBracketKeyword_11_4; }
 		
-		//'}'
+		//// Optional list of constraints
+		//  '}'
 		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
 	}
 	public class ActionElementElements extends AbstractParserRuleElementFinder {
@@ -247,6 +257,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cActionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cMissionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		///*
+		// * Defines what can be referred to inside action expressions.
+		// * It can be either an Action or another Mission.
+		// */
 		//ActionElement:
 		//    Action | Mission
 		//;
@@ -265,7 +279,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ActionExpression");
 		private final RuleCall cOrExpressionParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//// action expressions (like "action1 then action2 or Mission3")
+		///*
+		// * Entry rule for parsing action expressions like:
+		// * action1 then action2 or Mission3
+		// */
 		//ActionExpression:
 		//    OrExpression
 		//;
@@ -284,8 +301,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightThenExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		//// Handle the 'or' operator, lowest precedence
-		//// Allow doing the following: (A then B) or C or D
+		///*
+		// * 'or' expressions: lowest precedence
+		// * Allows chaining like: (A then B) or C or D
+		// */
 		//OrExpression returns ActionExpression:
 		//    ThenExpression ({OrExpression.left=current} 'or' right=ThenExpression)*
 		//;
@@ -322,8 +341,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightPrimaryExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		//// Handles the 'then' operator, higher precedence than 'or'.
-		//// Allow doing the following:  A then B then C
+		///*
+		// * 'then' expressions: higher precedence than 'or'
+		// * Allows chaining like: A then B then C
+		// */
 		//ThenExpression returns ActionExpression:
 		//    PrimaryExpression ({ThenExpression.left=current} 'then' right=PrimaryExpression)*
 		//;
@@ -362,6 +383,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final CrossReference cActionRefActionElementCrossReference_1_0 = (CrossReference)cActionRefAssignment_1.eContents().get(0);
 		private final RuleCall cActionRefActionElementIDTerminalRuleCall_1_0_1 = (RuleCall)cActionRefActionElementCrossReference_1_0.eContents().get(1);
 		
+		///*
+		// * Handles parentheses and basic elements (action or mission references)
+		// * Supports nested expressions via parentheses.
+		// */
 		//PrimaryExpression:
 		//    '(' expression=ActionExpression ')' | // e.g., (Mission1 or action1)
 		//    actionRef=[ActionElement] // A reference to either an Action or another Mission
@@ -420,17 +445,20 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cRightSquareBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
+		///*
+		// * DroneGroup definition, containing a list of drones.
+		// */
 		//DroneGroup:
 		//    'DroneGroup' '{'
 		//        'name' '=' name=ID
-		//        'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']'
+		//        'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']' // Drone list
 		//    '}'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'DroneGroup' '{'
 		//    'name' '=' name=ID
-		//    'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']'
+		//    'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']' // Drone list
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -488,7 +516,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//']'
 		public Keyword getRightSquareBracketKeyword_10() { return cRightSquareBracketKeyword_10; }
 		
-		//'}'
+		//// Drone list
+		//   '}'
 		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 	}
 	public class DroneElements extends AbstractParserRuleElementFinder {
@@ -510,6 +539,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cSerialNumberSTRINGTerminalRuleCall_10_0 = (RuleCall)cSerialNumberAssignment_10.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
+		///*
+		// * Drone definition with basic identifying information.
+		// */
 		//Drone:
 		//    'Drone' '{'
 		//        'name' '=' name=ID
@@ -590,6 +622,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cTypeSTRINGTerminalRuleCall_10_0 = (RuleCall)cTypeAssignment_10.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
+		///*
+		// * Action definition with basic identifying information.
+		// */
 		//Action:
 		//    'Action' '{'
 		//        'name' '=' name=ID
@@ -658,6 +693,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cPermissionConstraintParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cRegulatoryConstraintParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
+		///*
+		// * rule to group all types of constraints.
+		// * This lets missions refer to a uniform list of constraint types.
+		// */
 		//ConstraintClasses:
 		//    Constraint | PermissionConstraint | RegulatoryConstraint;
 		@Override public ParserRule getRule() { return rule; }
@@ -689,6 +728,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cDescriptionSTRINGTerminalRuleCall_7_0 = (RuleCall)cDescriptionAssignment_7.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
+		///*
+		// * Basic constraint with name and description.
+		// */
 		//Constraint:
 		//    'Constraint' '{'
 		//        'name' '=' name=ID
@@ -750,6 +792,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cDescriptionSTRINGTerminalRuleCall_7_0 = (RuleCall)cDescriptionAssignment_7.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
+		///*
+		// * Basic PermissionConstraint with name and optional description.
+		// */
 		//PermissionConstraint:
 		//    'PermissionConstraint' '{'
 		//        'name' '=' name=ID
@@ -811,6 +856,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cDescriptionSTRINGTerminalRuleCall_7_0 = (RuleCall)cDescriptionAssignment_7.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
+		///*
+		// * Basic RegulatoryConstraint with name and optional description.
+		// */
 		//RegulatoryConstraint:
 		//    'RegulatoryConstraint' '{'
 		//        'name' '=' name=ID
@@ -882,19 +930,23 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cTypeSTRINGTerminalRuleCall_13_0 = (RuleCall)cTypeAssignment_13.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_14 = (Keyword)cGroup.eContents().get(14);
 		
+		///*
+		// * Defines a relation (edge) between two entities in the system.
+		// * You can define relation types like "uses", "dependsOn", etc.
+		// */
 		//Relation:
 		//    'Relation' '{'
 		//        'name' '=' name=ID
-		//        'from' '=' from=[Entity]
-		//        'to' '=' to=[Entity]
+		//        'from' '=' from=[Entity] // Source entity
+		//        'to' '=' to=[Entity] // Target entity
 		//        'type' '=' type=STRING  // e.g., "dependency", "uses", "inherits"
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Relation' '{'
 		//    'name' '=' name=ID
-		//    'from' '=' from=[Entity]
-		//    'to' '=' to=[Entity]
+		//    'from' '=' from=[Entity] // Source entity
+		//    'to' '=' to=[Entity] // Target entity
 		//    'type' '=' type=STRING  // e.g., "dependency", "uses", "inherits"
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -932,7 +984,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ID
 		public RuleCall getFromEntityIDTerminalRuleCall_7_0_1() { return cFromEntityIDTerminalRuleCall_7_0_1; }
 		
-		//'to'
+		//// Source entity
+		//       'to'
 		public Keyword getToKeyword_8() { return cToKeyword_8; }
 		
 		//'='
@@ -947,7 +1000,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ID
 		public RuleCall getToEntityIDTerminalRuleCall_10_0_1() { return cToEntityIDTerminalRuleCall_10_0_1; }
 		
-		//'type'
+		//// Target entity
+		//       'type'
 		public Keyword getTypeKeyword_11() { return cTypeKeyword_11; }
 		
 		//'='
@@ -1038,8 +1092,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//Model:
 	//    'system' name=ID
-	//    entities+=Entity*
-	//    relations+=Relation*
+	//    entities+=Entity*              // Zero or more entities
+	//    relations+=Relation*           // Zero or more relations
 	//;
 	public ModelElements getModelAccess() {
 		return pModel;
@@ -1049,6 +1103,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getModelAccess().getRule();
 	}
 	
+	//// This allows 'entities' in the model to include any of these.
 	//Entity:
 	//    Mission | DroneGroup | Drone | Action | ConstraintClasses;
 	public EntityElements getEntityAccess() {
@@ -1059,12 +1114,17 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getEntityAccess().getRule();
 	}
 	
+	///*
+	// * Mission definition, with required and optional fields.
+	// * Includes a name, reference to a drone group, an action expression,
+	// * and an optional list of constraints.
+	// */
 	//Mission:
 	//    'Mission' '{'
 	//        'name' '=' name=ID
-	//        'droneGroup' '=' droneGroup=[DroneGroup]
-	//        'actions' '=' actions=ActionExpression
-	//        ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?
+	//        'droneGroup' '=' droneGroup=[DroneGroup] // Reference to a DroneGroup
+	//        'actions' '=' actions=ActionExpression // Parsed action expression
+	//        ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?  // Optional list of constraints
 	//    '}'
 	//;
 	public MissionElements getMissionAccess() {
@@ -1075,6 +1135,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getMissionAccess().getRule();
 	}
 	
+	///*
+	// * Defines what can be referred to inside action expressions.
+	// * It can be either an Action or another Mission.
+	// */
 	//ActionElement:
 	//    Action | Mission
 	//;
@@ -1086,7 +1150,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getActionElementAccess().getRule();
 	}
 	
-	//// action expressions (like "action1 then action2 or Mission3")
+	///*
+	// * Entry rule for parsing action expressions like:
+	// * action1 then action2 or Mission3
+	// */
 	//ActionExpression:
 	//    OrExpression
 	//;
@@ -1098,8 +1165,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getActionExpressionAccess().getRule();
 	}
 	
-	//// Handle the 'or' operator, lowest precedence
-	//// Allow doing the following: (A then B) or C or D
+	///*
+	// * 'or' expressions: lowest precedence
+	// * Allows chaining like: (A then B) or C or D
+	// */
 	//OrExpression returns ActionExpression:
 	//    ThenExpression ({OrExpression.left=current} 'or' right=ThenExpression)*
 	//;
@@ -1111,8 +1180,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getOrExpressionAccess().getRule();
 	}
 	
-	//// Handles the 'then' operator, higher precedence than 'or'.
-	//// Allow doing the following:  A then B then C
+	///*
+	// * 'then' expressions: higher precedence than 'or'
+	// * Allows chaining like: A then B then C
+	// */
 	//ThenExpression returns ActionExpression:
 	//    PrimaryExpression ({ThenExpression.left=current} 'then' right=PrimaryExpression)*
 	//;
@@ -1124,6 +1195,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getThenExpressionAccess().getRule();
 	}
 	
+	///*
+	// * Handles parentheses and basic elements (action or mission references)
+	// * Supports nested expressions via parentheses.
+	// */
 	//PrimaryExpression:
 	//    '(' expression=ActionExpression ')' | // e.g., (Mission1 or action1)
 	//    actionRef=[ActionElement] // A reference to either an Action or another Mission
@@ -1136,10 +1211,13 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getPrimaryExpressionAccess().getRule();
 	}
 	
+	///*
+	// * DroneGroup definition, containing a list of drones.
+	// */
 	//DroneGroup:
 	//    'DroneGroup' '{'
 	//        'name' '=' name=ID
-	//        'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']'
+	//        'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']' // Drone list
 	//    '}'
 	//;
 	public DroneGroupElements getDroneGroupAccess() {
@@ -1150,6 +1228,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getDroneGroupAccess().getRule();
 	}
 	
+	///*
+	// * Drone definition with basic identifying information.
+	// */
 	//Drone:
 	//    'Drone' '{'
 	//        'name' '=' name=ID
@@ -1165,6 +1246,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getDroneAccess().getRule();
 	}
 	
+	///*
+	// * Action definition with basic identifying information.
+	// */
 	//Action:
 	//    'Action' '{'
 	//        'name' '=' name=ID
@@ -1180,6 +1264,10 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getActionAccess().getRule();
 	}
 	
+	///*
+	// * rule to group all types of constraints.
+	// * This lets missions refer to a uniform list of constraint types.
+	// */
 	//ConstraintClasses:
 	//    Constraint | PermissionConstraint | RegulatoryConstraint;
 	public ConstraintClassesElements getConstraintClassesAccess() {
@@ -1190,6 +1278,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getConstraintClassesAccess().getRule();
 	}
 	
+	///*
+	// * Basic constraint with name and description.
+	// */
 	//Constraint:
 	//    'Constraint' '{'
 	//        'name' '=' name=ID
@@ -1203,6 +1294,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getConstraintAccess().getRule();
 	}
 	
+	///*
+	// * Basic PermissionConstraint with name and optional description.
+	// */
 	//PermissionConstraint:
 	//    'PermissionConstraint' '{'
 	//        'name' '=' name=ID
@@ -1216,6 +1310,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getPermissionConstraintAccess().getRule();
 	}
 	
+	///*
+	// * Basic RegulatoryConstraint with name and optional description.
+	// */
 	//RegulatoryConstraint:
 	//    'RegulatoryConstraint' '{'
 	//        'name' '=' name=ID
@@ -1229,11 +1326,15 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getRegulatoryConstraintAccess().getRule();
 	}
 	
+	///*
+	// * Defines a relation (edge) between two entities in the system.
+	// * You can define relation types like "uses", "dependsOn", etc.
+	// */
 	//Relation:
 	//    'Relation' '{'
 	//        'name' '=' name=ID
-	//        'from' '=' from=[Entity]
-	//        'to' '=' to=[Entity]
+	//        'from' '=' from=[Entity] // Source entity
+	//        'to' '=' to=[Entity] // Target entity
 	//        'type' '=' type=STRING  // e.g., "dependency", "uses", "inherits"
 	//    '}';
 	public RelationElements getRelationAccess() {

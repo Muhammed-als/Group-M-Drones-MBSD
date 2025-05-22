@@ -5,52 +5,81 @@ generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
 Model:
     'system' name=ID
-    entities+=Entity*
-    relations+=Relation*
+    entities+=Entity*              // Zero or more entities
+    relations+=Relation*           // Zero or more relations
 ;
 
+// This allows 'entities' in the model to include any of these.
 Entity:
     Mission | DroneGroup | Drone | Action | ConstraintClasses;
 
+/*
+ * Mission definition, with required and optional fields.
+ * Includes a name, reference to a drone group, an action expression,
+ * and an optional list of constraints.
+ */
 Mission:
     'Mission' '{'
     	'name' '=' name=ID
-        'droneGroup' '=' droneGroup=[DroneGroup]
-        'actions' '=' actions=ActionExpression
-        ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?
+        'droneGroup' '=' droneGroup=[DroneGroup] // Reference to a DroneGroup
+        'actions' '=' actions=ActionExpression // Parsed action expression
+        ('constraints' '=' '[' (constraints+=[ConstraintClasses] (',' constraints+=[ConstraintClasses])*)? ']')?  // Optional list of constraints
     '}'
 ;
+
+/*
+ * Defines what can be referred to inside action expressions.
+ * It can be either an Action or another Mission.
+ */
 ActionElement:
     Action | Mission
 ;
 
-// action expressions (like "action1 then action2 or Mission3")
+/*
+ * Entry rule for parsing action expressions like:
+ * action1 then action2 or Mission3
+ */
 ActionExpression:
     OrExpression
 ;
-// Handle the 'or' operator, lowest precedence
-// Allow doing the following: (A then B) or C or D
+
+/*
+ * 'or' expressions: lowest precedence
+ * Allows chaining like: (A then B) or C or D
+ */
 OrExpression returns ActionExpression:
     ThenExpression ({OrExpression.left=current} 'or' right=ThenExpression)*
 ;
 
-// Handles the 'then' operator, higher precedence than 'or'.
-// Allow doing the following:  A then B then C
+/*
+ * 'then' expressions: higher precedence than 'or'
+ * Allows chaining like: A then B then C
+ */
 ThenExpression returns ActionExpression:
     PrimaryExpression ({ThenExpression.left=current} 'then' right=PrimaryExpression)*
 ;
 
+/*
+ * Handles parentheses and basic elements (action or mission references)
+ * Supports nested expressions via parentheses.
+ */
 PrimaryExpression:
     '(' expression=ActionExpression ')' | // e.g., (Mission1 or action1)
     actionRef=[ActionElement] // A reference to either an Action or another Mission
 ;
 
+/*
+ * DroneGroup definition, containing a list of drones.
+ */
 DroneGroup:
 	'DroneGroup' '{'
     	'name' '=' name=ID
-		'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']'
+		'drones' '=' '[' drones+=[Drone] (',' drones+=[Drone])* ']' // Drone list
 	'}'
 ;
+/*
+ * Drone definition with basic identifying information.
+ */
 Drone:
     'Drone' '{'
     	'name' '=' name=ID
@@ -59,6 +88,9 @@ Drone:
     '}'
 ;
 
+/*
+ * Action definition with basic identifying information.
+ */
 Action:
     'Action' '{'
     	'name' '=' name=ID
@@ -67,32 +99,49 @@ Action:
     '}'
 ;
 
+/*
+ * rule to group all types of constraints.
+ * This lets missions refer to a uniform list of constraint types.
+ */
 ConstraintClasses:
     Constraint | PermissionConstraint | RegulatoryConstraint;
 
+/*
+ * Basic constraint with name and description.
+ */
 Constraint:
     'Constraint' '{'
     	'name' '=' name=ID
         'description' '=' description=STRING
     '}';
 
+/*
+ * Basic PermissionConstraint with name and optional description.
+ */
 PermissionConstraint:
     'PermissionConstraint' '{'
     	'name' '=' name=ID
         'description' '=' description=STRING?
     '}';
 
+/*
+ * Basic RegulatoryConstraint with name and optional description.
+ */
 RegulatoryConstraint:
     'RegulatoryConstraint' '{'
     	'name' '=' name=ID
         'description' '=' description=STRING?
     '}';
 
+/*
+ * Defines a relation (edge) between two entities in the system.
+ * You can define relation types like "uses", "dependsOn", etc.
+ */
 Relation:
     'Relation' '{'
     	'name' '=' name=ID
-        'from' '=' from=[Entity]
-        'to' '=' to=[Entity]
+        'from' '=' from=[Entity] // Source entity
+        'to' '=' to=[Entity] // Target entity
         'type' '=' type=STRING  // e.g., "dependency", "uses", "inherits"
     '}';
 

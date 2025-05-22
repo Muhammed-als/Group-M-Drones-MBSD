@@ -37,13 +37,18 @@ import org.xtext.example.mydsl.myDsl.ActionElement
 class MyDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+        // Get the root model from the resource
 		var root = resource.allContents.toIterable.filter(Model).get(0);
+        // Collect all unique entity type names from the model
 		val types = root.entities.map[e | e.eClass.name].toSet
+		// For each entity type, generate a Java class file
 		for (typeName : types) {
 		    fsa.generateFile(root.name + "/" + typeName + ".java", generateClassForType(typeName, root))
 		}
+		// Generate a SystemInitializer.java file, which is the main file
 		fsa.generateFile("/SystemInitializer.java", generateSystemInitializer(root))
 	}
+	// Generates a Java class for a specific entity type
 	def generateClassForType(String typeName, Model root) {
 		val attributes = getEntityAttributes(typeName)
 		val parentClass = findParentEntity(typeName, root)
@@ -77,7 +82,7 @@ class MyDslGenerator extends AbstractGenerator {
 			}
 		'''
 	}
-	
+	// Finds a parent class for inheritance, based on "inherits" relations
 	def String findParentEntity(String typeName, Model root) {
 	    for (relation : root.relations) {
 	        if (relation.type == "inherits" && relation.from.eClass.name == typeName) {
@@ -86,7 +91,7 @@ class MyDslGenerator extends AbstractGenerator {
 	    }
 	    return null
 	}
-	
+	// Generates a main class to instantiate all model entities
 	def generateSystemInitializer(Model root) {
 		'''	
 		import java.util.Arrays;
@@ -112,11 +117,13 @@ class MyDslGenerator extends AbstractGenerator {
 		}
 		'''
 	}
+	// Generates instantiation code for a given entity
 	def generateEntityInstantiation(Entity e) {
 		val typeName = e.eClass.name
 		val name = e.name
 	
 		switch e {
+            // Instantiate Mission with drone group, actions, and constraints
 			Mission: '''
 	        Mission «name» = new Mission(
 	        «e.droneGroup.name», 
@@ -131,28 +138,29 @@ class MyDslGenerator extends AbstractGenerator {
 	        ].join(", ")»)
 	        );
 			'''
+        	// Instantiate DroneGroup with list of drones
 			DroneGroup: '''
 	        DroneGroup «name» = new DroneGroup(Arrays.asList(«e.drones.map[d|d.name].join(", ")»));
 			'''
+			// Instantiate Drone with IP and serial number
 			Drone: '''
 	        Drone «name» = new Drone("«e.ip»", "«e.serialNumber»");
 			'''
+        	// Instantiate Action with description and type
 			Action: '''
 	        Action «name» = new Action("«e.description»", "«e.type»");
 			'''
+            // Instantiate PermissionConstraint as a Constraint
 			PermissionConstraint: '''
 	        Constraint «name» = new PermissionConstraint("«e.description»");
 			'''
-			/* 
-			Constraint: '''
-	        Constraint «name» = new Constraint("«e.name»", "«e.description»");
-			'''
-			*/
+			// Instantiate RegulatoryConstraint as a Constraint
 			RegulatoryConstraint: '''
 	        Constraint «name» = new RegulatoryConstraint("«e.description»");
 			'''
 		}
 	}
+    // Recursively extract action/mission references from the left recursion
 	def List<String> extractActionRefs(EObject expr) {
 	    switch expr {
 	        OrExpression: {
@@ -177,7 +185,7 @@ class MyDslGenerator extends AbstractGenerator {
 	    }
 	}
 	
-	
+	// Utility class for modeling entity attributes with their Java types
 	static class AttributeInfo {
          String name
          String type
@@ -186,7 +194,7 @@ class MyDslGenerator extends AbstractGenerator {
              this.name = name
              this.type = type
          }
-         
+         // Map DSL types to Java types
          def javaType() {
              switch(type) {
                  case "STRING": return "String"
@@ -198,7 +206,7 @@ class MyDslGenerator extends AbstractGenerator {
          }
      }
      
-     // Dispatch method to get attributes for each entity type
+     // Entry dispatch method to get attributes based on type name
      def List<AttributeInfo> getEntityAttributes(String typeName) {
      	// Instead of writing new Mission() we use MyDslFactory.eINSTANCE.createMission()
 	    switch typeName {
@@ -212,6 +220,7 @@ class MyDslGenerator extends AbstractGenerator {
 	        default: newArrayList
 	    }
 	}
+	// Specific attribute definitions for each entity type
      def dispatch List<AttributeInfo> getEntityAttributes(Mission mission) {
 	    val result = new ArrayList<AttributeInfo>()
 	    result.add(new AttributeInfo("droneGroup", "DroneGroup"))
