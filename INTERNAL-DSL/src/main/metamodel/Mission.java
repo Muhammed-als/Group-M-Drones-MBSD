@@ -1,116 +1,45 @@
 
 package main.metamodel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Mission {
-    private String missionID, missionType, startLocation, endLocation;
-    private int priority;
-    private float estimatedTime;
-    private List<Drone> drones = new ArrayList<>();
-    private List<Phase> phases = new ArrayList<>();
-    private List<Constraint> constraints = new ArrayList<>();
-    private List<MissionEvent> events = new ArrayList<>();
-
-    public Mission(String missionID, String missionType) {
-        this.missionID = missionID;
-        this.missionType = missionType;
+    private String name;
+    private DroneGroup droneGroup;
+    private List<ActionElement> actions;
+    private List<Constraint> constraints;
+    public Mission(String name, DroneGroup droneGroup, List<ActionElement> actions, List<Constraint> constraints){
+        this.name = name;
+        this.droneGroup = droneGroup;
+        this.actions = actions;
+        this.constraints = constraints;
     }
-
-    public String getMissionID() {
-        return missionID;
+    public String getName() {
+        return name;
     }
-
-    public String getMissionType() {
-        return missionType;
+    public DroneGroup getDroneGroup() {
+        return droneGroup;
     }
-
-    public String getStartLocation() {
-        return startLocation;
+    public List<ActionElement> getActions() {
+        return actions;
     }
-
-    public String getEndLocation() {
-        return endLocation;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public float getEstimatedTime() {
-        return estimatedTime;
-    }
-
-    public List<Drone> getDrones() {
-        return drones;
-    }
-
-    public List<Phase> getPhases() {
-        return phases;
-    }
-
     public List<Constraint> getConstraints() {
         return constraints;
     }
-
-    public List<MissionEvent> getEvents() {
-        return events;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public Mission setStartLocation(String loc) {
-        this.startLocation = loc;
-        return this;
+    public void setDroneGroup(DroneGroup droneGroup) {
+        this.droneGroup = droneGroup;
     }
-
-    public Mission setEndLocation(String loc) {
-        this.endLocation = loc;
-        return this;
+    public void setActions(List<ActionElement> actions) {
+        this.actions = actions;
     }
-
-    public Mission setPriority(int priority) {
-        this.priority = priority;
-        return this;
+    public void setConstraints(List<Constraint> constraints) {
+        this.constraints = constraints;
     }
-
-    public Mission setEstimatedTime(float time) {
-        this.estimatedTime = time;
-        return this;
-    }
-
-    public Mission addPhase(Phase phase) {
-        this.phases.add(phase);
-        return this;
-    }
-
-    public Mission addDrone(Drone drone) {
-        this.drones.add(drone);
-        return this;
-    }
-
-    public Mission addConstraint(Constraint constraint) {
-        this.constraints.add(constraint);
-        return this;
-    }
-
-    public Mission addEvent(MissionEvent event) {
-        events.add(event);
-        return this;
-    }
-
     @Override
     public String toString() {
-        return "Mission{" +
-                "missionID='" + missionID + '\'' +
-                ", missionType='" + missionType + '\'' +
-                ", startLocation='" + startLocation + '\'' +
-                ", endLocation='" + endLocation + '\'' +
-                ", priority=" + priority +
-                ", estimatedTime=" + estimatedTime +
-                ", phases=" + phases +
-                ", drones=" + drones +
-                ", constraints=" + constraints +
-                ", events=" + events +
-                '}';
+        return "Mission{" + "name='" + name + '\'' + ", droneGroup=" + droneGroup + ", actions=" + actions + ", constraints=" + constraints + '}';
     }
 }

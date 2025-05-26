@@ -1,45 +1,34 @@
 package main.metamodel;
 
-public class Action {
-    private String actionType, inputOutput;
-    private float energyUsage;
-
-    public Action(String actionType, String inputOutput, float energyUsage) {
-        this.actionType = actionType;
-        this.inputOutput = inputOutput;
-        this.energyUsage = energyUsage;
+public class Action extends Entity {
+    private String name;
+    private String description;
+    private String type;
+    public Action(String name, String description, String type) {
+        this.name = name;
+        this.description = description;
+        this.type = type;
     }
-
-    public String getActionType() {
-        return actionType;
+    public String getName() {
+        return name;
     }
-
-    public String getInputOutput() {
-        return inputOutput;
+    public String getDescription() {
+        return description;
     }
-
-    public float getEnergyUsage() {
-        return energyUsage;
+    public String getType() {
+        return type;
     }
-
-    public void setActionType(String actionType) {
-        this.actionType = actionType;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public void setInputOutput(String inputOutput) {
-        this.inputOutput = inputOutput;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-    public void setEnergyUsage(float energyUsage) {
-        this.energyUsage = energyUsage;
+    public void setType(String type) {
+        this.type = type;
     }
-
     @Override
     public String toString() {
-        return "Action{" +
-                "actionType='" + actionType + '\'' +
-                ", inputOutput='" + inputOutput + '\'' +
-                ", energyUsage=" + energyUsage +
-                '}';
+        return "Action [name=" + name + ", description=" + description + ", type=" + type + "]";
     }
 }

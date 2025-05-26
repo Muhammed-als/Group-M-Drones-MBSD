@@ -1,0 +1,135 @@
+// === Type Definitions ===
+
+Drone {
+    name: id
+    ip: string
+    serialNumber: string
+}
+
+DroneGroup {
+    name: id
+    drones: List<Drone>
+}
+
+Action {
+    name: id
+    description: string
+    type: string
+}
+
+Constraint {
+    name: id
+    description: string
+}
+
+PermissionConstraint extends Constraint {
+    name: id
+}
+RegulatoryConstraint extends Constraint {
+    name: id
+}
+
+ActionElement {
+    action: Action
+    mission: Mission
+}
+
+Mission {
+    name: id
+    droneGroup: DroneGroup
+    actions: List<ActionElement>
+    constraints: List<Constraint>
+}
+
+Relation {
+    name: id
+    from: Entity
+    to: Entity
+    type: string
+}
+
+abstract type Entity {}
+
+Model {
+    name: id
+    entities: List<Entity>
+    relations: List<Relation>
+}
+
+
+model "DisasterResponseModel" {
+
+    entity Drone{
+        name = DroneA
+        ip = "192.168.1.10"
+        serialNumber = "SN-001"
+    }
+
+    entity Drone{
+        name = DroneB
+        ip = "192.168.1.11"
+        serialNumber = "SN-002"
+    }
+
+    entity DroneGroup {
+        name = AlphaGroup
+        drones = ["DroneA", "DroneB"]
+    }
+
+    entity Action {
+        name = ScanArea
+        description = "Scan the affected area for survivors"
+        type = "Scan"
+    }
+
+    entity Action {
+        name = DeliverSupplies
+        description = "Deliver medical supplies"
+        type = "Deliver"
+    }
+
+    entity PermissionConstraint {
+        name = BatteryCheck
+        description = "Battery must be above 50%"
+    }
+
+    entity RegulatoryConstraint {
+        name = NoFlyZoneCheck
+        description = "Avoid restricted airspace"
+    }
+
+    entity Mission {
+        name = SupplyDrop
+        droneGroup = "AlphaGroup"
+        actions = [
+            action "DeliverSupplies"
+        ]
+    }
+
+    entity Mission {
+        name = RescueMission
+        droneGroup = "AlphaGroup"
+        actions = [
+            action "ScanArea",
+            mission "SupplyDrop"
+        ]
+        constraints = [
+            "BatteryCheck",
+            "NoFlyZoneCheck"
+        ]
+    }
+
+    relation {
+        name = Inheritance1
+        from = "Drone"
+        to = "Entity"
+        type = "inherits"
+    }
+
+    relation {
+        name = Contains1
+        from = "Mission"
+        to = "DroneGroup"
+        type = "contains"
+    }
+}

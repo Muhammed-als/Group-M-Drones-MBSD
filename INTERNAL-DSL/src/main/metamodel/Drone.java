@@ -1,74 +1,34 @@
 package main.metamodel;
 
-public class Drone {
-    private String modelType, role;
-    private float batteryCapacity, maxFlightTime, payloadCapacity;
-    private EnergyModel EnergyModel;
-
-    public Drone(String modelType, float batteryCapacity, float maxFlightTime, float payloadCapacity, String role) {
-        this.modelType = modelType;
-        this.batteryCapacity = batteryCapacity;
-        this.maxFlightTime = maxFlightTime;
-        this.payloadCapacity = payloadCapacity;
-        this.role = role;
+public class Drone extends Entity {
+    private String name;
+    private String ip;
+    private String serialNumber;
+    public Drone(String name, String ip, String serialNumber) {
+        this.name = name;
+        this.ip = ip;
+        this.serialNumber = serialNumber;
     }
-
-    public String getModelType() {
-        return modelType;
+    public String getName() {
+        return name;
     }
-
-    public String getRole() {
-        return role;
+    public String getIp() {
+        return ip;
     }
-
-    public float getBatteryCapacity() {
-        return batteryCapacity;
+    public String getSerialNumber() {
+        return serialNumber;
     }
-
-    public float getMaxFlightTime() {
-        return maxFlightTime;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public float getPayloadCapacity() {
-        return payloadCapacity;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
-
-    public EnergyModel getEnergyModel() {
-        return EnergyModel;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
-
-    public void setModelType(String modelType) {
-        this.modelType = modelType;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public void setBatteryCapacity(float batteryCapacity) {
-        this.batteryCapacity = batteryCapacity;
-    }
-
-    public void setMaxFlightTime(float maxFlightTime) {
-        this.maxFlightTime = maxFlightTime;
-    }
-
-    public void setPayloadCapacity(float payloadCapacity) {
-        this.payloadCapacity = payloadCapacity;
-    }
-
-    public void setEnergyModel(EnergyModel energyModel) {
-        EnergyModel = energyModel;
-    }
-
     @Override
     public String toString() {
-        return "Drone{" +
-                "modelType='" + modelType + '\'' +
-                ", role='" + role + '\'' +
-                ", batteryCapacity=" + batteryCapacity +
-                ", maxFlightTime=" + maxFlightTime +
-                ", payloadCapacity=" + payloadCapacity +
-                '}';
+        return "Drone{" + "name='" + name + '\'' + ", ip='" + ip + '\'' + ", serialNumber='" + serialNumber + '\'' + '}';
     }
 }
